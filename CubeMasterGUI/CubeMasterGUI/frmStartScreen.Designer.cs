@@ -28,18 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnMainMenu = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(473, 104);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(420, 280);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
             // 
             // btnMainMenu
             // 
@@ -57,11 +49,19 @@
             this.btnMainMenu.UseVisualStyleBackColor = false;
             this.btnMainMenu.Click += new System.EventHandler(this.btnMainMenu_Click);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(473, 104);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(420, 280);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
             // frmStartScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Lavender;
+            this.BackColor = System.Drawing.Color.GhostWhite;
             this.ClientSize = new System.Drawing.Size(1350, 729);
             this.Controls.Add(this.btnMainMenu);
             this.Controls.Add(this.pictureBox1);
@@ -69,6 +69,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmStartScreen";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cube Master";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

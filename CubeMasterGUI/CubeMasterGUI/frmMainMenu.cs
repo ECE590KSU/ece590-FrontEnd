@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 using System.Windows.Forms;
 
 namespace CubeMasterGUI
@@ -15,6 +16,11 @@ namespace CubeMasterGUI
         public frmMainMenu()
         {
             InitializeComponent();
+            SetApplicationIcons();
+        }
+
+        private void SetApplicationIcons()
+        {
         }
     }
 }

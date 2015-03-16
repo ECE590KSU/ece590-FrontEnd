@@ -33,9 +33,10 @@
             // 
             // btnClose
             // 
+            this.btnClose.BackColor = System.Drawing.SystemColors.ButtonShadow;
             this.btnClose.FlatAppearance.BorderSize = 0;
             this.btnClose.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Thistle;
-            this.btnClose.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnClose.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Font = new System.Drawing.Font("Open Sans", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.ForeColor = System.Drawing.SystemColors.ControlLightLight;
