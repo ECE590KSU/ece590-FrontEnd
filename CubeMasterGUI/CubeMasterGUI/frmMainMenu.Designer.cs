@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.btnCloseWindow1 = new CubeMasterGUI.btnCloseWindow();
+            this.btnAppFreeDraw = new CubeMasterGUI.btnAppLauncher();
             this.SuspendLayout();
             // 
             // btnCloseWindow1
@@ -39,11 +40,21 @@
             this.btnCloseWindow1.Size = new System.Drawing.Size(30, 30);
             this.btnCloseWindow1.TabIndex = 0;
             // 
+            // btnAppFreeDraw
+            // 
+            this.btnAppFreeDraw.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.btnAppFreeDraw.Location = new System.Drawing.Point(185, 208);
+            this.btnAppFreeDraw.Name = "btnAppFreeDraw";
+            this.btnAppFreeDraw.Size = new System.Drawing.Size(150, 150);
+            this.btnAppFreeDraw.TabIndex = 1;
+            // 
             // frmMainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Lavender;
             this.ClientSize = new System.Drawing.Size(1350, 729);
+            this.Controls.Add(this.btnAppFreeDraw);
             this.Controls.Add(this.btnCloseWindow1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmMainMenu";
@@ -55,6 +66,7 @@
         #endregion
 
         private btnCloseWindow btnCloseWindow1;
+        private btnAppLauncher btnAppFreeDraw;
 
     }
 }
