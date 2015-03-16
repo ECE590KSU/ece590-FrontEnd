@@ -40,7 +40,7 @@
             this.btnLaunch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLaunch.Location = new System.Drawing.Point(0, 0);
             this.btnLaunch.Name = "btnLaunch";
-            this.btnLaunch.Size = new System.Drawing.Size(100, 100);
+            this.btnLaunch.Size = new System.Drawing.Size(300, 120);
             this.btnLaunch.TabIndex = 0;
             this.btnLaunch.UseVisualStyleBackColor = false;
             this.btnLaunch.MouseEnter += new System.EventHandler(this.btnLaunch_MouseEnter);
@@ -54,7 +54,7 @@
             this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.btnLaunch);
             this.Name = "AppLauncher";
-            this.Size = new System.Drawing.Size(100, 100);
+            this.Size = new System.Drawing.Size(300, 120);
             this.ResumeLayout(false);
 
         }

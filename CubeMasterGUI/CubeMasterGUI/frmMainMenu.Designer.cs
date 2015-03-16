@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lblFreeDraw = new System.Windows.Forms.Label();
             this.lblText2Cube = new System.Windows.Forms.Label();
             this.lblAudioVis = new System.Windows.Forms.Label();
@@ -39,13 +40,15 @@
             this.appPreset = new CubeMasterGUI.AppLauncher();
             this.appFreeDraw = new CubeMasterGUI.AppLauncher();
             this.btnCloseWindow1 = new CubeMasterGUI.btnCloseWindow();
+            this.appLauncherBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.appLauncherBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // lblFreeDraw
             // 
             this.lblFreeDraw.AutoSize = true;
             this.lblFreeDraw.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFreeDraw.Location = new System.Drawing.Point(382, 277);
+            this.lblFreeDraw.Location = new System.Drawing.Point(213, 189);
             this.lblFreeDraw.Name = "lblFreeDraw";
             this.lblFreeDraw.Size = new System.Drawing.Size(94, 20);
             this.lblFreeDraw.TabIndex = 2;
@@ -55,7 +58,7 @@
             // 
             this.lblText2Cube.AutoSize = true;
             this.lblText2Cube.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblText2Cube.Location = new System.Drawing.Point(830, 277);
+            this.lblText2Cube.Location = new System.Drawing.Point(1006, 189);
             this.lblText2Cube.Name = "lblText2Cube";
             this.lblText2Cube.Size = new System.Drawing.Size(100, 20);
             this.lblText2Cube.TabIndex = 2;
@@ -65,7 +68,7 @@
             // 
             this.lblAudioVis.AutoSize = true;
             this.lblAudioVis.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAudioVis.Location = new System.Drawing.Point(591, 471);
+            this.lblAudioVis.Location = new System.Drawing.Point(619, 400);
             this.lblAudioVis.Name = "lblAudioVis";
             this.lblAudioVis.Size = new System.Drawing.Size(147, 20);
             this.lblAudioVis.TabIndex = 2;
@@ -75,7 +78,7 @@
             // 
             this.lblPreset.AutoSize = true;
             this.lblPreset.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPreset.Location = new System.Drawing.Point(394, 656);
+            this.lblPreset.Location = new System.Drawing.Point(212, 656);
             this.lblPreset.Name = "lblPreset";
             this.lblPreset.Size = new System.Drawing.Size(69, 20);
             this.lblPreset.TabIndex = 2;
@@ -85,7 +88,7 @@
             // 
             this.lblGames.AutoSize = true;
             this.lblGames.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGames.Location = new System.Drawing.Point(848, 656);
+            this.lblGames.Location = new System.Drawing.Point(1010, 656);
             this.lblGames.Name = "lblGames";
             this.lblGames.Size = new System.Drawing.Size(61, 20);
             this.lblGames.TabIndex = 2;
@@ -95,45 +98,44 @@
             // 
             this.appGame.AutoSize = true;
             this.appGame.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.appGame.Location = new System.Drawing.Point(830, 553);
+            this.appGame.Location = new System.Drawing.Point(1010, 575);
             this.appGame.Name = "appGame";
-            this.appGame.Size = new System.Drawing.Size(100, 100);
+            this.appGame.Size = new System.Drawing.Size(200, 100);
             this.appGame.TabIndex = 1;
             // 
             // appText2Cube
             // 
             this.appText2Cube.AutoSize = true;
             this.appText2Cube.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.appText2Cube.Location = new System.Drawing.Point(830, 174);
+            this.appText2Cube.Location = new System.Drawing.Point(1010, 108);
             this.appText2Cube.Name = "appText2Cube";
-            this.appText2Cube.Size = new System.Drawing.Size(100, 100);
+            this.appText2Cube.Size = new System.Drawing.Size(200, 100);
             this.appText2Cube.TabIndex = 1;
             // 
             // appAudioVis
             // 
             this.appAudioVis.AutoSize = true;
             this.appAudioVis.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.appAudioVis.Location = new System.Drawing.Point(616, 368);
+            this.appAudioVis.Location = new System.Drawing.Point(619, 320);
             this.appAudioVis.Name = "appAudioVis";
-            this.appAudioVis.Size = new System.Drawing.Size(100, 100);
+            this.appAudioVis.Size = new System.Drawing.Size(200, 100);
             this.appAudioVis.TabIndex = 1;
             // 
             // appPreset
             // 
             this.appPreset.AutoSize = true;
             this.appPreset.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.appPreset.Location = new System.Drawing.Point(377, 553);
+            this.appPreset.Location = new System.Drawing.Point(212, 575);
             this.appPreset.Name = "appPreset";
-            this.appPreset.Size = new System.Drawing.Size(100, 100);
+            this.appPreset.Size = new System.Drawing.Size(200, 100);
             this.appPreset.TabIndex = 1;
             // 
             // appFreeDraw
             // 
-            this.appFreeDraw.AutoSize = true;
             this.appFreeDraw.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.appFreeDraw.Location = new System.Drawing.Point(377, 174);
+            this.appFreeDraw.Location = new System.Drawing.Point(213, 109);
             this.appFreeDraw.Name = "appFreeDraw";
-            this.appFreeDraw.Size = new System.Drawing.Size(100, 100);
+            this.appFreeDraw.Size = new System.Drawing.Size(200, 100);
             this.appFreeDraw.TabIndex = 1;
             // 
             // btnCloseWindow1
@@ -143,6 +145,10 @@
             this.btnCloseWindow1.Name = "btnCloseWindow1";
             this.btnCloseWindow1.Size = new System.Drawing.Size(30, 30);
             this.btnCloseWindow1.TabIndex = 0;
+            // 
+            // appLauncherBindingSource
+            // 
+            this.appLauncherBindingSource.DataSource = typeof(CubeMasterGUI.AppLauncher);
             // 
             // frmMainMenu
             // 
@@ -165,6 +171,7 @@
             this.Name = "frmMainMenu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Main Menu";
+            ((System.ComponentModel.ISupportInitialize)(this.appLauncherBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -183,6 +190,7 @@
         private System.Windows.Forms.Label lblAudioVis;
         private System.Windows.Forms.Label lblPreset;
         private System.Windows.Forms.Label lblGames;
+        private System.Windows.Forms.BindingSource appLauncherBindingSource;
 
     }
 }
