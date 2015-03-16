@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace CubeMasterGUI
@@ -13,7 +14,6 @@ namespace CubeMasterGUI
     public partial class AppLauncher : UserControl
     {
         private int FloatDistance = 20;
-        private bool HasFloated = false;
 
         public AppLauncher()
         {
@@ -27,28 +27,12 @@ namespace CubeMasterGUI
 
         private void btnLaunch_MouseEnter(object sender, EventArgs e)
         {
-            if (!HasFloated)
-            {
-                int i = 0;
-                while (i++ < FloatDistance)
-                {
-                    this.Top--;
-                }
-                HasFloated = true;
-            }
+
         }
 
         private void btnLaunch_MouseLeave(object sender, EventArgs e)
         {
-            if (HasFloated)
-            {
-                int i = 0;
-                while (i++ < FloatDistance)
-                {
-                    this.Top++;
-                }
-                HasFloated = false;
-            }
+
         }
     }
 }

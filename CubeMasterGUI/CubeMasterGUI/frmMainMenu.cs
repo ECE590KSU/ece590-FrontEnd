@@ -21,7 +21,10 @@ namespace CubeMasterGUI
 
         private void SetApplicationIcons()
         {
+            this.appAudioVis.SetBkgdImage(AssetHandler.AudioVisURL);
             this.appFreeDraw.SetBkgdImage(AssetHandler.FreeDrawURL);
+            this.appGame.SetBkgdImage(AssetHandler.GamesURL);
+            this.appPreset.SetBkgdImage(AssetHandler.PresetURL);
             this.appText2Cube.SetBkgdImage(AssetHandler.Text2CubeURL);
         }
     }

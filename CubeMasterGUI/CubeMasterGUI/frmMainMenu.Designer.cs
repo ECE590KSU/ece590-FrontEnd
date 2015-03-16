@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lblFreeDraw = new System.Windows.Forms.Label();
+            this.lblText2Cube = new System.Windows.Forms.Label();
+            this.lblAudioVis = new System.Windows.Forms.Label();
+            this.lblPreset = new System.Windows.Forms.Label();
+            this.lblGames = new System.Windows.Forms.Label();
             this.appGame = new CubeMasterGUI.AppLauncher();
             this.appText2Cube = new CubeMasterGUI.AppLauncher();
             this.appAudioVis = new CubeMasterGUI.AppLauncher();
@@ -41,53 +41,59 @@
             this.btnCloseWindow1 = new CubeMasterGUI.btnCloseWindow();
             this.SuspendLayout();
             // 
-            // label1
+            // lblFreeDraw
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(407, 277);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "label1";
+            this.lblFreeDraw.AutoSize = true;
+            this.lblFreeDraw.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFreeDraw.Location = new System.Drawing.Point(382, 277);
+            this.lblFreeDraw.Name = "lblFreeDraw";
+            this.lblFreeDraw.Size = new System.Drawing.Size(94, 20);
+            this.lblFreeDraw.TabIndex = 2;
+            this.lblFreeDraw.Text = "FREE DRAW";
             // 
-            // label2
+            // lblText2Cube
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(862, 277);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "label1";
+            this.lblText2Cube.AutoSize = true;
+            this.lblText2Cube.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblText2Cube.Location = new System.Drawing.Point(830, 277);
+            this.lblText2Cube.Name = "lblText2Cube";
+            this.lblText2Cube.Size = new System.Drawing.Size(100, 20);
+            this.lblText2Cube.TabIndex = 2;
+            this.lblText2Cube.Text = "TEXT 2 CUBE";
             // 
-            // label3
+            // lblAudioVis
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(650, 471);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(35, 13);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "label1";
+            this.lblAudioVis.AutoSize = true;
+            this.lblAudioVis.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAudioVis.Location = new System.Drawing.Point(591, 471);
+            this.lblAudioVis.Name = "lblAudioVis";
+            this.lblAudioVis.Size = new System.Drawing.Size(147, 20);
+            this.lblAudioVis.TabIndex = 2;
+            this.lblAudioVis.Text = "AUDIO VISUALIZER";
             // 
-            // label4
+            // lblPreset
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(407, 656);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(35, 13);
-            this.label4.TabIndex = 2;
-            this.label4.Text = "label1";
+            this.lblPreset.AutoSize = true;
+            this.lblPreset.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPreset.Location = new System.Drawing.Point(394, 656);
+            this.lblPreset.Name = "lblPreset";
+            this.lblPreset.Size = new System.Drawing.Size(69, 20);
+            this.lblPreset.TabIndex = 2;
+            this.lblPreset.Text = "PRESETS";
             // 
-            // label5
+            // lblGames
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(862, 656);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(35, 13);
-            this.label5.TabIndex = 2;
-            this.label5.Text = "label1";
+            this.lblGames.AutoSize = true;
+            this.lblGames.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblGames.Location = new System.Drawing.Point(848, 656);
+            this.lblGames.Name = "lblGames";
+            this.lblGames.Size = new System.Drawing.Size(61, 20);
+            this.lblGames.TabIndex = 2;
+            this.lblGames.Text = "GAMES";
             // 
             // appGame
             // 
+            this.appGame.AutoSize = true;
             this.appGame.BackColor = System.Drawing.SystemColors.ButtonShadow;
             this.appGame.Location = new System.Drawing.Point(830, 553);
             this.appGame.Name = "appGame";
@@ -96,6 +102,7 @@
             // 
             // appText2Cube
             // 
+            this.appText2Cube.AutoSize = true;
             this.appText2Cube.BackColor = System.Drawing.SystemColors.ButtonShadow;
             this.appText2Cube.Location = new System.Drawing.Point(830, 174);
             this.appText2Cube.Name = "appText2Cube";
@@ -104,6 +111,7 @@
             // 
             // appAudioVis
             // 
+            this.appAudioVis.AutoSize = true;
             this.appAudioVis.BackColor = System.Drawing.SystemColors.ButtonShadow;
             this.appAudioVis.Location = new System.Drawing.Point(616, 368);
             this.appAudioVis.Name = "appAudioVis";
@@ -112,6 +120,7 @@
             // 
             // appPreset
             // 
+            this.appPreset.AutoSize = true;
             this.appPreset.BackColor = System.Drawing.SystemColors.ButtonShadow;
             this.appPreset.Location = new System.Drawing.Point(377, 553);
             this.appPreset.Name = "appPreset";
@@ -120,6 +129,7 @@
             // 
             // appFreeDraw
             // 
+            this.appFreeDraw.AutoSize = true;
             this.appFreeDraw.BackColor = System.Drawing.SystemColors.ButtonShadow;
             this.appFreeDraw.Location = new System.Drawing.Point(377, 174);
             this.appFreeDraw.Name = "appFreeDraw";
@@ -140,11 +150,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.GhostWhite;
             this.ClientSize = new System.Drawing.Size(1366, 768);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblPreset);
+            this.Controls.Add(this.lblAudioVis);
+            this.Controls.Add(this.lblGames);
+            this.Controls.Add(this.lblText2Cube);
+            this.Controls.Add(this.lblFreeDraw);
             this.Controls.Add(this.appGame);
             this.Controls.Add(this.appText2Cube);
             this.Controls.Add(this.appAudioVis);
@@ -168,11 +178,11 @@
         private AppLauncher appAudioVis;
         private AppLauncher appText2Cube;
         private AppLauncher appGame;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblFreeDraw;
+        private System.Windows.Forms.Label lblText2Cube;
+        private System.Windows.Forms.Label lblAudioVis;
+        private System.Windows.Forms.Label lblPreset;
+        private System.Windows.Forms.Label lblGames;
 
     }
 }
