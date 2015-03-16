@@ -35,9 +35,9 @@
             // 
             // btnMainMenu
             // 
-            this.btnMainMenu.BackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.btnMainMenu.BackColor = System.Drawing.Color.SteelBlue;
             this.btnMainMenu.FlatAppearance.BorderSize = 0;
-            this.btnMainMenu.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
+            this.btnMainMenu.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
             this.btnMainMenu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMainMenu.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMainMenu.ForeColor = System.Drawing.SystemColors.ButtonHighlight;

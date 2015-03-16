@@ -1,27 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.IO;
 using System.Windows.Forms;
 
 namespace CubeMasterGUI
 {
-    public partial class frmMainMenu : Form
+    public partial class AppLauncher : UserControl
     {
-        public frmMainMenu()
+        public AppLauncher()
         {
             InitializeComponent();
-            SetApplicationIcons();
         }
 
-        private void SetApplicationIcons()
+        public void SetBkgdImage(string path)
         {
-            this.appFreeDraw.SetBkgdImage(AssetHandler.FreeDrawURL);
+            this.btnLaunch.Image = new Bitmap(path);
         }
     }
 }
