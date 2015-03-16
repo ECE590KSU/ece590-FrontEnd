@@ -12,6 +12,9 @@ namespace CubeMasterGUI
 {
     public partial class AppLauncher : UserControl
     {
+        private int FloatDistance = 20;
+        private bool HasFloated = false;
+
         public AppLauncher()
         {
             InitializeComponent();
@@ -20,6 +23,16 @@ namespace CubeMasterGUI
         public void SetBkgdImage(string path)
         {
             this.btnLaunch.Image = new Bitmap(path);
+        }
+
+        private void btnLaunch_MouseEnter(object sender, EventArgs e)
+        {
+            int i = 0;
+            while(i++ < FloatDistance)
+            {
+                this.Top--;
+            }
+            HasFloated = !HasFloated;
         }
     }
 }
