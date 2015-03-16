@@ -55,6 +55,7 @@
             this.btnMainMenu.TabIndex = 1;
             this.btnMainMenu.Text = "B E G I N";
             this.btnMainMenu.UseVisualStyleBackColor = false;
+            this.btnMainMenu.Click += new System.EventHandler(this.btnMainMenu_Click);
             // 
             // frmStartScreen
             // 

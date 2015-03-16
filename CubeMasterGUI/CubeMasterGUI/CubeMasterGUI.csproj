@@ -44,6 +44,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="btnCloseWindow.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="btnCloseWindow.Designer.cs">
+      <DependentUpon>btnCloseWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMainMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMainMenu.Designer.cs">
+      <DependentUpon>frmMainMenu.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmStartScreen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -52,6 +64,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="btnCloseWindow.resx">
+      <DependentUpon>btnCloseWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMainMenu.resx">
+      <DependentUpon>frmMainMenu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmStartScreen.resx">
       <DependentUpon>frmStartScreen.cs</DependentUpon>
     </EmbeddedResource>

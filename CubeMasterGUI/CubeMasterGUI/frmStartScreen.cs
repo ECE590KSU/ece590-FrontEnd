@@ -16,5 +16,14 @@ namespace CubeMasterGUI
         {
             InitializeComponent();
         }
+
+        private void btnMainMenu_Click(object sender, EventArgs e)
+        {
+            frmMainMenu MainMenu = new frmMainMenu();
+            if( MainMenu.ShowDialog() == DialogResult.Cancel )
+            {
+                MessageBox.Show("Main Menu Closed");
+            }
+        }
     }
 }
