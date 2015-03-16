@@ -27,12 +27,28 @@ namespace CubeMasterGUI
 
         private void btnLaunch_MouseEnter(object sender, EventArgs e)
         {
-            int i = 0;
-            while(i++ < FloatDistance)
+            if (!HasFloated)
             {
-                this.Top--;
+                int i = 0;
+                while (i++ < FloatDistance)
+                {
+                    this.Top--;
+                }
+                HasFloated = true;
             }
-            HasFloated = !HasFloated;
+        }
+
+        private void btnLaunch_MouseLeave(object sender, EventArgs e)
+        {
+            if (HasFloated)
+            {
+                int i = 0;
+                while (i++ < FloatDistance)
+                {
+                    this.Top++;
+                }
+                HasFloated = false;
+            }
         }
     }
 }
