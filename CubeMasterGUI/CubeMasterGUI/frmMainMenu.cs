@@ -22,6 +22,7 @@ namespace CubeMasterGUI
         private void SetApplicationIcons()
         {
             this.appFreeDraw.SetBkgdImage(AssetHandler.FreeDrawURL);
+            this.appText2Cube.SetBkgdImage(AssetHandler.Text2CubeURL);
         }
     }
 }
