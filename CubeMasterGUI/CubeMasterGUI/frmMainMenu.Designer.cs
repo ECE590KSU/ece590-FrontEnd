@@ -132,6 +132,7 @@
             // 
             // appFreeDraw
             // 
+            this.appFreeDraw.AutoSize = true;
             this.appFreeDraw.BackColor = System.Drawing.SystemColors.ButtonShadow;
             this.appFreeDraw.Location = new System.Drawing.Point(213, 109);
             this.appFreeDraw.Name = "appFreeDraw";
@@ -171,6 +172,7 @@
             this.Name = "frmMainMenu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Main Menu";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMainMenu_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.appLauncherBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

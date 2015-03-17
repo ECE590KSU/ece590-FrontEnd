@@ -13,8 +13,6 @@ namespace CubeMasterGUI
 {
     public partial class AppLauncher : UserControl
     {
-        private int FloatDistance = 20;
-
         public AppLauncher()
         {
             InitializeComponent();

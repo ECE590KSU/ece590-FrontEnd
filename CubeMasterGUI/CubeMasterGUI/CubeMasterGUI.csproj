@@ -59,7 +59,6 @@
       <DependentUpon>btnCloseWindow.cs</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="FormTimer.cs" />
     <Compile Include="frmMainMenu.cs">
       <SubType>Form</SubType>
     </Compile>

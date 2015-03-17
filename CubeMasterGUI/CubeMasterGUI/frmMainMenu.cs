@@ -13,13 +13,10 @@ namespace CubeMasterGUI
 {
     public partial class frmMainMenu : Form
     {
-        protected System.Windows.Forms.Timer FormTimer { get; private set; }
-
         public frmMainMenu()
         {
             InitializeComponent();
             SetApplicationIcons();
-            InitializeFormTimer();
         }
 
         private void SetApplicationIcons()
@@ -31,17 +28,8 @@ namespace CubeMasterGUI
             this.appText2Cube.SetBkgdImage(AssetHandler.Text2CubeURL);
         }
 
-        private void InitializeFormTimer()
+        private void frmMainMenu_FormClosing(object sender, FormClosingEventArgs e)
         {
-            this.FormTimer = new System.Windows.Forms.Timer();
-            this.FormTimer.Interval = 15000;
-            this.FormTimer.Tick += new EventHandler(FormTimer_Tick);
-            this.FormTimer.Start();
-        }
-
-        private void FormTimer_Tick(object sender, EventArgs e)
-        {
-            this.Close();
         }
     }
 }
