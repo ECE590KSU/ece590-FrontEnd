@@ -13,45 +13,14 @@ namespace CubeMasterGUI
 {
     public partial class frmMainMenu : Form
     {
-        private System.Windows.Forms.Timer InactiveTimer { get; set; }
-        private System.Windows.Forms.Timer PromptTimer { get; set; }
+        private ctrlTimer FormTimer { get; set; }
 
         public frmMainMenu()
         {
             InitializeComponent();
             SetApplicationIcons();
-            InitializeTimers();
-        }
-
-        private void InitializeTimers()
-        {
-            InactiveTimer = new System.Windows.Forms.Timer();
-            PromptTimer = new System.Windows.Forms.Timer();
-
-            InactiveTimer.Interval = AssetHandler.InactiveTimeOut;
-            PromptTimer.Interval = AssetHandler.PromptTimeOut;
-
-            InactiveTimer.Tick += InactiveTimer_Tick;
-            PromptTimer.Tick += PromptTimer_Tick;
-
-            InactiveTimer.Start();
-        }
-
-        private void InactiveTimer_Tick(object sender, EventArgs e)
-        {
-            InactiveTimer.Stop();
-            this.PromptIfDone();
-        }
-
-        private void PromptTimer_Tick(object sender, EventArgs e)
-        {
-            PromptTimer.Stop();
-            this.Close();
-        }
-
-        private void PromptIfDone()
-        {
-            PromptTimer.Start();
+            this.FormTimer = new ctrlTimer();
+            FormTimer.InitializeTimers(this);
         }
 
         private void SetApplicationIcons()

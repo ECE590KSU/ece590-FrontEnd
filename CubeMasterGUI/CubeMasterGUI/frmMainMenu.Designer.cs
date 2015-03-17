@@ -41,6 +41,7 @@
             this.appFreeDraw = new CubeMasterGUI.AppLauncher();
             this.btnCloseWindow1 = new CubeMasterGUI.btnCloseWindow();
             this.appLauncherBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.ctrlTimer1 = new CubeMasterGUI.ctrlTimer();
             ((System.ComponentModel.ISupportInitialize)(this.appLauncherBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -151,12 +152,21 @@
             // 
             this.appLauncherBindingSource.DataSource = typeof(CubeMasterGUI.AppLauncher);
             // 
+            // ctrlTimer1
+            // 
+            this.ctrlTimer1.BackColor = System.Drawing.Color.Transparent;
+            this.ctrlTimer1.Location = new System.Drawing.Point(12, 726);
+            this.ctrlTimer1.Name = "ctrlTimer1";
+            this.ctrlTimer1.Size = new System.Drawing.Size(30, 30);
+            this.ctrlTimer1.TabIndex = 3;
+            // 
             // frmMainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.GhostWhite;
             this.ClientSize = new System.Drawing.Size(1366, 768);
+            this.Controls.Add(this.ctrlTimer1);
             this.Controls.Add(this.lblPreset);
             this.Controls.Add(this.lblAudioVis);
             this.Controls.Add(this.lblGames);
@@ -192,6 +202,7 @@
         private System.Windows.Forms.Label lblPreset;
         private System.Windows.Forms.Label lblGames;
         private System.Windows.Forms.BindingSource appLauncherBindingSource;
+        private ctrlTimer ctrlTimer1;
 
     }
 }

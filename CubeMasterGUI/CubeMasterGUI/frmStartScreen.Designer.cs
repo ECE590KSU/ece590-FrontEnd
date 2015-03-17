@@ -39,7 +39,7 @@
             this.btnMainMenu.FlatAppearance.BorderSize = 0;
             this.btnMainMenu.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
             this.btnMainMenu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMainMenu.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMainMenu.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMainMenu.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnMainMenu.Location = new System.Drawing.Point(563, 569);
             this.btnMainMenu.Name = "btnMainMenu";

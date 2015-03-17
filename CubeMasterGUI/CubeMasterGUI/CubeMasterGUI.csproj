@@ -51,6 +51,12 @@
       <DependentUpon>AppLauncher.cs</DependentUpon>
     </Compile>
     <Compile Include="AssetHandler.cs" />
+    <Compile Include="AutoCloseMessageBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AutoCloseMessageBox.Designer.cs">
+      <DependentUpon>AutoCloseMessageBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="btnCloseWindow.cs">
       <SubType>UserControl</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -58,6 +64,12 @@
     <Compile Include="btnCloseWindow.Designer.cs">
       <DependentUpon>btnCloseWindow.cs</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="ctrlTimer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ctrlTimer.Designer.cs">
+      <DependentUpon>ctrlTimer.cs</DependentUpon>
     </Compile>
     <Compile Include="frmMainMenu.cs">
       <SubType>Form</SubType>
@@ -76,9 +88,15 @@
     <EmbeddedResource Include="AppLauncher.resx">
       <DependentUpon>AppLauncher.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AutoCloseMessageBox.resx">
+      <DependentUpon>AutoCloseMessageBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="btnCloseWindow.resx">
       <DependentUpon>btnCloseWindow.cs</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ctrlTimer.resx">
+      <DependentUpon>ctrlTimer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMainMenu.resx">
       <DependentUpon>frmMainMenu.cs</DependentUpon>
