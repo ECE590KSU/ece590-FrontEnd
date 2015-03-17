@@ -49,6 +49,7 @@
             this.btnYes.TabIndex = 0;
             this.btnYes.Text = "Yes";
             this.btnYes.UseVisualStyleBackColor = false;
+            this.btnYes.Click += new System.EventHandler(this.btnYes_Click);
             // 
             // btnNo
             // 
@@ -64,6 +65,7 @@
             this.btnNo.TabIndex = 0;
             this.btnNo.Text = "No";
             this.btnNo.UseVisualStyleBackColor = false;
+            this.btnNo.Click += new System.EventHandler(this.btnNo_Click);
             // 
             // lblPrompt
             // 
@@ -88,10 +90,10 @@
             // lblTimeLeft
             // 
             this.lblTimeLeft.AutoSize = true;
-            this.lblTimeLeft.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTimeLeft.Location = new System.Drawing.Point(210, 197);
+            this.lblTimeLeft.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTimeLeft.Location = new System.Drawing.Point(171, 193);
             this.lblTimeLeft.Name = "lblTimeLeft";
-            this.lblTimeLeft.Size = new System.Drawing.Size(0, 25);
+            this.lblTimeLeft.Size = new System.Drawing.Size(0, 30);
             this.lblTimeLeft.TabIndex = 2;
             // 
             // AutoCloseMessageBox
@@ -99,13 +101,15 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightGray;
+            this.ClientSize = new System.Drawing.Size(400, 250);
             this.Controls.Add(this.lblTimeLeft);
             this.Controls.Add(this.lblClosing);
             this.Controls.Add(this.lblPrompt);
             this.Controls.Add(this.btnNo);
             this.Controls.Add(this.btnYes);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "AutoCloseMessageBox";
-            this.Size = new System.Drawing.Size(400, 250);
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.ResumeLayout(false);
             this.PerformLayout();
 

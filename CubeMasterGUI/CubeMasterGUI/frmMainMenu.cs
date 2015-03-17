@@ -13,14 +13,10 @@ namespace CubeMasterGUI
 {
     public partial class frmMainMenu : Form
     {
-        private ctrlTimer FormTimer { get; set; }
-
         public frmMainMenu()
         {
             InitializeComponent();
             SetApplicationIcons();
-            this.FormTimer = new ctrlTimer();
-            FormTimer.InitializeTimers(this);
         }
 
         private void SetApplicationIcons()
@@ -30,6 +26,11 @@ namespace CubeMasterGUI
             this.appGame.SetBkgdImage(AssetHandler.GamesURL);
             this.appPreset.SetBkgdImage(AssetHandler.PresetURL);
             this.appText2Cube.SetBkgdImage(AssetHandler.Text2CubeURL);
+        }
+
+        private void frmMainMenu_MouseMove(object sender, MouseEventArgs e)
+        {
+            this.MainMenuTimer.ResetTimers();
         }
     }
 }

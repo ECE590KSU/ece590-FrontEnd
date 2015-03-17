@@ -34,6 +34,7 @@
             this.lblAudioVis = new System.Windows.Forms.Label();
             this.lblPreset = new System.Windows.Forms.Label();
             this.lblGames = new System.Windows.Forms.Label();
+            this.MainMenuTimer = new CubeMasterGUI.ctrlTimer();
             this.appGame = new CubeMasterGUI.AppLauncher();
             this.appText2Cube = new CubeMasterGUI.AppLauncher();
             this.appAudioVis = new CubeMasterGUI.AppLauncher();
@@ -41,7 +42,6 @@
             this.appFreeDraw = new CubeMasterGUI.AppLauncher();
             this.btnCloseWindow1 = new CubeMasterGUI.btnCloseWindow();
             this.appLauncherBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.ctrlTimer1 = new CubeMasterGUI.ctrlTimer();
             ((System.ComponentModel.ISupportInitialize)(this.appLauncherBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -94,6 +94,14 @@
             this.lblGames.Size = new System.Drawing.Size(61, 20);
             this.lblGames.TabIndex = 2;
             this.lblGames.Text = "GAMES";
+            // 
+            // MainMenuTimer
+            // 
+            this.MainMenuTimer.BackColor = System.Drawing.Color.Transparent;
+            this.MainMenuTimer.Location = new System.Drawing.Point(12, 726);
+            this.MainMenuTimer.Name = "MainMenuTimer";
+            this.MainMenuTimer.Size = new System.Drawing.Size(30, 30);
+            this.MainMenuTimer.TabIndex = 3;
             // 
             // appGame
             // 
@@ -152,21 +160,13 @@
             // 
             this.appLauncherBindingSource.DataSource = typeof(CubeMasterGUI.AppLauncher);
             // 
-            // ctrlTimer1
-            // 
-            this.ctrlTimer1.BackColor = System.Drawing.Color.Transparent;
-            this.ctrlTimer1.Location = new System.Drawing.Point(12, 726);
-            this.ctrlTimer1.Name = "ctrlTimer1";
-            this.ctrlTimer1.Size = new System.Drawing.Size(30, 30);
-            this.ctrlTimer1.TabIndex = 3;
-            // 
             // frmMainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.GhostWhite;
             this.ClientSize = new System.Drawing.Size(1366, 768);
-            this.Controls.Add(this.ctrlTimer1);
+            this.Controls.Add(this.MainMenuTimer);
             this.Controls.Add(this.lblPreset);
             this.Controls.Add(this.lblAudioVis);
             this.Controls.Add(this.lblGames);
@@ -182,6 +182,7 @@
             this.Name = "frmMainMenu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Main Menu";
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.frmMainMenu_MouseMove);
             ((System.ComponentModel.ISupportInitialize)(this.appLauncherBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -202,7 +203,7 @@
         private System.Windows.Forms.Label lblPreset;
         private System.Windows.Forms.Label lblGames;
         private System.Windows.Forms.BindingSource appLauncherBindingSource;
-        private ctrlTimer ctrlTimer1;
+        private ctrlTimer MainMenuTimer;
 
     }
 }

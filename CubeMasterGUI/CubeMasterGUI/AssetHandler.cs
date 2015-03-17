@@ -16,9 +16,5 @@ namespace CubeMasterGUI
         public static string GamesURL = TopLevelDir + @"\images\games.png";
         public static string AudioVisURL = TopLevelDir + @"\images\audiovis.png";
         public static string Text2CubeURL = TopLevelDir + @"\images\txt2cube.png";
-
-        // Timer Constants.
-        public static int InactiveTimeOut = 5000;
-        public static int PromptTimeOut = 10000;
     }
 }
