@@ -172,7 +172,6 @@
             this.Name = "frmMainMenu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Main Menu";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMainMenu_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.appLauncherBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

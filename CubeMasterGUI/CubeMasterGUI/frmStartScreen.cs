@@ -22,6 +22,7 @@ namespace CubeMasterGUI
             frmMainMenu MainMenu = new frmMainMenu();
             if( MainMenu.ShowDialog() == DialogResult.Cancel )
             {
+
             }
         }
     }

@@ -13,10 +13,45 @@ namespace CubeMasterGUI
 {
     public partial class frmMainMenu : Form
     {
+        private System.Windows.Forms.Timer InactiveTimer { get; set; }
+        private System.Windows.Forms.Timer PromptTimer { get; set; }
+
         public frmMainMenu()
         {
             InitializeComponent();
             SetApplicationIcons();
+            InitializeTimers();
+        }
+
+        private void InitializeTimers()
+        {
+            InactiveTimer = new System.Windows.Forms.Timer();
+            PromptTimer = new System.Windows.Forms.Timer();
+
+            InactiveTimer.Interval = AssetHandler.InactiveTimeOut;
+            PromptTimer.Interval = AssetHandler.PromptTimeOut;
+
+            InactiveTimer.Tick += InactiveTimer_Tick;
+            PromptTimer.Tick += PromptTimer_Tick;
+
+            InactiveTimer.Start();
+        }
+
+        private void InactiveTimer_Tick(object sender, EventArgs e)
+        {
+            InactiveTimer.Stop();
+            this.PromptIfDone();
+        }
+
+        private void PromptTimer_Tick(object sender, EventArgs e)
+        {
+            PromptTimer.Stop();
+            this.Close();
+        }
+
+        private void PromptIfDone()
+        {
+            PromptTimer.Start();
         }
 
         private void SetApplicationIcons()
@@ -26,10 +61,6 @@ namespace CubeMasterGUI
             this.appGame.SetBkgdImage(AssetHandler.GamesURL);
             this.appPreset.SetBkgdImage(AssetHandler.PresetURL);
             this.appText2Cube.SetBkgdImage(AssetHandler.Text2CubeURL);
-        }
-
-        private void frmMainMenu_FormClosing(object sender, FormClosingEventArgs e)
-        {
         }
     }
 }
