@@ -19,12 +19,12 @@ namespace CubeMasterGUI
         private AutoCloseMessageBox AreYouDonePrompt { get; set; }
 
         // 60 Second Timeout interval for Inactive. 
-        private int InactiveTimeOut = 3000;
+        private int InactiveTimeOut = 480000;
         // 1 Second tick interval for UserKick. After UserKickMAX ticks are reached, 
         // timer stops and logic follows.
         private int UserKickInterval = 1000;
         // Maximum ticks of the user Kick.  
-        private int UserKickMAX = 30;
+        private int UserKickMAX = 120;
 
         public ctrlTimer()
         {

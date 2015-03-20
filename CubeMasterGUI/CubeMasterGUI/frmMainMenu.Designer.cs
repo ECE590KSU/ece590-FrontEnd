@@ -34,7 +34,6 @@
             this.lblAudioVis = new System.Windows.Forms.Label();
             this.lblPreset = new System.Windows.Forms.Label();
             this.lblGames = new System.Windows.Forms.Label();
-            this.MainMenuTimer = new CubeMasterGUI.ctrlTimer();
             this.appGame = new CubeMasterGUI.AppLauncher();
             this.appText2Cube = new CubeMasterGUI.AppLauncher();
             this.appAudioVis = new CubeMasterGUI.AppLauncher();
@@ -42,6 +41,7 @@
             this.appFreeDraw = new CubeMasterGUI.AppLauncher();
             this.btnCloseWindow1 = new CubeMasterGUI.btnCloseWindow();
             this.appLauncherBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.MainMenuTimer = new CubeMasterGUI.ctrlTimer();
             ((System.ComponentModel.ISupportInitialize)(this.appLauncherBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -94,14 +94,6 @@
             this.lblGames.Size = new System.Drawing.Size(61, 20);
             this.lblGames.TabIndex = 2;
             this.lblGames.Text = "GAMES";
-            // 
-            // MainMenuTimer
-            // 
-            this.MainMenuTimer.BackColor = System.Drawing.Color.Transparent;
-            this.MainMenuTimer.Location = new System.Drawing.Point(12, 726);
-            this.MainMenuTimer.Name = "MainMenuTimer";
-            this.MainMenuTimer.Size = new System.Drawing.Size(30, 30);
-            this.MainMenuTimer.TabIndex = 3;
             // 
             // appGame
             // 
@@ -159,6 +151,14 @@
             // appLauncherBindingSource
             // 
             this.appLauncherBindingSource.DataSource = typeof(CubeMasterGUI.AppLauncher);
+            // 
+            // MainMenuTimer
+            // 
+            this.MainMenuTimer.BackColor = System.Drawing.Color.Transparent;
+            this.MainMenuTimer.Location = new System.Drawing.Point(3, 742);
+            this.MainMenuTimer.Name = "MainMenuTimer";
+            this.MainMenuTimer.Size = new System.Drawing.Size(30, 30);
+            this.MainMenuTimer.TabIndex = 3;
             // 
             // frmMainMenu
             // 

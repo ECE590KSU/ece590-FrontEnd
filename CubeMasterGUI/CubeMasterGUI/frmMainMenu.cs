@@ -17,6 +17,7 @@ namespace CubeMasterGUI
         {
             InitializeComponent();
             SetApplicationIcons();
+            InvokeTimerProtocol();
         }
 
         private void SetApplicationIcons()
@@ -31,6 +32,14 @@ namespace CubeMasterGUI
         private void frmMainMenu_MouseMove(object sender, MouseEventArgs e)
         {
             this.MainMenuTimer.ResetTimers();
+        }
+
+        private void InvokeTimerProtocol()
+        {
+            if( this.DesignMode == false )
+            {
+                this.MainMenuTimer.InitializeTimers();
+            }
         }
     }
 }
