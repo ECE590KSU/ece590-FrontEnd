@@ -13,16 +13,17 @@ namespace CubeMasterGUI
 {
     public partial class frmMainMenu : Form
     {
-        private frmStartScreen _startScreenParent { get; set; }
+        private StartScreeen _startScreenController;
+        private MainMenu _mainMenuController;
 
         private List<Button> _applications;
 
-        public frmMainMenu(frmStartScreen startScreenParent)
+        public frmMainMenu(ref StartScreeen startScreenParent)
         {
             InitializeComponent();
             InitializeApplications();
             InvokeTimerProtocol();
-            _startScreenParent = startScreenParent;
+            _startScreenController = startScreenParent;
         }
 
         private void InitializeApplications()
@@ -66,13 +67,27 @@ namespace CubeMasterGUI
 
         private void btnFreeDraw_Click(object sender, EventArgs e)
         {
-            CubeController rootCubeController = _startScreenParent.GetRootCubeController();
-            frmFreeDraw freeDraw = new frmFreeDraw(ref rootCubeController);
+            this.MainMenuTimer.HaltTimers();
+        }
 
-            if (freeDraw.ShowDialog() == DialogResult.OK)
-            {
+        private void btnText2Cube_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
 
-            }
+        private void btnAudioVis_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void btnPresets_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void btnGames_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -122,6 +122,7 @@
             this.btnText2Cube.Size = new System.Drawing.Size(250, 100);
             this.btnText2Cube.TabIndex = 4;
             this.btnText2Cube.UseVisualStyleBackColor = false;
+            this.btnText2Cube.Click += new System.EventHandler(this.btnText2Cube_Click);
             // 
             // btnAudioVis
             // 
@@ -137,6 +138,7 @@
             this.btnAudioVis.Size = new System.Drawing.Size(250, 100);
             this.btnAudioVis.TabIndex = 4;
             this.btnAudioVis.UseVisualStyleBackColor = false;
+            this.btnAudioVis.Click += new System.EventHandler(this.btnAudioVis_Click);
             // 
             // btnGames
             // 
@@ -152,6 +154,7 @@
             this.btnGames.Size = new System.Drawing.Size(250, 100);
             this.btnGames.TabIndex = 4;
             this.btnGames.UseVisualStyleBackColor = false;
+            this.btnGames.Click += new System.EventHandler(this.btnGames_Click);
             // 
             // btnPresets
             // 
@@ -167,6 +170,7 @@
             this.btnPresets.Size = new System.Drawing.Size(250, 100);
             this.btnPresets.TabIndex = 4;
             this.btnPresets.UseVisualStyleBackColor = false;
+            this.btnPresets.Click += new System.EventHandler(this.btnPresets_Click);
             // 
             // MainMenuTimer
             // 

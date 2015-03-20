@@ -12,32 +12,20 @@ namespace CubeMasterGUI
 {
     public partial class frmStartScreen : Form
     {
-        private CubeController _rootCubeController { get; set; }
+        private StartScreeen _startScreenController;
 
         public frmStartScreen()
         {
             InitializeComponent();
-            InitalizeCubeController();
-        }
-
-        public CubeController GetRootCubeController()
-        {
-            return this._rootCubeController;
         }
 
         private void btnMainMenu_Click(object sender, EventArgs e)
         {
-            frmMainMenu mainMenu = new frmMainMenu(this);
+            frmMainMenu mainMenu = new frmMainMenu(ref _startScreenController);
             if (mainMenu.ShowDialog() == DialogResult.Cancel)
             {
 
             }
         }
-
-        private void InitalizeCubeController()
-        {
-            this._rootCubeController = new CubeController();
-        }
-
     }
 }

@@ -66,6 +66,7 @@
       <DependentUpon>ctrlTimer.cs</DependentUpon>
     </Compile>
     <Compile Include="CubeController.cs" />
+    <Compile Include="FreeDraw.cs" />
     <Compile Include="frmFreeDraw.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -84,8 +85,10 @@
     <Compile Include="frmStartScreen.Designer.cs">
       <DependentUpon>frmStartScreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="MainMenu.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StartScreeen.cs" />
     <EmbeddedResource Include="AutoCloseMessageBox.resx">
       <DependentUpon>AutoCloseMessageBox.cs</DependentUpon>
     </EmbeddedResource>
