@@ -13,17 +13,19 @@ namespace CubeMasterGUI
 {
     public partial class frmMainMenu : Form
     {
-        private StartScreeen _startScreenController;
+        private StartScreen _startScreenController;
         private MainMenu _mainMenuController;
 
         private List<Button> _applications;
 
-        public frmMainMenu(ref StartScreeen startScreenParent)
+        public frmMainMenu(StartScreen startScreenParent)
         {
             InitializeComponent();
             InitializeApplications();
             InvokeTimerProtocol();
+            
             _startScreenController = startScreenParent;
+            _mainMenuController = new MainMenu(ref _startScreenController);
         }
 
         private void InitializeApplications()
@@ -68,6 +70,7 @@ namespace CubeMasterGUI
         private void btnFreeDraw_Click(object sender, EventArgs e)
         {
             this.MainMenuTimer.HaltTimers();
+            _mainMenuController.ApplicationLaunch_FreeDraw();
         }
 
         private void btnText2Cube_Click(object sender, EventArgs e)

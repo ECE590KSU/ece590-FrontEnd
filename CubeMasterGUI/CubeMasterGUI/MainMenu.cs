@@ -8,11 +8,11 @@ namespace CubeMasterGUI
 {
     public class MainMenu
     {
-        private StartScreeen _startScreenParent { get; set; }
+        private StartScreen _startScreenParent;
 
-        public MainMenu(ref StartScreeen startScreenParent)
+        public MainMenu(ref StartScreen startScreenParent)
         {
-
+            _startScreenParent = startScreenParent;
         }
 
         internal void ApplicationLaunch_Text2Cube()

@@ -88,7 +88,7 @@
     <Compile Include="MainMenu.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StartScreeen.cs" />
+    <Compile Include="StartScreen.cs" />
     <EmbeddedResource Include="AutoCloseMessageBox.resx">
       <DependentUpon>AutoCloseMessageBox.cs</DependentUpon>
     </EmbeddedResource>
