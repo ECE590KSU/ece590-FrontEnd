@@ -27,7 +27,7 @@ namespace CubeMasterGUI
 
         private void btnMainMenu_Click(object sender, EventArgs e)
         {
-            frmMainMenu mainMenu = new frmMainMenu();
+            frmMainMenu mainMenu = new frmMainMenu(this);
             if (mainMenu.ShowDialog() == DialogResult.Cancel)
             {
 

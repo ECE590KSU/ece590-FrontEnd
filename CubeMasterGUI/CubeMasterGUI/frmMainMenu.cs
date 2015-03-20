@@ -13,20 +13,37 @@ namespace CubeMasterGUI
 {
     public partial class frmMainMenu : Form
     {
-        public frmMainMenu()
+        private frmStartScreen _startScreenParent { get; set; }
+
+        private List<Button> _applications;
+
+        public frmMainMenu(frmStartScreen startScreenParent)
         {
             InitializeComponent();
-            SetApplicationIcons();
+            InitializeApplications();
             InvokeTimerProtocol();
+            _startScreenParent = startScreenParent;
+        }
+
+        private void InitializeApplications()
+        {
+            _applications = new List<Button>();
+            _applications.Add(this.btnAudioVis);
+            _applications.Add(this.btnFreeDraw);
+            _applications.Add(this.btnGames);
+            _applications.Add(this.btnPresets);
+            _applications.Add(this.btnText2Cube);
+
+            SetApplicationIcons();
         }
 
         private void SetApplicationIcons()
         {
-            this.appAudioVis.SetBkgdImage(AssetHandler._audioVisURL);
-            this.appFreeDraw.SetBkgdImage(AssetHandler._freeDrawURL);
-            this.appGame.SetBkgdImage(AssetHandler._gamesURL);
-            this.appPreset.SetBkgdImage(AssetHandler._presetURL);
-            this.appText2Cube.SetBkgdImage(AssetHandler._text2CubeURL);
+            this.btnAudioVis.Image = SetBkgdImage(AssetHandler._audioVisURL);
+            this.btnFreeDraw.Image = SetBkgdImage(AssetHandler._freeDrawURL);
+            this.btnGames.Image = SetBkgdImage(AssetHandler._gamesURL);
+            this.btnPresets.Image = SetBkgdImage(AssetHandler._presetURL);
+            this.btnText2Cube.Image = SetBkgdImage(AssetHandler._text2CubeURL);
         }
 
         private void frmMainMenu_MouseMove(object sender, MouseEventArgs e)
@@ -36,19 +53,23 @@ namespace CubeMasterGUI
 
         private void InvokeTimerProtocol()
         {
-            if( this.DesignMode == false )
+            if (this.DesignMode == false)
             {
                 this.MainMenuTimer.InitializeTimers();
             }
         }
 
-        private void appFreeDraw_MouseClick(object sender, MouseEventArgs e)
+        private Image SetBkgdImage(string path)
         {
-            frmStartScreen startScreen = (frmStartScreen)this.ParentForm;
-            CubeController rootCube = startScreen.GetRootCubeController();
-            frmFreeDraw freeDraw = new frmFreeDraw(ref rootCube);
+            return new Bitmap(path);
+        }
 
-            if( freeDraw.ShowDialog() == DialogResult.OK )
+        private void btnFreeDraw_Click(object sender, EventArgs e)
+        {
+            CubeController rootCubeController = _startScreenParent.GetRootCubeController();
+            frmFreeDraw freeDraw = new frmFreeDraw(ref rootCubeController);
+
+            if (freeDraw.ShowDialog() == DialogResult.OK)
             {
 
             }

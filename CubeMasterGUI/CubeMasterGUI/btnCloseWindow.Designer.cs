@@ -35,7 +35,7 @@
             // 
             this.btnClose.BackColor = System.Drawing.Color.SteelBlue;
             this.btnClose.FlatAppearance.BorderSize = 0;
-            this.btnClose.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Thistle;
+            this.btnClose.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Crimson;
             this.btnClose.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

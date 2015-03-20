@@ -44,12 +44,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppLauncher.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="AppLauncher.Designer.cs">
-      <DependentUpon>AppLauncher.cs</DependentUpon>
-    </Compile>
     <Compile Include="AssetHandler.cs" />
     <Compile Include="AutoCloseMessageBox.cs">
       <SubType>Form</SubType>
@@ -92,9 +86,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="AppLauncher.resx">
-      <DependentUpon>AppLauncher.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="AutoCloseMessageBox.resx">
       <DependentUpon>AutoCloseMessageBox.cs</DependentUpon>
     </EmbeddedResource>
@@ -139,7 +130,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\freedraw.png" />
+    <Folder Include="Resources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -54,7 +54,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.GhostWhite;
-            this.ClientSize = new System.Drawing.Size(1350, 729);
+            this.ClientSize = new System.Drawing.Size(1366, 768);
             this.Controls.Add(this.lblWindowName);
             this.Controls.Add(this.btnCloseWindow1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
