@@ -41,5 +41,10 @@ namespace CubeMasterGUI
                 this.MainMenuTimer.InitializeTimers();
             }
         }
+
+        private void appFreeDraw_Load(object sender, EventArgs e)
+        {
+            frmFreeDraw FreeDraw = new frmFreeDraw();
+        }
     }
 }

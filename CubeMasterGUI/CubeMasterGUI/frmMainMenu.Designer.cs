@@ -34,6 +34,7 @@
             this.lblAudioVis = new System.Windows.Forms.Label();
             this.lblPreset = new System.Windows.Forms.Label();
             this.lblGames = new System.Windows.Forms.Label();
+            this.MainMenuTimer = new CubeMasterGUI.ctrlTimer();
             this.appGame = new CubeMasterGUI.AppLauncher();
             this.appText2Cube = new CubeMasterGUI.AppLauncher();
             this.appAudioVis = new CubeMasterGUI.AppLauncher();
@@ -41,7 +42,6 @@
             this.appFreeDraw = new CubeMasterGUI.AppLauncher();
             this.btnCloseWindow1 = new CubeMasterGUI.btnCloseWindow();
             this.appLauncherBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.MainMenuTimer = new CubeMasterGUI.ctrlTimer();
             ((System.ComponentModel.ISupportInitialize)(this.appLauncherBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -95,6 +95,14 @@
             this.lblGames.TabIndex = 2;
             this.lblGames.Text = "GAMES";
             // 
+            // MainMenuTimer
+            // 
+            this.MainMenuTimer.BackColor = System.Drawing.Color.Transparent;
+            this.MainMenuTimer.Location = new System.Drawing.Point(3, 742);
+            this.MainMenuTimer.Name = "MainMenuTimer";
+            this.MainMenuTimer.Size = new System.Drawing.Size(30, 30);
+            this.MainMenuTimer.TabIndex = 3;
+            // 
             // appGame
             // 
             this.appGame.AutoSize = true;
@@ -139,6 +147,7 @@
             this.appFreeDraw.Name = "appFreeDraw";
             this.appFreeDraw.Size = new System.Drawing.Size(200, 100);
             this.appFreeDraw.TabIndex = 1;
+            this.appFreeDraw.Load += new System.EventHandler(this.appFreeDraw_Load);
             // 
             // btnCloseWindow1
             // 
@@ -151,14 +160,6 @@
             // appLauncherBindingSource
             // 
             this.appLauncherBindingSource.DataSource = typeof(CubeMasterGUI.AppLauncher);
-            // 
-            // MainMenuTimer
-            // 
-            this.MainMenuTimer.BackColor = System.Drawing.Color.Transparent;
-            this.MainMenuTimer.Location = new System.Drawing.Point(3, 742);
-            this.MainMenuTimer.Name = "MainMenuTimer";
-            this.MainMenuTimer.Size = new System.Drawing.Size(30, 30);
-            this.MainMenuTimer.TabIndex = 3;
             // 
             // frmMainMenu
             // 

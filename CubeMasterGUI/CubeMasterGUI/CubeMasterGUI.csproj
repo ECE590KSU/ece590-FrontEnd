@@ -52,7 +52,7 @@
     </Compile>
     <Compile Include="AssetHandler.cs" />
     <Compile Include="AutoCloseMessageBox.cs">
-      <SubType>UserControl</SubType>
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="AutoCloseMessageBox.Designer.cs">
       <DependentUpon>AutoCloseMessageBox.cs</DependentUpon>
@@ -70,6 +70,12 @@
     </Compile>
     <Compile Include="ctrlTimer.Designer.cs">
       <DependentUpon>ctrlTimer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmFreeDraw.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFreeDraw.Designer.cs">
+      <DependentUpon>frmFreeDraw.cs</DependentUpon>
     </Compile>
     <Compile Include="frmMainMenu.cs">
       <SubType>Form</SubType>
@@ -97,6 +103,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ctrlTimer.resx">
       <DependentUpon>ctrlTimer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmFreeDraw.resx">
+      <DependentUpon>frmFreeDraw.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMainMenu.resx">
       <DependentUpon>frmMainMenu.cs</DependentUpon>
