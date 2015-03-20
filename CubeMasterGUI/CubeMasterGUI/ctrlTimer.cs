@@ -29,7 +29,6 @@ namespace CubeMasterGUI
         public ctrlTimer()
         {
             InitializeComponent();
-            InitializeTimers();
         }
 
         public void InitializeTimers()
