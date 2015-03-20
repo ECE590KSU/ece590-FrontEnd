@@ -10,11 +10,11 @@ namespace CubeMasterGUI
     public static class AssetHandler
     {
         // Images.
-        private static string TopLevelDir = (Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).ToString())).ToString();
-        public static string FreeDrawURL = TopLevelDir + @"\images\freedraw.png";
-        public static string PresetURL = TopLevelDir + @"\images\presets.png";
-        public static string GamesURL = TopLevelDir + @"\images\games.png";
-        public static string AudioVisURL = TopLevelDir + @"\images\audiovis.png";
-        public static string Text2CubeURL = TopLevelDir + @"\images\txt2cube.png";
+        private static string _topLevelDir = (Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).ToString())).ToString();
+        public static string _freeDrawURL = _topLevelDir + @"\images\freedraw.png";
+        public static string _presetURL = _topLevelDir + @"\images\presets.png";
+        public static string _gamesURL = _topLevelDir + @"\images\games.png";
+        public static string _audioVisURL = _topLevelDir + @"\images\audiovis.png";
+        public static string _text2CubeURL = _topLevelDir + @"\images\txt2cube.png";
     }
 }

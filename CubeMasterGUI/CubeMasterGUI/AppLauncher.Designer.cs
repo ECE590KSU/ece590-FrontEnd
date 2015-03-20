@@ -43,8 +43,6 @@
             this.btnLaunch.Size = new System.Drawing.Size(300, 120);
             this.btnLaunch.TabIndex = 0;
             this.btnLaunch.UseVisualStyleBackColor = false;
-            this.btnLaunch.MouseEnter += new System.EventHandler(this.btnLaunch_MouseEnter);
-            this.btnLaunch.MouseLeave += new System.EventHandler(this.btnLaunch_MouseLeave);
             // 
             // AppLauncher
             // 

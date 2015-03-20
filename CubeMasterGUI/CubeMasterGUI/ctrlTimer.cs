@@ -12,19 +12,19 @@ namespace CubeMasterGUI
 {
     public partial class ctrlTimer : UserControl
     {
-        private System.Windows.Forms.Timer InactiveTimer { get; set; }
-        private System.Windows.Forms.Timer UserKickTimer { get; set; }
-        private int UserKickCounter { get; set; }
+        private System.Windows.Forms.Timer _inactiveTimer { get; set; }
+        private System.Windows.Forms.Timer _userKickTimer { get; set; }
+        private int _userKickCounter { get; set; }
 
-        private AutoCloseMessageBox AreYouDonePrompt { get; set; }
+        private AutoCloseMessageBox _areYouDonePrompt { get; set; }
 
         // 60 Second Timeout interval for Inactive. 
-        private int InactiveTimeOut = 480000;
+        private int _inactiveTimeOut = 480000;
         // 1 Second tick interval for UserKick. After UserKickMAX ticks are reached, 
         // timer stops and logic follows.
-        private int UserKickInterval = 1000;
+        private int _userKickInterval = 1000;
         // Maximum ticks of the user Kick.  
-        private int UserKickMAX = 120;
+        private int _userKickMaxTicks = 120;
 
         public ctrlTimer()
         {
@@ -33,67 +33,75 @@ namespace CubeMasterGUI
 
         public void InitializeTimers()
         {
-            AreYouDonePrompt = new AutoCloseMessageBox(UserKickInterval * UserKickMAX);
+            _areYouDonePrompt = new AutoCloseMessageBox(_userKickInterval * _userKickMaxTicks);
 
-            UserKickCounter = 0;
+            _userKickCounter = 0;
 
-            InactiveTimer = new System.Windows.Forms.Timer();
-            UserKickTimer = new System.Windows.Forms.Timer();
+            _inactiveTimer = new System.Windows.Forms.Timer();
+            _userKickTimer = new System.Windows.Forms.Timer();
 
-            InactiveTimer.Interval = InactiveTimeOut;
-            UserKickTimer.Interval = UserKickInterval;
+            _inactiveTimer.Interval = _inactiveTimeOut;
+            _userKickTimer.Interval = _userKickInterval;
 
-            InactiveTimer.Tick += InactiveTimer_Tick;
-            UserKickTimer.Tick += PromptTimer_Tick;
+            _inactiveTimer.Tick += InactiveTimer_Tick;
+            _userKickTimer.Tick += PromptTimer_Tick;
 
-            InactiveTimer.Start();
+            _inactiveTimer.Start();
         }
 
         private void InactiveTimer_Tick(object sender, EventArgs e)
         {
-            InactiveTimer.Stop();
+            _inactiveTimer.Stop();
             this.PromptIfDone();
         }
 
         private void PromptTimer_Tick(object sender, EventArgs e)
         {
-            if (UserKickCounter++ < UserKickMAX)
+            if (_userKickCounter++ < _userKickMaxTicks)
             {
-                AreYouDonePrompt.TimeLeftText((UserKickMAX-UserKickCounter)*UserKickInterval);
+                _areYouDonePrompt.TimeLeftText((_userKickMaxTicks-_userKickCounter)*_userKickInterval);
             }
             else
             {
-                UserKickTimer.Stop();
-                UserKickCounter = 0;
-                AreYouDonePrompt.Hide();
+                _userKickTimer.Stop();
+                _userKickCounter = 0;
+                _areYouDonePrompt.Hide();
                 this.ParentForm.Close();
             }
         }
 
         private void PromptIfDone()
         {
-            UserKickTimer.Start();
-            AreYouDonePrompt.BringToFront();
-            AreYouDonePrompt.TimeLeftText(UserKickMAX * UserKickInterval);
+            _userKickTimer.Start();
+            _areYouDonePrompt.BringToFront();
+            _areYouDonePrompt.TimeLeftText(_userKickMaxTicks * _userKickInterval);
 
-            DialogResult donePrompt = AreYouDonePrompt.ShowDialog();
+            DialogResult donePrompt = _areYouDonePrompt.ShowDialog();
             if (donePrompt == DialogResult.Yes)
             {
-                UserKickTimer.Stop();
+                _userKickTimer.Stop();
                 this.ParentForm.Close();
             }
             else if (donePrompt == DialogResult.No)
             {
-                UserKickTimer.Stop();
+                _userKickTimer.Stop();
                 this.ResetTimers();
             }
         }
 
         internal void ResetTimers()
         {
-            InactiveTimer.Stop();
-            InactiveTimer.Start();
-            UserKickCounter = 0;
+            _inactiveTimer.Stop();
+            _inactiveTimer.Start();
+            _userKickCounter = 0;
+        }
+
+        // When a timer exits focus, you'll want to stop all active timers, and
+        // wait for the control to regain focus. 
+        internal void HaltTimers()
+        {
+            _userKickTimer.Stop();
+            _inactiveTimer.Stop();
         }
     }
 }

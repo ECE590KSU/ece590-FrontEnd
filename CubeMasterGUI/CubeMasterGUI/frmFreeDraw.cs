@@ -12,9 +12,12 @@ namespace CubeMasterGUI
 {
     public partial class frmFreeDraw : Form
     {
-        public frmFreeDraw()
+        private CubeController _freeDrawCubeController { get; set; }
+        
+        public frmFreeDraw(ref CubeController cube)
         {
             InitializeComponent();
+            _freeDrawCubeController = cube;
         }
     }
 }

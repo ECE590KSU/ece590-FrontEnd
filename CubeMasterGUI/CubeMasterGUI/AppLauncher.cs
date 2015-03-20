@@ -22,15 +22,5 @@ namespace CubeMasterGUI
         {
             this.btnLaunch.Image = new Bitmap(path);
         }
-
-        private void btnLaunch_MouseEnter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnLaunch_MouseLeave(object sender, EventArgs e)
-        {
-
-        }
     }
 }

@@ -147,7 +147,7 @@
             this.appFreeDraw.Name = "appFreeDraw";
             this.appFreeDraw.Size = new System.Drawing.Size(200, 100);
             this.appFreeDraw.TabIndex = 1;
-            this.appFreeDraw.Load += new System.EventHandler(this.appFreeDraw_Load);
+            this.appFreeDraw.MouseClick += new System.Windows.Forms.MouseEventHandler(this.appFreeDraw_MouseClick);
             // 
             // btnCloseWindow1
             // 

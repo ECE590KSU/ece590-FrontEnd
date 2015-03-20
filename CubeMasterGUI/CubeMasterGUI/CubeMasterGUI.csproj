@@ -71,6 +71,7 @@
     <Compile Include="ctrlTimer.Designer.cs">
       <DependentUpon>ctrlTimer.cs</DependentUpon>
     </Compile>
+    <Compile Include="CubeController.cs" />
     <Compile Include="frmFreeDraw.cs">
       <SubType>Form</SubType>
     </Compile>

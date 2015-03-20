@@ -22,11 +22,11 @@ namespace CubeMasterGUI
 
         private void SetApplicationIcons()
         {
-            this.appAudioVis.SetBkgdImage(AssetHandler.AudioVisURL);
-            this.appFreeDraw.SetBkgdImage(AssetHandler.FreeDrawURL);
-            this.appGame.SetBkgdImage(AssetHandler.GamesURL);
-            this.appPreset.SetBkgdImage(AssetHandler.PresetURL);
-            this.appText2Cube.SetBkgdImage(AssetHandler.Text2CubeURL);
+            this.appAudioVis.SetBkgdImage(AssetHandler._audioVisURL);
+            this.appFreeDraw.SetBkgdImage(AssetHandler._freeDrawURL);
+            this.appGame.SetBkgdImage(AssetHandler._gamesURL);
+            this.appPreset.SetBkgdImage(AssetHandler._presetURL);
+            this.appText2Cube.SetBkgdImage(AssetHandler._text2CubeURL);
         }
 
         private void frmMainMenu_MouseMove(object sender, MouseEventArgs e)
@@ -42,9 +42,16 @@ namespace CubeMasterGUI
             }
         }
 
-        private void appFreeDraw_Load(object sender, EventArgs e)
+        private void appFreeDraw_MouseClick(object sender, MouseEventArgs e)
         {
-            frmFreeDraw FreeDraw = new frmFreeDraw();
+            frmStartScreen startScreen = (frmStartScreen)this.ParentForm;
+            CubeController rootCube = startScreen.GetRootCubeController();
+            frmFreeDraw freeDraw = new frmFreeDraw(ref rootCube);
+
+            if( freeDraw.ShowDialog() == DialogResult.OK )
+            {
+
+            }
         }
     }
 }
