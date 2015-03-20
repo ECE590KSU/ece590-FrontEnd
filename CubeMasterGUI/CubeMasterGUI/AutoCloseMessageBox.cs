@@ -15,7 +15,7 @@ namespace CubeMasterGUI
         public AutoCloseMessageBox(int prompt_time)
         {
             InitializeComponent();
-            this.lblTimeLeft.Text = (prompt_time / 1000).ToString() + " seconds";
+            TimeLeftText(prompt_time);
         }
 
         internal void AskUser()
@@ -33,6 +33,11 @@ namespace CubeMasterGUI
         {
             this.DialogResult = DialogResult.No;
             this.Close();
+        }
+
+        internal void TimeLeftText(int timeleft_ms)
+        {
+            this.lblTimeLeft.Text = (timeleft_ms / 1000).ToString() + " seconds";
         }
     }
 }
