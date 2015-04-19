@@ -18,8 +18,7 @@ namespace CubeMasterGUI
         private int _voxelSpacing = 15;
         private int _voxelHeight = 80;
         private int _voxelWidth = 80;
-
-        private List<Button> _voxels;
+        private Button[,] _voxels;
 
         public frmFreeDraw(ref CubeController.Cube cube)
         {
@@ -30,15 +29,17 @@ namespace CubeMasterGUI
 
         private void GenerateVoxelGrid()
         {
-            _voxels = new List<Button>();
+            _voxels = new Button[8, 8];
 
             for (int i = 0; i < 8; ++i){
                 for (int j = 0; j < 8; ++j){
                     Button tmpVoxel = new Button();
+                    tmpVoxel.Height = _voxelHeight;
+                    tmpVoxel.Width = _voxelWidth;
                     tmpVoxel.Left = _voxelGrid_startX + (i*_voxelWidth + _voxelSpacing);
                     tmpVoxel.Top = _voxelGrid_startY + (j*_voxelHeight + _voxelSpacing);
-                    
-                    _voxels.Add(tmpVoxel);
+
+                    _voxels[i, j] = tmpVoxel;
                     this.Controls.Add(tmpVoxel);
                 }
             }
