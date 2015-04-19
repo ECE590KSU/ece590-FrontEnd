@@ -42,9 +42,10 @@
             this.btnMainMenu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMainMenu.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMainMenu.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnMainMenu.Location = new System.Drawing.Point(563, 569);
+            this.btnMainMenu.Location = new System.Drawing.Point(844, 875);
+            this.btnMainMenu.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnMainMenu.Name = "btnMainMenu";
-            this.btnMainMenu.Size = new System.Drawing.Size(238, 62);
+            this.btnMainMenu.Size = new System.Drawing.Size(357, 95);
             this.btnMainMenu.TabIndex = 1;
             this.btnMainMenu.Text = "B E G I N";
             this.btnMainMenu.UseVisualStyleBackColor = false;
@@ -52,21 +53,23 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(473, 104);
+            this.pictureBox1.Location = new System.Drawing.Point(710, 160);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(420, 280);
+            this.pictureBox1.Size = new System.Drawing.Size(630, 431);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
             // frmStartScreen
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.GhostWhite;
-            this.ClientSize = new System.Drawing.Size(1350, 729);
+            this.ClientSize = new System.Drawing.Size(1344, 712);
             this.Controls.Add(this.btnMainMenu);
             this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmStartScreen";

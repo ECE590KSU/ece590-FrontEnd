@@ -32,8 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CubeController">
-      <HintPath>.\CubeController.dll</HintPath>
+    <Reference Include="CubeController, Version=1.0.5587.29351, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\ece590-CubeController\CubeController\CubeController\obj\Debug\CubeController.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -68,7 +69,6 @@
     <Compile Include="ctrlTimer.Designer.cs">
       <DependentUpon>ctrlTimer.cs</DependentUpon>
     </Compile>
-    <Compile Include="CubeController.cs" />
     <Compile Include="FreeDraw.cs" />
     <Compile Include="frmFreeDraw.cs">
       <SubType>Form</SubType>
