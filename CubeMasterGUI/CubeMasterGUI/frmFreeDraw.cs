@@ -14,7 +14,7 @@ namespace CubeMasterGUI
     {
         private FreeDraw _freeDrawController;
         
-        public frmFreeDraw(ref CubeController cube)
+        public frmFreeDraw(ref CubeController.Cube cube)
         {
             InitializeComponent();
             _freeDrawController = new FreeDraw(ref cube);

@@ -7,9 +7,9 @@ namespace CubeMasterGUI
 {
     public class FreeDraw
     {
-        private CubeController _cubeController;
+        private CubeController.Cube _cubeController;
 
-        public FreeDraw(ref CubeController cube)
+        public FreeDraw(ref CubeController.Cube cube)
         {
             _cubeController = cube;
         }

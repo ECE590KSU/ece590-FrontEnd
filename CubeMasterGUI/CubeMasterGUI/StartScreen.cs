@@ -3,19 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using CubeController;
 
 namespace CubeMasterGUI
 {
     public class StartScreen
     {
-        private CubeController _rootCubeController;
+        private CubeController.Cube _rootCubeController;
 
         public StartScreen()
         {
-            _rootCubeController = new CubeController();
+            _rootCubeController = new CubeController.Cube();
         }
 
-        public CubeController GetRootCubeController()
+        public CubeController.Cube GetRootCubeController()
         {
             return _rootCubeController;
         }

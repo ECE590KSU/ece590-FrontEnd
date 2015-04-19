@@ -22,7 +22,7 @@ namespace CubeMasterGUI
 
         internal void ApplicationLaunch_FreeDraw()
         {
-            CubeController rootCubeController = _startScreenParent.GetRootCubeController();
+            CubeController.Cube rootCubeController = _startScreenParent.GetRootCubeController();
             frmFreeDraw freeDraw = new frmFreeDraw(ref rootCubeController);
 
             if (freeDraw.ShowDialog() == System.Windows.Forms.DialogResult.OK)
