@@ -30,6 +30,7 @@
         {
             this.btnCloseWindow1 = new CubeMasterGUI.btnCloseWindow();
             this.lblWindowName = new System.Windows.Forms.Label();
+            this.btnCloseWindow2 = new CubeMasterGUI.btnCloseWindow();
             this.SuspendLayout();
             // 
             // btnCloseWindow1
@@ -51,12 +52,22 @@
             this.lblWindowName.Size = new System.Drawing.Size(0, 40);
             this.lblWindowName.TabIndex = 1;
             // 
+            // btnCloseWindow2
+            // 
+            this.btnCloseWindow2.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.btnCloseWindow2.Location = new System.Drawing.Point(1853, 20);
+            this.btnCloseWindow2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnCloseWindow2.Name = "btnCloseWindow2";
+            this.btnCloseWindow2.Size = new System.Drawing.Size(45, 46);
+            this.btnCloseWindow2.TabIndex = 2;
+            // 
             // frmFreeDraw
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.GhostWhite;
-            this.ClientSize = new System.Drawing.Size(1366, 768);
+            this.ClientSize = new System.Drawing.Size(1920, 1080);
+            this.Controls.Add(this.btnCloseWindow2);
             this.Controls.Add(this.lblWindowName);
             this.Controls.Add(this.btnCloseWindow1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -73,5 +84,6 @@
 
         private btnCloseWindow btnCloseWindow1;
         private System.Windows.Forms.Label lblWindowName;
+        private btnCloseWindow btnCloseWindow2;
     }
 }
