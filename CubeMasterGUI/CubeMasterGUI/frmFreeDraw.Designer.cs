@@ -86,6 +86,7 @@
             this.Name = "frmFreeDraw";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmFreeDraw";
+            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.frmFreeDraw_MouseClick);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.frmFreeDraw_MouseMove);
             this.ResumeLayout(false);
             this.PerformLayout();
