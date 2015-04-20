@@ -13,12 +13,17 @@ namespace CubeMasterGUI
     public partial class frmFreeDraw : Form
     {
         private FreeDraw _freeDrawController;
+        
         private int _voxelGrid_startX = 10;
         private int _voxelGrid_startY = 10;
         private int _voxelSpacing = 15;
         private int _voxelHeight = 80;
         private int _voxelWidth = 80;
+        
         private Button[,] _voxels;
+
+        private Color _clrVoxelClicked = Color.LightBlue;
+        private Color _clrVoxelUnclicked = Color.GhostWhite;
 
         public frmFreeDraw(ref CubeController.Cube cube)
         {
@@ -95,7 +100,9 @@ namespace CubeMasterGUI
             Button voxelClicked = sender as Button;
             var coords = ArrayCoordinatesOf(voxelClicked, _voxels);
 
-            MessageBox.Show("Button Clicked: [" + coords.Item1 + "," + coords.Item2 + "]");
+            _voxels[coords.Item1, coords.Item2].BackColor = 
+                (_voxels[coords.Item1, coords.Item2].BackColor == _clrVoxelClicked) ? 
+                _clrVoxelUnclicked : _clrVoxelClicked;
         }
     }
 }
