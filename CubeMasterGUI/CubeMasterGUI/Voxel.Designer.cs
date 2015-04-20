@@ -38,7 +38,7 @@
             this.Cursor = System.Windows.Forms.Cursors.Hand;
             this.MaximumSize = new System.Drawing.Size(80, 80);
             this.Name = "Voxel";
-            this.Padding = new System.Windows.Forms.Padding(5);
+            this.Padding = new System.Windows.Forms.Padding(3);
             this.Size = new System.Drawing.Size(78, 78);
             this.ResumeLayout(false);
 

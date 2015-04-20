@@ -15,8 +15,8 @@ namespace CubeMasterGUI
         private FreeDraw _freeDrawController;
         
         private int _voxelGrid_startX = 15;
-        private int _voxelGrid_startY = 15;
-        private int _voxelSpacing = 15;
+        private int _voxelGrid_startY = 52;
+        private int _voxelSpacing = 9;
         private int _voxelHeight = 80;
         private int _voxelWidth = 80;
         
@@ -31,6 +31,7 @@ namespace CubeMasterGUI
             _freeDrawController = new FreeDraw(ref cube);
             GenerateVoxelGrid();
             InvokeTimerProtocol();
+            CheckDefaultRadio();
         }
 
         private void InvokeTimerProtocol()
@@ -39,6 +40,11 @@ namespace CubeMasterGUI
             {
                 this.tmrFreeDraw.InitializeTimers();
             }
+        }
+
+        private void CheckDefaultRadio()
+        {
+            this.btnAXIS_X.Checked = true;
         }
 
         private void GenerateVoxelGrid()
@@ -54,8 +60,11 @@ namespace CubeMasterGUI
                     tmpVoxel.Width = _voxelWidth;
                     tmpVoxel.Left = _voxelGrid_startX + (i*_voxelWidth + _voxelSpacing);
                     tmpVoxel.Top = _voxelGrid_startY + (j*_voxelHeight + _voxelSpacing);
+                    
                     tmpVoxel.X = i;
                     tmpVoxel.Y = j;
+
+                    tmpVoxel.BringToFront();
 
                     tmpVoxel.MouseClick += frmFreeDraw_VoxelGridClick;
 

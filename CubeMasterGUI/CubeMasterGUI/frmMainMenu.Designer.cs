@@ -45,55 +45,60 @@
             // lblFreeDraw
             // 
             this.lblFreeDraw.AutoSize = true;
-            this.lblFreeDraw.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFreeDraw.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFreeDraw.ForeColor = System.Drawing.Color.SteelBlue;
             this.lblFreeDraw.Location = new System.Drawing.Point(172, 291);
             this.lblFreeDraw.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblFreeDraw.Name = "lblFreeDraw";
-            this.lblFreeDraw.Size = new System.Drawing.Size(141, 31);
+            this.lblFreeDraw.Size = new System.Drawing.Size(116, 25);
             this.lblFreeDraw.TabIndex = 2;
             this.lblFreeDraw.Text = "FREE DRAW";
             // 
             // lblText2Cube
             // 
             this.lblText2Cube.AutoSize = true;
-            this.lblText2Cube.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblText2Cube.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblText2Cube.ForeColor = System.Drawing.Color.SteelBlue;
             this.lblText2Cube.Location = new System.Drawing.Point(1361, 291);
             this.lblText2Cube.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblText2Cube.Name = "lblText2Cube";
-            this.lblText2Cube.Size = new System.Drawing.Size(150, 31);
+            this.lblText2Cube.Size = new System.Drawing.Size(125, 25);
             this.lblText2Cube.TabIndex = 2;
             this.lblText2Cube.Text = "TEXT 2 CUBE";
             // 
             // lblAudioVis
             // 
             this.lblAudioVis.AutoSize = true;
-            this.lblAudioVis.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAudioVis.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAudioVis.ForeColor = System.Drawing.Color.SteelBlue;
             this.lblAudioVis.Location = new System.Drawing.Point(780, 615);
             this.lblAudioVis.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblAudioVis.Name = "lblAudioVis";
-            this.lblAudioVis.Size = new System.Drawing.Size(221, 31);
+            this.lblAudioVis.Size = new System.Drawing.Size(185, 25);
             this.lblAudioVis.TabIndex = 2;
             this.lblAudioVis.Text = "AUDIO VISUALIZER";
             // 
             // lblPreset
             // 
             this.lblPreset.AutoSize = true;
-            this.lblPreset.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPreset.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPreset.ForeColor = System.Drawing.Color.SteelBlue;
             this.lblPreset.Location = new System.Drawing.Point(172, 1009);
             this.lblPreset.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPreset.Name = "lblPreset";
-            this.lblPreset.Size = new System.Drawing.Size(106, 31);
+            this.lblPreset.Size = new System.Drawing.Size(89, 25);
             this.lblPreset.TabIndex = 2;
             this.lblPreset.Text = "PRESETS";
             // 
             // lblGames
             // 
             this.lblGames.AutoSize = true;
-            this.lblGames.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblGames.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblGames.ForeColor = System.Drawing.Color.SteelBlue;
             this.lblGames.Location = new System.Drawing.Point(1367, 1009);
             this.lblGames.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblGames.Name = "lblGames";
-            this.lblGames.Size = new System.Drawing.Size(93, 31);
+            this.lblGames.Size = new System.Drawing.Size(78, 25);
             this.lblGames.TabIndex = 2;
             this.lblGames.Text = "GAMES";
             // 
@@ -182,12 +187,12 @@
             this.btnPresets.UseVisualStyleBackColor = false;
             this.btnPresets.Click += new System.EventHandler(this.btnPresets_Click);
             // 
-            // MainMenuTimer
+            // tmrMainMenu
             // 
             this.tmrMainMenu.BackColor = System.Drawing.Color.Transparent;
             this.tmrMainMenu.Location = new System.Drawing.Point(4, 1142);
             this.tmrMainMenu.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
-            this.tmrMainMenu.Name = "MainMenuTimer";
+            this.tmrMainMenu.Name = "tmrMainMenu";
             this.tmrMainMenu.Size = new System.Drawing.Size(45, 46);
             this.tmrMainMenu.TabIndex = 3;
             // 
