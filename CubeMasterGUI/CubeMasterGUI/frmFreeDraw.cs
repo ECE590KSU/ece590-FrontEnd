@@ -13,8 +13,8 @@ namespace CubeMasterGUI
     public partial class frmFreeDraw : Form
     {
         private FreeDraw _freeDrawController;
-        private int _voxelGrid_startX = 30;
-        private int _voxelGrid_startY = 30;
+        private int _voxelGrid_startX = 10;
+        private int _voxelGrid_startY = 10;
         private int _voxelSpacing = 15;
         private int _voxelHeight = 80;
         private int _voxelWidth = 80;
@@ -25,6 +25,15 @@ namespace CubeMasterGUI
             InitializeComponent();
             _freeDrawController = new FreeDraw(ref cube);
             GenerateVoxelGrid();
+            InvokeTimerProtocol();
+        }
+
+        private void InvokeTimerProtocol()
+        {
+            if (!this.DesignMode)
+            {
+                this.tmrFreeDraw.InitializeTimers();
+            }
         }
 
         private void GenerateVoxelGrid()
@@ -45,5 +54,9 @@ namespace CubeMasterGUI
             }
         }
 
+        private void frmFreeDraw_MouseMove(object sender, MouseEventArgs e)
+        {
+            this.tmrFreeDraw.ResetTimers();
+        }
     }
 }

@@ -38,7 +38,7 @@
             this.btnAudioVis = new System.Windows.Forms.Button();
             this.btnGames = new System.Windows.Forms.Button();
             this.btnPresets = new System.Windows.Forms.Button();
-            this.MainMenuTimer = new CubeMasterGUI.ctrlTimer();
+            this.tmrMainMenu = new CubeMasterGUI.ctrlTimer();
             this.btnCloseWindow1 = new CubeMasterGUI.btnCloseWindow();
             this.SuspendLayout();
             // 
@@ -184,12 +184,12 @@
             // 
             // MainMenuTimer
             // 
-            this.MainMenuTimer.BackColor = System.Drawing.Color.Transparent;
-            this.MainMenuTimer.Location = new System.Drawing.Point(4, 1142);
-            this.MainMenuTimer.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
-            this.MainMenuTimer.Name = "MainMenuTimer";
-            this.MainMenuTimer.Size = new System.Drawing.Size(45, 46);
-            this.MainMenuTimer.TabIndex = 3;
+            this.tmrMainMenu.BackColor = System.Drawing.Color.Transparent;
+            this.tmrMainMenu.Location = new System.Drawing.Point(4, 1142);
+            this.tmrMainMenu.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
+            this.tmrMainMenu.Name = "MainMenuTimer";
+            this.tmrMainMenu.Size = new System.Drawing.Size(45, 46);
+            this.tmrMainMenu.TabIndex = 3;
             // 
             // btnCloseWindow1
             // 
@@ -211,7 +211,7 @@
             this.Controls.Add(this.btnAudioVis);
             this.Controls.Add(this.btnText2Cube);
             this.Controls.Add(this.btnFreeDraw);
-            this.Controls.Add(this.MainMenuTimer);
+            this.Controls.Add(this.tmrMainMenu);
             this.Controls.Add(this.lblPreset);
             this.Controls.Add(this.lblAudioVis);
             this.Controls.Add(this.lblGames);
@@ -237,7 +237,7 @@
         private System.Windows.Forms.Label lblAudioVis;
         private System.Windows.Forms.Label lblPreset;
         private System.Windows.Forms.Label lblGames;
-        private ctrlTimer MainMenuTimer;
+        private ctrlTimer tmrMainMenu;
         private System.Windows.Forms.Button btnFreeDraw;
         private System.Windows.Forms.Button btnText2Cube;
         private System.Windows.Forms.Button btnAudioVis;

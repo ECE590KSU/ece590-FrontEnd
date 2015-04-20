@@ -51,14 +51,14 @@ namespace CubeMasterGUI
 
         private void frmMainMenu_MouseMove(object sender, MouseEventArgs e)
         {
-            this.MainMenuTimer.ResetTimers();
+            this.tmrMainMenu.ResetTimers();
         }
 
         private void InvokeTimerProtocol()
         {
-            if (this.DesignMode == false)
+            if (!this.DesignMode)
             {
-                this.MainMenuTimer.InitializeTimers();
+                this.tmrMainMenu.InitializeTimers();
             }
         }
 
@@ -69,7 +69,7 @@ namespace CubeMasterGUI
 
         private void btnFreeDraw_Click(object sender, EventArgs e)
         {
-            this.MainMenuTimer.HaltTimers();
+            this.tmrMainMenu.HaltTimers();
             _mainMenuController.ApplicationLaunch_FreeDraw();
         }
 
