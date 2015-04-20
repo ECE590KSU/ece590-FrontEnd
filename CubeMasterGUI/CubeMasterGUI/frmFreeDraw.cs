@@ -79,10 +79,8 @@ namespace CubeMasterGUI
         {
             this.tmrFreeDraw.ResetTimers();
             Voxel vox = sender as Voxel;
-
-            _voxels[vox.X, vox.Y].BackColor =
-                (_voxels[vox.X, vox.Y].BackColor == _clrVoxelClicked) ? 
-                _clrVoxelUnclicked : _clrVoxelClicked;
+            vox.VoxelSet = !vox.VoxelSet;
+            _voxels[vox.X, vox.Y].BackColor = vox.VoxelSet ? _clrVoxelClicked : _clrVoxelUnclicked;
         }
     }
 }
