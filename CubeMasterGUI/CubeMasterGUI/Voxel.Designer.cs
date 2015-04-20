@@ -36,8 +36,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.MaximumSize = new System.Drawing.Size(80, 80);
             this.Name = "Voxel";
-            this.Size = new System.Drawing.Size(80, 80);
+            this.Padding = new System.Windows.Forms.Padding(5);
+            this.Size = new System.Drawing.Size(78, 78);
             this.ResumeLayout(false);
 
         }
