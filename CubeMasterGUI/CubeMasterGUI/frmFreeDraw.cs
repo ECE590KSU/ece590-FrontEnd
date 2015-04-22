@@ -29,9 +29,10 @@ namespace CubeMasterGUI
         {
             InitializeComponent();
             _freeDrawController = new FreeDraw(ref cube);
+
             GenerateVoxelGrid();
             InvokeTimerProtocol();
-            CheckDefaultRadio();
+            InitializeRadioButtons();
         }
 
         private void InvokeTimerProtocol()
@@ -42,7 +43,7 @@ namespace CubeMasterGUI
             }
         }
 
-        private void CheckDefaultRadio()
+        private void InitializeRadioButtons()
         {
             this.btnAXIS_X.Checked = true;
         }
@@ -90,6 +91,33 @@ namespace CubeMasterGUI
             Voxel vox = sender as Voxel;
             vox.VoxelSet = !vox.VoxelSet;
             _voxels[vox.X, vox.Y].BackColor = vox.VoxelSet ? _clrVoxelClicked : _clrVoxelUnclicked;
+        }
+
+        private void btnAXIS_X_CheckedChanged(object sender, EventArgs e)
+        {
+            RadioButton btnx = sender as RadioButton;
+            if (btnx.Checked)
+            {
+                _freeDrawController.SelectedAxis = CubeController.Cube.AXIS.AXIS_X;
+            }
+        }
+
+        private void btnAXIS_Y_CheckedChanged(object sender, EventArgs e)
+        {
+            RadioButton btny = sender as RadioButton;
+            if (btny.Checked)
+            {
+                _freeDrawController.SelectedAxis = CubeController.Cube.AXIS.AXIS_Y;
+            }
+        }
+
+        private void btnAXIS_Z_CheckedChanged(object sender, EventArgs e)
+        {
+            RadioButton btnz = sender as RadioButton;
+            if (btnz.Checked)
+            {
+                _freeDrawController.SelectedAxis = CubeController.Cube.AXIS.AXIS_Z;
+            }
         }
     }
 }

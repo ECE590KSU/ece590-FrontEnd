@@ -8,6 +8,7 @@ namespace CubeMasterGUI
     public class FreeDraw
     {
         private CubeController.Cube _cubeController;
+        public CubeController.Cube.AXIS SelectedAxis { get; set; }
 
         public FreeDraw(ref CubeController.Cube cube)
         {
