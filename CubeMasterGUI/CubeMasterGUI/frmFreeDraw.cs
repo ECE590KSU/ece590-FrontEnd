@@ -92,10 +92,14 @@ namespace CubeMasterGUI
                     tmpVoxel.Height = _voxelHeight;
                     tmpVoxel.Width = _voxelWidth;
                     tmpVoxel.Left = _voxelGrid_startX + (i*_voxelWidth + _voxelSpacing);
-                    tmpVoxel.Top = _voxelGrid_startY + (j*_voxelHeight + _voxelSpacing);
+                    tmpVoxel.Top = _voxelGrid_startY + ((7-j)*_voxelHeight + _voxelSpacing);
                     
                     tmpVoxel.X = i;
                     tmpVoxel.Y = j;
+
+                    var lbl = new Label();
+                    lbl.Text = "[" + i + "," + j + "]";
+                    tmpVoxel.Controls.Add(lbl);
 
                     tmpVoxel.BringToFront();
 
@@ -121,8 +125,30 @@ namespace CubeMasterGUI
         {
             this.tmrFreeDraw.ResetTimers();
             Voxel vox = sender as Voxel;
-            vox.VoxelSet = !vox.VoxelSet;
-            _voxels[vox.X, vox.Y].BackColor = vox.VoxelSet ? _clrVoxelClicked : _clrVoxelUnclicked;
+
+            if (_freeDrawController.CurrentDrawingMode == FreeDraw.DRAWING_MODE.SINGLE)
+            {
+                vox.VoxelSet = !vox.VoxelSet;
+                _voxels[vox.X, vox.Y].BackColor = vox.VoxelSet ? _clrVoxelClicked : _clrVoxelUnclicked;
+
+                // Zero-based index. 
+                int plane = (int)(uxPlaneSelect.Value - 1);
+
+                switch (_freeDrawController.SelectedAxis)
+                {
+                    case CubeController.Cube.AXIS.AXIS_X:
+                        _freeDrawController.SwapVoxel(plane, vox.X, vox.Y);
+                        break;
+                    case CubeController.Cube.AXIS.AXIS_Y:
+                        _freeDrawController.SwapVoxel(vox.X, plane, vox.Y);
+                        break;
+                    case CubeController.Cube.AXIS.AXIS_Z:
+                        _freeDrawController.SwapVoxel(vox.X, vox.Y, plane);
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
 
         private void btnAXIS_X_CheckedChanged(object sender, EventArgs e)
@@ -150,11 +176,6 @@ namespace CubeMasterGUI
             {
                 _freeDrawController.SelectedAxis = CubeController.Cube.AXIS.AXIS_Z;
             }
-        }
-
-        private void drwSingle_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

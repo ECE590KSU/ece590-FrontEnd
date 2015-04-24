@@ -19,6 +19,11 @@ namespace CubeMasterGUI
             this.CurrentDrawingMode = DRAWING_MODE.SINGLE;
         }
 
+        public void SwapVoxel(int x, int y, int z)
+        {
+            _cube.SwapVoxel(x,y,z);
+        }
+
 
     }
 }
