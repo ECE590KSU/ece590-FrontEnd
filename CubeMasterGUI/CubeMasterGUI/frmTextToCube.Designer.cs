@@ -28,27 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnCloseWindow = new CubeMasterGUI.btnCloseWindow();
             this.pnlDrawingControls = new System.Windows.Forms.Panel();
+            this.btnCounterclockwiseBanner = new System.Windows.Forms.RadioButton();
             this.btnClockwiseBanner = new System.Windows.Forms.RadioButton();
             this.btnBackToFront = new System.Windows.Forms.RadioButton();
             this.btnFrontToBack = new System.Windows.Forms.RadioButton();
-            this.btnCounterclockwiseBanner = new System.Windows.Forms.RadioButton();
             this.txtBoxMessage = new System.Windows.Forms.TextBox();
             this.btnSend = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnCloseWindow = new CubeMasterGUI.btnCloseWindow();
             this.pnlDrawingControls.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // btnCloseWindow
-            // 
-            this.btnCloseWindow.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.btnCloseWindow.Location = new System.Drawing.Point(1323, 13);
-            this.btnCloseWindow.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnCloseWindow.Name = "btnCloseWindow";
-            this.btnCloseWindow.Size = new System.Drawing.Size(30, 30);
-            this.btnCloseWindow.TabIndex = 1;
             // 
             // pnlDrawingControls
             // 
@@ -64,6 +55,18 @@
             this.pnlDrawingControls.Name = "pnlDrawingControls";
             this.pnlDrawingControls.Size = new System.Drawing.Size(335, 172);
             this.pnlDrawingControls.TabIndex = 5;
+            // 
+            // btnCounterclockwiseBanner
+            // 
+            this.btnCounterclockwiseBanner.AutoSize = true;
+            this.btnCounterclockwiseBanner.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCounterclockwiseBanner.Location = new System.Drawing.Point(9, 121);
+            this.btnCounterclockwiseBanner.Margin = new System.Windows.Forms.Padding(2);
+            this.btnCounterclockwiseBanner.Name = "btnCounterclockwiseBanner";
+            this.btnCounterclockwiseBanner.Size = new System.Drawing.Size(322, 36);
+            this.btnCounterclockwiseBanner.TabIndex = 1;
+            this.btnCounterclockwiseBanner.Text = "Counterclockwise Banner";
+            this.btnCounterclockwiseBanner.UseVisualStyleBackColor = true;
             // 
             // btnClockwiseBanner
             // 
@@ -101,18 +104,6 @@
             this.btnFrontToBack.Text = "Front To Back";
             this.btnFrontToBack.UseVisualStyleBackColor = true;
             // 
-            // btnCounterclockwiseBanner
-            // 
-            this.btnCounterclockwiseBanner.AutoSize = true;
-            this.btnCounterclockwiseBanner.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCounterclockwiseBanner.Location = new System.Drawing.Point(9, 121);
-            this.btnCounterclockwiseBanner.Margin = new System.Windows.Forms.Padding(2);
-            this.btnCounterclockwiseBanner.Name = "btnCounterclockwiseBanner";
-            this.btnCounterclockwiseBanner.Size = new System.Drawing.Size(322, 36);
-            this.btnCounterclockwiseBanner.TabIndex = 1;
-            this.btnCounterclockwiseBanner.Text = "Counterclockwise Banner";
-            this.btnCounterclockwiseBanner.UseVisualStyleBackColor = true;
-            // 
             // txtBoxMessage
             // 
             this.txtBoxMessage.ForeColor = System.Drawing.Color.SteelBlue;
@@ -132,6 +123,7 @@
             this.btnSend.TabIndex = 7;
             this.btnSend.Text = "Send";
             this.btnSend.UseVisualStyleBackColor = false;
+            this.btnSend.Click += new System.EventHandler(this.btnSend_Click);
             // 
             // btnClear
             // 
@@ -144,6 +136,7 @@
             this.btnClear.TabIndex = 8;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = false;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // label1
             // 
@@ -153,6 +146,15 @@
             this.label1.Size = new System.Drawing.Size(86, 29);
             this.label1.TabIndex = 9;
             this.label1.Text = "Effect:";
+            // 
+            // btnCloseWindow
+            // 
+            this.btnCloseWindow.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.btnCloseWindow.Location = new System.Drawing.Point(8270, 65);
+            this.btnCloseWindow.Margin = new System.Windows.Forms.Padding(25, 25, 25, 25);
+            this.btnCloseWindow.Name = "btnCloseWindow";
+            this.btnCloseWindow.Size = new System.Drawing.Size(188, 149);
+            this.btnCloseWindow.TabIndex = 1;
             // 
             // frmTextToCube
             // 
@@ -169,7 +171,7 @@
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.SteelBlue;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(7, 7, 7, 7);
+            this.Margin = new System.Windows.Forms.Padding(7);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmTextToCube";
