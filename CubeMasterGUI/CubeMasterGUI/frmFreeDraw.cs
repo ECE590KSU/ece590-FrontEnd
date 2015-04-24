@@ -25,10 +25,13 @@ namespace CubeMasterGUI
         private Color _clrVoxelClicked = Color.LightBlue;
         private Color _clrVoxelUnclicked = Color.GhostWhite;
 
-        public frmFreeDraw(ref CubeController.Cube cube)
+        public frmFreeDraw(ref CubeController.Cube cube, int parentWidth, int parentHeight)
         {
             InitializeComponent();
             _freeDrawController = new FreeDraw(ref cube);
+
+            this.Width = parentWidth;
+            this.Height = parentHeight;
 
             GenerateVoxelGrid();
             InvokeTimerProtocol();

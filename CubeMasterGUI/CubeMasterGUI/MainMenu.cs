@@ -10,6 +10,7 @@ namespace CubeMasterGUI
     {
         private StartScreen _startScreenParent;
 
+
         public MainMenu(ref StartScreen startScreenParent)
         {
             _startScreenParent = startScreenParent;
@@ -23,7 +24,7 @@ namespace CubeMasterGUI
         internal void ApplicationLaunch_FreeDraw()
         {
             CubeController.Cube rootCubeController = _startScreenParent.GetRootCubeController();
-            frmFreeDraw freeDraw = new frmFreeDraw(ref rootCubeController);
+            frmFreeDraw freeDraw = new frmFreeDraw(ref rootCubeController, _startScreenParent.ParentScreenWidth, _startScreenParent.ParentScreenHeight);
 
             if (freeDraw.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {

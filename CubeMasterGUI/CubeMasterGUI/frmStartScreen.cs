@@ -13,11 +13,18 @@ namespace CubeMasterGUI
     public partial class frmStartScreen : Form
     {
         private StartScreen _startScreenController;
+        public int ParentScreenHeight { get; set; }
+        public int ParentScreenWidth { get; set; }
 
         public frmStartScreen()
         {
             InitializeComponent();
-            _startScreenController = new StartScreen();
+            ParentScreenHeight = 768;
+            ParentScreenWidth = 1366;
+            this.Height = ParentScreenHeight;
+            this.Width = ParentScreenWidth;
+
+            _startScreenController = new StartScreen(this.ParentScreenWidth, this.ParentScreenHeight);
         }
 
         private void btnMainMenu_Click(object sender, EventArgs e)

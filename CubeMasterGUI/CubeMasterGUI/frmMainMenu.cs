@@ -25,6 +25,9 @@ namespace CubeMasterGUI
             InvokeTimerProtocol();
             
             _startScreenController = startScreenParent;
+            this.Height = _startScreenController.ParentScreenHeight;
+            this.Width = _startScreenController.ParentScreenWidth;
+
             _mainMenuController = new MainMenu(ref _startScreenController);
         }
 

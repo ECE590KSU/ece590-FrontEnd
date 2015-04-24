@@ -10,9 +10,14 @@ namespace CubeMasterGUI
     public class StartScreen
     {
         private CubeController.Cube _rootCubeController;
+        public int ParentScreenHeight { get; set; }
+        public int ParentScreenWidth { get; set; }
 
-        public StartScreen()
+        public StartScreen(int parentWidth, int parentHeight)
         {
+            this.ParentScreenWidth = parentWidth;
+            this.ParentScreenHeight = parentHeight;
+
             _rootCubeController = new CubeController.Cube();
         }
 
