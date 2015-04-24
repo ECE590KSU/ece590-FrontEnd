@@ -18,7 +18,13 @@ namespace CubeMasterGUI
 
         internal void ApplicationLaunch_Text2Cube()
         {
+            CubeController.Cube rootCubeController = _startScreenParent.GetRootCubeController();
+            frmTextToCube text2Cube = new frmTextToCube();
 
+            if (text2Cube.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            { 
+            
+            }
         }
 
         internal void ApplicationLaunch_FreeDraw()

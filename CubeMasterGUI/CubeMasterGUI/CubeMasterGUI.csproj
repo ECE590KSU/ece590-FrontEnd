@@ -88,6 +88,12 @@
     <Compile Include="frmStartScreen.Designer.cs">
       <DependentUpon>frmStartScreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmTextToCube.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTextToCube.Designer.cs">
+      <DependentUpon>frmTextToCube.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainMenu.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -116,6 +122,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmStartScreen.resx">
       <DependentUpon>frmStartScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTextToCube.resx">
+      <DependentUpon>frmTextToCube.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
