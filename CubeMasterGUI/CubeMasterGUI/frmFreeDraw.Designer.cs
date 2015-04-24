@@ -30,6 +30,8 @@
         {
             this.lblWindowName = new System.Windows.Forms.Label();
             this.pnlDrawingControls = new System.Windows.Forms.Panel();
+            this.btnFillPlane = new System.Windows.Forms.Button();
+            this.btnClearPlane = new System.Windows.Forms.Button();
             this.drwCircle = new CubeMasterGUI.DrawingFunction();
             this.drwRectangle = new CubeMasterGUI.DrawingFunction();
             this.drwLine = new CubeMasterGUI.DrawingFunction();
@@ -41,7 +43,6 @@
             this.btnAXIS_X = new System.Windows.Forms.RadioButton();
             this.btnCloseWindow1 = new CubeMasterGUI.btnCloseWindow();
             this.tmrFreeDraw = new CubeMasterGUI.ctrlTimer();
-            this.button1 = new System.Windows.Forms.Button();
             this.pnlDrawingControls.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uxPlaneSelect)).BeginInit();
             this.SuspendLayout();
@@ -59,7 +60,8 @@
             // 
             this.pnlDrawingControls.BackColor = System.Drawing.SystemColors.Window;
             this.pnlDrawingControls.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlDrawingControls.Controls.Add(this.button1);
+            this.pnlDrawingControls.Controls.Add(this.btnFillPlane);
+            this.pnlDrawingControls.Controls.Add(this.btnClearPlane);
             this.pnlDrawingControls.Controls.Add(this.drwCircle);
             this.pnlDrawingControls.Controls.Add(this.drwRectangle);
             this.pnlDrawingControls.Controls.Add(this.drwLine);
@@ -75,6 +77,30 @@
             this.pnlDrawingControls.Name = "pnlDrawingControls";
             this.pnlDrawingControls.Size = new System.Drawing.Size(685, 702);
             this.pnlDrawingControls.TabIndex = 4;
+            // 
+            // btnFillPlane
+            // 
+            this.btnFillPlane.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFillPlane.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFillPlane.Location = new System.Drawing.Point(183, 236);
+            this.btnFillPlane.Name = "btnFillPlane";
+            this.btnFillPlane.Size = new System.Drawing.Size(151, 75);
+            this.btnFillPlane.TabIndex = 4;
+            this.btnFillPlane.Text = "Fill Plane";
+            this.btnFillPlane.UseVisualStyleBackColor = true;
+            this.btnFillPlane.Click += new System.EventHandler(this.btnFillPlane_Click);
+            // 
+            // btnClearPlane
+            // 
+            this.btnClearPlane.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClearPlane.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClearPlane.Location = new System.Drawing.Point(17, 236);
+            this.btnClearPlane.Name = "btnClearPlane";
+            this.btnClearPlane.Size = new System.Drawing.Size(151, 75);
+            this.btnClearPlane.TabIndex = 4;
+            this.btnClearPlane.Text = "Clear Plane";
+            this.btnClearPlane.UseVisualStyleBackColor = true;
+            this.btnClearPlane.Click += new System.EventHandler(this.btnClearPlane_Click);
             // 
             // drwCircle
             // 
@@ -118,7 +144,7 @@
             // uxPlaneSelect
             // 
             this.uxPlaneSelect.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uxPlaneSelect.Location = new System.Drawing.Point(17, 180);
+            this.uxPlaneSelect.Location = new System.Drawing.Point(17, 186);
             this.uxPlaneSelect.Maximum = new decimal(new int[] {
             8,
             0,
@@ -130,13 +156,14 @@
             0,
             0});
             this.uxPlaneSelect.Name = "uxPlaneSelect";
-            this.uxPlaneSelect.Size = new System.Drawing.Size(239, 35);
+            this.uxPlaneSelect.Size = new System.Drawing.Size(317, 35);
             this.uxPlaneSelect.TabIndex = 1;
             this.uxPlaneSelect.Value = new decimal(new int[] {
             1,
             0,
             0,
             0});
+            this.uxPlaneSelect.ValueChanged += new System.EventHandler(this.uxPlaneSelect_ValueChanged);
             // 
             // btnAXIS_Z
             // 
@@ -197,16 +224,6 @@
             this.tmrFreeDraw.Size = new System.Drawing.Size(13, 13);
             this.tmrFreeDraw.TabIndex = 3;
             // 
-            // button1
-            // 
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(17, 236);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // frmFreeDraw
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -246,6 +263,7 @@
         private DrawingFunction drwRectangle;
         private DrawingFunction drwLine;
         private DrawingFunction drwSingle;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnClearPlane;
+        private System.Windows.Forms.Button btnFillPlane;
     }
 }

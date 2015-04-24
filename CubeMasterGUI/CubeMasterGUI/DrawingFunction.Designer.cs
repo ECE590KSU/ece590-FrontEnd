@@ -33,7 +33,7 @@
             // 
             // btnFunction
             // 
-            this.btnFunction.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnFunction.Cursor = System.Windows.Forms.Cursors.Default;
             this.btnFunction.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnFunction.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFunction.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

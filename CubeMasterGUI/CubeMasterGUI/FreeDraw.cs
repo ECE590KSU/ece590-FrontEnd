@@ -9,6 +9,9 @@ namespace CubeMasterGUI
     {
         private CubeController.Cube _cube;
         public CubeController.Cube.AXIS SelectedAxis { get; set; }
+        
+        // Replace function calls using 'int plane' with 'SelectedPlane'. 
+        public int SelectedPlane { get; set; }
 
         public enum DRAWING_MODE { SINGLE, LINE, RECTANGLE, CIRCLE };
         public DRAWING_MODE CurrentDrawingMode { get; set; }
@@ -24,6 +27,20 @@ namespace CubeMasterGUI
             _cube.SwapVoxel(x,y,z);
         }
 
+        public void ClearPlane(int plane)
+        {
+            _cube.ClearPlane(SelectedAxis, plane);
+            _cube.RenderCube();
+        }
 
+        public bool[][] GetPlane(int plane)
+        {
+            return _cube.GetPlane(SelectedAxis, plane);
+        }
+
+        public void SetPlane(int plane)
+        {
+            _cube.SetPlane(SelectedAxis, plane);
+        }
     }
 }

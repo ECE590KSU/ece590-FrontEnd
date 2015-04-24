@@ -55,6 +55,11 @@ namespace CubeMasterGUI
             this.tmrMainMenu.ResetTimers();
         }
 
+        private void frmMainMenu_MouseClick(object sender, MouseEventArgs e)
+        {
+            this.tmrMainMenu.ResetTimers();
+        }
+
         private void InvokeTimerProtocol()
         {
             if (!this.DesignMode)

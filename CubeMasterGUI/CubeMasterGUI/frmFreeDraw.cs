@@ -111,6 +111,21 @@ namespace CubeMasterGUI
             }
         }
 
+        private void RefreshVoxelGrid()
+        {
+            this.SuspendLayout();
+            var tmpplane = _freeDrawController.GetPlane((int)uxPlaneSelect.Value -1);
+
+            for (int i = 0; i < 8; ++i)
+            {
+                for (int j = 0; j < 8; ++j)
+                {
+                    _voxels[i, j].BackColor = tmpplane[i][j] ? _clrVoxelClicked : _clrVoxelUnclicked;
+                }
+            }
+            this.ResumeLayout();
+        }
+
         private void frmFreeDraw_MouseMove(object sender, MouseEventArgs e)
         {
             this.tmrFreeDraw.ResetTimers();
@@ -128,8 +143,8 @@ namespace CubeMasterGUI
 
             if (_freeDrawController.CurrentDrawingMode == FreeDraw.DRAWING_MODE.SINGLE)
             {
-                vox.VoxelSet = !vox.VoxelSet;
-                _voxels[vox.X, vox.Y].BackColor = vox.VoxelSet ? _clrVoxelClicked : _clrVoxelUnclicked;
+                //vox.VoxelSet = !vox.VoxelSet;
+                //_voxels[vox.X, vox.Y].BackColor = vox.VoxelSet ? _clrVoxelClicked : _clrVoxelUnclicked;
 
                 // Zero-based index. 
                 int plane = (int)(uxPlaneSelect.Value - 1);
@@ -137,18 +152,20 @@ namespace CubeMasterGUI
                 switch (_freeDrawController.SelectedAxis)
                 {
                     case CubeController.Cube.AXIS.AXIS_X:
-                        _freeDrawController.SwapVoxel(plane, vox.X, vox.Y);
+                        _freeDrawController.SwapVoxel(plane, vox.Y, vox.X);
                         break;
                     case CubeController.Cube.AXIS.AXIS_Y:
-                        _freeDrawController.SwapVoxel(vox.X, plane, vox.Y);
+                        _freeDrawController.SwapVoxel(vox.Y, plane, vox.X);
                         break;
                     case CubeController.Cube.AXIS.AXIS_Z:
-                        _freeDrawController.SwapVoxel(vox.X, vox.Y, plane);
+                        _freeDrawController.SwapVoxel(vox.Y, 7-vox.X, plane);
                         break;
                     default:
                         break;
                 }
             }
+
+            RefreshVoxelGrid();
         }
 
         private void btnAXIS_X_CheckedChanged(object sender, EventArgs e)
@@ -157,6 +174,7 @@ namespace CubeMasterGUI
             if (btnx.Checked)
             {
                 _freeDrawController.SelectedAxis = CubeController.Cube.AXIS.AXIS_X;
+                RefreshVoxelGrid();
             }
         }
 
@@ -166,6 +184,7 @@ namespace CubeMasterGUI
             if (btny.Checked)
             {
                 _freeDrawController.SelectedAxis = CubeController.Cube.AXIS.AXIS_Y;
+                RefreshVoxelGrid();
             }
         }
 
@@ -175,7 +194,25 @@ namespace CubeMasterGUI
             if (btnz.Checked)
             {
                 _freeDrawController.SelectedAxis = CubeController.Cube.AXIS.AXIS_Z;
+                RefreshVoxelGrid();
             }
+        }
+
+        private void btnClearPlane_Click(object sender, EventArgs e)
+        {
+            _freeDrawController.ClearPlane((int)uxPlaneSelect.Value - 1);
+            RefreshVoxelGrid();
+        }
+
+        private void btnFillPlane_Click(object sender, EventArgs e)
+        {
+            _freeDrawController.SetPlane((int)uxPlaneSelect.Value - 1);
+            RefreshVoxelGrid();
+        }
+
+        private void uxPlaneSelect_ValueChanged(object sender, EventArgs e)
+        {
+            RefreshVoxelGrid();
         }
     }
 }
