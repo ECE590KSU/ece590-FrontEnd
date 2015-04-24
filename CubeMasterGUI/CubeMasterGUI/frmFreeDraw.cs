@@ -13,9 +13,11 @@ namespace CubeMasterGUI
     public partial class frmFreeDraw : Form
     {
         private FreeDraw _freeDrawController;
+
+        private List<DrawingFunction> _functions;
         
-        private int _voxelGrid_startX = 18;
-        private int _voxelGrid_startY = 58;
+        private int _voxelGrid_startX = 20;
+        private int _voxelGrid_startY = 75;
         private int _voxelSpacing = 9;
         private int _voxelHeight = 80;
         private int _voxelWidth = 80;
@@ -34,8 +36,35 @@ namespace CubeMasterGUI
             this.Height = parentHeight;
 
             GenerateVoxelGrid();
+            AssignDrawingFunctions();
             InvokeTimerProtocol();
             InitializeRadioButtons();
+        }
+
+        private void AssignDrawingFunctions()
+        {
+            // Replace button text with actual shapes. 'Single' would just be a point, 
+            // "Line" would be a line, etc. Would be much better looking UI. 
+            this.drwSingle.SetText("Single");
+            this.drwLine.SetText("Line");
+            this.drwRectangle.SetText("Rectangle");
+            this.drwCircle.SetText("Circle");
+
+            this.drwSingle.SetController(ref _freeDrawController);
+            this.drwLine.SetController(ref _freeDrawController);
+            this.drwRectangle.SetController(ref _freeDrawController);
+            this.drwCircle.SetController(ref _freeDrawController);
+
+            this.drwSingle.SetDrawingMode(FreeDraw.DRAWING_MODE.SINGLE);
+            this.drwLine.SetDrawingMode(FreeDraw.DRAWING_MODE.LINE);
+            this.drwRectangle.SetDrawingMode(FreeDraw.DRAWING_MODE.RECTANGLE);
+            this.drwCircle.SetDrawingMode(FreeDraw.DRAWING_MODE.CIRCLE);
+
+            _functions = new List<DrawingFunction>();
+            _functions.Add(this.drwSingle);
+            _functions.Add(this.drwLine);
+            _functions.Add(this.drwRectangle);
+            _functions.Add(this.drwCircle);
         }
 
         private void InvokeTimerProtocol()
@@ -121,6 +150,11 @@ namespace CubeMasterGUI
             {
                 _freeDrawController.SelectedAxis = CubeController.Cube.AXIS.AXIS_Z;
             }
+        }
+
+        private void drwSingle_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

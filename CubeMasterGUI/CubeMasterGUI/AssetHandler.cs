@@ -15,5 +15,10 @@ namespace CubeMasterGUI
         public static string _presetURL = _topLevelDir + @"\images\presets.png";
         public static string _gamesURL = _topLevelDir + @"\images\games.png";
         public static string _text2CubeURL = _topLevelDir + @"\images\txt2cube.png";
+
+        // Color Palette.
+        public static System.Drawing.Color _primaryFormColor = System.Drawing.Color.GhostWhite;
+        public static System.Drawing.Color _primaryControlColor = System.Drawing.Color.SteelBlue;
+        public static System.Drawing.Color _primaryTextColor = System.Drawing.Color.SteelBlue;
     }
 }

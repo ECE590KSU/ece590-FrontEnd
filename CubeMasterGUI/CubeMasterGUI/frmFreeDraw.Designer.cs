@@ -30,13 +30,18 @@
         {
             this.lblWindowName = new System.Windows.Forms.Label();
             this.pnlDrawingControls = new System.Windows.Forms.Panel();
+            this.drwCircle = new CubeMasterGUI.DrawingFunction();
+            this.drwRectangle = new CubeMasterGUI.DrawingFunction();
+            this.drwLine = new CubeMasterGUI.DrawingFunction();
+            this.drwSingle = new CubeMasterGUI.DrawingFunction();
+            this.label1 = new System.Windows.Forms.Label();
+            this.uxPlaneSelect = new System.Windows.Forms.NumericUpDown();
             this.btnAXIS_Z = new System.Windows.Forms.RadioButton();
             this.btnAXIS_Y = new System.Windows.Forms.RadioButton();
             this.btnAXIS_X = new System.Windows.Forms.RadioButton();
             this.btnCloseWindow1 = new CubeMasterGUI.btnCloseWindow();
             this.tmrFreeDraw = new CubeMasterGUI.ctrlTimer();
-            this.uxPlaneSelect = new System.Windows.Forms.NumericUpDown();
-            this.label1 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.pnlDrawingControls.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uxPlaneSelect)).BeginInit();
             this.SuspendLayout();
@@ -54,6 +59,11 @@
             // 
             this.pnlDrawingControls.BackColor = System.Drawing.SystemColors.Window;
             this.pnlDrawingControls.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlDrawingControls.Controls.Add(this.button1);
+            this.pnlDrawingControls.Controls.Add(this.drwCircle);
+            this.pnlDrawingControls.Controls.Add(this.drwRectangle);
+            this.pnlDrawingControls.Controls.Add(this.drwLine);
+            this.pnlDrawingControls.Controls.Add(this.drwSingle);
             this.pnlDrawingControls.Controls.Add(this.label1);
             this.pnlDrawingControls.Controls.Add(this.uxPlaneSelect);
             this.pnlDrawingControls.Controls.Add(this.btnAXIS_Z);
@@ -65,6 +75,68 @@
             this.pnlDrawingControls.Name = "pnlDrawingControls";
             this.pnlDrawingControls.Size = new System.Drawing.Size(685, 702);
             this.pnlDrawingControls.TabIndex = 4;
+            // 
+            // drwCircle
+            // 
+            this.drwCircle.Location = new System.Drawing.Point(517, 528);
+            this.drwCircle.Name = "drwCircle";
+            this.drwCircle.Size = new System.Drawing.Size(150, 150);
+            this.drwCircle.TabIndex = 3;
+            // 
+            // drwRectangle
+            // 
+            this.drwRectangle.Location = new System.Drawing.Point(349, 528);
+            this.drwRectangle.Name = "drwRectangle";
+            this.drwRectangle.Size = new System.Drawing.Size(150, 150);
+            this.drwRectangle.TabIndex = 3;
+            // 
+            // drwLine
+            // 
+            this.drwLine.Location = new System.Drawing.Point(184, 528);
+            this.drwLine.Name = "drwLine";
+            this.drwLine.Size = new System.Drawing.Size(150, 150);
+            this.drwLine.TabIndex = 3;
+            // 
+            // drwSingle
+            // 
+            this.drwSingle.Location = new System.Drawing.Point(18, 528);
+            this.drwSingle.Name = "drwSingle";
+            this.drwSingle.Size = new System.Drawing.Size(150, 150);
+            this.drwSingle.TabIndex = 3;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.SteelBlue;
+            this.label1.Location = new System.Drawing.Point(12, 145);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(179, 32);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Plane Number";
+            // 
+            // uxPlaneSelect
+            // 
+            this.uxPlaneSelect.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.uxPlaneSelect.Location = new System.Drawing.Point(17, 180);
+            this.uxPlaneSelect.Maximum = new decimal(new int[] {
+            8,
+            0,
+            0,
+            0});
+            this.uxPlaneSelect.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.uxPlaneSelect.Name = "uxPlaneSelect";
+            this.uxPlaneSelect.Size = new System.Drawing.Size(239, 35);
+            this.uxPlaneSelect.TabIndex = 1;
+            this.uxPlaneSelect.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // btnAXIS_Z
             // 
@@ -125,39 +197,15 @@
             this.tmrFreeDraw.Size = new System.Drawing.Size(13, 13);
             this.tmrFreeDraw.TabIndex = 3;
             // 
-            // uxPlaneSelect
+            // button1
             // 
-            this.uxPlaneSelect.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uxPlaneSelect.Location = new System.Drawing.Point(17, 180);
-            this.uxPlaneSelect.Maximum = new decimal(new int[] {
-            8,
-            0,
-            0,
-            0});
-            this.uxPlaneSelect.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.uxPlaneSelect.Name = "uxPlaneSelect";
-            this.uxPlaneSelect.Size = new System.Drawing.Size(239, 35);
-            this.uxPlaneSelect.TabIndex = 1;
-            this.uxPlaneSelect.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.SteelBlue;
-            this.label1.Location = new System.Drawing.Point(12, 145);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(179, 32);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Plane Number";
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Location = new System.Drawing.Point(17, 236);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // frmFreeDraw
             // 
@@ -194,5 +242,10 @@
         private System.Windows.Forms.RadioButton btnAXIS_X;
         private System.Windows.Forms.NumericUpDown uxPlaneSelect;
         private System.Windows.Forms.Label label1;
+        private DrawingFunction drwCircle;
+        private DrawingFunction drwRectangle;
+        private DrawingFunction drwLine;
+        private DrawingFunction drwSingle;
+        private System.Windows.Forms.Button button1;
     }
 }

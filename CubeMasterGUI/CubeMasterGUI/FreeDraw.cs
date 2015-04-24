@@ -10,7 +10,7 @@ namespace CubeMasterGUI
         private CubeController.Cube _cube;
         public CubeController.Cube.AXIS SelectedAxis { get; set; }
 
-        public enum DRAWING_MODE { SINGLE, LINE, RECTANGLE, SPHERE };
+        public enum DRAWING_MODE { SINGLE, LINE, RECTANGLE, CIRCLE };
         public DRAWING_MODE CurrentDrawingMode { get; set; }
 
         public FreeDraw(ref CubeController.Cube cube)
