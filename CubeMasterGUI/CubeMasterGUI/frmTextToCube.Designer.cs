@@ -38,6 +38,7 @@
             this.btnClear = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.btnCloseWindow = new CubeMasterGUI.btnCloseWindow();
+            this.btnSpin3D = new System.Windows.Forms.RadioButton();
             this.pnlDrawingControls.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -45,6 +46,7 @@
             // 
             this.pnlDrawingControls.BackColor = System.Drawing.SystemColors.Window;
             this.pnlDrawingControls.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlDrawingControls.Controls.Add(this.btnSpin3D);
             this.pnlDrawingControls.Controls.Add(this.btnCounterclockwiseBanner);
             this.pnlDrawingControls.Controls.Add(this.btnClockwiseBanner);
             this.pnlDrawingControls.Controls.Add(this.btnBackToFront);
@@ -53,7 +55,7 @@
             this.pnlDrawingControls.Location = new System.Drawing.Point(260, 164);
             this.pnlDrawingControls.Margin = new System.Windows.Forms.Padding(2);
             this.pnlDrawingControls.Name = "pnlDrawingControls";
-            this.pnlDrawingControls.Size = new System.Drawing.Size(335, 172);
+            this.pnlDrawingControls.Size = new System.Drawing.Size(335, 217);
             this.pnlDrawingControls.TabIndex = 5;
             // 
             // btnCounterclockwiseBanner
@@ -67,6 +69,7 @@
             this.btnCounterclockwiseBanner.TabIndex = 1;
             this.btnCounterclockwiseBanner.Text = "Counterclockwise Banner";
             this.btnCounterclockwiseBanner.UseVisualStyleBackColor = true;
+            this.btnCounterclockwiseBanner.CheckedChanged += new System.EventHandler(this.btnCounterclockwiseBanner_CheckedChanged);
             // 
             // btnClockwiseBanner
             // 
@@ -79,30 +82,33 @@
             this.btnClockwiseBanner.TabIndex = 0;
             this.btnClockwiseBanner.Text = "Clockwise Banner";
             this.btnClockwiseBanner.UseVisualStyleBackColor = true;
+            this.btnClockwiseBanner.CheckedChanged += new System.EventHandler(this.btnClockwiseBanner_CheckedChanged);
             // 
             // btnBackToFront
             // 
             this.btnBackToFront.AutoSize = true;
             this.btnBackToFront.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBackToFront.Location = new System.Drawing.Point(9, 45);
+            this.btnBackToFront.Location = new System.Drawing.Point(9, 2);
             this.btnBackToFront.Margin = new System.Windows.Forms.Padding(2);
             this.btnBackToFront.Name = "btnBackToFront";
             this.btnBackToFront.Size = new System.Drawing.Size(190, 36);
             this.btnBackToFront.TabIndex = 0;
             this.btnBackToFront.Text = "Back To Front";
             this.btnBackToFront.UseVisualStyleBackColor = true;
+            this.btnBackToFront.CheckedChanged += new System.EventHandler(this.btnBackToFront_CheckedChanged);
             // 
             // btnFrontToBack
             // 
             this.btnFrontToBack.AutoSize = true;
             this.btnFrontToBack.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFrontToBack.Location = new System.Drawing.Point(9, 10);
+            this.btnFrontToBack.Location = new System.Drawing.Point(9, 39);
             this.btnFrontToBack.Margin = new System.Windows.Forms.Padding(2);
             this.btnFrontToBack.Name = "btnFrontToBack";
             this.btnFrontToBack.Size = new System.Drawing.Size(190, 36);
             this.btnFrontToBack.TabIndex = 0;
             this.btnFrontToBack.Text = "Front To Back";
             this.btnFrontToBack.UseVisualStyleBackColor = true;
+            this.btnFrontToBack.CheckedChanged += new System.EventHandler(this.btnFrontToBack_CheckedChanged);
             // 
             // txtBoxMessage
             // 
@@ -124,6 +130,8 @@
             this.btnSend.Text = "Send";
             this.btnSend.UseVisualStyleBackColor = false;
             this.btnSend.Click += new System.EventHandler(this.btnSend_Click);
+            this.btnSend.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnSend_MouseClick);
+            this.btnSend.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnSend_MouseMove);
             // 
             // btnClear
             // 
@@ -151,10 +159,23 @@
             // 
             this.btnCloseWindow.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.btnCloseWindow.Location = new System.Drawing.Point(8270, 65);
-            this.btnCloseWindow.Margin = new System.Windows.Forms.Padding(25, 25, 25, 25);
+            this.btnCloseWindow.Margin = new System.Windows.Forms.Padding(25);
             this.btnCloseWindow.Name = "btnCloseWindow";
             this.btnCloseWindow.Size = new System.Drawing.Size(188, 149);
             this.btnCloseWindow.TabIndex = 1;
+            // 
+            // btnSpin3D
+            // 
+            this.btnSpin3D.AutoSize = true;
+            this.btnSpin3D.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSpin3D.Location = new System.Drawing.Point(9, 161);
+            this.btnSpin3D.Margin = new System.Windows.Forms.Padding(2);
+            this.btnSpin3D.Name = "btnSpin3D";
+            this.btnSpin3D.Size = new System.Drawing.Size(122, 36);
+            this.btnSpin3D.TabIndex = 2;
+            this.btnSpin3D.Text = "3D Spin";
+            this.btnSpin3D.UseVisualStyleBackColor = true;
+            this.btnSpin3D.CheckedChanged += new System.EventHandler(this.btnSpin3D_CheckedChanged);
             // 
             // frmTextToCube
             // 
@@ -187,6 +208,7 @@
         #endregion
 
         private btnCloseWindow btnCloseWindow;
+        private ctrlTimer tmrTextToCube;
         private System.Windows.Forms.Panel pnlDrawingControls;
         private System.Windows.Forms.RadioButton btnCounterclockwiseBanner;
         private System.Windows.Forms.RadioButton btnClockwiseBanner;
@@ -196,5 +218,6 @@
         private System.Windows.Forms.Button btnSend;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.RadioButton btnSpin3D;
     }
 }

@@ -19,7 +19,7 @@ namespace CubeMasterGUI
         internal void ApplicationLaunch_Text2Cube()
         {
             CubeController.Cube rootCubeController = _startScreenParent.GetRootCubeController();
-            frmTextToCube text2Cube = new frmTextToCube();
+            frmTextToCube text2Cube = new frmTextToCube(ref rootCubeController, _startScreenParent.ParentScreenWidth, _startScreenParent.ParentScreenWidth );
 
             if (text2Cube.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             { 
