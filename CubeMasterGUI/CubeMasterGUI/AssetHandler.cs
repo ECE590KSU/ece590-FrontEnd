@@ -14,7 +14,6 @@ namespace CubeMasterGUI
         public static string _freeDrawURL = _topLevelDir + @"\images\freedraw.png";
         public static string _presetURL = _topLevelDir + @"\images\presets.png";
         public static string _gamesURL = _topLevelDir + @"\images\games.png";
-        public static string _audioVisURL = _topLevelDir + @"\images\audiovis.png";
         public static string _text2CubeURL = _topLevelDir + @"\images\txt2cube.png";
     }
 }

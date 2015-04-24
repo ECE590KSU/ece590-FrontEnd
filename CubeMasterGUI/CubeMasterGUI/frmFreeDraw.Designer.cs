@@ -33,7 +33,6 @@
             this.btnAXIS_Z = new System.Windows.Forms.RadioButton();
             this.btnAXIS_Y = new System.Windows.Forms.RadioButton();
             this.btnAXIS_X = new System.Windows.Forms.RadioButton();
-            this.btnCloseWindow2 = new CubeMasterGUI.btnCloseWindow();
             this.btnCloseWindow1 = new CubeMasterGUI.btnCloseWindow();
             this.tmrFreeDraw = new CubeMasterGUI.ctrlTimer();
             this.pnlDrawingControls.SuspendLayout();
@@ -56,10 +55,10 @@
             this.pnlDrawingControls.Controls.Add(this.btnAXIS_Y);
             this.pnlDrawingControls.Controls.Add(this.btnAXIS_X);
             this.pnlDrawingControls.ForeColor = System.Drawing.Color.SteelBlue;
-            this.pnlDrawingControls.Location = new System.Drawing.Point(653, 55);
-            this.pnlDrawingControls.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlDrawingControls.Location = new System.Drawing.Point(668, 55);
+            this.pnlDrawingControls.Margin = new System.Windows.Forms.Padding(2);
             this.pnlDrawingControls.Name = "pnlDrawingControls";
-            this.pnlDrawingControls.Size = new System.Drawing.Size(613, 630);
+            this.pnlDrawingControls.Size = new System.Drawing.Size(685, 648);
             this.pnlDrawingControls.TabIndex = 4;
             // 
             // btnAXIS_Z
@@ -67,7 +66,7 @@
             this.btnAXIS_Z.AutoSize = true;
             this.btnAXIS_Z.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAXIS_Z.Location = new System.Drawing.Point(9, 81);
-            this.btnAXIS_Z.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAXIS_Z.Margin = new System.Windows.Forms.Padding(2);
             this.btnAXIS_Z.Name = "btnAXIS_Z";
             this.btnAXIS_Z.Size = new System.Drawing.Size(239, 36);
             this.btnAXIS_Z.TabIndex = 0;
@@ -81,7 +80,7 @@
             this.btnAXIS_Y.AutoSize = true;
             this.btnAXIS_Y.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAXIS_Y.Location = new System.Drawing.Point(9, 45);
-            this.btnAXIS_Y.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAXIS_Y.Margin = new System.Windows.Forms.Padding(2);
             this.btnAXIS_Y.Name = "btnAXIS_Y";
             this.btnAXIS_Y.Size = new System.Drawing.Size(239, 36);
             this.btnAXIS_Y.TabIndex = 0;
@@ -95,7 +94,7 @@
             this.btnAXIS_X.AutoSize = true;
             this.btnAXIS_X.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAXIS_X.Location = new System.Drawing.Point(9, 10);
-            this.btnAXIS_X.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAXIS_X.Margin = new System.Windows.Forms.Padding(2);
             this.btnAXIS_X.Name = "btnAXIS_X";
             this.btnAXIS_X.Size = new System.Drawing.Size(239, 36);
             this.btnAXIS_X.TabIndex = 0;
@@ -104,18 +103,10 @@
             this.btnAXIS_X.UseVisualStyleBackColor = true;
             this.btnAXIS_X.CheckedChanged += new System.EventHandler(this.btnAXIS_X_CheckedChanged);
             // 
-            // btnCloseWindow2
-            // 
-            this.btnCloseWindow2.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.btnCloseWindow2.Location = new System.Drawing.Point(1235, 13);
-            this.btnCloseWindow2.Name = "btnCloseWindow2";
-            this.btnCloseWindow2.Size = new System.Drawing.Size(30, 30);
-            this.btnCloseWindow2.TabIndex = 2;
-            // 
             // btnCloseWindow1
             // 
             this.btnCloseWindow1.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.btnCloseWindow1.Location = new System.Drawing.Point(1308, 13);
+            this.btnCloseWindow1.Location = new System.Drawing.Point(1323, 13);
             this.btnCloseWindow1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnCloseWindow1.Name = "btnCloseWindow1";
             this.btnCloseWindow1.Size = new System.Drawing.Size(30, 30);
@@ -134,8 +125,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.GhostWhite;
-            this.ClientSize = new System.Drawing.Size(1280, 702);
-            this.Controls.Add(this.btnCloseWindow2);
+            this.ClientSize = new System.Drawing.Size(1366, 768);
             this.Controls.Add(this.lblWindowName);
             this.Controls.Add(this.btnCloseWindow1);
             this.Controls.Add(this.pnlDrawingControls);
@@ -157,7 +147,6 @@
 
         private btnCloseWindow btnCloseWindow1;
         private System.Windows.Forms.Label lblWindowName;
-        private btnCloseWindow btnCloseWindow2;
         private ctrlTimer tmrFreeDraw;
         private System.Windows.Forms.Panel pnlDrawingControls;
         private System.Windows.Forms.RadioButton btnAXIS_Z;

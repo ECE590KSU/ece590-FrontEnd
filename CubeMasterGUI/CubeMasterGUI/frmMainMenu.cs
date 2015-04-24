@@ -34,7 +34,6 @@ namespace CubeMasterGUI
         private void InitializeApplications()
         {
             _applications = new List<Button>();
-            _applications.Add(this.btnAudioVis);
             _applications.Add(this.btnFreeDraw);
             _applications.Add(this.btnGames);
             _applications.Add(this.btnPresets);
@@ -45,7 +44,6 @@ namespace CubeMasterGUI
 
         private void SetApplicationIcons()
         {
-            this.btnAudioVis.Image = SetBkgdImage(AssetHandler._audioVisURL);
             this.btnFreeDraw.Image = SetBkgdImage(AssetHandler._freeDrawURL);
             this.btnGames.Image = SetBkgdImage(AssetHandler._gamesURL);
             this.btnPresets.Image = SetBkgdImage(AssetHandler._presetURL);
@@ -77,11 +75,6 @@ namespace CubeMasterGUI
         }
 
         private void btnText2Cube_Click(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void btnAudioVis_Click(object sender, EventArgs e)
         {
             throw new NotImplementedException();
         }

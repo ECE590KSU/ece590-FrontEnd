@@ -14,8 +14,8 @@ namespace CubeMasterGUI
     {
         private FreeDraw _freeDrawController;
         
-        private int _voxelGrid_startX = 15;
-        private int _voxelGrid_startY = 52;
+        private int _voxelGrid_startX = 18;
+        private int _voxelGrid_startY = 58;
         private int _voxelSpacing = 9;
         private int _voxelHeight = 80;
         private int _voxelWidth = 80;
