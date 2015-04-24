@@ -35,7 +35,10 @@
             this.btnAXIS_X = new System.Windows.Forms.RadioButton();
             this.btnCloseWindow1 = new CubeMasterGUI.btnCloseWindow();
             this.tmrFreeDraw = new CubeMasterGUI.ctrlTimer();
+            this.uxPlaneSelect = new System.Windows.Forms.NumericUpDown();
+            this.label1 = new System.Windows.Forms.Label();
             this.pnlDrawingControls.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.uxPlaneSelect)).BeginInit();
             this.SuspendLayout();
             // 
             // lblWindowName
@@ -51,6 +54,8 @@
             // 
             this.pnlDrawingControls.BackColor = System.Drawing.SystemColors.Window;
             this.pnlDrawingControls.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlDrawingControls.Controls.Add(this.label1);
+            this.pnlDrawingControls.Controls.Add(this.uxPlaneSelect);
             this.pnlDrawingControls.Controls.Add(this.btnAXIS_Z);
             this.pnlDrawingControls.Controls.Add(this.btnAXIS_Y);
             this.pnlDrawingControls.Controls.Add(this.btnAXIS_X);
@@ -58,14 +63,14 @@
             this.pnlDrawingControls.Location = new System.Drawing.Point(668, 55);
             this.pnlDrawingControls.Margin = new System.Windows.Forms.Padding(2);
             this.pnlDrawingControls.Name = "pnlDrawingControls";
-            this.pnlDrawingControls.Size = new System.Drawing.Size(685, 648);
+            this.pnlDrawingControls.Size = new System.Drawing.Size(685, 702);
             this.pnlDrawingControls.TabIndex = 4;
             // 
             // btnAXIS_Z
             // 
             this.btnAXIS_Z.AutoSize = true;
             this.btnAXIS_Z.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAXIS_Z.Location = new System.Drawing.Point(9, 81);
+            this.btnAXIS_Z.Location = new System.Drawing.Point(17, 89);
             this.btnAXIS_Z.Margin = new System.Windows.Forms.Padding(2);
             this.btnAXIS_Z.Name = "btnAXIS_Z";
             this.btnAXIS_Z.Size = new System.Drawing.Size(239, 36);
@@ -79,7 +84,7 @@
             // 
             this.btnAXIS_Y.AutoSize = true;
             this.btnAXIS_Y.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAXIS_Y.Location = new System.Drawing.Point(9, 45);
+            this.btnAXIS_Y.Location = new System.Drawing.Point(17, 53);
             this.btnAXIS_Y.Margin = new System.Windows.Forms.Padding(2);
             this.btnAXIS_Y.Name = "btnAXIS_Y";
             this.btnAXIS_Y.Size = new System.Drawing.Size(239, 36);
@@ -93,7 +98,7 @@
             // 
             this.btnAXIS_X.AutoSize = true;
             this.btnAXIS_X.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAXIS_X.Location = new System.Drawing.Point(9, 10);
+            this.btnAXIS_X.Location = new System.Drawing.Point(17, 18);
             this.btnAXIS_X.Margin = new System.Windows.Forms.Padding(2);
             this.btnAXIS_X.Name = "btnAXIS_X";
             this.btnAXIS_X.Size = new System.Drawing.Size(239, 36);
@@ -120,6 +125,40 @@
             this.tmrFreeDraw.Size = new System.Drawing.Size(13, 13);
             this.tmrFreeDraw.TabIndex = 3;
             // 
+            // uxPlaneSelect
+            // 
+            this.uxPlaneSelect.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.uxPlaneSelect.Location = new System.Drawing.Point(17, 180);
+            this.uxPlaneSelect.Maximum = new decimal(new int[] {
+            8,
+            0,
+            0,
+            0});
+            this.uxPlaneSelect.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.uxPlaneSelect.Name = "uxPlaneSelect";
+            this.uxPlaneSelect.Size = new System.Drawing.Size(239, 35);
+            this.uxPlaneSelect.TabIndex = 1;
+            this.uxPlaneSelect.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.SteelBlue;
+            this.label1.Location = new System.Drawing.Point(12, 145);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(179, 32);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Plane Number";
+            // 
             // frmFreeDraw
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -138,6 +177,7 @@
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.frmFreeDraw_MouseMove);
             this.pnlDrawingControls.ResumeLayout(false);
             this.pnlDrawingControls.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.uxPlaneSelect)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -152,5 +192,7 @@
         private System.Windows.Forms.RadioButton btnAXIS_Z;
         private System.Windows.Forms.RadioButton btnAXIS_Y;
         private System.Windows.Forms.RadioButton btnAXIS_X;
+        private System.Windows.Forms.NumericUpDown uxPlaneSelect;
+        private System.Windows.Forms.Label label1;
     }
 }
