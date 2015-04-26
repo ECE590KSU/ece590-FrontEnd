@@ -30,7 +30,9 @@
         {
             this.lblWindowName = new System.Windows.Forms.Label();
             this.pnlDrawingControls = new System.Windows.Forms.Panel();
+            this.btnDemo = new System.Windows.Forms.Button();
             this.btnFillPlane = new System.Windows.Forms.Button();
+            this.btnClearAll = new System.Windows.Forms.Button();
             this.btnClearPlane = new System.Windows.Forms.Button();
             this.drwCircle = new CubeMasterGUI.DrawingFunction();
             this.drwRectangle = new CubeMasterGUI.DrawingFunction();
@@ -43,6 +45,7 @@
             this.btnAXIS_X = new System.Windows.Forms.RadioButton();
             this.btnCloseWindow1 = new CubeMasterGUI.btnCloseWindow();
             this.tmrFreeDraw = new CubeMasterGUI.ctrlTimer();
+            this.btnDemoStop = new System.Windows.Forms.Button();
             this.pnlDrawingControls.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uxPlaneSelect)).BeginInit();
             this.SuspendLayout();
@@ -60,7 +63,10 @@
             // 
             this.pnlDrawingControls.BackColor = System.Drawing.SystemColors.Window;
             this.pnlDrawingControls.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlDrawingControls.Controls.Add(this.btnDemoStop);
+            this.pnlDrawingControls.Controls.Add(this.btnDemo);
             this.pnlDrawingControls.Controls.Add(this.btnFillPlane);
+            this.pnlDrawingControls.Controls.Add(this.btnClearAll);
             this.pnlDrawingControls.Controls.Add(this.btnClearPlane);
             this.pnlDrawingControls.Controls.Add(this.drwCircle);
             this.pnlDrawingControls.Controls.Add(this.drwRectangle);
@@ -78,6 +84,18 @@
             this.pnlDrawingControls.Size = new System.Drawing.Size(685, 702);
             this.pnlDrawingControls.TabIndex = 4;
             // 
+            // btnDemo
+            // 
+            this.btnDemo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDemo.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDemo.Location = new System.Drawing.Point(348, 435);
+            this.btnDemo.Name = "btnDemo";
+            this.btnDemo.Size = new System.Drawing.Size(151, 75);
+            this.btnDemo.TabIndex = 4;
+            this.btnDemo.Text = "Demo";
+            this.btnDemo.UseVisualStyleBackColor = true;
+            this.btnDemo.Click += new System.EventHandler(this.btnDemo_Click);
+            // 
             // btnFillPlane
             // 
             this.btnFillPlane.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -89,6 +107,18 @@
             this.btnFillPlane.Text = "Fill Plane";
             this.btnFillPlane.UseVisualStyleBackColor = true;
             this.btnFillPlane.Click += new System.EventHandler(this.btnFillPlane_Click);
+            // 
+            // btnClearAll
+            // 
+            this.btnClearAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClearAll.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClearAll.Location = new System.Drawing.Point(17, 326);
+            this.btnClearAll.Name = "btnClearAll";
+            this.btnClearAll.Size = new System.Drawing.Size(151, 75);
+            this.btnClearAll.TabIndex = 4;
+            this.btnClearAll.Text = "Clear All";
+            this.btnClearAll.UseVisualStyleBackColor = true;
+            this.btnClearAll.Click += new System.EventHandler(this.btnClearAll_Click);
             // 
             // btnClearPlane
             // 
@@ -224,6 +254,18 @@
             this.tmrFreeDraw.Size = new System.Drawing.Size(13, 13);
             this.tmrFreeDraw.TabIndex = 3;
             // 
+            // btnDemoStop
+            // 
+            this.btnDemoStop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDemoStop.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDemoStop.Location = new System.Drawing.Point(517, 435);
+            this.btnDemoStop.Name = "btnDemoStop";
+            this.btnDemoStop.Size = new System.Drawing.Size(151, 75);
+            this.btnDemoStop.TabIndex = 4;
+            this.btnDemoStop.Text = "Stop";
+            this.btnDemoStop.UseVisualStyleBackColor = true;
+            this.btnDemoStop.Click += new System.EventHandler(this.btnDemoStop_Click);
+            // 
             // frmFreeDraw
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -265,5 +307,8 @@
         private DrawingFunction drwSingle;
         private System.Windows.Forms.Button btnClearPlane;
         private System.Windows.Forms.Button btnFillPlane;
+        private System.Windows.Forms.Button btnClearAll;
+        private System.Windows.Forms.Button btnDemo;
+        private System.Windows.Forms.Button btnDemoStop;
     }
 }

@@ -18,6 +18,7 @@ namespace CubeMasterGUI
 
         // Color Palette.
         public static System.Drawing.Color _primaryFormColor = System.Drawing.Color.GhostWhite;
+        public static System.Drawing.Color _secondaryControlColor = System.Drawing.Color.LightBlue;
         public static System.Drawing.Color _primaryControlColor = System.Drawing.Color.SteelBlue;
         public static System.Drawing.Color _primaryTextColor = System.Drawing.Color.SteelBlue;
     }

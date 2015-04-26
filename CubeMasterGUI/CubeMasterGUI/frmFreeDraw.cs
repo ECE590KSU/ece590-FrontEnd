@@ -15,7 +15,7 @@ namespace CubeMasterGUI
         private FreeDraw _freeDrawController;
 
         private List<DrawingFunction> _functions;
-        
+
         private int _voxelGrid_startX = 20;
         private int _voxelGrid_startY = 75;
         private int _voxelSpacing = 9;
@@ -24,8 +24,8 @@ namespace CubeMasterGUI
         
         private Voxel[,] _voxels;
 
-        private Color _clrVoxelClicked = Color.LightBlue;
-        private Color _clrVoxelUnclicked = Color.GhostWhite;
+        private Color _clrVoxelClicked = AssetHandler._secondaryControlColor;
+        private Color _clrVoxelUnclicked = AssetHandler._primaryFormColor;
 
         public frmFreeDraw(ref CubeController.Cube cube, int parentWidth, int parentHeight)
         {
@@ -111,7 +111,7 @@ namespace CubeMasterGUI
             }
         }
 
-        private void RefreshVoxelGrid()
+        public void RefreshVoxelGrid()
         {
             this.SuspendLayout();
             var tmpplane = _freeDrawController.GetPlane((int)uxPlaneSelect.Value -1);
@@ -213,6 +213,38 @@ namespace CubeMasterGUI
         private void uxPlaneSelect_ValueChanged(object sender, EventArgs e)
         {
             RefreshVoxelGrid();
+        }
+
+        private void btnClearAll_Click(object sender, EventArgs e)
+        {
+            _freeDrawController.ClearEntireCube();
+            RefreshVoxelGrid();
+        }
+
+        private void btnDemo_Click(object sender, EventArgs e)
+        {
+            var timer = new System.Windows.Forms.Timer();
+            timer.Interval = 50;
+            timer.Tick += Demo_TimerTick;
+
+            System.Threading.Thread demoThread = new System.Threading.Thread(DemoThreadEntry);
+            timer.Start();
+            demoThread.Start();
+        }
+
+        private void DemoThreadEntry()
+        {
+            _freeDrawController.Demo();
+        }
+
+        private void Demo_TimerTick(object sender, EventArgs e)
+        {
+            RefreshVoxelGrid();
+        }
+
+        private void btnDemoStop_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

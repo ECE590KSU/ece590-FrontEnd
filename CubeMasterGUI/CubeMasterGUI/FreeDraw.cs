@@ -8,6 +8,7 @@ namespace CubeMasterGUI
     public class FreeDraw
     {
         private CubeController.Cube _cube;
+
         public CubeController.Cube.AXIS SelectedAxis { get; set; }
         
         // Replace function calls using 'int plane' with 'SelectedPlane'. 
@@ -30,7 +31,6 @@ namespace CubeMasterGUI
         public void ClearPlane(int plane)
         {
             _cube.ClearPlane(SelectedAxis, plane);
-            _cube.RenderCube();
         }
 
         public bool[][] GetPlane(int plane)
@@ -41,6 +41,26 @@ namespace CubeMasterGUI
         public void SetPlane(int plane)
         {
             _cube.SetPlane(SelectedAxis, plane);
+        }
+
+        public void ClearEntireCube()
+        {
+            _cube.ClearEntireCube();
+        }
+
+        public void Demo()
+        {
+            int i = 200;
+            while (--i >= 0)
+            {
+                _cube.BoxWoopWoop(1, 100, true);
+                _cube.BoxWoopWoop(1, 100, false);
+            }
+        }
+
+        private void DemoThreadEntry(object obj)
+        {
+
         }
     }
 }
