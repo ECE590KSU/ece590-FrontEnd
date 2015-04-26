@@ -152,13 +152,13 @@ namespace CubeMasterGUI
                 switch (_freeDrawController.SelectedAxis)
                 {
                     case CubeController.Cube.AXIS.AXIS_X:
-                        _freeDrawController.SwapVoxel(plane, vox.Y, vox.X);
+                        _freeDrawController.SwapVoxel(plane, vox.X, vox.Y);
                         break;
                     case CubeController.Cube.AXIS.AXIS_Y:
-                        _freeDrawController.SwapVoxel(vox.Y, plane, vox.X);
+                        _freeDrawController.SwapVoxel(vox.X, plane, vox.Y);
                         break;
                     case CubeController.Cube.AXIS.AXIS_Z:
-                        _freeDrawController.SwapVoxel(vox.Y, 7-vox.X, plane);
+                        _freeDrawController.SwapVoxel(vox.X, vox.Y, plane);
                         break;
                     default:
                         break;
