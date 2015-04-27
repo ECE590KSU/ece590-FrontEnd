@@ -57,10 +57,5 @@ namespace CubeMasterGUI
                 _cube.BoxWoopWoop(1, 100, false);
             }
         }
-
-        private void DemoThreadEntry(object obj)
-        {
-
-        }
     }
 }

@@ -16,6 +16,13 @@ namespace CubeMasterGUI
 
         private List<DrawingFunction> _functions;
 
+        private event EventHandler DrawingModeLine;
+        private bool _isDragging = false;
+        private System.Drawing.Point _drawStart;
+        private System.Drawing.Point _drawEnd;
+        private Voxel _drawVoxelStart;
+        private Voxel _drawVoxelEnd;
+
         private int _voxelGrid_startX = 20;
         private int _voxelGrid_startY = 75;
         private int _voxelSpacing = 9;
@@ -27,10 +34,19 @@ namespace CubeMasterGUI
         private Color _clrVoxelClicked = AssetHandler._secondaryControlColor;
         private Color _clrVoxelUnclicked = AssetHandler._primaryFormColor;
 
+        private System.Windows.Forms.Timer _demoTimer;
+        private System.Threading.Thread _demoThread;
+
         public frmFreeDraw(ref CubeController.Cube cube, int parentWidth, int parentHeight)
         {
             InitializeComponent();
             _freeDrawController = new FreeDraw(ref cube);
+            _freeDrawController.SelectedPlane = (int)(this.uxPlaneSelect.Value - 1);
+            _demoTimer = new Timer();
+            _demoTimer.Tick += Demo_TimerTick;
+            _demoTimer.Interval = 100;
+
+            _demoThread = new System.Threading.Thread(DemoThreadEntry);
 
             this.Width = parentWidth;
             this.Height = parentHeight;
@@ -65,6 +81,10 @@ namespace CubeMasterGUI
             _functions.Add(this.drwLine);
             _functions.Add(this.drwRectangle);
             _functions.Add(this.drwCircle);
+
+            // Custom event handler 
+            this.DrawingModeLine = new EventHandler(frmFreeDraw_DrawingModeLine);
+            this.drwLine.Click += frmFreeDraw_DrawingModeLine;
         }
 
         private void InvokeTimerProtocol()
@@ -104,6 +124,8 @@ namespace CubeMasterGUI
                     tmpVoxel.BringToFront();
 
                     tmpVoxel.MouseClick += frmFreeDraw_VoxelGridClick;
+                    tmpVoxel.MouseDown += frmFreeDraw_MouseDown;
+                    tmpVoxel.MouseUp += frmFreeDraw_MouseUp;
 
                     _voxels[i, j] = tmpVoxel;
                     this.Controls.Add(tmpVoxel);
@@ -147,7 +169,7 @@ namespace CubeMasterGUI
                 //_voxels[vox.X, vox.Y].BackColor = vox.VoxelSet ? _clrVoxelClicked : _clrVoxelUnclicked;
 
                 // Zero-based index. 
-                int plane = (int)(uxPlaneSelect.Value - 1);
+                int plane = _freeDrawController.SelectedPlane;
 
                 switch (_freeDrawController.SelectedAxis)
                 {
@@ -200,18 +222,19 @@ namespace CubeMasterGUI
 
         private void btnClearPlane_Click(object sender, EventArgs e)
         {
-            _freeDrawController.ClearPlane((int)uxPlaneSelect.Value - 1);
+            _freeDrawController.ClearPlane(_freeDrawController.SelectedPlane);
             RefreshVoxelGrid();
         }
 
         private void btnFillPlane_Click(object sender, EventArgs e)
         {
-            _freeDrawController.SetPlane((int)uxPlaneSelect.Value - 1);
+            _freeDrawController.SetPlane(_freeDrawController.SelectedPlane);
             RefreshVoxelGrid();
         }
 
         private void uxPlaneSelect_ValueChanged(object sender, EventArgs e)
         {
+            _freeDrawController.SelectedPlane = (int)(this.uxPlaneSelect.Value - 1);
             RefreshVoxelGrid();
         }
 
@@ -223,13 +246,8 @@ namespace CubeMasterGUI
 
         private void btnDemo_Click(object sender, EventArgs e)
         {
-            var timer = new System.Windows.Forms.Timer();
-            timer.Interval = 50;
-            timer.Tick += Demo_TimerTick;
-
-            System.Threading.Thread demoThread = new System.Threading.Thread(DemoThreadEntry);
-            timer.Start();
-            demoThread.Start();
+            _demoTimer.Start();
+            _demoThread.Start();
         }
 
         private void DemoThreadEntry()
@@ -243,6 +261,26 @@ namespace CubeMasterGUI
         }
 
         private void btnDemoStop_Click(object sender, EventArgs e)
+        {
+            _demoTimer.Stop();
+            _demoThread.Abort();
+        }
+
+        private void frmFreeDraw_DrawingModeLine(object sender, EventArgs e)
+        {
+
+        }
+
+        private void frmFreeDraw_MouseDown(object sender, MouseEventArgs e)
+        {
+            if ( (sender is Voxel) && 
+                (_freeDrawController.CurrentDrawingMode == FreeDraw.DRAWING_MODE.LINE))
+            {
+
+            }
+        }
+
+        private void frmFreeDraw_MouseUp(object sender, MouseEventArgs e)
         {
 
         }
