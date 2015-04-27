@@ -10,13 +10,15 @@ using System.Windows.Forms;
 
 namespace CubeMasterGUI
 {
-    public partial class frmSnake : Form
+    public partial class frmGames : Form
     {
-        private FreeDraw _freeDrawController;
+        private Games _gameController;
 
-        public frmSnake(ref CubeController.Cube cube, int parentWidth, int parentHeight)
+        public frmGames(ref CubeController.Cube cube, int parentWidth, int parentHeight)
         {
             InitializeComponent();
+
+            _gameController = new Games(ref cube);
 
             this.Width = parentWidth;
             this.Height = parentHeight;
@@ -28,18 +30,23 @@ namespace CubeMasterGUI
         {
             if (!this.DesignMode)
             {
-                this.tmrSnake.InitializeTimers();
+                this.tmrGames.InitializeTimers();
             }
         }
-                
+
+        private void btnSnake_Click(object sender, EventArgs e)
+        {
+            _gameController.LaunchSnake(this.Width, this.Height);
+        }
+
         private void frmGames_MouseMove(object sender, MouseEventArgs e)
         {
-            this.tmrSnake.ResetTimers();
+            this.tmrGames.ResetTimers();
         }
 
         private void frmGames_MouseClick(object sender, MouseEventArgs e)
         {
-            this.tmrSnake.ResetTimers();
+            this.tmrGames.ResetTimers();
         }
     }
 }

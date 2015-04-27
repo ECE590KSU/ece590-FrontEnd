@@ -82,6 +82,5 @@
         private btnCloseWindow btnCloseWindow1;
         private System.Windows.Forms.Label lblWindowName;
         private ctrlTimer tmrSnake;
-        //private System.Windows.Forms.Panel pnlDrawingControls;
     }
 }

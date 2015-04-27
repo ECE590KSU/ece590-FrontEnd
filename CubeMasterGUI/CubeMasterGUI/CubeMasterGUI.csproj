@@ -70,6 +70,12 @@
       <DependentUpon>ctrlTimer.cs</DependentUpon>
     </Compile>
     <Compile Include="FreeDraw.cs" />
+    <Compile Include="frmGames.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGames.Designer.cs">
+      <DependentUpon>frmGames.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmSnake.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -94,6 +100,7 @@
     <Compile Include="frmStartScreen.Designer.cs">
       <DependentUpon>frmStartScreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="Games.cs" />
     <Compile Include="MainMenu.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -113,6 +120,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ctrlTimer.resx">
       <DependentUpon>ctrlTimer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmGames.resx">
+      <DependentUpon>frmGames.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSnake.resx">
       <DependentUpon>frmSnake.cs</DependentUpon>
