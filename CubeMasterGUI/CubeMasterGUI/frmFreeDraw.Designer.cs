@@ -35,16 +35,16 @@
             this.btnFillPlane = new System.Windows.Forms.Button();
             this.btnClearAll = new System.Windows.Forms.Button();
             this.btnClearPlane = new System.Windows.Forms.Button();
+            this.drwCircle = new CubeMasterGUI.DrawingFunction();
+            this.drwRectangle = new CubeMasterGUI.DrawingFunction();
+            this.drwLine = new CubeMasterGUI.DrawingFunction();
+            this.drwSingle = new CubeMasterGUI.DrawingFunction();
             this.label1 = new System.Windows.Forms.Label();
             this.uxPlaneSelect = new System.Windows.Forms.NumericUpDown();
             this.btnAXIS_Z = new System.Windows.Forms.RadioButton();
             this.btnAXIS_Y = new System.Windows.Forms.RadioButton();
             this.btnAXIS_X = new System.Windows.Forms.RadioButton();
             this.btnCloseWindow1 = new CubeMasterGUI.btnCloseWindow();
-            this.drwCircle = new CubeMasterGUI.DrawingFunction();
-            this.drwRectangle = new CubeMasterGUI.DrawingFunction();
-            this.drwLine = new CubeMasterGUI.DrawingFunction();
-            this.drwSingle = new CubeMasterGUI.DrawingFunction();
             this.tmrFreeDraw = new CubeMasterGUI.ctrlTimer();
             this.pnlDrawingControls.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uxPlaneSelect)).BeginInit();
@@ -144,6 +144,34 @@
             this.btnClearPlane.UseVisualStyleBackColor = true;
             this.btnClearPlane.Click += new System.EventHandler(this.btnClearPlane_Click);
             // 
+            // drwCircle
+            // 
+            this.drwCircle.Location = new System.Drawing.Point(517, 528);
+            this.drwCircle.Name = "drwCircle";
+            this.drwCircle.Size = new System.Drawing.Size(150, 150);
+            this.drwCircle.TabIndex = 3;
+            // 
+            // drwRectangle
+            // 
+            this.drwRectangle.Location = new System.Drawing.Point(349, 528);
+            this.drwRectangle.Name = "drwRectangle";
+            this.drwRectangle.Size = new System.Drawing.Size(150, 150);
+            this.drwRectangle.TabIndex = 3;
+            // 
+            // drwLine
+            // 
+            this.drwLine.Location = new System.Drawing.Point(184, 528);
+            this.drwLine.Name = "drwLine";
+            this.drwLine.Size = new System.Drawing.Size(150, 150);
+            this.drwLine.TabIndex = 3;
+            // 
+            // drwSingle
+            // 
+            this.drwSingle.Location = new System.Drawing.Point(18, 528);
+            this.drwSingle.Name = "drwSingle";
+            this.drwSingle.Size = new System.Drawing.Size(150, 150);
+            this.drwSingle.TabIndex = 3;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -229,34 +257,6 @@
             this.btnCloseWindow1.Name = "btnCloseWindow1";
             this.btnCloseWindow1.Size = new System.Drawing.Size(30, 30);
             this.btnCloseWindow1.TabIndex = 0;
-            // 
-            // drwCircle
-            // 
-            this.drwCircle.Location = new System.Drawing.Point(517, 528);
-            this.drwCircle.Name = "drwCircle";
-            this.drwCircle.Size = new System.Drawing.Size(150, 150);
-            this.drwCircle.TabIndex = 3;
-            // 
-            // drwRectangle
-            // 
-            this.drwRectangle.Location = new System.Drawing.Point(349, 528);
-            this.drwRectangle.Name = "drwRectangle";
-            this.drwRectangle.Size = new System.Drawing.Size(150, 150);
-            this.drwRectangle.TabIndex = 3;
-            // 
-            // drwLine
-            // 
-            this.drwLine.Location = new System.Drawing.Point(184, 528);
-            this.drwLine.Name = "drwLine";
-            this.drwLine.Size = new System.Drawing.Size(150, 150);
-            this.drwLine.TabIndex = 3;
-            // 
-            // drwSingle
-            // 
-            this.drwSingle.Location = new System.Drawing.Point(18, 528);
-            this.drwSingle.Name = "drwSingle";
-            this.drwSingle.Size = new System.Drawing.Size(150, 150);
-            this.drwSingle.TabIndex = 3;
             // 
             // tmrFreeDraw
             // 
