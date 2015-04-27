@@ -49,6 +49,7 @@ namespace CubeMasterGUI
             AssignDrawingFunctions();
             InvokeTimerProtocol();
             InitializeRadioButtons();
+            SetupDemo();
         }
 
         private void AssignDrawingFunctions()
