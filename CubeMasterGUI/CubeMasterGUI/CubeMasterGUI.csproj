@@ -70,6 +70,12 @@
       <DependentUpon>ctrlTimer.cs</DependentUpon>
     </Compile>
     <Compile Include="FreeDraw.cs" />
+    <Compile Include="frmSnake.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSnake.Designer.cs">
+      <DependentUpon>frmSnake.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmFreeDraw.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -107,6 +113,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ctrlTimer.resx">
       <DependentUpon>ctrlTimer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSnake.resx">
+      <DependentUpon>frmSnake.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmFreeDraw.resx">
       <DependentUpon>frmFreeDraw.cs</DependentUpon>

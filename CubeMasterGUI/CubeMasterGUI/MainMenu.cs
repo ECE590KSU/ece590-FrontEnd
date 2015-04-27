@@ -39,7 +39,13 @@ namespace CubeMasterGUI
 
         internal void ApplicationLaunch_Games()
         {
+            CubeController.Cube rootCubeController = _startScreenParent.GetRootCubeController();
+            frmSnake snake = new frmSnake(ref rootCubeController, _startScreenParent.ParentScreenWidth, _startScreenParent.ParentScreenHeight);
 
+            if (snake.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+
+            }
         }
 
         internal void ApplicationLaunch_Presets()
