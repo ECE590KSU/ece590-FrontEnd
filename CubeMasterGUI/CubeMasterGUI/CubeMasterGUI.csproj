@@ -76,6 +76,18 @@
       <DependentUpon>DrawingFunction.cs</DependentUpon>
     </Compile>
     <Compile Include="FreeDraw.cs" />
+    <Compile Include="frmGames.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGames.Designer.cs">
+      <DependentUpon>frmGames.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSnake.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSnake.Designer.cs">
+      <DependentUpon>frmSnake.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmFreeDraw.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -94,9 +106,11 @@
     <Compile Include="frmStartScreen.Designer.cs">
       <DependentUpon>frmStartScreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="Games.cs" />
     <Compile Include="MainMenu.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Snake.cs" />
     <Compile Include="StartScreen.cs" />
     <Compile Include="Voxel.cs">
       <SubType>UserControl</SubType>
@@ -116,6 +130,11 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DrawingFunction.resx">
       <DependentUpon>DrawingFunction.cs</DependentUpon>
+    <EmbeddedResource Include="frmGames.resx">
+      <DependentUpon>frmGames.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSnake.resx">
+      <DependentUpon>frmSnake.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmFreeDraw.resx">
       <DependentUpon>frmFreeDraw.cs</DependentUpon>
