@@ -40,6 +40,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnCloseWindow = new CubeMasterGUI.btnCloseWindow();
             this.tmrTextToCube = new CubeMasterGUI.ctrlTimer();
+            this.btnCloseWindow1 = new CubeMasterGUI.btnCloseWindow();
             this.pnlDrawingControls.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -70,7 +71,6 @@
             this.btnSpin3D.TabIndex = 2;
             this.btnSpin3D.Text = "3D Spin";
             this.btnSpin3D.UseVisualStyleBackColor = true;
-            this.btnSpin3D.CheckedChanged += new System.EventHandler(this.btnSpin3D_CheckedChanged);
             // 
             // btnCounterclockwiseBanner
             // 
@@ -83,7 +83,6 @@
             this.btnCounterclockwiseBanner.TabIndex = 1;
             this.btnCounterclockwiseBanner.Text = "Counterclockwise Banner";
             this.btnCounterclockwiseBanner.UseVisualStyleBackColor = true;
-            this.btnCounterclockwiseBanner.CheckedChanged += new System.EventHandler(this.btnCounterclockwiseBanner_CheckedChanged);
             // 
             // btnClockwiseBanner
             // 
@@ -96,7 +95,6 @@
             this.btnClockwiseBanner.TabIndex = 0;
             this.btnClockwiseBanner.Text = "Clockwise Banner";
             this.btnClockwiseBanner.UseVisualStyleBackColor = true;
-            this.btnClockwiseBanner.CheckedChanged += new System.EventHandler(this.btnClockwiseBanner_CheckedChanged);
             // 
             // btnBackToFront
             // 
@@ -109,7 +107,6 @@
             this.btnBackToFront.TabIndex = 0;
             this.btnBackToFront.Text = "Back To Front";
             this.btnBackToFront.UseVisualStyleBackColor = true;
-            this.btnBackToFront.CheckedChanged += new System.EventHandler(this.btnBackToFront_CheckedChanged);
             // 
             // btnFrontToBack
             // 
@@ -122,7 +119,6 @@
             this.btnFrontToBack.TabIndex = 0;
             this.btnFrontToBack.Text = "Front To Back";
             this.btnFrontToBack.UseVisualStyleBackColor = true;
-            this.btnFrontToBack.CheckedChanged += new System.EventHandler(this.btnFrontToBack_CheckedChanged);
             // 
             // txtBoxMessage
             // 
@@ -187,12 +183,22 @@
             this.tmrTextToCube.Size = new System.Drawing.Size(30, 30);
             this.tmrTextToCube.TabIndex = 10;
             // 
+            // btnCloseWindow1
+            // 
+            this.btnCloseWindow1.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.btnCloseWindow1.Location = new System.Drawing.Point(1323, 14);
+            this.btnCloseWindow1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnCloseWindow1.Name = "btnCloseWindow1";
+            this.btnCloseWindow1.Size = new System.Drawing.Size(30, 30);
+            this.btnCloseWindow1.TabIndex = 11;
+            // 
             // frmTextToCube
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.GhostWhite;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1366, 750);
+            this.Controls.Add(this.btnCloseWindow1);
             this.Controls.Add(this.tmrTextToCube);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnClear);
@@ -230,5 +236,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.RadioButton btnSpin3D;
         private ctrlTimer tmrTextToCube;
+        private btnCloseWindow btnCloseWindow1;
     }
 }

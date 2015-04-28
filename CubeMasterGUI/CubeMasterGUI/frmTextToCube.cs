@@ -14,9 +14,7 @@ namespace CubeMasterGUI
     public partial class frmTextToCube : Form
     {
         private TextToCube _textToCubeController;
-
-        private AutoCloseMessageBox _messageBox;
-
+        
         private const string regex = @".*\b(hell(?!o)|shit|shitface|fuck|shitty|damn|darn|damnit|b.tch|crap|fag|fagg.t|bast.rd|slut|slutty|douche|cum(?!mings)|jizz|dick|pussy|piss|cock|cunt|whore|asshole|nigger|nigga).*";
 
         public frmTextToCube(ref CubeController.Cube cube, int parentWidth, int parentHeight)
@@ -27,6 +25,7 @@ namespace CubeMasterGUI
             this.Width = parentWidth;
             this.Height = parentHeight;
 
+            AssignEventHandlers();
             InvokeTimerProtocol();
             InitializeRadioButtons();
         }
@@ -45,6 +44,24 @@ namespace CubeMasterGUI
                 MessageBox.Show("Inappropriate language detected. Please enter another phrase.");
                 txtBoxMessage.Text = "";
             }
+            else if (text.Length > 60)
+            {
+                MessageBox.Show("Message is too long. Please enter another phrase less than 60 characters.");
+                txtBoxMessage.Text = "";
+            }
+            else
+            {
+                _textToCubeController.SendMessage(text);
+            }
+        }
+
+        private void EffectStyleButtonCheckedChanged(object sender, EventArgs e)
+        {
+            RadioButton btn = sender as RadioButton;
+            if (btn.Checked)
+            {
+                _textToCubeController.SelectedTextEffectChanged(btn.Name);
+            }
         }
 
         private void InvokeTimerProtocol()
@@ -54,7 +71,7 @@ namespace CubeMasterGUI
 
         private void InitializeRadioButtons()
         {
-            btnFrontToBack.Checked = true;
+            btnBackToFront.Checked = true;
         }
 
         private void btnSend_MouseClick(object sender, MouseEventArgs e)
@@ -67,33 +84,13 @@ namespace CubeMasterGUI
             tmrTextToCube.ResetTimers();
         }
 
-        private void btnFrontToBack_CheckedChanged(object sender, EventArgs e)
+        private void AssignEventHandlers()
         {
-            RadioButton btn = sender as RadioButton;
-            if (btn.Checked)
-            {
-
-            }
-        }
-
-        private void btnBackToFront_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnClockwiseBanner_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnCounterclockwiseBanner_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnSpin3D_CheckedChanged(object sender, EventArgs e)
-        {
-
+            btnBackToFront.CheckedChanged += EffectStyleButtonCheckedChanged;
+            btnFrontToBack.CheckedChanged += EffectStyleButtonCheckedChanged;
+            btnClockwiseBanner.CheckedChanged += EffectStyleButtonCheckedChanged;
+            btnCounterclockwiseBanner.CheckedChanged += EffectStyleButtonCheckedChanged;
+            btnSpin3D.CheckedChanged += EffectStyleButtonCheckedChanged;
         }
     }
 }

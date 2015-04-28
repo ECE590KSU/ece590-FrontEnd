@@ -8,16 +8,57 @@ namespace CubeMasterGUI
 {
     public class TextToCube
     {
+        public enum TEXT_EFFECT { BACK_TO_FRONT, FRONT_TO_BACK, CLOCKWISE_BANNER, COUNTERCLOCKWISE_BANNER, SPIN_3D };
+
         private CubeController.Cube _cube;
 
-        public enum TEXT_EFFECT { FRONT_TO_BACK, BACK_TO_FRONT, CLOCKWISE_BANNER, COUNTERCLOCKWISE_BANNER, SPIN_3D };
+        private Dictionary<string, TEXT_EFFECT> _effectDictionary;
 
-        public TEXT_EFFECT SelectedTextEffect { get; set; }
+        private TEXT_EFFECT _selectedTextEffect { get; set; }
 
         public TextToCube(ref CubeController.Cube cube)
         {
             _cube = cube;
-            this.SelectedTextEffect = TEXT_EFFECT.BACK_TO_FRONT;
+
+            _effectDictionary = new Dictionary<string, TEXT_EFFECT>
+            {
+                {"btnBackToFront", TEXT_EFFECT.BACK_TO_FRONT},
+                {"btnFrontToBack", TEXT_EFFECT.FRONT_TO_BACK},
+                {"btnClockwiseBanner", TEXT_EFFECT.CLOCKWISE_BANNER}, 
+                {"btnCounterclockwiseBanner", TEXT_EFFECT.COUNTERCLOCKWISE_BANNER},
+                {"btnSpin3D", TEXT_EFFECT.SPIN_3D}
+            };
+            
+            _selectedTextEffect = TEXT_EFFECT.BACK_TO_FRONT;
+        }
+
+        internal void SelectedTextEffectChanged(string p)
+        {
+            var selectedEffect = _effectDictionary[p];
+            _selectedTextEffect = selectedEffect;
+        }
+        
+        internal void SendMessage(string text)
+        {
+            switch ( _selectedTextEffect)
+            {
+                case TEXT_EFFECT.BACK_TO_FRONT: //Need to check if these calls are correct
+                    _cube.MessageFlyOnAxis(text, CubeController.Cube.AXIS.AXIS_Z, CubeController.Cube.DIRECTION.FORWARD);
+                    break;
+                case TEXT_EFFECT.FRONT_TO_BACK: //Need to check if these calls are correct
+                    _cube.MessageFlyOnAxis(text, CubeController.Cube.AXIS.AXIS_Z, CubeController.Cube.DIRECTION.REVERSE);
+                    break;
+                case TEXT_EFFECT.CLOCKWISE_BANNER: //Need to check if these calls are correct
+                    _cube.MessageBanner(text, CubeController.Cube.DIRECTION.FORWARD);
+                    break;
+                case TEXT_EFFECT.COUNTERCLOCKWISE_BANNER: //Need to check if these calls are correct
+                    _cube.MessageBanner(text, CubeController.Cube.DIRECTION.REVERSE);
+                    break;
+                case TEXT_EFFECT.SPIN_3D:
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

@@ -18,7 +18,5 @@ namespace CubeMasterGUI
             _cube = cube;
             this.CurrentDrawingMode = DRAWING_MODE.SINGLE;
         }
-
-
     }
 }
