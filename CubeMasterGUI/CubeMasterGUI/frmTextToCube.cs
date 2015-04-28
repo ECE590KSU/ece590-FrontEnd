@@ -49,7 +49,7 @@ namespace CubeMasterGUI
 
         private void InvokeTimerProtocol()
         {
-            //this.tmrTextToCube.InitializeTimers();
+            this.tmrTextToCube.InitializeTimers();
         }
 
         private void InitializeRadioButtons()

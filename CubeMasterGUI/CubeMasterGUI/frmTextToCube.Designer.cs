@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.pnlDrawingControls = new System.Windows.Forms.Panel();
+            this.btnSpin3D = new System.Windows.Forms.RadioButton();
             this.btnCounterclockwiseBanner = new System.Windows.Forms.RadioButton();
             this.btnClockwiseBanner = new System.Windows.Forms.RadioButton();
             this.btnBackToFront = new System.Windows.Forms.RadioButton();
@@ -38,7 +39,7 @@
             this.btnClear = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.btnCloseWindow = new CubeMasterGUI.btnCloseWindow();
-            this.btnSpin3D = new System.Windows.Forms.RadioButton();
+            this.tmrTextToCube = new CubeMasterGUI.ctrlTimer();
             this.pnlDrawingControls.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -57,6 +58,19 @@
             this.pnlDrawingControls.Name = "pnlDrawingControls";
             this.pnlDrawingControls.Size = new System.Drawing.Size(335, 217);
             this.pnlDrawingControls.TabIndex = 5;
+            // 
+            // btnSpin3D
+            // 
+            this.btnSpin3D.AutoSize = true;
+            this.btnSpin3D.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSpin3D.Location = new System.Drawing.Point(9, 161);
+            this.btnSpin3D.Margin = new System.Windows.Forms.Padding(2);
+            this.btnSpin3D.Name = "btnSpin3D";
+            this.btnSpin3D.Size = new System.Drawing.Size(122, 36);
+            this.btnSpin3D.TabIndex = 2;
+            this.btnSpin3D.Text = "3D Spin";
+            this.btnSpin3D.UseVisualStyleBackColor = true;
+            this.btnSpin3D.CheckedChanged += new System.EventHandler(this.btnSpin3D_CheckedChanged);
             // 
             // btnCounterclockwiseBanner
             // 
@@ -164,25 +178,22 @@
             this.btnCloseWindow.Size = new System.Drawing.Size(188, 149);
             this.btnCloseWindow.TabIndex = 1;
             // 
-            // btnSpin3D
+            // tmrTextToCube
             // 
-            this.btnSpin3D.AutoSize = true;
-            this.btnSpin3D.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSpin3D.Location = new System.Drawing.Point(9, 161);
-            this.btnSpin3D.Margin = new System.Windows.Forms.Padding(2);
-            this.btnSpin3D.Name = "btnSpin3D";
-            this.btnSpin3D.Size = new System.Drawing.Size(122, 36);
-            this.btnSpin3D.TabIndex = 2;
-            this.btnSpin3D.Text = "3D Spin";
-            this.btnSpin3D.UseVisualStyleBackColor = true;
-            this.btnSpin3D.CheckedChanged += new System.EventHandler(this.btnSpin3D_CheckedChanged);
+            this.tmrTextToCube.BackColor = System.Drawing.Color.Transparent;
+            this.tmrTextToCube.Location = new System.Drawing.Point(68, 704);
+            this.tmrTextToCube.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
+            this.tmrTextToCube.Name = "tmrTextToCube";
+            this.tmrTextToCube.Size = new System.Drawing.Size(30, 30);
+            this.tmrTextToCube.TabIndex = 10;
             // 
             // frmTextToCube
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.GhostWhite;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(1366, 768);
+            this.ClientSize = new System.Drawing.Size(1366, 750);
+            this.Controls.Add(this.tmrTextToCube);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnSend);
@@ -208,7 +219,6 @@
         #endregion
 
         private btnCloseWindow btnCloseWindow;
-        private ctrlTimer tmrTextToCube;
         private System.Windows.Forms.Panel pnlDrawingControls;
         private System.Windows.Forms.RadioButton btnCounterclockwiseBanner;
         private System.Windows.Forms.RadioButton btnClockwiseBanner;
@@ -219,5 +229,6 @@
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.RadioButton btnSpin3D;
+        private ctrlTimer tmrTextToCube;
     }
 }
