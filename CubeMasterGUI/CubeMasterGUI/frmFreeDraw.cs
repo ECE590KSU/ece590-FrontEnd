@@ -268,22 +268,22 @@ namespace CubeMasterGUI
 
         private void btnSingle_Click(object sender, EventArgs e)
         {
-
+            _freeDrawController.CurrentDrawingMode = FreeDraw.DRAWING_MODE.SINGLE;
         }
 
         private void btnLine_Click(object sender, EventArgs e)
         {
-
+            _freeDrawController.CurrentDrawingMode = FreeDraw.DRAWING_MODE.LINE;
         }
 
         private void btnRectangle_Click(object sender, EventArgs e)
         {
-
+            _freeDrawController.CurrentDrawingMode = FreeDraw.DRAWING_MODE.RECTANGLE;
         }
 
         private void btnCircle_Click(object sender, EventArgs e)
         {
-
+            _freeDrawController.CurrentDrawingMode = FreeDraw.DRAWING_MODE.CIRCLE;
         }
     }
 }
