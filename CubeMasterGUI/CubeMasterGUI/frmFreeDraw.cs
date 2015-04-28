@@ -14,7 +14,7 @@ namespace CubeMasterGUI
     {
         private FreeDraw _freeDrawController;
 
-        private List<DrawingFunction> _functions;
+        private List<Button> _functions;
 
         private bool _isDragging = false;
         private System.Drawing.Point _drawStart;
@@ -54,28 +54,7 @@ namespace CubeMasterGUI
 
         private void AssignDrawingFunctions()
         {
-            // Replace button text with actual shapes. 'Single' would just be a point, 
-            // "Line" would be a line, etc. Would be much better looking UI. 
-            this.drwSingle.SetText("Single");
-            this.drwLine.SetText("Line");
-            this.drwRectangle.SetText("Rectangle");
-            this.drwCircle.SetText("Circle");
-
-            this.drwSingle.SetController(ref _freeDrawController);
-            this.drwLine.SetController(ref _freeDrawController);
-            this.drwRectangle.SetController(ref _freeDrawController);
-            this.drwCircle.SetController(ref _freeDrawController);
-
-            this.drwSingle.SetDrawingMode(FreeDraw.DRAWING_MODE.SINGLE);
-            this.drwLine.SetDrawingMode(FreeDraw.DRAWING_MODE.LINE);
-            this.drwRectangle.SetDrawingMode(FreeDraw.DRAWING_MODE.RECTANGLE);
-            this.drwCircle.SetDrawingMode(FreeDraw.DRAWING_MODE.CIRCLE);
-
-            _functions = new List<DrawingFunction>();
-            _functions.Add(this.drwSingle);
-            _functions.Add(this.drwLine);
-            _functions.Add(this.drwRectangle);
-            _functions.Add(this.drwCircle);
+            _functions = new List<Button>();
         }
 
         private void InvokeTimerProtocol()

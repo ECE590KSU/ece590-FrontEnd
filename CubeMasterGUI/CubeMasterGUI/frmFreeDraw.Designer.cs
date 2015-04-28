@@ -35,10 +35,6 @@
             this.btnFillPlane = new System.Windows.Forms.Button();
             this.btnClearAll = new System.Windows.Forms.Button();
             this.btnClearPlane = new System.Windows.Forms.Button();
-            this.drwCircle = new CubeMasterGUI.DrawingFunction();
-            this.drwRectangle = new CubeMasterGUI.DrawingFunction();
-            this.drwLine = new CubeMasterGUI.DrawingFunction();
-            this.drwSingle = new CubeMasterGUI.DrawingFunction();
             this.label1 = new System.Windows.Forms.Label();
             this.uxPlaneSelect = new System.Windows.Forms.NumericUpDown();
             this.btnAXIS_Z = new System.Windows.Forms.RadioButton();
@@ -68,10 +64,6 @@
             this.pnlDrawingControls.Controls.Add(this.btnFillPlane);
             this.pnlDrawingControls.Controls.Add(this.btnClearAll);
             this.pnlDrawingControls.Controls.Add(this.btnClearPlane);
-            this.pnlDrawingControls.Controls.Add(this.drwCircle);
-            this.pnlDrawingControls.Controls.Add(this.drwRectangle);
-            this.pnlDrawingControls.Controls.Add(this.drwLine);
-            this.pnlDrawingControls.Controls.Add(this.drwSingle);
             this.pnlDrawingControls.Controls.Add(this.label1);
             this.pnlDrawingControls.Controls.Add(this.uxPlaneSelect);
             this.pnlDrawingControls.Controls.Add(this.btnAXIS_Z);
@@ -143,34 +135,6 @@
             this.btnClearPlane.Text = "Clear Plane";
             this.btnClearPlane.UseVisualStyleBackColor = true;
             this.btnClearPlane.Click += new System.EventHandler(this.btnClearPlane_Click);
-            // 
-            // drwCircle
-            // 
-            this.drwCircle.Location = new System.Drawing.Point(517, 528);
-            this.drwCircle.Name = "drwCircle";
-            this.drwCircle.Size = new System.Drawing.Size(150, 150);
-            this.drwCircle.TabIndex = 3;
-            // 
-            // drwRectangle
-            // 
-            this.drwRectangle.Location = new System.Drawing.Point(349, 528);
-            this.drwRectangle.Name = "drwRectangle";
-            this.drwRectangle.Size = new System.Drawing.Size(150, 150);
-            this.drwRectangle.TabIndex = 3;
-            // 
-            // drwLine
-            // 
-            this.drwLine.Location = new System.Drawing.Point(184, 528);
-            this.drwLine.Name = "drwLine";
-            this.drwLine.Size = new System.Drawing.Size(150, 150);
-            this.drwLine.TabIndex = 3;
-            // 
-            // drwSingle
-            // 
-            this.drwSingle.Location = new System.Drawing.Point(18, 528);
-            this.drwSingle.Name = "drwSingle";
-            this.drwSingle.Size = new System.Drawing.Size(150, 150);
-            this.drwSingle.TabIndex = 3;
             // 
             // label1
             // 
@@ -301,10 +265,6 @@
         private System.Windows.Forms.RadioButton btnAXIS_X;
         private System.Windows.Forms.NumericUpDown uxPlaneSelect;
         private System.Windows.Forms.Label label1;
-        private DrawingFunction drwCircle;
-        private DrawingFunction drwRectangle;
-        private DrawingFunction drwLine;
-        private DrawingFunction drwSingle;
         private System.Windows.Forms.Button btnClearPlane;
         private System.Windows.Forms.Button btnFillPlane;
         private System.Windows.Forms.Button btnClearAll;

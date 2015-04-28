@@ -32,9 +32,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CubeController, Version=1.0.5587.29351, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\ece590-CubeController\CubeController\CubeController\obj\Debug\CubeController.dll</HintPath>
+    <Reference Include="CubeController">
+      <HintPath>..\..\..\ece590-CubeController\CubeController\CubeController\bin\Debug\CubeController.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -68,12 +67,6 @@
     </Compile>
     <Compile Include="ctrlTimer.Designer.cs">
       <DependentUpon>ctrlTimer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DrawingFunction.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="DrawingFunction.Designer.cs">
-      <DependentUpon>DrawingFunction.cs</DependentUpon>
     </Compile>
     <Compile Include="FreeDraw.cs" />
     <Compile Include="frmGames.cs">
@@ -128,8 +121,6 @@
     <EmbeddedResource Include="ctrlTimer.resx">
       <DependentUpon>ctrlTimer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DrawingFunction.resx">
-      <DependentUpon>DrawingFunction.cs</DependentUpon>
     <EmbeddedResource Include="frmGames.resx">
       <DependentUpon>frmGames.cs</DependentUpon>
     </EmbeddedResource>
