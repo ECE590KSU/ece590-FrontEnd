@@ -23,10 +23,24 @@ namespace CubeMasterGUI
             this.CurrentDrawingMode = DRAWING_MODE.SINGLE;
         }
 
-        public void SwapVoxel(int x, int y, int z)
+        public void SwapVoxel(int grid_x, int grid_y)
         {
-            _cube.SwapVoxel(x,y,z);
+            switch (this.SelectedAxis)
+            {
+                case CubeController.Cube.AXIS.AXIS_X:
+                    _cube.SwapVoxel(this.SelectedPlane, grid_x, grid_y);
+                    break;
+                case CubeController.Cube.AXIS.AXIS_Y:
+                    _cube.SwapVoxel(grid_x, this.SelectedPlane, grid_y);
+                    break;
+                case CubeController.Cube.AXIS.AXIS_Z:
+                    _cube.SwapVoxel(grid_x, grid_y, this.SelectedPlane);
+                    break;
+                default:
+                    break;
+            }
         }
+
 
         public void ClearPlane(int plane)
         {
@@ -53,8 +67,8 @@ namespace CubeMasterGUI
             int i = 200;
             while (--i >= 0)
             {
-                _cube.BoxWoopWoop(1, 100, true);
-                _cube.BoxWoopWoop(1, 100, false);
+                _cube.BoxWoopWoop(1, 200, true);
+                _cube.BoxWoopWoop(1, 200, false);
             }
         }
     }

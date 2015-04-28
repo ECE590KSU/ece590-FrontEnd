@@ -166,26 +166,7 @@ namespace CubeMasterGUI
 
             if (_freeDrawController.CurrentDrawingMode == FreeDraw.DRAWING_MODE.SINGLE)
             {
-                //vox.VoxelSet = !vox.VoxelSet;
-                //_voxels[vox.X, vox.Y].BackColor = vox.VoxelSet ? _clrVoxelClicked : _clrVoxelUnclicked;
-
-                // Zero-based index. 
-                int plane = _freeDrawController.SelectedPlane;
-
-                switch (_freeDrawController.SelectedAxis)
-                {
-                    case CubeController.Cube.AXIS.AXIS_X:
-                        _freeDrawController.SwapVoxel(plane, vox.X, vox.Y);
-                        break;
-                    case CubeController.Cube.AXIS.AXIS_Y:
-                        _freeDrawController.SwapVoxel(vox.X, plane, vox.Y);
-                        break;
-                    case CubeController.Cube.AXIS.AXIS_Z:
-                        _freeDrawController.SwapVoxel(vox.X, vox.Y, plane);
-                        break;
-                    default:
-                        break;
-                }
+                _freeDrawController.SwapVoxel(vox.X, vox.Y);
             }
 
             RefreshVoxelGrid();
@@ -242,6 +223,7 @@ namespace CubeMasterGUI
         private void btnClearAll_Click(object sender, EventArgs e)
         {
             _freeDrawController.ClearEntireCube();
+            this.uxPlaneSelect.Value = 1;
             RefreshVoxelGrid();
         }
 
