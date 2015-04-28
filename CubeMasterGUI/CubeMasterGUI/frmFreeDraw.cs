@@ -265,5 +265,25 @@ namespace CubeMasterGUI
                 }
             }
         }
+
+        private void btnSingle_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnLine_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnRectangle_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnCircle_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

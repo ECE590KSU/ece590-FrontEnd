@@ -106,7 +106,7 @@
             this.btnSingle.TabIndex = 4;
             this.btnSingle.Text = "Single";
             this.btnSingle.UseVisualStyleBackColor = true;
-            this.btnSingle.Click += new System.EventHandler(this.btnDemo_Click);
+            this.btnSingle.Click += new System.EventHandler(this.btnSingle_Click);
             // 
             // btnRectangle
             // 
@@ -118,7 +118,7 @@
             this.btnRectangle.TabIndex = 4;
             this.btnRectangle.Text = "Rectangle";
             this.btnRectangle.UseVisualStyleBackColor = true;
-            this.btnRectangle.Click += new System.EventHandler(this.btnDemo_Click);
+            this.btnRectangle.Click += new System.EventHandler(this.btnRectangle_Click);
             // 
             // btnCircle
             // 
@@ -130,7 +130,7 @@
             this.btnCircle.TabIndex = 4;
             this.btnCircle.Text = "Circle";
             this.btnCircle.UseVisualStyleBackColor = true;
-            this.btnCircle.Click += new System.EventHandler(this.btnDemo_Click);
+            this.btnCircle.Click += new System.EventHandler(this.btnCircle_Click);
             // 
             // btnLine
             // 
@@ -142,7 +142,7 @@
             this.btnLine.TabIndex = 4;
             this.btnLine.Text = "Line";
             this.btnLine.UseVisualStyleBackColor = true;
-            this.btnLine.Click += new System.EventHandler(this.btnDemo_Click);
+            this.btnLine.Click += new System.EventHandler(this.btnLine_Click);
             // 
             // btnDemo
             // 
