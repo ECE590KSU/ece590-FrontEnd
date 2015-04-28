@@ -31,14 +31,14 @@
             this.lblWindowName = new System.Windows.Forms.Label();
             this.pnlDrawingControls = new System.Windows.Forms.Panel();
             this.btnDemoStop = new System.Windows.Forms.Button();
+            this.btnSingle = new System.Windows.Forms.Button();
+            this.btnRectangle = new System.Windows.Forms.Button();
+            this.btnCircle = new System.Windows.Forms.Button();
+            this.btnLine = new System.Windows.Forms.Button();
             this.btnDemo = new System.Windows.Forms.Button();
             this.btnFillPlane = new System.Windows.Forms.Button();
             this.btnClearAll = new System.Windows.Forms.Button();
             this.btnClearPlane = new System.Windows.Forms.Button();
-            this.drwCircle = new CubeMasterGUI.DrawingFunction();
-            this.drwRectangle = new CubeMasterGUI.DrawingFunction();
-            this.drwLine = new CubeMasterGUI.DrawingFunction();
-            this.drwSingle = new CubeMasterGUI.DrawingFunction();
             this.label1 = new System.Windows.Forms.Label();
             this.uxPlaneSelect = new System.Windows.Forms.NumericUpDown();
             this.btnAXIS_Z = new System.Windows.Forms.RadioButton();
@@ -64,14 +64,14 @@
             this.pnlDrawingControls.BackColor = System.Drawing.SystemColors.Window;
             this.pnlDrawingControls.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlDrawingControls.Controls.Add(this.btnDemoStop);
+            this.pnlDrawingControls.Controls.Add(this.btnSingle);
+            this.pnlDrawingControls.Controls.Add(this.btnRectangle);
+            this.pnlDrawingControls.Controls.Add(this.btnCircle);
+            this.pnlDrawingControls.Controls.Add(this.btnLine);
             this.pnlDrawingControls.Controls.Add(this.btnDemo);
             this.pnlDrawingControls.Controls.Add(this.btnFillPlane);
             this.pnlDrawingControls.Controls.Add(this.btnClearAll);
             this.pnlDrawingControls.Controls.Add(this.btnClearPlane);
-            this.pnlDrawingControls.Controls.Add(this.drwCircle);
-            this.pnlDrawingControls.Controls.Add(this.drwRectangle);
-            this.pnlDrawingControls.Controls.Add(this.drwLine);
-            this.pnlDrawingControls.Controls.Add(this.drwSingle);
             this.pnlDrawingControls.Controls.Add(this.label1);
             this.pnlDrawingControls.Controls.Add(this.uxPlaneSelect);
             this.pnlDrawingControls.Controls.Add(this.btnAXIS_Z);
@@ -90,11 +90,59 @@
             this.btnDemoStop.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDemoStop.Location = new System.Drawing.Point(517, 435);
             this.btnDemoStop.Name = "btnDemoStop";
-            this.btnDemoStop.Size = new System.Drawing.Size(151, 75);
+            this.btnDemoStop.Size = new System.Drawing.Size(150, 75);
             this.btnDemoStop.TabIndex = 4;
             this.btnDemoStop.Text = "Stop";
             this.btnDemoStop.UseVisualStyleBackColor = true;
             this.btnDemoStop.Click += new System.EventHandler(this.btnDemoStop_Click);
+            // 
+            // btnSingle
+            // 
+            this.btnSingle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSingle.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSingle.Location = new System.Drawing.Point(17, 533);
+            this.btnSingle.Name = "btnSingle";
+            this.btnSingle.Size = new System.Drawing.Size(150, 150);
+            this.btnSingle.TabIndex = 4;
+            this.btnSingle.Text = "Single";
+            this.btnSingle.UseVisualStyleBackColor = true;
+            this.btnSingle.Click += new System.EventHandler(this.btnDemo_Click);
+            // 
+            // btnRectangle
+            // 
+            this.btnRectangle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRectangle.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRectangle.Location = new System.Drawing.Point(348, 533);
+            this.btnRectangle.Name = "btnRectangle";
+            this.btnRectangle.Size = new System.Drawing.Size(150, 150);
+            this.btnRectangle.TabIndex = 4;
+            this.btnRectangle.Text = "Rectangle";
+            this.btnRectangle.UseVisualStyleBackColor = true;
+            this.btnRectangle.Click += new System.EventHandler(this.btnDemo_Click);
+            // 
+            // btnCircle
+            // 
+            this.btnCircle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCircle.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCircle.Location = new System.Drawing.Point(517, 533);
+            this.btnCircle.Name = "btnCircle";
+            this.btnCircle.Size = new System.Drawing.Size(150, 150);
+            this.btnCircle.TabIndex = 4;
+            this.btnCircle.Text = "Circle";
+            this.btnCircle.UseVisualStyleBackColor = true;
+            this.btnCircle.Click += new System.EventHandler(this.btnDemo_Click);
+            // 
+            // btnLine
+            // 
+            this.btnLine.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLine.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLine.Location = new System.Drawing.Point(183, 533);
+            this.btnLine.Name = "btnLine";
+            this.btnLine.Size = new System.Drawing.Size(150, 150);
+            this.btnLine.TabIndex = 4;
+            this.btnLine.Text = "Line";
+            this.btnLine.UseVisualStyleBackColor = true;
+            this.btnLine.Click += new System.EventHandler(this.btnDemo_Click);
             // 
             // btnDemo
             // 
@@ -102,7 +150,7 @@
             this.btnDemo.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDemo.Location = new System.Drawing.Point(348, 435);
             this.btnDemo.Name = "btnDemo";
-            this.btnDemo.Size = new System.Drawing.Size(151, 75);
+            this.btnDemo.Size = new System.Drawing.Size(150, 75);
             this.btnDemo.TabIndex = 4;
             this.btnDemo.Text = "Demo";
             this.btnDemo.UseVisualStyleBackColor = true;
@@ -143,34 +191,6 @@
             this.btnClearPlane.Text = "Clear Plane";
             this.btnClearPlane.UseVisualStyleBackColor = true;
             this.btnClearPlane.Click += new System.EventHandler(this.btnClearPlane_Click);
-            // 
-            // drwCircle
-            // 
-            this.drwCircle.Location = new System.Drawing.Point(517, 528);
-            this.drwCircle.Name = "drwCircle";
-            this.drwCircle.Size = new System.Drawing.Size(150, 150);
-            this.drwCircle.TabIndex = 3;
-            // 
-            // drwRectangle
-            // 
-            this.drwRectangle.Location = new System.Drawing.Point(349, 528);
-            this.drwRectangle.Name = "drwRectangle";
-            this.drwRectangle.Size = new System.Drawing.Size(150, 150);
-            this.drwRectangle.TabIndex = 3;
-            // 
-            // drwLine
-            // 
-            this.drwLine.Location = new System.Drawing.Point(184, 528);
-            this.drwLine.Name = "drwLine";
-            this.drwLine.Size = new System.Drawing.Size(150, 150);
-            this.drwLine.TabIndex = 3;
-            // 
-            // drwSingle
-            // 
-            this.drwSingle.Location = new System.Drawing.Point(18, 528);
-            this.drwSingle.Name = "drwSingle";
-            this.drwSingle.Size = new System.Drawing.Size(150, 150);
-            this.drwSingle.TabIndex = 3;
             // 
             // label1
             // 
@@ -301,14 +321,14 @@
         private System.Windows.Forms.RadioButton btnAXIS_X;
         private System.Windows.Forms.NumericUpDown uxPlaneSelect;
         private System.Windows.Forms.Label label1;
-        private DrawingFunction drwCircle;
-        private DrawingFunction drwRectangle;
-        private DrawingFunction drwLine;
-        private DrawingFunction drwSingle;
         private System.Windows.Forms.Button btnClearPlane;
         private System.Windows.Forms.Button btnFillPlane;
         private System.Windows.Forms.Button btnClearAll;
         private System.Windows.Forms.Button btnDemo;
         private System.Windows.Forms.Button btnDemoStop;
+        private System.Windows.Forms.Button btnSingle;
+        private System.Windows.Forms.Button btnRectangle;
+        private System.Windows.Forms.Button btnCircle;
+        private System.Windows.Forms.Button btnLine;
     }
 }

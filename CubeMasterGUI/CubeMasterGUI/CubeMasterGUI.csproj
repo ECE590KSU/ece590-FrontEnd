@@ -69,12 +69,6 @@
     <Compile Include="ctrlTimer.Designer.cs">
       <DependentUpon>ctrlTimer.cs</DependentUpon>
     </Compile>
-    <Compile Include="DrawingFunction.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="DrawingFunction.Designer.cs">
-      <DependentUpon>DrawingFunction.cs</DependentUpon>
-    </Compile>
     <Compile Include="FreeDraw.cs" />
     <Compile Include="frmFreeDraw.cs">
       <SubType>Form</SubType>
@@ -113,9 +107,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ctrlTimer.resx">
       <DependentUpon>ctrlTimer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DrawingFunction.resx">
-      <DependentUpon>DrawingFunction.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmFreeDraw.resx">
       <DependentUpon>frmFreeDraw.cs</DependentUpon>
