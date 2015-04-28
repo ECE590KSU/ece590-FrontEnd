@@ -29,6 +29,7 @@ namespace CubeMasterGUI
             this.Width = _startScreenController.ParentScreenWidth;
 
             _mainMenuController = new MainMenu(ref _startScreenController);
+            this.ShowInTaskbar = false;
         }
 
         private void InitializeApplications()

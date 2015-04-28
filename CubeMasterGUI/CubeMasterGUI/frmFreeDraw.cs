@@ -21,7 +21,6 @@ namespace CubeMasterGUI
         private System.Drawing.Point _drawEnd;
         private Voxel _drawVoxelStart;
         private Voxel _drawVoxelEnd;
-
         private int _voxelGrid_startX = 20;
         private int _voxelGrid_startY = 75;
         private int _voxelSpacing = 9;
@@ -50,6 +49,7 @@ namespace CubeMasterGUI
             InvokeTimerProtocol();
             InitializeRadioButtons();
             SetupDemo();
+            this.ShowInTaskbar = false;
         }
 
         private void AssignDrawingFunctions()
