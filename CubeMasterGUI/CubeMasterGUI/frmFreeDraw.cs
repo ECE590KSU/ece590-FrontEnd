@@ -95,8 +95,8 @@ namespace CubeMasterGUI
                     tmpVoxel.Left = _voxelGrid_startX + (i*_voxelWidth + _voxelSpacing);
                     tmpVoxel.Top = _voxelGrid_startY + ((7-j)*_voxelHeight + _voxelSpacing);
                     
-                    tmpVoxel.X = i;
-                    tmpVoxel.Y = j;
+                    tmpVoxel.X = j;
+                    tmpVoxel.Y = i;
 
                     var lbl = new Label();
                     lbl.Text = "[" + i + "," + j + "]";
@@ -107,7 +107,7 @@ namespace CubeMasterGUI
 
                     tmpVoxel.MouseClick += frmFreeDraw_VoxelGridClick;
 
-                    _voxels[i, j] = tmpVoxel;
+                    _voxels[j, i] = tmpVoxel;
                     this.Controls.Add(tmpVoxel);
                 }
             }
@@ -165,6 +165,7 @@ namespace CubeMasterGUI
                     _isSecondClick = true;
                     _drawStart = PointToClient(e.Location);
                     _drawPointStart = _freeDrawController.VoxelToPoint(sender as Voxel);
+                    Graphics g = this.CreateGraphics();
                 }
                 else
                 {
