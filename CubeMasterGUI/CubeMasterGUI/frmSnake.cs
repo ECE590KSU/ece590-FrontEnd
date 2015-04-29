@@ -16,10 +16,8 @@ namespace CubeMasterGUI
 
         private int _currentPlane;
 
-        private System.Drawing.Point _drawStart;
-        private System.Drawing.Point _drawEnd;
-        private Voxel _drawVoxelStart;
-        private Voxel _drawVoxelEnd;
+        private Timer _refreshTimer;
+
         private int _voxelGrid_startX = 20;
         private int _voxelGrid_startY = 75;
         private int _voxelSpacing = 9;
@@ -44,9 +42,10 @@ namespace CubeMasterGUI
             GenerateVoxelGrid();
             InvokeTimerProtocol();
 
-            gameTimer.Interval = 1000 / 60; //roughly 60 fps
-            //gameTimer.Tick += new EventHandler(RefreshScreen);
-            gameTimer.Start();
+            _refreshTimer = new Timer();
+            _refreshTimer.Interval = 1000 / 60; //roughly 60 fps
+            _refreshTimer.Tick += new EventHandler(RefreshVoxelGrid);
+            _refreshTimer.Start();
 
 
         }
@@ -93,11 +92,11 @@ namespace CubeMasterGUI
                     tmpVoxel.Left = _voxelGrid_startX + (i * _voxelWidth + _voxelSpacing);
                     tmpVoxel.Top = _voxelGrid_startY + ((7 - j) * _voxelHeight + _voxelSpacing);
 
-                    tmpVoxel.X = i;
-                    tmpVoxel.Y = j;
+                    tmpVoxel.X = j;
+                    tmpVoxel.Y = i;
 
                     var lbl = new Label();
-                    lbl.Text = "[" + i + "," + j + "]";
+                    //lbl.Text = "[" + i + "," + j + "]";
                     tmpVoxel.Controls.Add(lbl);
 
                     tmpVoxel.BringToFront();
@@ -108,13 +107,13 @@ namespace CubeMasterGUI
                     tmpVoxel.MouseUp += frmFreeDraw_MouseUp;
                     tmpVoxel.MouseMove += frmFreeDraw_MouseMove;*/
 
-                    _voxels[i, j] = tmpVoxel;
+                    _voxels[j, i] = tmpVoxel;
                     this.Controls.Add(tmpVoxel);
                 }
             }
         }
 
-        public void RefreshVoxelGrid()
+        public void RefreshVoxelGrid(object sender, EventArgs e)
         {
             this.SuspendLayout();
             var tmpplane = _snakeController.GetPlane(_currentPlane);

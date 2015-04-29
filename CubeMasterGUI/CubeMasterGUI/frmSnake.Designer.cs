@@ -37,7 +37,6 @@
             this.btnStart = new System.Windows.Forms.Button();
             this.btnCloseWindow1 = new CubeMasterGUI.btnCloseWindow();
             this.tmrSnake = new CubeMasterGUI.ctrlTimer();
-            this.gameTimer = new System.Windows.Forms.Timer(this.components);
             this.pnlDrawingControls.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -170,6 +169,5 @@
         private System.Windows.Forms.RadioButton btnMedium;
         private System.Windows.Forms.RadioButton btnEasy;
         private System.Windows.Forms.Button btnStart;
-        private System.Windows.Forms.Timer gameTimer;
     }
 }
