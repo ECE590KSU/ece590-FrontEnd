@@ -73,7 +73,6 @@
             this.btnAXIS_Z.TabStop = true;
             this.btnAXIS_Z.Text = "Z Axis (X-Y Plane)";
             this.btnAXIS_Z.UseVisualStyleBackColor = true;
-            this.btnAXIS_Z.CheckedChanged += new System.EventHandler(this.btnAXIS_Z_CheckedChanged);
             // 
             // btnAXIS_Y
             // 
@@ -87,7 +86,6 @@
             this.btnAXIS_Y.TabStop = true;
             this.btnAXIS_Y.Text = "Y Axis (X-Z Plane)";
             this.btnAXIS_Y.UseVisualStyleBackColor = true;
-            this.btnAXIS_Y.CheckedChanged += new System.EventHandler(this.btnAXIS_Y_CheckedChanged);
             // 
             // btnAXIS_X
             // 
@@ -101,7 +99,6 @@
             this.btnAXIS_X.TabStop = true;
             this.btnAXIS_X.Text = "X Axis (Y-Z Plane)";
             this.btnAXIS_X.UseVisualStyleBackColor = true;
-            this.btnAXIS_X.CheckedChanged += new System.EventHandler(this.btnAXIS_X_CheckedChanged);
             // 
             // btnCloseWindow1
             // 
