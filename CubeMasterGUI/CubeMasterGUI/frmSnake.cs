@@ -42,12 +42,27 @@ namespace CubeMasterGUI
             GenerateVoxelGrid();
             InvokeTimerProtocol();
 
+            btnEasy.Checked = true;
+
+            btnEasy.CheckedChanged += DifficultyChanged;
+            btnMedium.CheckedChanged += DifficultyChanged;
+            btnHard.CheckedChanged += DifficultyChanged;
+
             _refreshTimer = new Timer();
             _refreshTimer.Interval = 1000 / 60; //roughly 60 fps
             _refreshTimer.Tick += new EventHandler(RefreshVoxelGrid);
             _refreshTimer.Start();
 
 
+        }
+
+        private void DifficultyChanged(object sender, EventArgs e)
+        {
+            RadioButton btn = sender as RadioButton;
+            if (btn.Checked)
+            {
+                _snakeController.ChangeDifficultySetting(btn.Name);
+            }
         }
 
         private void InvokeTimerProtocol()

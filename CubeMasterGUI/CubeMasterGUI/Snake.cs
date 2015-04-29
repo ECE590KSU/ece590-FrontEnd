@@ -12,8 +12,10 @@ namespace CubeMasterGUI
     {
         private const int DIMENSION = 8;
         private CubeController.Cube _cube;
+        private Dictionary<string, DIFFICULTY> _difficultyDictionary;
 
         private enum DIRECTION { POSITIVE_X, POSITIVE_Y, NEGATIVE_X, NEGATIVE_Y };
+        private enum DIFFICULTY { EASY, MEDIUM, HARD };
 
         private DIRECTION _currentDirection;
         private Timer _gameTimer;
@@ -36,9 +38,37 @@ namespace CubeMasterGUI
             _snake = new List<SnakeSection>();
             _snake.Add(_head);
 
+            _difficultyDictionary = new Dictionary<string, DIFFICULTY>
+            {
+                {"btnEasy", DIFFICULTY.EASY},
+                {"btnMedium", DIFFICULTY.MEDIUM},
+                {"btnHard", DIFFICULTY.HARD}
+            };
+
             _gameTimer = new Timer();
             _gameTimer.Interval = 750;
             _gameTimer.Tick += GameTimerTick;
+            _gameTimer.Start();
+        }
+
+        public void ChangeDifficultySetting(string s)
+        {
+            _gameTimer.Stop();
+            DIFFICULTY diff = _difficultyDictionary[s];
+            switch(diff)
+            {
+                case DIFFICULTY.EASY:
+                    _gameTimer.Interval = 700;
+                    break;
+                case DIFFICULTY.MEDIUM:
+                    _gameTimer.Interval = 400;
+                    break;
+                case DIFFICULTY.HARD:
+                    _gameTimer.Interval = 175;
+                    break;
+                default:
+                    break;
+            }
             _gameTimer.Start();
         }
 
