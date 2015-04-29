@@ -14,24 +14,40 @@ namespace CubeMasterGUI
     {
         private Snake _snakeController;
 
+        private int _currentPlane;
+
+        private System.Drawing.Point _drawStart;
+        private System.Drawing.Point _drawEnd;
+        private Voxel _drawVoxelStart;
+        private Voxel _drawVoxelEnd;
+        private int _voxelGrid_startX = 20;
+        private int _voxelGrid_startY = 75;
+        private int _voxelSpacing = 9;
+        private int _voxelHeight = 80;
+        private int _voxelWidth = 80;
+
+        private Voxel[,] _voxels;
+
+        private Color _clrVoxelClicked = AssetHandler._secondaryControlColor;
+        private Color _clrVoxelUnclicked = AssetHandler._primaryFormColor;
+
         public frmSnake(ref CubeController.Cube cube, int parentWidth, int parentHeight)
         {
             InitializeComponent();
 
             _snakeController = new Snake(ref cube);
+            _currentPlane = 0;
 
             this.Width = parentWidth;
             this.Height = parentHeight;
 
+            GenerateVoxelGrid();
             InvokeTimerProtocol();
 
             gameTimer.Interval = 1000 / 60; //roughly 60 fps
-            gameTimer.Tick += new EventHandler(RefreshScreen);
+            //gameTimer.Tick += new EventHandler(RefreshScreen);
             gameTimer.Start();
 
-            Graphics canvas = picbxGameSpace.CreateGraphics();
-            Rectangle box = new Rectangle(_snakeController.GetX(), _snakeController.GetY(), 16, 16);
-            canvas.FillRectangle(Brushes.SteelBlue, new Rectangle());
 
         }
 
@@ -63,17 +79,54 @@ namespace CubeMasterGUI
             _snakeController.ChangeInputState(e.KeyCode, false);
         }
 
-        private void RefreshScreen(object sender, EventArgs e)
+        private void GenerateVoxelGrid()
         {
-            _snakeController.GameTickHandler();
-            this.picbxGameSpace.Invalidate();
+            _voxels = new Voxel[8, 8];
+
+            for (int i = 0; i < 8; ++i)
+            {
+                for (int j = 0; j < 8; ++j)
+                {
+                    Voxel tmpVoxel = new Voxel();
+                    tmpVoxel.Height = _voxelHeight;
+                    tmpVoxel.Width = _voxelWidth;
+                    tmpVoxel.Left = _voxelGrid_startX + (i * _voxelWidth + _voxelSpacing);
+                    tmpVoxel.Top = _voxelGrid_startY + ((7 - j) * _voxelHeight + _voxelSpacing);
+
+                    tmpVoxel.X = i;
+                    tmpVoxel.Y = j;
+
+                    var lbl = new Label();
+                    lbl.Text = "[" + i + "," + j + "]";
+                    tmpVoxel.Controls.Add(lbl);
+
+                    tmpVoxel.BringToFront();
+                    tmpVoxel.Cursor = Cursors.Cross;
+
+                    /*tmpVoxel.MouseClick += frmFreeDraw_VoxelGridClick;
+                    tmpVoxel.MouseDown += frmFreeDraw_MouseDown;
+                    tmpVoxel.MouseUp += frmFreeDraw_MouseUp;
+                    tmpVoxel.MouseMove += frmFreeDraw_MouseMove;*/
+
+                    _voxels[i, j] = tmpVoxel;
+                    this.Controls.Add(tmpVoxel);
+                }
+            }
         }
 
-        private void picbxGameSpace_Paint(object sender, PaintEventArgs e)
+        public void RefreshVoxelGrid()
         {
-            Graphics canvas = e.Graphics;
-            Rectangle box = new Rectangle(_snakeController.GetX(), _snakeController.GetY(), 16, 16);
-            canvas.FillRectangle(Brushes.SteelBlue, new Rectangle());
+            this.SuspendLayout();
+            var tmpplane = _snakeController.GetPlane(_currentPlane);
+
+            for (int i = 0; i < 8; ++i)
+            {
+                for (int j = 0; j < 8; ++j)
+                {
+                    _voxels[i, j].BackColor = tmpplane[i][j] ? _clrVoxelClicked : _clrVoxelUnclicked;
+                }
+            }
+            this.ResumeLayout();
         }
     }
 

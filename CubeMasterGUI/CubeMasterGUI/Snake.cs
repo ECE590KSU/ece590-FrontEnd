@@ -12,6 +12,8 @@ namespace CubeMasterGUI
     {
         private CubeController.Cube _cube;
 
+        private enum DIRECTION { POSITIVE_X, POSITIVE_Y, NEGATIVE_X, NEGATIVE_Y };
+
         private Hashtable _keys;
 
         int _x;
@@ -22,8 +24,6 @@ namespace CubeMasterGUI
         {
             _cube = cube;
             _keys = new Hashtable();
-            _x = 250;
-            _x = 250;
         }
 
         public void GameTickHandler()
@@ -61,8 +61,11 @@ namespace CubeMasterGUI
             }
             return (bool)_keys[key];
         }
-
-
+        
+        public bool[][] GetPlane(int plane)
+        {
+            return _cube.GetPlane(CubeController.Cube.AXIS.AXIS_Z, plane);
+        }
     }
 
     internal class SnakeSection

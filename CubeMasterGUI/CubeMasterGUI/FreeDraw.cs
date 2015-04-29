@@ -41,7 +41,6 @@ namespace CubeMasterGUI
             }
         }
 
-
         public void ClearPlane(int plane)
         {
             _cube.ClearPlane(SelectedAxis, plane);

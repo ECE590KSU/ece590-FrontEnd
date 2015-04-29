@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.lblWindowName = new System.Windows.Forms.Label();
-            this.picbxGameSpace = new System.Windows.Forms.PictureBox();
             this.pnlDrawingControls = new System.Windows.Forms.Panel();
             this.btnHard = new System.Windows.Forms.RadioButton();
             this.btnMedium = new System.Windows.Forms.RadioButton();
@@ -39,7 +38,6 @@
             this.btnCloseWindow1 = new CubeMasterGUI.btnCloseWindow();
             this.tmrSnake = new CubeMasterGUI.ctrlTimer();
             this.gameTimer = new System.Windows.Forms.Timer(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.picbxGameSpace)).BeginInit();
             this.pnlDrawingControls.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -51,16 +49,6 @@
             this.lblWindowName.Name = "lblWindowName";
             this.lblWindowName.Size = new System.Drawing.Size(0, 25);
             this.lblWindowName.TabIndex = 1;
-            // 
-            // picbxGameSpace
-            // 
-            this.picbxGameSpace.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.picbxGameSpace.Location = new System.Drawing.Point(314, 31);
-            this.picbxGameSpace.Name = "picbxGameSpace";
-            this.picbxGameSpace.Size = new System.Drawing.Size(700, 700);
-            this.picbxGameSpace.TabIndex = 4;
-            this.picbxGameSpace.TabStop = false;
-            this.picbxGameSpace.Paint += new System.Windows.Forms.PaintEventHandler(this.picbxGameSpace_Paint);
             // 
             // pnlDrawingControls
             // 
@@ -156,7 +144,6 @@
             this.ClientSize = new System.Drawing.Size(1366, 768);
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.pnlDrawingControls);
-            this.Controls.Add(this.picbxGameSpace);
             this.Controls.Add(this.lblWindowName);
             this.Controls.Add(this.btnCloseWindow1);
             this.Controls.Add(this.tmrSnake);
@@ -166,7 +153,6 @@
             this.Text = "frmSnake";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmSnake_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.frmSnake_KeyUp);
-            ((System.ComponentModel.ISupportInitialize)(this.picbxGameSpace)).EndInit();
             this.pnlDrawingControls.ResumeLayout(false);
             this.pnlDrawingControls.PerformLayout();
             this.ResumeLayout(false);
@@ -179,7 +165,6 @@
         private btnCloseWindow btnCloseWindow1;
         private System.Windows.Forms.Label lblWindowName;
         private ctrlTimer tmrSnake;
-        private System.Windows.Forms.PictureBox picbxGameSpace;
         private System.Windows.Forms.Panel pnlDrawingControls;
         private System.Windows.Forms.RadioButton btnHard;
         private System.Windows.Forms.RadioButton btnMedium;
