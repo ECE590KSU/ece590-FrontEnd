@@ -21,6 +21,7 @@ namespace CubeMasterGUI
         private Timer _gameTimer;
 
         private SnakeSection _head;
+        private SnakeSection _food;
         private List<SnakeSection> _snake;
 
         private Random _random;
@@ -34,6 +35,8 @@ namespace CubeMasterGUI
 
             _head = new SnakeSection();
             _cube.SwapVoxel(_head.X, _head.Y, 0);
+
+            _food = new SnakeSection();
 
             _snake = new List<SnakeSection>();
             _snake.Add(_head);
@@ -57,22 +60,19 @@ namespace CubeMasterGUI
 
         private void SpawnFood()
         {
-            int x = -1, y = -1;
             bool valid = false;
             while (!valid)
             {
-                x = _random.Next(DIMENSION);
-                y = _random.Next(DIMENSION);
+                _food.X = _random.Next(DIMENSION);
+                _food.Y = _random.Next(DIMENSION);
                 valid = true;
                 foreach (var s in _snake)
                 {
-                    if (x == s.X || y == s.Y)
+                    if (_food == s)
                         valid = false;
                 }
             }
-
-            _cube.SwapVoxel(x, y, 0);
-
+            _cube.SwapVoxel(_food.X, _food.Y, 0);
         }
 
         public void ChangeDifficultySetting(string s)
@@ -183,6 +183,20 @@ namespace CubeMasterGUI
         {
             X = x;
             Y = y;
+        }
+
+        public static bool operator ==(SnakeSection a, SnakeSection b)
+        {
+            if (Object.ReferenceEquals(a,b))
+                return true;
+            if (((object)a == null) || ((object)b == null)) 
+                return false;
+            return a.X == b.X && a.Y == b.Y;
+        }
+
+        public static bool operator !=(SnakeSection a, SnakeSection b)
+        {
+            return !(a == b);
         }
     }
 }
