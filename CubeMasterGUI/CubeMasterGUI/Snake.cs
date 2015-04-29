@@ -24,6 +24,8 @@ namespace CubeMasterGUI
         private SnakeSection _food;
         private List<SnakeSection> _snake;
 
+        private bool _foodIsOnTheTable = false;
+
         private Random _random;
 
         private int _tickCount = 0;
@@ -54,8 +56,6 @@ namespace CubeMasterGUI
             _gameTimer.Interval = 750;
             _gameTimer.Tick += GameTimerTick;
             _gameTimer.Start();
-
-            SpawnFood();
         }
 
         private void SpawnFood()
@@ -72,6 +72,7 @@ namespace CubeMasterGUI
                         valid = false;
                 }
             }
+            _foodIsOnTheTable = true;
             _cube.SwapVoxel(_food.X, _food.Y, 0);
         }
 
@@ -98,18 +99,41 @@ namespace CubeMasterGUI
 
         private void GameTimerTick(object sender, EventArgs e)
         {
-            _tickCount++;
-            if (_tickCount % 2 == 0)
+            DisplaySnake();
+
+            if (!_foodIsOnTheTable)
+                SpawnFood();
+
+            if (_food == _head)
             {
-                var temp = new SnakeSection(_head.X, _head.Y);
-                _snake.Add(temp);
+                _snake.Add(new SnakeSection(_head.X, _head.Y));
+                //_cube.SwapVoxel(_food.X, _food.Y, 0);
+                SpawnFood();
             }
+
+        }
+
+        private void DisplaySnake()
+        {
+            int count = _snake.Count;
+            _cube.SwapVoxel(_snake[count - 1].X, _snake[count - 1].Y, 0);
+            for (int i = count - 1; i > 0; i--)
+            {
+                _snake[i].X = _snake[i - 1].X;
+                _snake[i].Y = _snake[i - 1].Y;
+
+            }
+            MoveHeadOfSnake();
             _cube.SwapVoxel(_head.X, _head.Y, 0);
-            switch(_currentDirection)
+        }
+
+        private void MoveHeadOfSnake()
+        {
+            switch (_currentDirection)
             {
                 case DIRECTION.POSITIVE_X:
                     _head.X++;
-                    _head.X %= DIMENSION; 
+                    _head.X %= DIMENSION;
                     break;
                 case DIRECTION.POSITIVE_Y:
                     _head.Y++;
@@ -124,20 +148,11 @@ namespace CubeMasterGUI
                 case DIRECTION.NEGATIVE_Y:
                     if (_head.Y == 0)
                         _head.Y = DIMENSION - 1;
-                    else      
+                    else
                         _head.Y--;
                     break;
                 default:
                     break;
-            }
-            _cube.SwapVoxel(_head.X, _head.Y, 0);
-        }
-
-        private void DisplaySnake()
-        {
-            foreach (var s in _snake)
-            {
-
             }
         }
         
