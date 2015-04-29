@@ -33,8 +33,8 @@ namespace CubeMasterGUI
         
         private Voxel[,] _voxels;
 
-        private Color _clrVoxelClicked = AssetHandler._secondaryControlColor;
-        private Color _clrVoxelUnclicked = AssetHandler._primaryFormColor;
+        private Color _clrVoxelClicked = AssetHandler.BtnBackColor_Tertiary;
+        private Color _clrVoxelUnclicked = AssetHandler.FormBackColor;
 
         private System.Windows.Forms.Timer _demoTimer;
         private System.Threading.Thread _demoThread;
@@ -60,12 +60,14 @@ namespace CubeMasterGUI
         {
             // Replace button text with actual shapes. 'Single' would just be a point, 
             // "Line" would be a line, etc. Would be much better looking UI. 
-
             _functions = new List<Button>();
             _functions.Add(this.btnSingle);
             _functions.Add(this.btnLine);
             _functions.Add(this.btnRectangle);
             _functions.Add(this.btnCircle);
+
+            this.btnSingle.BackColor = AssetHandler.BtnBackColor_Secondary;
+            this.btnSingle.ForeColor = AssetHandler.TxtColor_Secondary;
         }
 
         private void InvokeTimerProtocol()
@@ -266,21 +268,42 @@ namespace CubeMasterGUI
         private void btnSingle_Click(object sender, EventArgs e)
         {
             _freeDrawController.CurrentDrawingMode = FreeDraw.DRAWING_MODE.SINGLE;
+            ToggleSelectedDrawingFunction(sender as Button);
         }
 
         private void btnLine_Click(object sender, EventArgs e)
         {
             _freeDrawController.CurrentDrawingMode = FreeDraw.DRAWING_MODE.LINE;
+            ToggleSelectedDrawingFunction(sender as Button);
         }
 
         private void btnRectangle_Click(object sender, EventArgs e)
         {
             _freeDrawController.CurrentDrawingMode = FreeDraw.DRAWING_MODE.RECTANGLE;
+            ToggleSelectedDrawingFunction(sender as Button);
         }
 
         private void btnCircle_Click(object sender, EventArgs e)
         {
             _freeDrawController.CurrentDrawingMode = FreeDraw.DRAWING_MODE.CIRCLE;
+            ToggleSelectedDrawingFunction(sender as Button);
+        }
+
+        private void ToggleSelectedDrawingFunction(Button sender)
+        {
+            foreach (Button b in _functions)
+            {
+                if ((sender).Equals(b))
+                {
+                    b.BackColor = AssetHandler.BtnBackColor_Secondary;
+                    b.ForeColor = Color.White;
+                }
+                else
+                {
+                    b.BackColor = AssetHandler.BtnBackColor_Primary;
+                    b.ForeColor = AssetHandler.TxtColor_Primary;
+                }
+            }
         }
     }
 }

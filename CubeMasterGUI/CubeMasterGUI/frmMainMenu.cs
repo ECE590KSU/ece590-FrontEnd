@@ -45,10 +45,10 @@ namespace CubeMasterGUI
 
         private void SetApplicationIcons()
         {
-            this.btnFreeDraw.Image = SetBkgdImage(AssetHandler._freeDrawURL);
-            this.btnGames.Image = SetBkgdImage(AssetHandler._gamesURL);
-            this.btnPresets.Image = SetBkgdImage(AssetHandler._presetURL);
-            this.btnText2Cube.Image = SetBkgdImage(AssetHandler._text2CubeURL);
+            this.btnFreeDraw.Image = SetBkgdImage(AssetHandler.FreeDrawURL);
+            this.btnGames.Image = SetBkgdImage(AssetHandler.GamesURL);
+            this.btnPresets.Image = SetBkgdImage(AssetHandler.PresetURL);
+            this.btnText2Cube.Image = SetBkgdImage(AssetHandler.Text2CubeURL);
         }
 
         private void frmMainMenu_MouseMove(object sender, MouseEventArgs e)
