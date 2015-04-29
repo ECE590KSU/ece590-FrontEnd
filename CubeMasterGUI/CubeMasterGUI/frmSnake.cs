@@ -78,12 +78,12 @@ namespace CubeMasterGUI
 
         private void frmSnake_KeyDown(object sender, KeyEventArgs e)
         {
-            _snakeController.ChangeInputState(e.KeyCode);
+            //_snakeController.ChangeInputState(e.KeyCode);
         }
 
         private void frmSnake_KeyUp(object sender, KeyEventArgs e)
         {
-            //_snakeController.ChangeInputState(e.KeyCode, false);
+            _snakeController.ChangeInputState(e.KeyCode);
         }
 
         private void GenerateVoxelGrid()
@@ -142,6 +142,7 @@ namespace CubeMasterGUI
             this.Focus();
             this.KeyPreview = true;
             this.KeyDown += new KeyEventHandler(frmSnake_KeyDown);
+            this.PreviewKeyDown += new PreviewKeyDownEventHandler(frmSnake_PreviewKeyDown);
         }
 
         private void frmSnake_MouseClick(object sender, MouseEventArgs e)
@@ -154,6 +155,46 @@ namespace CubeMasterGUI
         {
             //_snakeController.ChangeInputState(Keys.Right);
         }
+
+        private void frmSnake_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Right:
+                case Keys.Left:
+                case Keys.Up:
+                case Keys.Down:
+                    e.IsInputKey = true;
+                    break;
+            }
+        }
+
+        //protected override bool IsInputKey(Keys keyData)
+        //{
+        //    switch (keyData)
+        //    {
+        //        case Keys.Right:
+        //        case Keys.Left:
+        //        case Keys.Up:
+        //        case Keys.Down:
+        //            return true;
+        //    }
+        //    return base.IsInputKey(keyData);
+        //}
+
+        //protected override void OnKeyDown(KeyEventArgs e)
+        //{
+        //    base.OnKeyDown(e);
+        //    switch (e.KeyCode)
+        //    {
+        //        case Keys.Right:
+        //        case Keys.Left:
+        //        case Keys.Up:
+        //        case Keys.Down:
+        //            _snakeController.ChangeInputState(e.KeyCode);
+        //            break;
+        //    }
+        //}
     }
 
 }

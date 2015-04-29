@@ -201,12 +201,14 @@ namespace CubeMasterGUI
             switch (key)
             {
                 case Keys.Left:
+                case Keys.A:
                     if (_currentDirection == DIRECTION.NEGATIVE_Y)
                         _currentDirection = DIRECTION.POSITIVE_X;
                     else
                         _currentDirection++;
                     break;
                 case Keys.Right:
+                case Keys.D:
                     if (_currentDirection == DIRECTION.POSITIVE_X)
                         _currentDirection = DIRECTION.NEGATIVE_Y;
                     else
