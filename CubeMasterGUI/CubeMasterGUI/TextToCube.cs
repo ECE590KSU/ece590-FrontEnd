@@ -43,10 +43,10 @@ namespace CubeMasterGUI
             switch ( _selectedTextEffect)
             {
                 case TEXT_EFFECT.BACK_TO_FRONT: //Need to check if these calls are correct
-                    _cube.MessageFlyOnAxis(text, CubeController.Cube.AXIS.AXIS_Z, CubeController.Cube.DIRECTION.FORWARD);
+                    _cube.MessageFlyOnAxis(text, CubeController.Cube.AXIS.AXIS_Y, CubeController.Cube.DIRECTION.REVERSE);
                     break;
                 case TEXT_EFFECT.FRONT_TO_BACK: //Need to check if these calls are correct
-                    _cube.MessageFlyOnAxis(text, CubeController.Cube.AXIS.AXIS_Z, CubeController.Cube.DIRECTION.REVERSE);
+                    _cube.MessageFlyOnAxis(text, CubeController.Cube.AXIS.AXIS_Y, CubeController.Cube.DIRECTION.FORWARD);
                     break;
                 case TEXT_EFFECT.CLOCKWISE_BANNER: //Need to check if these calls are correct
                     _cube.MessageBanner(text, CubeController.Cube.DIRECTION.FORWARD);
