@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTextToCube));
             this.pnlDrawingControls = new System.Windows.Forms.Panel();
             this.btnSpin3D = new System.Windows.Forms.RadioButton();
             this.btnCounterclockwiseBanner = new System.Windows.Forms.RadioButton();
@@ -38,9 +39,10 @@
             this.btnSend = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnCloseWindow = new CubeMasterGUI.btnCloseWindow();
-            this.tmrTextToCube = new CubeMasterGUI.ctrlTimer();
             this.btnCloseWindow1 = new CubeMasterGUI.btnCloseWindow();
+            this.tmrTextToCube = new CubeMasterGUI.ctrlTimer();
+            this.btnCloseWindow = new CubeMasterGUI.btnCloseWindow();
+            this.label2 = new System.Windows.Forms.Label();
             this.pnlDrawingControls.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -165,32 +167,41 @@
             this.label1.TabIndex = 9;
             this.label1.Text = "Effect:";
             // 
-            // btnCloseWindow
+            // btnCloseWindow1
             // 
-            this.btnCloseWindow.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.btnCloseWindow.Location = new System.Drawing.Point(8270, 65);
-            this.btnCloseWindow.Margin = new System.Windows.Forms.Padding(25);
-            this.btnCloseWindow.Name = "btnCloseWindow";
-            this.btnCloseWindow.Size = new System.Drawing.Size(188, 149);
-            this.btnCloseWindow.TabIndex = 1;
+            this.btnCloseWindow1.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.btnCloseWindow1.Location = new System.Drawing.Point(3308, 31);
+            this.btnCloseWindow1.Margin = new System.Windows.Forms.Padding(10, 11, 10, 11);
+            this.btnCloseWindow1.Name = "btnCloseWindow1";
+            this.btnCloseWindow1.Size = new System.Drawing.Size(75, 67);
+            this.btnCloseWindow1.TabIndex = 11;
             // 
             // tmrTextToCube
             // 
             this.tmrTextToCube.BackColor = System.Drawing.Color.Transparent;
-            this.tmrTextToCube.Location = new System.Drawing.Point(68, 704);
-            this.tmrTextToCube.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
+            this.tmrTextToCube.Location = new System.Drawing.Point(170, 1570);
+            this.tmrTextToCube.Margin = new System.Windows.Forms.Padding(20, 16, 20, 16);
             this.tmrTextToCube.Name = "tmrTextToCube";
-            this.tmrTextToCube.Size = new System.Drawing.Size(30, 30);
+            this.tmrTextToCube.Size = new System.Drawing.Size(75, 67);
             this.tmrTextToCube.TabIndex = 10;
             // 
-            // btnCloseWindow1
+            // btnCloseWindow
             // 
-            this.btnCloseWindow1.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.btnCloseWindow1.Location = new System.Drawing.Point(1323, 14);
-            this.btnCloseWindow1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnCloseWindow1.Name = "btnCloseWindow1";
-            this.btnCloseWindow1.Size = new System.Drawing.Size(30, 30);
-            this.btnCloseWindow1.TabIndex = 11;
+            this.btnCloseWindow.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.btnCloseWindow.Location = new System.Drawing.Point(20675, 145);
+            this.btnCloseWindow.Margin = new System.Windows.Forms.Padding(62, 56, 62, 56);
+            this.btnCloseWindow.Name = "btnCloseWindow";
+            this.btnCloseWindow.Size = new System.Drawing.Size(470, 332);
+            this.btnCloseWindow.TabIndex = 1;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(326, 416);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(696, 145);
+            this.label2.TabIndex = 12;
+            this.label2.Text = resources.GetString("label2.Text");
             // 
             // frmTextToCube
             // 
@@ -198,6 +209,7 @@
             this.BackColor = System.Drawing.Color.GhostWhite;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1366, 750);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.btnCloseWindow1);
             this.Controls.Add(this.tmrTextToCube);
             this.Controls.Add(this.label1);
@@ -237,5 +249,6 @@
         private System.Windows.Forms.RadioButton btnSpin3D;
         private ctrlTimer tmrTextToCube;
         private btnCloseWindow btnCloseWindow1;
+        private System.Windows.Forms.Label label2;
     }
 }
