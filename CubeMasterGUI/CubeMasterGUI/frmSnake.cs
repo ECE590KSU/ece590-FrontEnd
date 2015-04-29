@@ -42,7 +42,8 @@ namespace CubeMasterGUI
             GenerateVoxelGrid();
             InvokeTimerProtocol();
 
-            btnEasy.Checked = true;
+            btnMedium.Checked = true;
+            _snakeController.ChangeDifficultySetting(btnMedium.Name);
 
             btnEasy.CheckedChanged += DifficultyChanged;
             btnMedium.CheckedChanged += DifficultyChanged;
@@ -151,7 +152,7 @@ namespace CubeMasterGUI
 
         private void frmSnake_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            _snakeController.ChangeInputState(Keys.Right);
+            //_snakeController.ChangeInputState(Keys.Right);
         }
     }
 

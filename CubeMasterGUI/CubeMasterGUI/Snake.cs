@@ -19,21 +19,21 @@ namespace CubeMasterGUI
 
         private DIRECTION _currentDirection;
         private Timer _gameTimer;
+        private Timer _foodBlinkTimer;
 
         private SnakeSection _head;
         private SnakeSection _food;
         private List<SnakeSection> _snake;
 
         private bool _foodIsOnTheTable = false;
+        private bool _eating = false;
 
         private Random _random;
-
-        private int _tickCount = 0;
-
+        
         public Snake(ref CubeController.Cube cube)
         {
             _cube = cube;
-            _currentDirection = DIRECTION.NEGATIVE_X;
+            _currentDirection = DIRECTION.POSITIVE_X;
 
             _head = new SnakeSection();
             _cube.SwapVoxel(_head.X, _head.Y, 0);
@@ -55,7 +55,19 @@ namespace CubeMasterGUI
             _gameTimer = new Timer();
             _gameTimer.Interval = 750;
             _gameTimer.Tick += GameTimerTick;
+
+            _foodBlinkTimer = new Timer();
+            _foodBlinkTimer.Interval = 1000 / 4;
+            _foodBlinkTimer.Tick += FoodTimerTick;
+
             _gameTimer.Start();
+            _foodBlinkTimer.Start();
+        }
+
+        private void FoodTimerTick(object sender, EventArgs e)
+        {
+            if (_foodIsOnTheTable)
+                _cube.SwapVoxel(_food.X, _food.Y, 0);
         }
 
         private void SpawnFood()
@@ -73,7 +85,7 @@ namespace CubeMasterGUI
                 }
             }
             _foodIsOnTheTable = true;
-            _cube.SwapVoxel(_food.X, _food.Y, 0);
+            _cube.SetVoxel(_food.X, _food.Y, 0);
         }
 
         public void ChangeDifficultySetting(string s)
@@ -99,24 +111,42 @@ namespace CubeMasterGUI
 
         private void GameTimerTick(object sender, EventArgs e)
         {
-            DisplaySnake();
-
             if (!_foodIsOnTheTable)
                 SpawnFood();
-
+            
             if (_food == _head)
             {
                 _snake.Add(new SnakeSection(_head.X, _head.Y));
-                //_cube.SwapVoxel(_food.X, _food.Y, 0);
+                _eating = true;
                 SpawnFood();
             }
 
+            DisplaySnake();
+
+            if (CheckForCollision())
+            {
+                _gameTimer.Stop();
+                _foodBlinkTimer.Stop();
+                _snake.Clear();
+                _cube.ClearEntireCube();
+                MessageBox.Show("Game Over!");
+            }
         }
 
         private void DisplaySnake()
         {
             int count = _snake.Count;
-            _cube.SwapVoxel(_snake[count - 1].X, _snake[count - 1].Y, 0);
+
+            _cube.SetVoxel(_head.X, _head.Y, 0);
+
+            if (!_eating)
+                _cube.ClearVoxel(_snake[count - 1].X, _snake[count - 1].Y, 0);
+            else
+            {
+                _cube.SetVoxel(_snake[count - 1].X, _snake[count - 1].Y, 0);
+                _eating = false;
+            }
+
             for (int i = count - 1; i > 0; i--)
             {
                 _snake[i].X = _snake[i - 1].X;
@@ -124,7 +154,7 @@ namespace CubeMasterGUI
 
             }
             MoveHeadOfSnake();
-            _cube.SwapVoxel(_head.X, _head.Y, 0);
+            _cube.SetVoxel(_head.X, _head.Y, 0);
         }
 
         private void MoveHeadOfSnake()
@@ -154,6 +184,16 @@ namespace CubeMasterGUI
                 default:
                     break;
             }
+        }
+
+        private bool CheckForCollision()
+        {
+            for (int i = 1; i < _snake.Count; i++)
+            {
+                if (_head == _snake[i])
+                    return true;
+            }
+            return false;
         }
         
         public void ChangeInputState(Keys key)
