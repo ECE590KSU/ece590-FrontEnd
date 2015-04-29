@@ -10,17 +10,21 @@ using System.Windows.Forms;
 
 namespace CubeMasterGUI
 {
+    //var contained = _voxels.Cast<Voxel>().Where(v => v.Bounds.Contains(_drawEnd));
     public partial class frmFreeDraw : Form
     {
         private FreeDraw _freeDrawController;
 
         private List<Button> _functions;
 
-        private bool _isDragging = false;
+        private bool _isSecondClick = false;
+
         private System.Drawing.Point _drawStart;
         private System.Drawing.Point _drawEnd;
-        private Voxel _drawVoxelStart;
-        private Voxel _drawVoxelEnd;
+
+        private CubeController.Point _drawPointStart;
+        private CubeController.Point _drawPointEnd;
+        
         private int _voxelGrid_startX = 20;
         private int _voxelGrid_startY = 75;
         private int _voxelSpacing = 9;
@@ -102,9 +106,6 @@ namespace CubeMasterGUI
                     tmpVoxel.Cursor = Cursors.Cross;
 
                     tmpVoxel.MouseClick += frmFreeDraw_VoxelGridClick;
-                    tmpVoxel.MouseDown += frmFreeDraw_MouseDown;
-                    tmpVoxel.MouseUp += frmFreeDraw_MouseUp;
-                    tmpVoxel.MouseMove += frmFreeDraw_MouseMove;
 
                     _voxels[i, j] = tmpVoxel;
                     this.Controls.Add(tmpVoxel);
@@ -155,7 +156,33 @@ namespace CubeMasterGUI
                 _freeDrawController.SwapVoxel(vox.X, vox.Y);
             }
 
+            else if (_freeDrawController.CurrentDrawingMode == FreeDraw.DRAWING_MODE.LINE)
+            {
+                if (!_isSecondClick)
+                {
+                    // Have to wait for two clicks in order for a line to be drawn. Indicate 
+                    // that you are ready to accept a second click. 
+                    _isSecondClick = true;
+                    _drawStart = PointToClient(e.Location);
+                    _drawPointStart = _freeDrawController.VoxelToPoint(sender as Voxel);
+                }
+                else
+                {
+                    // Reset for a new set of two clicks.
+                    _isSecondClick = false;
+                    _drawEnd = PointToClient(e.Location);
+                    _drawPointEnd = _freeDrawController.VoxelToPoint(sender as Voxel);
+
+                    // Actually draw the line
+                    if (_drawPointStart != null && _drawPointEnd != null)
+                    {
+                        _freeDrawController.DrawLine(_drawPointStart, _drawPointEnd);
+                    }
+                }
+            }
+
             RefreshVoxelGrid();
+
         }
 
         private void btnAXIS_X_CheckedChanged(object sender, EventArgs e)
@@ -233,37 +260,6 @@ namespace CubeMasterGUI
         {
             _demoTimer.Stop();
             _demoThread.Abort();
-        }
-
-        private void frmFreeDraw_MouseDown(object sender, MouseEventArgs e)
-        {
-            // Only care about MouseDown if the sender is a Voxel. We don't need to acknowledge
-            // any other MouseDown events, as the MouseClick events of each child control should suffice.
-            if ( (sender is Voxel) && 
-                (_freeDrawController.CurrentDrawingMode == FreeDraw.DRAWING_MODE.LINE))
-            {
-                Cursor = Cursors.Cross;
-                _isDragging = true;
-                _drawVoxelStart = sender as Voxel;
-                _drawStart = new Point(Cursor.Position.X, Cursor.Position.Y);
-            }
-        }
-
-        private void frmFreeDraw_MouseUp(object sender, MouseEventArgs e)
-        {
-            // Sender is transmitted as the original sending voxel. 
-            if (_isDragging)
-            {
-                _isDragging = false;
-                _drawEnd = new Point(Cursor.Position.X, Cursor.Position.Y);
-                _drawEnd = PointToClient(_drawEnd);
-                var contained = _voxels.Cast<Voxel>().Where(v => v.Bounds.Contains(_drawEnd));
-
-                if (contained.Count() > 0)
-                {
-                    _drawVoxelEnd = contained.ToArray<Voxel>()[0];
-                }
-            }
         }
 
         private void btnSingle_Click(object sender, EventArgs e)

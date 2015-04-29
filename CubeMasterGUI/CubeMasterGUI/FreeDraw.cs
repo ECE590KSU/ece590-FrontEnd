@@ -71,5 +71,33 @@ namespace CubeMasterGUI
                 _cube.BoxWoopWoop(1, 200, false);
             }
         }
+
+        public void DrawLine(CubeController.Point p1, CubeController.Point p2)
+        {
+            _cube.DrawLine(p1, p2);
+        }
+
+        public CubeController.Point VoxelToPoint(Voxel vox)
+        {
+            CubeController.Point point; 
+
+            switch (this.SelectedAxis)
+            {
+                case CubeController.Cube.AXIS.AXIS_X:
+                    point = new CubeController.Point(this.SelectedPlane, vox.X, vox.Y);
+                    break;
+                case CubeController.Cube.AXIS.AXIS_Y:
+                    point = new CubeController.Point(vox.X, this.SelectedPlane, vox.Y);
+                    break;
+                case CubeController.Cube.AXIS.AXIS_Z:
+                    point = new CubeController.Point(vox.X, vox.Y, this.SelectedPlane);
+                    break;
+                default:
+                    point = null;
+                    break;
+            }
+
+            return point;
+        }
     }
 }
