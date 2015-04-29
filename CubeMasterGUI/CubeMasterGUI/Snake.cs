@@ -20,16 +20,21 @@ namespace CubeMasterGUI
         private Hashtable _keys;
 
         private SnakeSection _head;
+        private List<SnakeSection> _snake;
 
-                
+        private int _tickCount = 0;
+
         public Snake(ref CubeController.Cube cube)
         {
             _cube = cube;
             _keys = new Hashtable();
-            _currentDirection = DIRECTION.POSITIVE_X;
+            _currentDirection = DIRECTION.NEGATIVE_X;
 
             _head = new SnakeSection();
             _cube.SwapVoxel(_head.X, _head.Y, 0);
+
+            _snake = new List<SnakeSection>();
+            _snake.Add(_head);
 
             _gameTimer = new Timer();
             _gameTimer.Interval = 750;
@@ -39,6 +44,12 @@ namespace CubeMasterGUI
 
         private void GameTimerTick(object sender, EventArgs e)
         {
+            _tickCount++;
+            if (_tickCount % 2 == 0)
+            {
+                var temp = new SnakeSection(_head.X, _head.Y);
+                _snake.Add(temp);
+            }
             _cube.SwapVoxel(_head.X, _head.Y, 0);
             switch(_currentDirection)
             {
@@ -51,19 +62,44 @@ namespace CubeMasterGUI
                     _head.Y %= DIMENSION;
                     break;
                 case DIRECTION.NEGATIVE_X:
-                    _head.X = (_head.X == 0) ? DIMENSION - 1 : _head.X--;
+                    if (_head.X == 0)
+                        _head.X = DIMENSION - 1;
+                    else
+                        _head.X--;
                     break;
                 case DIRECTION.NEGATIVE_Y:
-                    _head.Y = (_head.Y == 0) ? DIMENSION - 1 : _head.Y--;
+                    if (_head.Y == 0)
+                        _head.Y = DIMENSION - 1;
+                    else      
+                        _head.Y--;
+                    break;
+                default:
                     break;
             }
             _cube.SwapVoxel(_head.X, _head.Y, 0);
+        }
 
+        private void DisplaySnake()
+        {
+            foreach (var s in _snake)
+            {
+
+            }
         }
         
-        public void ChangeInputState(Keys key, bool state)
+        public void ChangeInputState(Keys key)
         {
-            _keys[key] = state;
+            switch (key)
+            {
+                case Keys.Left:
+                    _currentDirection++;
+                    break;
+                case Keys.Right:
+                    _currentDirection--;
+                    break;
+                default:
+                    break;
+            }
         }
 
         public bool IsPressed(Keys key)
@@ -90,6 +126,12 @@ namespace CubeMasterGUI
         {
             X = 0;
             Y = 0;
+        }
+
+        public SnakeSection(int x, int y)
+        {
+            X = x;
+            Y = y;
         }
     }
 }

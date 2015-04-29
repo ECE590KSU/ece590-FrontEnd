@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.lblWindowName = new System.Windows.Forms.Label();
             this.pnlDrawingControls = new System.Windows.Forms.Panel();
             this.btnHard = new System.Windows.Forms.RadioButton();
@@ -147,9 +146,11 @@
             this.Controls.Add(this.btnCloseWindow1);
             this.Controls.Add(this.tmrSnake);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.KeyPreview = true;
             this.Name = "frmSnake";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmSnake";
+            this.Load += new System.EventHandler(this.frmSnake_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmSnake_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.frmSnake_KeyUp);
             this.pnlDrawingControls.ResumeLayout(false);

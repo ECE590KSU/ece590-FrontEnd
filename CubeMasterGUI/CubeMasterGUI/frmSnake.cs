@@ -70,12 +70,12 @@ namespace CubeMasterGUI
 
         private void frmSnake_KeyDown(object sender, KeyEventArgs e)
         {
-            _snakeController.ChangeInputState(e.KeyCode, true);
+            _snakeController.ChangeInputState(e.KeyCode);
         }
 
         private void frmSnake_KeyUp(object sender, KeyEventArgs e)
         {
-            _snakeController.ChangeInputState(e.KeyCode, false);
+            //_snakeController.ChangeInputState(e.KeyCode, false);
         }
 
         private void GenerateVoxelGrid()
@@ -126,6 +126,14 @@ namespace CubeMasterGUI
                 }
             }
             this.ResumeLayout();
+        }
+
+        private void frmSnake_Load(object sender, EventArgs e)
+        {
+            this.BringToFront();
+            this.Focus();
+            this.KeyPreview = true;
+            this.KeyDown += new KeyEventHandler(frmSnake_KeyDown);
         }
     }
 
