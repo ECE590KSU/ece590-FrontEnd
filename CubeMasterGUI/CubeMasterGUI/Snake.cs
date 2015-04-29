@@ -19,17 +19,17 @@ namespace CubeMasterGUI
 
         private DIRECTION _currentDirection;
         private Timer _gameTimer;
-        private Hashtable _keys;
 
         private SnakeSection _head;
         private List<SnakeSection> _snake;
+
+        private Random _random;
 
         private int _tickCount = 0;
 
         public Snake(ref CubeController.Cube cube)
         {
             _cube = cube;
-            _keys = new Hashtable();
             _currentDirection = DIRECTION.NEGATIVE_X;
 
             _head = new SnakeSection();
@@ -37,6 +37,8 @@ namespace CubeMasterGUI
 
             _snake = new List<SnakeSection>();
             _snake.Add(_head);
+
+            _random = new Random();
 
             _difficultyDictionary = new Dictionary<string, DIFFICULTY>
             {
@@ -49,6 +51,28 @@ namespace CubeMasterGUI
             _gameTimer.Interval = 750;
             _gameTimer.Tick += GameTimerTick;
             _gameTimer.Start();
+
+            SpawnFood();
+        }
+
+        private void SpawnFood()
+        {
+            int x = -1, y = -1;
+            bool valid = false;
+            while (!valid)
+            {
+                x = _random.Next(DIMENSION);
+                y = _random.Next(DIMENSION);
+                valid = true;
+                foreach (var s in _snake)
+                {
+                    if (x == s.X || y == s.Y)
+                        valid = false;
+                }
+            }
+
+            _cube.SwapVoxel(x, y, 0);
+
         }
 
         public void ChangeDifficultySetting(string s)
@@ -122,25 +146,22 @@ namespace CubeMasterGUI
             switch (key)
             {
                 case Keys.Left:
-                    _currentDirection++;
+                    if (_currentDirection == DIRECTION.NEGATIVE_Y)
+                        _currentDirection = DIRECTION.POSITIVE_X;
+                    else
+                        _currentDirection++;
                     break;
                 case Keys.Right:
-                    _currentDirection--;
+                    if (_currentDirection == DIRECTION.POSITIVE_X)
+                        _currentDirection = DIRECTION.NEGATIVE_Y;
+                    else
+                        _currentDirection--;
                     break;
                 default:
                     break;
             }
         }
-
-        public bool IsPressed(Keys key)
-        {
-            if (_keys[key] == null)
-            {
-                return false;
-            }
-            return (bool)_keys[key];
-        }
-        
+                
         public bool[][] GetPlane(int plane)
         {
             return _cube.GetPlane(CubeController.Cube.AXIS.AXIS_Z, plane);

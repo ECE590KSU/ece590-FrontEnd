@@ -72,16 +72,8 @@ namespace CubeMasterGUI
                 this.tmrSnake.InitializeTimers();
             }
         }
-                
-        private void frmGames_MouseMove(object sender, MouseEventArgs e)
-        {
-            this.tmrSnake.ResetTimers();
-        }
-
-        private void frmGames_MouseClick(object sender, MouseEventArgs e)
-        {
-            this.tmrSnake.ResetTimers();
-        }
+        
+        // reset snake timer
 
         private void frmSnake_KeyDown(object sender, KeyEventArgs e)
         {
@@ -149,6 +141,17 @@ namespace CubeMasterGUI
             this.Focus();
             this.KeyPreview = true;
             this.KeyDown += new KeyEventHandler(frmSnake_KeyDown);
+        }
+
+        private void frmSnake_MouseClick(object sender, MouseEventArgs e)
+        {
+            _snakeController.ChangeInputState(Keys.Left);
+            tmrSnake.ResetTimers();
+        }
+
+        private void frmSnake_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            _snakeController.ChangeInputState(Keys.Right);
         }
     }
 

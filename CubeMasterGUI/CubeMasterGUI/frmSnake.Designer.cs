@@ -153,6 +153,8 @@
             this.Load += new System.EventHandler(this.frmSnake_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmSnake_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.frmSnake_KeyUp);
+            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.frmSnake_MouseClick);
+            this.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.frmSnake_MouseDoubleClick);
             this.pnlDrawingControls.ResumeLayout(false);
             this.pnlDrawingControls.PerformLayout();
             this.ResumeLayout(false);
