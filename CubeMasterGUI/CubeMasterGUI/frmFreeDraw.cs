@@ -10,7 +10,6 @@ using System.Windows.Forms;
 
 namespace CubeMasterGUI
 {
-    //var contained = _voxels.Cast<Voxel>().Where(v => v.Bounds.Contains(_drawEnd));
     public partial class frmFreeDraw : Form
     {
         private FreeDraw _freeDrawController;
@@ -167,7 +166,6 @@ namespace CubeMasterGUI
                     _isSecondClick = true;
                     _drawStart = PointToClient(e.Location);
                     _drawPointStart = _freeDrawController.VoxelToPoint(sender as Voxel);
-                    Graphics g = this.CreateGraphics();
                 }
                 else
                 {
@@ -180,6 +178,31 @@ namespace CubeMasterGUI
                     if (_drawPointStart != null && _drawPointEnd != null)
                     {
                         _freeDrawController.DrawLine(_drawPointStart, _drawPointEnd);
+                    }
+                }
+            }
+
+            else if (_freeDrawController.CurrentDrawingMode == FreeDraw.DRAWING_MODE.RECTANGLE)
+            {
+                if (!_isSecondClick)
+                {
+                    // Have to wait for two clicks in order for a rectangle to be drawn. Indicate 
+                    // that you are ready to accept a second click. 
+                    _isSecondClick = true;
+                    _drawStart = PointToClient(e.Location);
+                    _drawPointStart = _freeDrawController.VoxelToPoint(sender as Voxel);
+                }
+                else
+                {
+                    // Reset for a new set of two clicks.
+                    _isSecondClick = false;
+                    _drawEnd = PointToClient(e.Location);
+                    _drawPointEnd = _freeDrawController.VoxelToPoint(sender as Voxel);
+
+                    // Actually draw the rectangle
+                    if (_drawPointStart != null && _drawPointEnd != null)
+                    {
+                        _freeDrawController.DrawRectangle(_drawPointStart, _drawPointEnd);
                     }
                 }
             }
@@ -268,24 +291,28 @@ namespace CubeMasterGUI
         private void btnSingle_Click(object sender, EventArgs e)
         {
             _freeDrawController.CurrentDrawingMode = FreeDraw.DRAWING_MODE.SINGLE;
+            _isSecondClick = false;
             ToggleSelectedDrawingFunction(sender as Button);
         }
 
         private void btnLine_Click(object sender, EventArgs e)
         {
             _freeDrawController.CurrentDrawingMode = FreeDraw.DRAWING_MODE.LINE;
+            _isSecondClick = false;
             ToggleSelectedDrawingFunction(sender as Button);
         }
 
         private void btnRectangle_Click(object sender, EventArgs e)
         {
             _freeDrawController.CurrentDrawingMode = FreeDraw.DRAWING_MODE.RECTANGLE;
+            _isSecondClick = false;
             ToggleSelectedDrawingFunction(sender as Button);
         }
 
         private void btnCircle_Click(object sender, EventArgs e)
         {
             _freeDrawController.CurrentDrawingMode = FreeDraw.DRAWING_MODE.CIRCLE;
+            _isSecondClick = false;
             ToggleSelectedDrawingFunction(sender as Button);
         }
 

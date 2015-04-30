@@ -99,5 +99,10 @@ namespace CubeMasterGUI
 
             return point;
         }
+
+        public void DrawRectangle(CubeController.Point p1, CubeController.Point p2)
+        {
+            _cube.DrawRectangle(this.SelectedAxis, p1, p2);
+        }
     }
 }
