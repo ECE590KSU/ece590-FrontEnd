@@ -23,6 +23,62 @@ namespace CubeMasterGUI
             this.CurrentDrawingMode = DRAWING_MODE.SINGLE;
         }
 
+        public void SetVoxel(int grid_x, int grid_y)
+        {
+            switch (this.SelectedAxis)
+            {
+                case CubeController.Cube.AXIS.AXIS_X:
+                    _cube.SetVoxel(this.SelectedPlane, grid_x, grid_y);
+                    break;
+                case CubeController.Cube.AXIS.AXIS_Y:
+                    _cube.SetVoxel(grid_x, this.SelectedPlane, grid_y);
+                    break;
+                case CubeController.Cube.AXIS.AXIS_Z:
+                    _cube.SetVoxel(grid_x, grid_y, this.SelectedPlane);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        public void SetVoxel(int x, int y, int z)
+        {
+            _cube.SetVoxel(x, y, z);
+        }
+
+        public void SetVoxel(CubeController.Point p)
+        {
+            _cube.SetVoxel(p.X, p.Y, p.Z);
+        }
+
+        public void ClearVoxel(int grid_x, int grid_y)
+        {
+            switch (this.SelectedAxis)
+            {
+                case CubeController.Cube.AXIS.AXIS_X:
+                    _cube.ClearVoxel(this.SelectedPlane, grid_x, grid_y);
+                    break;
+                case CubeController.Cube.AXIS.AXIS_Y:
+                    _cube.ClearVoxel(grid_x, this.SelectedPlane, grid_y);
+                    break;
+                case CubeController.Cube.AXIS.AXIS_Z:
+                    _cube.ClearVoxel(grid_x, grid_y, this.SelectedPlane);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        public void ClearVoxel(int x, int y, int z)
+        {
+            _cube.ClearVoxel(x, y, z);
+        }
+
+        public void ClearVoxel(CubeController.Point p)
+        {
+            _cube.ClearVoxel(p.X, p.Y, p.Z);
+        }
+
         public void SwapVoxel(int grid_x, int grid_y)
         {
             switch (this.SelectedAxis)
@@ -41,6 +97,15 @@ namespace CubeMasterGUI
             }
         }
 
+        public void SwapVoxel(int x, int y, int z)
+        {
+            _cube.SwapVoxel(x, y, z);
+        }
+
+        public void SwapVoxel(CubeController.Point p)
+        {
+            _cube.SwapVoxel(p.X, p.Y, p.Z);
+        }
 
         public void ClearPlane(int plane)
         {
@@ -77,6 +142,16 @@ namespace CubeMasterGUI
             _cube.DrawLine(p1, p2);
         }
 
+        public void DrawRectangle(CubeController.Point p1, CubeController.Point p2)
+        {
+            _cube.DrawRectangle(this.SelectedAxis, p1, p2);
+        }
+
+        public void DrawCircle(CubeController.Point center, CubeController.Point rad)
+        {
+            _cube.DrawCircle(this.SelectedAxis, center, rad);
+        }
+
         public CubeController.Point VoxelToPoint(Voxel vox)
         {
             CubeController.Point point; 
@@ -98,11 +173,6 @@ namespace CubeMasterGUI
             }
 
             return point;
-        }
-
-        public void DrawRectangle(CubeController.Point p1, CubeController.Point p2)
-        {
-            _cube.DrawRectangle(this.SelectedAxis, p1, p2);
         }
     }
 }

@@ -57,8 +57,6 @@ namespace CubeMasterGUI
 
         private void AssignDrawingFunctions()
         {
-            // Replace button text with actual shapes. 'Single' would just be a point, 
-            // "Line" would be a line, etc. Would be much better looking UI. 
             _functions = new List<Button>();
             _functions.Add(this.btnSingle);
             _functions.Add(this.btnLine);
@@ -98,10 +96,6 @@ namespace CubeMasterGUI
                     
                     tmpVoxel.X = j;
                     tmpVoxel.Y = i;
-
-                    var lbl = new Label();
-                    lbl.Text = "[" + i + "," + j + "]";
-                    tmpVoxel.Controls.Add(lbl);
 
                     tmpVoxel.BringToFront();
                     tmpVoxel.Cursor = Cursors.Cross;
@@ -152,11 +146,13 @@ namespace CubeMasterGUI
             this.tmrFreeDraw.ResetTimers();
             Voxel vox = sender as Voxel;
 
+            // SINGLE DRAW (POINT BY POINT)
             if (_freeDrawController.CurrentDrawingMode == FreeDraw.DRAWING_MODE.SINGLE)
             {
                 _freeDrawController.SwapVoxel(vox.X, vox.Y);
             }
 
+            // LINE DRAW (POINT TO POINT)
             else if (_freeDrawController.CurrentDrawingMode == FreeDraw.DRAWING_MODE.LINE)
             {
                 if (!_isSecondClick)
@@ -166,6 +162,7 @@ namespace CubeMasterGUI
                     _isSecondClick = true;
                     _drawStart = PointToClient(e.Location);
                     _drawPointStart = _freeDrawController.VoxelToPoint(sender as Voxel);
+                    _freeDrawController.SetVoxel((sender as Voxel).X, (sender as Voxel).Y);
                 }
                 else
                 {
@@ -173,6 +170,7 @@ namespace CubeMasterGUI
                     _isSecondClick = false;
                     _drawEnd = PointToClient(e.Location);
                     _drawPointEnd = _freeDrawController.VoxelToPoint(sender as Voxel);
+                    _freeDrawController.SetVoxel((sender as Voxel).X, (sender as Voxel).Y);
 
                     // Actually draw the line
                     if (_drawPointStart != null && _drawPointEnd != null)
@@ -181,7 +179,8 @@ namespace CubeMasterGUI
                     }
                 }
             }
-
+            
+            // RECTANGLE DRAW
             else if (_freeDrawController.CurrentDrawingMode == FreeDraw.DRAWING_MODE.RECTANGLE)
             {
                 if (!_isSecondClick)
@@ -191,6 +190,8 @@ namespace CubeMasterGUI
                     _isSecondClick = true;
                     _drawStart = PointToClient(e.Location);
                     _drawPointStart = _freeDrawController.VoxelToPoint(sender as Voxel);
+                    // Feedback to the user, shows them the selected voxel. 
+                    _freeDrawController.SetVoxel((sender as Voxel).X, (sender as Voxel).Y);
                 }
                 else
                 {
@@ -198,6 +199,8 @@ namespace CubeMasterGUI
                     _isSecondClick = false;
                     _drawEnd = PointToClient(e.Location);
                     _drawPointEnd = _freeDrawController.VoxelToPoint(sender as Voxel);
+                    // Feedback to the user, shows them the selected voxel. 
+                    _freeDrawController.SetVoxel((sender as Voxel).X, (sender as Voxel).Y);
 
                     // Actually draw the rectangle
                     if (_drawPointStart != null && _drawPointEnd != null)
@@ -207,8 +210,41 @@ namespace CubeMasterGUI
                 }
             }
 
-            RefreshVoxelGrid();
+            // CIRCLE DRAW
+            else
+            {
+                if (!_isSecondClick)
+                {
+                    // Have to wait for two clicks in order for a circle to be drawn. Indicate
+                    // that you are ready to accept a second click.
+                    _isSecondClick = true;
+                    _drawStart = PointToClient(e.Location);
+                    _drawPointStart = _freeDrawController.VoxelToPoint(sender as Voxel);
+                    _freeDrawController.SetVoxel((sender as Voxel).X, (sender as Voxel).Y);
+                }
+                else
+                {
+                    // Reset for a new set of two clicks.
+                    _isSecondClick = false;
+                    _drawEnd = PointToClient(e.Location);
+                    _drawPointEnd = _freeDrawController.VoxelToPoint(sender as Voxel);
+                    // Shows them the selected voxel. 
+                    _freeDrawController.SetVoxel((sender as Voxel).X, (sender as Voxel).Y);
 
+                    // Actually draw the circle
+                    if (_drawPointStart != null && _drawPointEnd != null)
+                    {
+                        // Clear out the points that you set for feedback, as they may not be a part
+                        // of the final arc.
+                        _freeDrawController.ClearVoxel(_drawPointStart);
+                        _freeDrawController.ClearVoxel(_drawPointEnd);
+
+                        _freeDrawController.DrawCircle(_drawPointStart, _drawPointEnd);
+                    }
+                }
+            }
+
+            RefreshVoxelGrid();
         }
 
         private void btnAXIS_X_CheckedChanged(object sender, EventArgs e)
@@ -263,6 +299,7 @@ namespace CubeMasterGUI
         {
             _freeDrawController.ClearEntireCube();
             this.uxPlaneSelect.Value = 1;
+            InitializeRadioButtons();
             RefreshVoxelGrid();
         }
 
