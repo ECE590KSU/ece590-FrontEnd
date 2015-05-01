@@ -126,12 +126,17 @@ namespace CubeMasterGUI
 
             if (CheckForCollision())
             {
-                _gameTimer.Stop();
-                _foodBlinkTimer.Stop();
-                _snake.Clear();
-                _cube.ClearEntireCube();
-                MessageBox.Show("Game Over!");
+                EndGame();
             }
+        }
+
+        private void EndGame()
+        {
+            _gameTimer.Stop();
+            _foodBlinkTimer.Stop();
+            _snake.Clear();
+            _cube.ClearEntireCube();
+            MessageBox.Show("Game Over!");
         }
 
         private void DisplaySnake()
