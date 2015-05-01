@@ -36,6 +36,7 @@ namespace CubeMasterGUI
 
         private void btnSnake_Click(object sender, EventArgs e)
         {
+            tmrGames.HaltTimers();
             _gameController.LaunchSnake(this.Width, this.Height);
         }
 

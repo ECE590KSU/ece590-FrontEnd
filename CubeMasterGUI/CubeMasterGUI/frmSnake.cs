@@ -84,6 +84,7 @@ namespace CubeMasterGUI
         private void frmSnake_KeyUp(object sender, KeyEventArgs e)
         {
             _snakeController.ChangeInputState(e.KeyCode);
+            tmrSnake.ResetText();
         }
 
         private void GenerateVoxelGrid()
@@ -134,6 +135,7 @@ namespace CubeMasterGUI
                 }
             }
             this.ResumeLayout();
+            lblScore.Text = "Score: " + _snakeController.GetScore();
         }
 
         private void frmSnake_Load(object sender, EventArgs e)
@@ -167,6 +169,11 @@ namespace CubeMasterGUI
                     e.IsInputKey = true;
                     break;
             }
+        }
+
+        private void btnStart_Click(object sender, EventArgs e)
+        {
+            _snakeController.StartNewGame();
         }
 
         //protected override bool IsInputKey(Keys keyData)

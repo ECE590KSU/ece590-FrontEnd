@@ -36,6 +36,7 @@
             this.btnStart = new System.Windows.Forms.Button();
             this.btnCloseWindow1 = new CubeMasterGUI.btnCloseWindow();
             this.tmrSnake = new CubeMasterGUI.ctrlTimer();
+            this.lblScore = new System.Windows.Forms.Label();
             this.pnlDrawingControls.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -116,6 +117,7 @@
             this.btnStart.TabIndex = 6;
             this.btnStart.Text = "START";
             this.btnStart.UseVisualStyleBackColor = false;
+            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
             // btnCloseWindow1
             // 
@@ -134,12 +136,23 @@
             this.tmrSnake.Size = new System.Drawing.Size(13, 13);
             this.tmrSnake.TabIndex = 3;
             // 
+            // lblScore
+            // 
+            this.lblScore.AutoSize = true;
+            this.lblScore.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblScore.ForeColor = System.Drawing.Color.SteelBlue;
+            this.lblScore.Location = new System.Drawing.Point(1016, 474);
+            this.lblScore.Name = "lblScore";
+            this.lblScore.Size = new System.Drawing.Size(0, 32);
+            this.lblScore.TabIndex = 7;
+            // 
             // frmSnake
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.GhostWhite;
             this.ClientSize = new System.Drawing.Size(1366, 768);
+            this.Controls.Add(this.lblScore);
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.pnlDrawingControls);
             this.Controls.Add(this.lblWindowName);
@@ -172,5 +185,6 @@
         private System.Windows.Forms.RadioButton btnMedium;
         private System.Windows.Forms.RadioButton btnEasy;
         private System.Windows.Forms.Button btnStart;
+        private System.Windows.Forms.Label lblScore;
     }
 }

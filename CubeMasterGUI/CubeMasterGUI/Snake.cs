@@ -13,6 +13,7 @@ namespace CubeMasterGUI
         private const int DIMENSION = 8;
         private CubeController.Cube _cube;
         private Dictionary<string, DIFFICULTY> _difficultyDictionary;
+        private int _score;
 
         private enum DIRECTION { POSITIVE_X, POSITIVE_Y, NEGATIVE_X, NEGATIVE_Y };
         private enum DIFFICULTY { EASY, MEDIUM, HARD };
@@ -34,29 +35,28 @@ namespace CubeMasterGUI
         {
             _cube = cube;
             _currentDirection = DIRECTION.POSITIVE_X;
-
             _head = new SnakeSection();
-            _cube.SwapVoxel(_head.X, _head.Y, 0);
-
             _food = new SnakeSection();
-
             _snake = new List<SnakeSection>();
-            _snake.Add(_head);
-
             _random = new Random();
-
+            _gameTimer = new Timer();
+            _foodBlinkTimer = new Timer();
             _difficultyDictionary = new Dictionary<string, DIFFICULTY>
             {
                 {"btnEasy", DIFFICULTY.EASY},
                 {"btnMedium", DIFFICULTY.MEDIUM},
                 {"btnHard", DIFFICULTY.HARD}
             };
+        }
 
-            _gameTimer = new Timer();
-            _gameTimer.Interval = 750;
+        public void StartNewGame()
+        {
+            _score = 0;
+
+            _snake.Add(_head);
+
+            _gameTimer.Interval = 750; // needs to be based off of selected speed
             _gameTimer.Tick += GameTimerTick;
-
-            _foodBlinkTimer = new Timer();
             _foodBlinkTimer.Interval = 1000 / 4;
             _foodBlinkTimer.Tick += FoodTimerTick;
 
@@ -118,6 +118,7 @@ namespace CubeMasterGUI
             {
                 _snake.Add(new SnakeSection(_head.X, _head.Y));
                 _eating = true;
+                _score++;
                 SpawnFood();
             }
 
@@ -136,7 +137,6 @@ namespace CubeMasterGUI
         private void DisplaySnake()
         {
             int count = _snake.Count;
-
             _cube.SetVoxel(_head.X, _head.Y, 0);
 
             if (!_eating)
@@ -222,6 +222,11 @@ namespace CubeMasterGUI
         public bool[][] GetPlane(int plane)
         {
             return _cube.GetPlane(CubeController.Cube.AXIS.AXIS_Z, plane);
+        }
+
+        public string GetScore()
+        {
+            return _score.ToString();
         }
     }
 
