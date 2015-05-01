@@ -1,6 +1,6 @@
 ﻿namespace CubeMasterGUI
 {
-    partial class frmSnake
+    partial class S
     {
         /// <summary>
         /// Required designer variable.
@@ -37,6 +37,7 @@
             this.btnCloseWindow1 = new CubeMasterGUI.btnCloseWindow();
             this.tmrSnake = new CubeMasterGUI.ctrlTimer();
             this.lblScore = new System.Windows.Forms.Label();
+            this.btnEndGame = new System.Windows.Forms.Button();
             this.pnlDrawingControls.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -146,12 +147,29 @@
             this.lblScore.Size = new System.Drawing.Size(0, 32);
             this.lblScore.TabIndex = 7;
             // 
-            // frmSnake
+            // btnEndGame
+            // 
+            this.btnEndGame.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnEndGame.FlatAppearance.BorderSize = 0;
+            this.btnEndGame.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightSlateGray;
+            this.btnEndGame.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSteelBlue;
+            this.btnEndGame.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEndGame.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEndGame.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnEndGame.Location = new System.Drawing.Point(1019, 474);
+            this.btnEndGame.Name = "btnEndGame";
+            this.btnEndGame.Size = new System.Drawing.Size(151, 48);
+            this.btnEndGame.TabIndex = 8;
+            this.btnEndGame.Text = "END GAME";
+            this.btnEndGame.UseVisualStyleBackColor = false;
+            // 
+            // S
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.GhostWhite;
             this.ClientSize = new System.Drawing.Size(1366, 768);
+            this.Controls.Add(this.btnEndGame);
             this.Controls.Add(this.lblScore);
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.pnlDrawingControls);
@@ -160,7 +178,7 @@
             this.Controls.Add(this.tmrSnake);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
-            this.Name = "frmSnake";
+            this.Name = "S";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmSnake";
             this.Load += new System.EventHandler(this.frmSnake_Load);
@@ -186,5 +204,6 @@
         private System.Windows.Forms.RadioButton btnEasy;
         private System.Windows.Forms.Button btnStart;
         private System.Windows.Forms.Label lblScore;
+        private System.Windows.Forms.Button btnEndGame;
     }
 }

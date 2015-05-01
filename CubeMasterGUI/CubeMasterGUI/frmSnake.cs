@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace CubeMasterGUI
 {
-    public partial class frmSnake : Form
+    public partial class S : Form
     {
         private Snake _snakeController;
 
@@ -29,12 +29,11 @@ namespace CubeMasterGUI
         private Color _clrVoxelClicked = AssetHandler._secondaryControlColor;
         private Color _clrVoxelUnclicked = AssetHandler._primaryFormColor;
 
-        public frmSnake(ref CubeController.Cube cube, int parentWidth, int parentHeight)
+        public S(ref CubeController.Cube cube, int parentWidth, int parentHeight)
         {
             InitializeComponent();
 
             _snakeController = new Snake(ref cube);
-            _currentPlane = 0;
 
             this.Width = parentWidth;
             this.Height = parentHeight;
@@ -54,7 +53,7 @@ namespace CubeMasterGUI
             _refreshTimer.Tick += new EventHandler(RefreshVoxelGrid);
             _refreshTimer.Start();
 
-
+            lblScore.Location = new Point(1019, 527);
         }
 
         private void DifficultyChanged(object sender, EventArgs e)
@@ -125,7 +124,7 @@ namespace CubeMasterGUI
         public void RefreshVoxelGrid(object sender, EventArgs e)
         {
             this.SuspendLayout();
-            var tmpplane = _snakeController.GetPlane(_currentPlane);
+            var tmpplane = _snakeController.GetPlane();
 
             for (int i = 0; i < 8; ++i)
             {
@@ -173,6 +172,13 @@ namespace CubeMasterGUI
 
         private void btnStart_Click(object sender, EventArgs e)
         {
+            if (btnEasy.Checked)
+                _snakeController.ChangeDifficultySetting(btnEasy.Name);
+            else if (btnMedium.Checked)
+                _snakeController.ChangeDifficultySetting(btnMedium.Name);
+            else if (btnHard.Checked)
+                _snakeController.ChangeDifficultySetting(btnHard.Name);
+
             _snakeController.StartNewGame();
         }
 

@@ -17,7 +17,7 @@ namespace CubeMasterGUI
 
         public void LaunchSnake(int width, int height)
         {
-            frmSnake snake = new frmSnake(ref _cube, width, height);
+            S snake = new S(ref _cube, width, height);
 
             if (snake.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {

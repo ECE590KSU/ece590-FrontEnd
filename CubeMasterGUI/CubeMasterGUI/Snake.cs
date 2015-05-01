@@ -14,6 +14,7 @@ namespace CubeMasterGUI
         private CubeController.Cube _cube;
         private Dictionary<string, DIFFICULTY> _difficultyDictionary;
         private int _score;
+        private int _currentPlane;
 
         private enum DIRECTION { POSITIVE_X, POSITIVE_Y, NEGATIVE_X, NEGATIVE_Y };
         private enum DIFFICULTY { EASY, MEDIUM, HARD };
@@ -34,6 +35,7 @@ namespace CubeMasterGUI
         public Snake(ref CubeController.Cube cube)
         {
             _cube = cube;
+            _currentPlane = 0;
             _currentDirection = DIRECTION.POSITIVE_X;
             _head = new SnakeSection();
             _food = new SnakeSection();
@@ -55,7 +57,6 @@ namespace CubeMasterGUI
 
             _snake.Add(_head);
 
-            _gameTimer.Interval = 750; // needs to be based off of selected speed
             _gameTimer.Tick += GameTimerTick;
             _foodBlinkTimer.Interval = 1000 / 4;
             _foodBlinkTimer.Tick += FoodTimerTick;
@@ -77,6 +78,8 @@ namespace CubeMasterGUI
             {
                 _food.X = _random.Next(DIMENSION);
                 _food.Y = _random.Next(DIMENSION);
+                _food.Z = 0;
+                //_food.Z = _random.Next(DIMENSION);
                 valid = true;
                 foreach (var s in _snake)
                 {
@@ -85,7 +88,7 @@ namespace CubeMasterGUI
                 }
             }
             _foodIsOnTheTable = true;
-            _cube.SetVoxel(_food.X, _food.Y, 0);
+            _cube.SetVoxel(_food.X, _food.Y, 0); // TODO: need to change this to _food.Z
         }
 
         public void ChangeDifficultySetting(string s)
@@ -116,7 +119,7 @@ namespace CubeMasterGUI
             
             if (_food == _head)
             {
-                _snake.Add(new SnakeSection(_head.X, _head.Y));
+                _snake.Add(new SnakeSection(_head.X, _head.Y, _head.Z));
                 _eating = true;
                 _score++;
                 SpawnFood();
@@ -142,13 +145,13 @@ namespace CubeMasterGUI
         private void DisplaySnake()
         {
             int count = _snake.Count;
-            _cube.SetVoxel(_head.X, _head.Y, 0);
+            _cube.SetVoxel(_head.X, _head.Y, _head.Z);
 
             if (!_eating)
-                _cube.ClearVoxel(_snake[count - 1].X, _snake[count - 1].Y, 0);
+                _cube.ClearVoxel(_snake[count - 1].X, _snake[count - 1].Y, _snake[count - 1].Z);
             else
             {
-                _cube.SetVoxel(_snake[count - 1].X, _snake[count - 1].Y, 0);
+                _cube.SetVoxel(_snake[count - 1].X, _snake[count - 1].Y, _snake[count - 1].Z);
                 _eating = false;
             }
 
@@ -156,10 +159,11 @@ namespace CubeMasterGUI
             {
                 _snake[i].X = _snake[i - 1].X;
                 _snake[i].Y = _snake[i - 1].Y;
-
+                _snake[i].Z = _snake[i - 1].Z;
             }
             MoveHeadOfSnake();
-            _cube.SetVoxel(_head.X, _head.Y, 0);
+            _currentPlane = _head.Z;
+            _cube.SetVoxel(_head.X, _head.Y, _head.Z);
         }
 
         private void MoveHeadOfSnake()
@@ -224,9 +228,9 @@ namespace CubeMasterGUI
             }
         }
                 
-        public bool[][] GetPlane(int plane)
+        public bool[][] GetPlane()
         {
-            return _cube.GetPlane(CubeController.Cube.AXIS.AXIS_Z, plane);
+            return _cube.GetPlane(CubeController.Cube.AXIS.AXIS_Z, _currentPlane);
         }
 
         public string GetScore()
@@ -239,17 +243,20 @@ namespace CubeMasterGUI
     {
         public int X { get; set; }
         public int Y { get; set; }
+        public int Z { get; set; }
 
         public SnakeSection()
         {
             X = 0;
             Y = 0;
+            Z = 0;
         }
 
-        public SnakeSection(int x, int y)
+        public SnakeSection(int x, int y, int z)
         {
             X = x;
             Y = y;
+            Z = z;
         }
 
         public static bool operator ==(SnakeSection a, SnakeSection b)
@@ -258,7 +265,7 @@ namespace CubeMasterGUI
                 return true;
             if (((object)a == null) || ((object)b == null)) 
                 return false;
-            return a.X == b.X && a.Y == b.Y;
+            return a.X == b.X && a.Y == b.Y && a.Z == b.Z;
         }
 
         public static bool operator !=(SnakeSection a, SnakeSection b)
