@@ -49,18 +49,16 @@ namespace CubeMasterGUI
                 {"btnMedium", DIFFICULTY.MEDIUM},
                 {"btnHard", DIFFICULTY.HARD}
             };
+
+            _gameTimer.Tick += GameTimerTick;
+            _foodBlinkTimer.Tick += FoodTimerTick;
         }
 
         public void StartNewGame()
         {
             _score = 0;
-
             _snake.Add(_head);
-
-            _gameTimer.Tick += GameTimerTick;
             _foodBlinkTimer.Interval = 1000 / 4;
-            _foodBlinkTimer.Tick += FoodTimerTick;
-
             _gameTimer.Start();
             _foodBlinkTimer.Start();
         }
@@ -93,7 +91,6 @@ namespace CubeMasterGUI
 
         public void ChangeDifficultySetting(string s)
         {
-            _gameTimer.Stop();
             DIFFICULTY diff = _difficultyDictionary[s];
             switch(diff)
             {
@@ -109,7 +106,6 @@ namespace CubeMasterGUI
                 default:
                     break;
             }
-            _gameTimer.Start();
         }
 
         private void GameTimerTick(object sender, EventArgs e)
@@ -138,6 +134,7 @@ namespace CubeMasterGUI
             _gameTimer.Stop();
             _foodBlinkTimer.Stop();
             _snake.Clear();
+            _head.Reset();
             _cube.ClearEntireCube();
             MessageBox.Show("Game Over!");
         }
@@ -297,6 +294,13 @@ namespace CubeMasterGUI
             X = x;
             Y = y;
             Z = z;
+        }
+
+        public void Reset()
+        {
+            X = 0;
+            Y = 0;
+            Z = 0;       
         }
 
         public static bool operator ==(SnakeSection a, SnakeSection b)
