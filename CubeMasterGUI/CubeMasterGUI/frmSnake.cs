@@ -182,6 +182,11 @@ namespace CubeMasterGUI
             _snakeController.StartNewGame();
         }
 
+        private void btnEndGame_Click(object sender, EventArgs e)
+        {
+            _snakeController.EndGame();
+        }
+
         //protected override bool IsInputKey(Keys keyData)
         //{
         //    switch (keyData)

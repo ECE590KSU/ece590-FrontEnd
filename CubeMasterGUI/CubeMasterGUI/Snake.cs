@@ -16,7 +16,7 @@ namespace CubeMasterGUI
         private int _score;
         private int _currentPlane;
 
-        private enum DIRECTION { POSITIVE_X, POSITIVE_Y, NEGATIVE_X, NEGATIVE_Y };
+        private enum DIRECTION { POSITIVE_X, POSITIVE_Y, NEGATIVE_X, NEGATIVE_Y, POSITIVE_Z, NEGATIVE_Z };
         private enum DIFFICULTY { EASY, MEDIUM, HARD };
 
         private DIRECTION _currentDirection;
@@ -133,7 +133,7 @@ namespace CubeMasterGUI
             }
         }
 
-        private void EndGame()
+        public void EndGame()
         {
             _gameTimer.Stop();
             _foodBlinkTimer.Stop();
@@ -178,6 +178,10 @@ namespace CubeMasterGUI
                     _head.Y++;
                     _head.Y %= DIMENSION;
                     break;
+                case DIRECTION.POSITIVE_Z:
+                    _head.Z++;
+                    _head.Z %= DIMENSION;
+                    break;
                 case DIRECTION.NEGATIVE_X:
                     if (_head.X == 0)
                         _head.X = DIMENSION - 1;
@@ -189,6 +193,12 @@ namespace CubeMasterGUI
                         _head.Y = DIMENSION - 1;
                     else
                         _head.Y--;
+                    break;
+                case DIRECTION.NEGATIVE_Z:
+                    if (_head.Z == 0)
+                        _head.Z = DIMENSION - 1;
+                    else
+                        _head.Z--;
                     break;
                 default:
                     break;
@@ -222,6 +232,36 @@ namespace CubeMasterGUI
                         _currentDirection = DIRECTION.NEGATIVE_Y;
                     else
                         _currentDirection--;
+                    break;
+                case Keys.Up:
+                case Keys.W:
+                    switch(_currentDirection)
+                    {
+                        case DIRECTION.POSITIVE_Z:
+                            _currentDirection = DIRECTION.NEGATIVE_Y;
+                            break;
+                        case DIRECTION.NEGATIVE_Z:
+                            _currentDirection = DIRECTION.POSITIVE_Y;
+                            break;
+                        default:
+                            _currentDirection = DIRECTION.POSITIVE_Z;
+                            break;
+                    }
+                    break;
+                case Keys.Down:
+                case Keys.S:
+                    switch (_currentDirection)
+                    {
+                        case DIRECTION.POSITIVE_Z:
+                            _currentDirection = DIRECTION.POSITIVE_Y;
+                            break;
+                        case DIRECTION.NEGATIVE_Z:
+                            _currentDirection = DIRECTION.NEGATIVE_Y;
+                            break;
+                        default:
+                            _currentDirection = DIRECTION.NEGATIVE_Z;
+                            break;
+                    }
                     break;
                 default:
                     break;

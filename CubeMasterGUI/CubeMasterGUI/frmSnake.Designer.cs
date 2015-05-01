@@ -34,10 +34,10 @@
             this.btnMedium = new System.Windows.Forms.RadioButton();
             this.btnEasy = new System.Windows.Forms.RadioButton();
             this.btnStart = new System.Windows.Forms.Button();
-            this.btnCloseWindow1 = new CubeMasterGUI.btnCloseWindow();
-            this.tmrSnake = new CubeMasterGUI.ctrlTimer();
             this.lblScore = new System.Windows.Forms.Label();
             this.btnEndGame = new System.Windows.Forms.Button();
+            this.btnCloseWindow1 = new CubeMasterGUI.btnCloseWindow();
+            this.tmrSnake = new CubeMasterGUI.ctrlTimer();
             this.pnlDrawingControls.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -120,23 +120,6 @@
             this.btnStart.UseVisualStyleBackColor = false;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
-            // btnCloseWindow1
-            // 
-            this.btnCloseWindow1.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.btnCloseWindow1.Location = new System.Drawing.Point(1323, 13);
-            this.btnCloseWindow1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnCloseWindow1.Name = "btnCloseWindow1";
-            this.btnCloseWindow1.Size = new System.Drawing.Size(30, 30);
-            this.btnCloseWindow1.TabIndex = 0;
-            // 
-            // tmrSnake
-            // 
-            this.tmrSnake.BackColor = System.Drawing.Color.Transparent;
-            this.tmrSnake.Location = new System.Drawing.Point(0, 690);
-            this.tmrSnake.Name = "tmrSnake";
-            this.tmrSnake.Size = new System.Drawing.Size(13, 13);
-            this.tmrSnake.TabIndex = 3;
-            // 
             // lblScore
             // 
             this.lblScore.AutoSize = true;
@@ -162,6 +145,24 @@
             this.btnEndGame.TabIndex = 8;
             this.btnEndGame.Text = "END GAME";
             this.btnEndGame.UseVisualStyleBackColor = false;
+            this.btnEndGame.Click += new System.EventHandler(this.btnEndGame_Click);
+            // 
+            // btnCloseWindow1
+            // 
+            this.btnCloseWindow1.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.btnCloseWindow1.Location = new System.Drawing.Point(1323, 13);
+            this.btnCloseWindow1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnCloseWindow1.Name = "btnCloseWindow1";
+            this.btnCloseWindow1.Size = new System.Drawing.Size(30, 30);
+            this.btnCloseWindow1.TabIndex = 0;
+            // 
+            // tmrSnake
+            // 
+            this.tmrSnake.BackColor = System.Drawing.Color.Transparent;
+            this.tmrSnake.Location = new System.Drawing.Point(0, 690);
+            this.tmrSnake.Name = "tmrSnake";
+            this.tmrSnake.Size = new System.Drawing.Size(13, 13);
+            this.tmrSnake.TabIndex = 3;
             // 
             // S
             // 
