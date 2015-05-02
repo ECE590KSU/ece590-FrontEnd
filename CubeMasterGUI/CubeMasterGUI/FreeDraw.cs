@@ -176,6 +176,11 @@ namespace CubeMasterGUI
             return point;
         }
 
+        public void Rotate(int theta)
+        {
+            _cube.RotatePlane(this.SelectedAxis, this.SelectedPlane, theta);
+        }
+
         /// <summary>
         /// Allows a user to copy their selected plane and axis 
         /// to a plane buffer (later used for Pasting).

@@ -26,6 +26,8 @@ namespace CubeMasterGUI
         public static string DrawCopy;
         public static string DrawRect;
         public static string DrawCircle;
+        public static string RotateCW_URL = TopLevelDir + @"\images\rotateCW.png";
+        public static string RotateCCW_URL = TopLevelDir + @"\images\rotateCCW.png";
 
         // Color Palette.
         public static System.Drawing.Color FormBackColor = System.Drawing.Color.GhostWhite;

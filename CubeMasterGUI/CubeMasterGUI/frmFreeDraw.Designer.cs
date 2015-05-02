@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             this.lblWindowName = new System.Windows.Forms.Label();
             this.pnlDrawingControls = new System.Windows.Forms.Panel();
+            this.btnRotateCW = new System.Windows.Forms.Button();
+            this.btnRotateCCW = new System.Windows.Forms.Button();
             this.btnDemoStop = new System.Windows.Forms.Button();
             this.btnSingle = new System.Windows.Forms.Button();
             this.btnRectangle = new System.Windows.Forms.Button();
@@ -38,6 +40,7 @@
             this.btnLine = new System.Windows.Forms.Button();
             this.btnCopy = new System.Windows.Forms.Button();
             this.btnPaste = new System.Windows.Forms.Button();
+            this.btnMirror = new System.Windows.Forms.Button();
             this.btnDemo = new System.Windows.Forms.Button();
             this.btnFillPlane = new System.Windows.Forms.Button();
             this.btnClearAll = new System.Windows.Forms.Button();
@@ -78,6 +81,8 @@
             // 
             this.pnlDrawingControls.BackColor = System.Drawing.SystemColors.Window;
             this.pnlDrawingControls.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlDrawingControls.Controls.Add(this.btnRotateCW);
+            this.pnlDrawingControls.Controls.Add(this.btnRotateCCW);
             this.pnlDrawingControls.Controls.Add(this.btnDemoStop);
             this.pnlDrawingControls.Controls.Add(this.btnSingle);
             this.pnlDrawingControls.Controls.Add(this.btnRectangle);
@@ -85,6 +90,7 @@
             this.pnlDrawingControls.Controls.Add(this.btnLine);
             this.pnlDrawingControls.Controls.Add(this.btnCopy);
             this.pnlDrawingControls.Controls.Add(this.btnPaste);
+            this.pnlDrawingControls.Controls.Add(this.btnMirror);
             this.pnlDrawingControls.Controls.Add(this.btnDemo);
             this.pnlDrawingControls.Controls.Add(this.btnFillPlane);
             this.pnlDrawingControls.Controls.Add(this.btnClearAll);
@@ -100,6 +106,28 @@
             this.pnlDrawingControls.Name = "pnlDrawingControls";
             this.pnlDrawingControls.Size = new System.Drawing.Size(685, 702);
             this.pnlDrawingControls.TabIndex = 4;
+            // 
+            // btnRotateCW
+            // 
+            this.btnRotateCW.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRotateCW.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRotateCW.Location = new System.Drawing.Point(596, 18);
+            this.btnRotateCW.Name = "btnRotateCW";
+            this.btnRotateCW.Size = new System.Drawing.Size(70, 75);
+            this.btnRotateCW.TabIndex = 5;
+            this.btnRotateCW.UseVisualStyleBackColor = true;
+            this.btnRotateCW.Click += new System.EventHandler(this.btnRotateCW_Click);
+            // 
+            // btnRotateCCW
+            // 
+            this.btnRotateCCW.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRotateCCW.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRotateCCW.Location = new System.Drawing.Point(517, 18);
+            this.btnRotateCCW.Name = "btnRotateCCW";
+            this.btnRotateCCW.Size = new System.Drawing.Size(70, 75);
+            this.btnRotateCCW.TabIndex = 5;
+            this.btnRotateCCW.UseVisualStyleBackColor = true;
+            this.btnRotateCCW.Click += new System.EventHandler(this.btnRotateCCW_Click);
             // 
             // btnDemoStop
             // 
@@ -191,6 +219,17 @@
             this.ttPaste.SetToolTip(this.btnPaste, "Click this to re-draw your saved pattern!");
             this.btnPaste.UseVisualStyleBackColor = true;
             this.btnPaste.Click += new System.EventHandler(this.btnPaste_Click);
+            // 
+            // btnMirror
+            // 
+            this.btnMirror.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMirror.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMirror.Location = new System.Drawing.Point(348, 18);
+            this.btnMirror.Name = "btnMirror";
+            this.btnMirror.Size = new System.Drawing.Size(150, 75);
+            this.btnMirror.TabIndex = 4;
+            this.btnMirror.Text = "Mirror";
+            this.btnMirror.UseVisualStyleBackColor = true;
             // 
             // btnDemo
             // 
@@ -446,5 +485,8 @@
         private System.Windows.Forms.ToolTip ttX_AXIS;
         private System.Windows.Forms.ToolTip ttY_AXIS;
         private System.Windows.Forms.ToolTip ttZ_AXIS;
+        private System.Windows.Forms.Button btnMirror;
+        private System.Windows.Forms.Button btnRotateCW;
+        private System.Windows.Forms.Button btnRotateCCW;
     }
 }

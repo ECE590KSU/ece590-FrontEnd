@@ -51,8 +51,15 @@ namespace CubeMasterGUI
             AssignDrawingFunctions();
             InvokeTimerProtocol();
             InitializeRadioButtons();
+            SetButtonIcons();
             SetupDemo();
             this.ShowInTaskbar = false;
+        }
+
+        private void SetButtonIcons()
+        {
+            this.btnRotateCW.Image = new Bitmap(AssetHandler.RotateCW_URL);
+            this.btnRotateCCW.Image = new Bitmap(AssetHandler.RotateCCW_URL);
         }
 
         private void AssignDrawingFunctions()
@@ -380,6 +387,18 @@ namespace CubeMasterGUI
         private void btnPaste_Click(object sender, EventArgs e)
         {
             _freeDrawController.PastePlane();
+            RefreshVoxelGrid();
+        }
+
+        private void btnRotateCW_Click(object sender, EventArgs e)
+        {
+            _freeDrawController.Rotate(90);
+            RefreshVoxelGrid();
+        }
+
+        private void btnRotateCCW_Click(object sender, EventArgs e)
+        {
+            _freeDrawController.Rotate(270);
             RefreshVoxelGrid();
         }
     }
