@@ -35,6 +35,8 @@
             this.btnRectangle = new System.Windows.Forms.Button();
             this.btnCircle = new System.Windows.Forms.Button();
             this.btnLine = new System.Windows.Forms.Button();
+            this.btnCopy = new System.Windows.Forms.Button();
+            this.btnPaste = new System.Windows.Forms.Button();
             this.btnDemo = new System.Windows.Forms.Button();
             this.btnFillPlane = new System.Windows.Forms.Button();
             this.btnClearAll = new System.Windows.Forms.Button();
@@ -68,6 +70,8 @@
             this.pnlDrawingControls.Controls.Add(this.btnRectangle);
             this.pnlDrawingControls.Controls.Add(this.btnCircle);
             this.pnlDrawingControls.Controls.Add(this.btnLine);
+            this.pnlDrawingControls.Controls.Add(this.btnCopy);
+            this.pnlDrawingControls.Controls.Add(this.btnPaste);
             this.pnlDrawingControls.Controls.Add(this.btnDemo);
             this.pnlDrawingControls.Controls.Add(this.btnFillPlane);
             this.pnlDrawingControls.Controls.Add(this.btnClearAll);
@@ -143,6 +147,30 @@
             this.btnLine.Text = "Line";
             this.btnLine.UseVisualStyleBackColor = true;
             this.btnLine.Click += new System.EventHandler(this.btnLine_Click);
+            // 
+            // btnCopy
+            // 
+            this.btnCopy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCopy.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCopy.Location = new System.Drawing.Point(17, 435);
+            this.btnCopy.Name = "btnCopy";
+            this.btnCopy.Size = new System.Drawing.Size(150, 75);
+            this.btnCopy.TabIndex = 4;
+            this.btnCopy.Text = "Copy";
+            this.btnCopy.UseVisualStyleBackColor = true;
+            this.btnCopy.Click += new System.EventHandler(this.btnCopy_Click);
+            // 
+            // btnPaste
+            // 
+            this.btnPaste.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPaste.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPaste.Location = new System.Drawing.Point(183, 435);
+            this.btnPaste.Name = "btnPaste";
+            this.btnPaste.Size = new System.Drawing.Size(150, 75);
+            this.btnPaste.TabIndex = 4;
+            this.btnPaste.Text = "Paste";
+            this.btnPaste.UseVisualStyleBackColor = true;
+            this.btnPaste.Click += new System.EventHandler(this.btnPaste_Click);
             // 
             // btnDemo
             // 
@@ -330,5 +358,7 @@
         private System.Windows.Forms.Button btnRectangle;
         private System.Windows.Forms.Button btnCircle;
         private System.Windows.Forms.Button btnLine;
+        private System.Windows.Forms.Button btnCopy;
+        private System.Windows.Forms.Button btnPaste;
     }
 }

@@ -8,6 +8,7 @@ namespace CubeMasterGUI
     public class FreeDraw
     {
         private CubeController.Cube _cube;
+        private bool[][] _planeBuffer;
 
         public CubeController.Cube.AXIS SelectedAxis { get; set; }
         
@@ -34,7 +35,7 @@ namespace CubeMasterGUI
                     _cube.SetVoxel(grid_x, this.SelectedPlane, grid_y);
                     break;
                 case CubeController.Cube.AXIS.AXIS_Z:
-                    _cube.SetVoxel(grid_x, grid_y, this.SelectedPlane);
+                    _cube.SetVoxel(grid_y, grid_x, this.SelectedPlane);
                     break;
                 default:
                     break;
@@ -62,7 +63,7 @@ namespace CubeMasterGUI
                     _cube.ClearVoxel(grid_x, this.SelectedPlane, grid_y);
                     break;
                 case CubeController.Cube.AXIS.AXIS_Z:
-                    _cube.ClearVoxel(grid_x, grid_y, this.SelectedPlane);
+                    _cube.ClearVoxel(grid_y, grid_x, this.SelectedPlane);
                     break;
                 default:
                     break;
@@ -90,7 +91,7 @@ namespace CubeMasterGUI
                     _cube.SwapVoxel(grid_x, this.SelectedPlane, grid_y);
                     break;
                 case CubeController.Cube.AXIS.AXIS_Z:
-                    _cube.SwapVoxel(grid_x, grid_y, this.SelectedPlane);
+                    _cube.SwapVoxel(grid_y, grid_x, this.SelectedPlane);
                     break;
                 default:
                     break;
@@ -165,7 +166,7 @@ namespace CubeMasterGUI
                     point = new CubeController.Point(vox.X, this.SelectedPlane, vox.Y);
                     break;
                 case CubeController.Cube.AXIS.AXIS_Z:
-                    point = new CubeController.Point(vox.X, vox.Y, this.SelectedPlane);
+                    point = new CubeController.Point(vox.Y, vox.X, this.SelectedPlane);
                     break;
                 default:
                     point = null;
@@ -173,6 +174,24 @@ namespace CubeMasterGUI
             }
 
             return point;
+        }
+
+        /// <summary>
+        /// Allows a user to copy their selected plane and axis 
+        /// to a plane buffer (later used for Pasting).
+        /// </summary>
+        public void CopyPlane()
+        {
+            _planeBuffer = _cube.GetPlane(this.SelectedAxis, this.SelectedPlane);
+        }
+        
+        /// <summary>
+        /// Allows a user to paste a previously copied plane from a plane buffer to 
+        /// the desired cube plane and axis. 
+        /// </summary>
+        public void PastePlane()
+        {
+            _cube.PatternSetPlane(this.SelectedAxis, this.SelectedPlane, _planeBuffer);
         }
     }
 }

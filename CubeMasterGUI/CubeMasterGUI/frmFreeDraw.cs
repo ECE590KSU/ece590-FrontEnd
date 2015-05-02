@@ -77,7 +77,7 @@ namespace CubeMasterGUI
 
         private void InitializeRadioButtons()
         {
-            this.btnAXIS_X.Checked = true;
+            this.btnAXIS_Y.Checked = true;
         }
 
         private void GenerateVoxelGrid()
@@ -299,7 +299,6 @@ namespace CubeMasterGUI
         {
             _freeDrawController.ClearEntireCube();
             this.uxPlaneSelect.Value = 1;
-            InitializeRadioButtons();
             RefreshVoxelGrid();
         }
 
@@ -323,6 +322,8 @@ namespace CubeMasterGUI
         {
             _demoTimer.Stop();
             _demoThread.Abort();
+            _freeDrawController.ClearEntireCube();
+            RefreshVoxelGrid();
         }
 
         private void btnSingle_Click(object sender, EventArgs e)
@@ -368,6 +369,18 @@ namespace CubeMasterGUI
                     b.ForeColor = AssetHandler.TxtColor_Primary;
                 }
             }
+        }
+
+        private void btnCopy_Click(object sender, EventArgs e)
+        {
+            _freeDrawController.CopyPlane();
+            RefreshVoxelGrid();
+        }
+
+        private void btnPaste_Click(object sender, EventArgs e)
+        {
+            _freeDrawController.PastePlane();
+            RefreshVoxelGrid();
         }
     }
 }

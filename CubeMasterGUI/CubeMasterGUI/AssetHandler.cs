@@ -9,12 +9,23 @@ namespace CubeMasterGUI
 {
     public static class AssetHandler
     {
-        // Images.
+        // Application Launcher Images.
         private static string TopLevelDir = (Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).ToString())).ToString();
         public static string FreeDrawURL = TopLevelDir + @"\images\freedraw.png";
         public static string PresetURL = TopLevelDir + @"\images\presets.png";
         public static string GamesURL = TopLevelDir + @"\images\games.png";
         public static string Text2CubeURL = TopLevelDir + @"\images\txt2cube.png";
+
+        // Button Face Images.
+        public static string Copy;
+        public static string Paste;
+        public static string StartDemo;
+        public static string StopDemo;
+        public static string DrawLine;
+        public static string DrawSingle;
+        public static string DrawCopy;
+        public static string DrawRect;
+        public static string DrawCircle;
 
         // Color Palette.
         public static System.Drawing.Color FormBackColor = System.Drawing.Color.GhostWhite;
