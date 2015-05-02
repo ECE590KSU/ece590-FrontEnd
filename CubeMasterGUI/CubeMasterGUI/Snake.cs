@@ -159,7 +159,10 @@ namespace CubeMasterGUI
             form.Size = new System.Drawing.Size(410, 195);
             if (form.ShowDialog() == DialogResult.OK)
             {
-
+                _highScores.Add(new HighScore(highScoreWindow.txtBoxName.Text, _score));
+                _highScores = (from s in _highScores
+                               orderby s.Score descending
+                               select s).ToList();
             }
         }
 
@@ -237,7 +240,6 @@ namespace CubeMasterGUI
             return highScoreStrings;
         }
         
-
         private bool CheckForCollision()
         {
             for (int i = 1; i < _snake.Count; i++)
@@ -301,7 +303,7 @@ namespace CubeMasterGUI
             }
         }
 
-        public void WriteHighScores()
+        private void WriteHighScores()
         {
             _streamWriter = new StreamWriter(AssetHandler._highScoreURL);
             foreach (var h in _highScores)
@@ -311,7 +313,7 @@ namespace CubeMasterGUI
             _streamWriter.Close();
         }
 
-        public void ReadHighScores()
+        private void ReadHighScores()
         {
             string line;
             _streamReader = new StreamReader(AssetHandler._highScoreURL);
