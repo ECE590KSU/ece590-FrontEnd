@@ -11,7 +11,10 @@ namespace CubeMasterGUI
         private bool[][] _planeBuffer;
 
         public CubeController.Cube.AXIS SelectedAxis { get; set; }
-        
+        public CubeController.Cube.REFLECTION Reflection { get; set; }
+
+        private Dictionary<String, CubeController.Cube.REFLECTION> _reflections;
+
         // Replace function calls using 'int plane' with 'SelectedPlane'. 
         public int SelectedPlane { get; set; }
 
@@ -22,6 +25,16 @@ namespace CubeMasterGUI
         {
             _cube = cube;
             this.CurrentDrawingMode = DRAWING_MODE.SINGLE;
+            this.Reflection = CubeController.Cube.REFLECTION.ORIGIN;
+
+            _reflections = new Dictionary<string, CubeController.Cube.REFLECTION>();
+            _reflections.Add("origin", CubeController.Cube.REFLECTION.ORIGIN);
+            _reflections.Add("terminus", CubeController.Cube.REFLECTION.TERMINUS);
+        }
+
+        public void SetReflection(string refl)
+        {
+            this.Reflection = _reflections[refl.ToLowerInvariant()];
         }
 
         public void SetVoxel(int grid_x, int grid_y)
@@ -197,6 +210,21 @@ namespace CubeMasterGUI
         public void PastePlane()
         {
             _cube.PatternSetPlane(this.SelectedAxis, this.SelectedPlane, _planeBuffer);
+        }
+
+        public void SymmetryX()
+        {
+            _cube.SymmetryAlongAxis(CubeController.Cube.AXIS.AXIS_X, this.Reflection);
+        }
+
+        public void SymmetryY()
+        {
+            _cube.SymmetryAlongAxis(CubeController.Cube.AXIS.AXIS_Y, this.Reflection);
+        }
+
+        public void SymmetryZ()
+        {
+            _cube.SymmetryAlongAxis(CubeController.Cube.AXIS.AXIS_Z, this.Reflection);
         }
     }
 }

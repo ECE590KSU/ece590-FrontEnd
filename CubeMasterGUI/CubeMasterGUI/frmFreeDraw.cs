@@ -29,7 +29,7 @@ namespace CubeMasterGUI
         private int _voxelSpacing = 9;
         private int _voxelHeight = 80;
         private int _voxelWidth = 80;
-        
+
         private Voxel[,] _voxels;
 
         private Color _clrVoxelClicked = AssetHandler.BtnBackColor_Tertiary;
@@ -54,6 +54,9 @@ namespace CubeMasterGUI
             SetButtonIcons();
             SetupDemo();
             this.ShowInTaskbar = false;
+
+            // Set up the initial index of the combo-box. 
+            this.cmbReflection.SelectedIndex = 0;
         }
 
         private void SetButtonIcons()
@@ -400,6 +403,30 @@ namespace CubeMasterGUI
         {
             _freeDrawController.Rotate(270);
             RefreshVoxelGrid();
+        }
+
+        private void btnMirrorX_Click(object sender, EventArgs e)
+        {
+            _freeDrawController.SymmetryX();
+            RefreshVoxelGrid();
+        }
+
+        private void btnMirrorY_Click(object sender, EventArgs e)
+        {
+            _freeDrawController.SymmetryY();
+            RefreshVoxelGrid();
+        }
+
+        private void btnMirrorZ_Click(object sender, EventArgs e)
+        {
+            _freeDrawController.SymmetryZ();
+            RefreshVoxelGrid();
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string optionSelected = this.cmbReflection.SelectedItem.ToString();
+            _freeDrawController.SetReflection(optionSelected);
         }
     }
 }

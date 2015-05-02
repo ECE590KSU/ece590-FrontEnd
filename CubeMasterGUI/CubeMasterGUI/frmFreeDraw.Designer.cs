@@ -40,7 +40,7 @@
             this.btnLine = new System.Windows.Forms.Button();
             this.btnCopy = new System.Windows.Forms.Button();
             this.btnPaste = new System.Windows.Forms.Button();
-            this.btnMirror = new System.Windows.Forms.Button();
+            this.btnMirrorX = new System.Windows.Forms.Button();
             this.btnDemo = new System.Windows.Forms.Button();
             this.btnFillPlane = new System.Windows.Forms.Button();
             this.btnClearAll = new System.Windows.Forms.Button();
@@ -62,6 +62,11 @@
             this.ttX_AXIS = new System.Windows.Forms.ToolTip(this.components);
             this.ttY_AXIS = new System.Windows.Forms.ToolTip(this.components);
             this.ttZ_AXIS = new System.Windows.Forms.ToolTip(this.components);
+            this.btnMirrorY = new System.Windows.Forms.Button();
+            this.btnMirrorZ = new System.Windows.Forms.Button();
+            this.ttOrigin = new System.Windows.Forms.ToolTip(this.components);
+            this.ttTerminus = new System.Windows.Forms.ToolTip(this.components);
+            this.cmbReflection = new System.Windows.Forms.ComboBox();
             this.btnCloseWindow1 = new CubeMasterGUI.btnCloseWindow();
             this.tmrFreeDraw = new CubeMasterGUI.ctrlTimer();
             this.pnlDrawingControls.SuspendLayout();
@@ -81,6 +86,7 @@
             // 
             this.pnlDrawingControls.BackColor = System.Drawing.SystemColors.Window;
             this.pnlDrawingControls.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlDrawingControls.Controls.Add(this.cmbReflection);
             this.pnlDrawingControls.Controls.Add(this.btnRotateCW);
             this.pnlDrawingControls.Controls.Add(this.btnRotateCCW);
             this.pnlDrawingControls.Controls.Add(this.btnDemoStop);
@@ -90,7 +96,9 @@
             this.pnlDrawingControls.Controls.Add(this.btnLine);
             this.pnlDrawingControls.Controls.Add(this.btnCopy);
             this.pnlDrawingControls.Controls.Add(this.btnPaste);
-            this.pnlDrawingControls.Controls.Add(this.btnMirror);
+            this.pnlDrawingControls.Controls.Add(this.btnMirrorZ);
+            this.pnlDrawingControls.Controls.Add(this.btnMirrorY);
+            this.pnlDrawingControls.Controls.Add(this.btnMirrorX);
             this.pnlDrawingControls.Controls.Add(this.btnDemo);
             this.pnlDrawingControls.Controls.Add(this.btnFillPlane);
             this.pnlDrawingControls.Controls.Add(this.btnClearAll);
@@ -111,7 +119,7 @@
             // 
             this.btnRotateCW.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRotateCW.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRotateCW.Location = new System.Drawing.Point(596, 18);
+            this.btnRotateCW.Location = new System.Drawing.Point(263, 326);
             this.btnRotateCW.Name = "btnRotateCW";
             this.btnRotateCW.Size = new System.Drawing.Size(70, 75);
             this.btnRotateCW.TabIndex = 5;
@@ -122,7 +130,7 @@
             // 
             this.btnRotateCCW.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRotateCCW.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRotateCCW.Location = new System.Drawing.Point(517, 18);
+            this.btnRotateCCW.Location = new System.Drawing.Point(183, 326);
             this.btnRotateCCW.Name = "btnRotateCCW";
             this.btnRotateCCW.Size = new System.Drawing.Size(70, 75);
             this.btnRotateCCW.TabIndex = 5;
@@ -220,16 +228,17 @@
             this.btnPaste.UseVisualStyleBackColor = true;
             this.btnPaste.Click += new System.EventHandler(this.btnPaste_Click);
             // 
-            // btnMirror
+            // btnMirrorX
             // 
-            this.btnMirror.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMirror.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMirror.Location = new System.Drawing.Point(348, 18);
-            this.btnMirror.Name = "btnMirror";
-            this.btnMirror.Size = new System.Drawing.Size(150, 75);
-            this.btnMirror.TabIndex = 4;
-            this.btnMirror.Text = "Mirror";
-            this.btnMirror.UseVisualStyleBackColor = true;
+            this.btnMirrorX.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMirrorX.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMirrorX.Location = new System.Drawing.Point(348, 18);
+            this.btnMirrorX.Name = "btnMirrorX";
+            this.btnMirrorX.Size = new System.Drawing.Size(150, 36);
+            this.btnMirrorX.TabIndex = 4;
+            this.btnMirrorX.Text = "Mirror X";
+            this.btnMirrorX.UseVisualStyleBackColor = true;
+            this.btnMirrorX.Click += new System.EventHandler(this.btnMirrorX_Click);
             // 
             // btnDemo
             // 
@@ -293,6 +302,7 @@
             // 
             // uxPlaneSelect
             // 
+            this.uxPlaneSelect.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.uxPlaneSelect.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uxPlaneSelect.Location = new System.Drawing.Point(17, 186);
             this.uxPlaneSelect.Maximum = new decimal(new int[] {
@@ -319,11 +329,12 @@
             // btnAXIS_Z
             // 
             this.btnAXIS_Z.AutoSize = true;
+            this.btnAXIS_Z.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAXIS_Z.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAXIS_Z.Location = new System.Drawing.Point(17, 89);
             this.btnAXIS_Z.Margin = new System.Windows.Forms.Padding(2);
             this.btnAXIS_Z.Name = "btnAXIS_Z";
-            this.btnAXIS_Z.Size = new System.Drawing.Size(239, 36);
+            this.btnAXIS_Z.Size = new System.Drawing.Size(238, 36);
             this.btnAXIS_Z.TabIndex = 0;
             this.btnAXIS_Z.TabStop = true;
             this.btnAXIS_Z.Text = "Z Axis (X-Y Plane)";
@@ -334,11 +345,12 @@
             // btnAXIS_Y
             // 
             this.btnAXIS_Y.AutoSize = true;
+            this.btnAXIS_Y.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAXIS_Y.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAXIS_Y.Location = new System.Drawing.Point(17, 53);
             this.btnAXIS_Y.Margin = new System.Windows.Forms.Padding(2);
             this.btnAXIS_Y.Name = "btnAXIS_Y";
-            this.btnAXIS_Y.Size = new System.Drawing.Size(239, 36);
+            this.btnAXIS_Y.Size = new System.Drawing.Size(238, 36);
             this.btnAXIS_Y.TabIndex = 0;
             this.btnAXIS_Y.TabStop = true;
             this.btnAXIS_Y.Text = "Y Axis (X-Z Plane)";
@@ -349,11 +361,12 @@
             // btnAXIS_X
             // 
             this.btnAXIS_X.AutoSize = true;
+            this.btnAXIS_X.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAXIS_X.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAXIS_X.Location = new System.Drawing.Point(17, 18);
             this.btnAXIS_X.Margin = new System.Windows.Forms.Padding(2);
             this.btnAXIS_X.Name = "btnAXIS_X";
-            this.btnAXIS_X.Size = new System.Drawing.Size(239, 36);
+            this.btnAXIS_X.Size = new System.Drawing.Size(238, 36);
             this.btnAXIS_X.TabIndex = 0;
             this.btnAXIS_X.TabStop = true;
             this.btnAXIS_X.Text = "X Axis (Y-Z Plane)";
@@ -409,6 +422,54 @@
             // ttZ_AXIS
             // 
             this.ttZ_AXIS.ToolTipTitle = "The Z Axis";
+            // 
+            // btnMirrorY
+            // 
+            this.btnMirrorY.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMirrorY.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMirrorY.Location = new System.Drawing.Point(348, 60);
+            this.btnMirrorY.Name = "btnMirrorY";
+            this.btnMirrorY.Size = new System.Drawing.Size(150, 36);
+            this.btnMirrorY.TabIndex = 4;
+            this.btnMirrorY.Text = "Mirror Y";
+            this.btnMirrorY.UseVisualStyleBackColor = true;
+            this.btnMirrorY.Click += new System.EventHandler(this.btnMirrorY_Click);
+            // 
+            // btnMirrorZ
+            // 
+            this.btnMirrorZ.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMirrorZ.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMirrorZ.Location = new System.Drawing.Point(348, 102);
+            this.btnMirrorZ.Name = "btnMirrorZ";
+            this.btnMirrorZ.Size = new System.Drawing.Size(150, 36);
+            this.btnMirrorZ.TabIndex = 4;
+            this.btnMirrorZ.Text = "Mirror Z";
+            this.btnMirrorZ.UseVisualStyleBackColor = true;
+            this.btnMirrorZ.Click += new System.EventHandler(this.btnMirrorZ_Click);
+            // 
+            // ttOrigin
+            // 
+            this.ttOrigin.ToolTipTitle = "Mirror From Origin";
+            // 
+            // ttTerminus
+            // 
+            this.ttTerminus.ToolTipTitle = "Mirror From Terminus";
+            // 
+            // cmbReflection
+            // 
+            this.cmbReflection.BackColor = System.Drawing.Color.GhostWhite;
+            this.cmbReflection.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmbReflection.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbReflection.ForeColor = System.Drawing.Color.SteelBlue;
+            this.cmbReflection.FormattingEnabled = true;
+            this.cmbReflection.Items.AddRange(new object[] {
+            "Origin",
+            "Terminus"});
+            this.cmbReflection.Location = new System.Drawing.Point(505, 18);
+            this.cmbReflection.Name = "cmbReflection";
+            this.cmbReflection.Size = new System.Drawing.Size(162, 38);
+            this.cmbReflection.TabIndex = 6;
+            this.cmbReflection.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // btnCloseWindow1
             // 
@@ -485,8 +546,13 @@
         private System.Windows.Forms.ToolTip ttX_AXIS;
         private System.Windows.Forms.ToolTip ttY_AXIS;
         private System.Windows.Forms.ToolTip ttZ_AXIS;
-        private System.Windows.Forms.Button btnMirror;
+        private System.Windows.Forms.Button btnMirrorX;
         private System.Windows.Forms.Button btnRotateCW;
         private System.Windows.Forms.Button btnRotateCCW;
+        private System.Windows.Forms.Button btnMirrorZ;
+        private System.Windows.Forms.Button btnMirrorY;
+        private System.Windows.Forms.ToolTip ttOrigin;
+        private System.Windows.Forms.ToolTip ttTerminus;
+        private System.Windows.Forms.ComboBox cmbReflection;
     }
 }
