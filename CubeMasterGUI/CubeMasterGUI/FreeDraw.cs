@@ -12,6 +12,7 @@ namespace CubeMasterGUI
 
         public CubeController.Cube.AXIS SelectedAxis { get; set; }
         public CubeController.Cube.REFLECTION Reflection { get; set; }
+        public CubeController.Cube.DIRECTION Direction { get; set; }
 
         private Dictionary<String, CubeController.Cube.REFLECTION> _reflections;
 
@@ -225,6 +226,18 @@ namespace CubeMasterGUI
         public void SymmetryZ()
         {
             _cube.SymmetryAlongAxis(CubeController.Cube.AXIS.AXIS_Z, this.Reflection);
+        }
+
+        public void ShiftUp()
+        {
+            this.Direction = CubeController.Cube.DIRECTION.FORWARD;
+            _cube.ShiftAndRoll(this.SelectedAxis, this.Direction);
+        }
+
+        public void ShiftDown()
+        {
+            this.Direction = CubeController.Cube.DIRECTION.REVERSE;
+            _cube.ShiftAndRoll(this.SelectedAxis, this.Direction);
         }
     }
 }

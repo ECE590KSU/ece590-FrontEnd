@@ -307,6 +307,7 @@ namespace CubeMasterGUI
 
         private void btnClearAll_Click(object sender, EventArgs e)
         {
+            this.tmrFreeDraw.ResetTimers();
             _freeDrawController.ClearEntireCube();
             this.uxPlaneSelect.Value = 1;
             RefreshVoxelGrid();
@@ -314,6 +315,7 @@ namespace CubeMasterGUI
 
         private void btnDemo_Click(object sender, EventArgs e)
         {
+            this.tmrFreeDraw.ResetTimers();
             _demoTimer.Start();
             _demoThread.Start();
         }
@@ -330,6 +332,7 @@ namespace CubeMasterGUI
 
         private void btnDemoStop_Click(object sender, EventArgs e)
         {
+            this.tmrFreeDraw.ResetTimers();
             _demoTimer.Stop();
             _demoThread.Abort();
             _freeDrawController.ClearEntireCube();
@@ -366,6 +369,7 @@ namespace CubeMasterGUI
 
         private void ToggleSelectedDrawingFunction(Button sender)
         {
+            this.tmrFreeDraw.ResetTimers();
             foreach (Button b in _functions)
             {
                 if ((sender).Equals(b))
@@ -383,25 +387,29 @@ namespace CubeMasterGUI
 
         private void btnCopy_Click(object sender, EventArgs e)
         {
+            this.tmrFreeDraw.ResetTimers();
             _freeDrawController.CopyPlane();
             RefreshVoxelGrid();
         }
 
         private void btnPaste_Click(object sender, EventArgs e)
         {
+            this.tmrFreeDraw.ResetTimers();
             _freeDrawController.PastePlane();
             RefreshVoxelGrid();
         }
 
         private void btnRotateCW_Click(object sender, EventArgs e)
         {
-            _freeDrawController.Rotate(90);
+            this.tmrFreeDraw.ResetTimers();
+            _freeDrawController.Rotate(270);
             RefreshVoxelGrid();
         }
 
         private void btnRotateCCW_Click(object sender, EventArgs e)
         {
-            _freeDrawController.Rotate(270);
+            this.tmrFreeDraw.ResetTimers();
+            _freeDrawController.Rotate(90);
             RefreshVoxelGrid();
         }
 
@@ -413,20 +421,37 @@ namespace CubeMasterGUI
 
         private void btnMirrorY_Click(object sender, EventArgs e)
         {
+            this.tmrFreeDraw.ResetTimers();
             _freeDrawController.SymmetryY();
             RefreshVoxelGrid();
         }
 
         private void btnMirrorZ_Click(object sender, EventArgs e)
         {
+            this.tmrFreeDraw.ResetTimers();
             _freeDrawController.SymmetryZ();
             RefreshVoxelGrid();
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            this.tmrFreeDraw.ResetTimers();
             string optionSelected = this.cmbReflection.SelectedItem.ToString();
             _freeDrawController.SetReflection(optionSelected);
+        }
+
+        private void btnShiftUp_Click(object sender, EventArgs e)
+        {
+            this.tmrFreeDraw.ResetTimers();
+            _freeDrawController.ShiftUp();
+            RefreshVoxelGrid();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.tmrFreeDraw.ResetTimers();
+            _freeDrawController.ShiftDown();
+            RefreshVoxelGrid();
         }
     }
 }

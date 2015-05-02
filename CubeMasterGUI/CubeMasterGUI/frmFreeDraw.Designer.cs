@@ -67,6 +67,8 @@
             this.ttOrigin = new System.Windows.Forms.ToolTip(this.components);
             this.ttTerminus = new System.Windows.Forms.ToolTip(this.components);
             this.cmbReflection = new System.Windows.Forms.ComboBox();
+            this.btnShiftUp = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.btnCloseWindow1 = new CubeMasterGUI.btnCloseWindow();
             this.tmrFreeDraw = new CubeMasterGUI.ctrlTimer();
             this.pnlDrawingControls.SuspendLayout();
@@ -100,6 +102,8 @@
             this.pnlDrawingControls.Controls.Add(this.btnMirrorY);
             this.pnlDrawingControls.Controls.Add(this.btnMirrorX);
             this.pnlDrawingControls.Controls.Add(this.btnDemo);
+            this.pnlDrawingControls.Controls.Add(this.button1);
+            this.pnlDrawingControls.Controls.Add(this.btnShiftUp);
             this.pnlDrawingControls.Controls.Add(this.btnFillPlane);
             this.pnlDrawingControls.Controls.Add(this.btnClearAll);
             this.pnlDrawingControls.Controls.Add(this.btnClearPlane);
@@ -119,7 +123,7 @@
             // 
             this.btnRotateCW.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRotateCW.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRotateCW.Location = new System.Drawing.Point(263, 326);
+            this.btnRotateCW.Location = new System.Drawing.Point(263, 338);
             this.btnRotateCW.Name = "btnRotateCW";
             this.btnRotateCW.Size = new System.Drawing.Size(70, 75);
             this.btnRotateCW.TabIndex = 5;
@@ -130,7 +134,7 @@
             // 
             this.btnRotateCCW.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRotateCCW.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRotateCCW.Location = new System.Drawing.Point(183, 326);
+            this.btnRotateCCW.Location = new System.Drawing.Point(183, 338);
             this.btnRotateCCW.Name = "btnRotateCCW";
             this.btnRotateCCW.Size = new System.Drawing.Size(70, 75);
             this.btnRotateCCW.TabIndex = 5;
@@ -257,7 +261,7 @@
             // 
             this.btnFillPlane.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFillPlane.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFillPlane.Location = new System.Drawing.Point(183, 236);
+            this.btnFillPlane.Location = new System.Drawing.Point(183, 248);
             this.btnFillPlane.Name = "btnFillPlane";
             this.btnFillPlane.Size = new System.Drawing.Size(151, 75);
             this.btnFillPlane.TabIndex = 4;
@@ -269,7 +273,7 @@
             // 
             this.btnClearAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClearAll.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClearAll.Location = new System.Drawing.Point(17, 326);
+            this.btnClearAll.Location = new System.Drawing.Point(17, 338);
             this.btnClearAll.Name = "btnClearAll";
             this.btnClearAll.Size = new System.Drawing.Size(151, 75);
             this.btnClearAll.TabIndex = 4;
@@ -281,7 +285,7 @@
             // 
             this.btnClearPlane.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClearPlane.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClearPlane.Location = new System.Drawing.Point(17, 236);
+            this.btnClearPlane.Location = new System.Drawing.Point(17, 248);
             this.btnClearPlane.Name = "btnClearPlane";
             this.btnClearPlane.Size = new System.Drawing.Size(151, 75);
             this.btnClearPlane.TabIndex = 4;
@@ -439,9 +443,9 @@
             // 
             this.btnMirrorZ.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMirrorZ.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMirrorZ.Location = new System.Drawing.Point(348, 102);
+            this.btnMirrorZ.Location = new System.Drawing.Point(504, 60);
             this.btnMirrorZ.Name = "btnMirrorZ";
-            this.btnMirrorZ.Size = new System.Drawing.Size(150, 36);
+            this.btnMirrorZ.Size = new System.Drawing.Size(163, 36);
             this.btnMirrorZ.TabIndex = 4;
             this.btnMirrorZ.Text = "Mirror Z";
             this.btnMirrorZ.UseVisualStyleBackColor = true;
@@ -470,6 +474,30 @@
             this.cmbReflection.Size = new System.Drawing.Size(162, 38);
             this.cmbReflection.TabIndex = 6;
             this.cmbReflection.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // btnShiftUp
+            // 
+            this.btnShiftUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnShiftUp.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnShiftUp.Location = new System.Drawing.Point(348, 248);
+            this.btnShiftUp.Name = "btnShiftUp";
+            this.btnShiftUp.Size = new System.Drawing.Size(150, 75);
+            this.btnShiftUp.TabIndex = 4;
+            this.btnShiftUp.Text = "Shift Forward";
+            this.btnShiftUp.UseVisualStyleBackColor = true;
+            this.btnShiftUp.Click += new System.EventHandler(this.btnShiftUp_Click);
+            // 
+            // button1
+            // 
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(348, 338);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(150, 75);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "Shift Reverse";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // btnCloseWindow1
             // 
@@ -554,5 +582,7 @@
         private System.Windows.Forms.ToolTip ttOrigin;
         private System.Windows.Forms.ToolTip ttTerminus;
         private System.Windows.Forms.ComboBox cmbReflection;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnShiftUp;
     }
 }
