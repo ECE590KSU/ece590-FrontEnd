@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,6 +32,10 @@ namespace CubeMasterGUI
         private bool _eating = false;
 
         private Random _random;
+
+        private StreamWriter _streamWriter;
+        private StreamReader _streamReader;
+        private List<HighScore> _highScores;
         
         public Snake(ref CubeController.Cube cube)
         {
@@ -43,6 +48,7 @@ namespace CubeMasterGUI
             _random = new Random();
             _gameTimer = new Timer();
             _foodBlinkTimer = new Timer();
+            _streamWriter = new StreamWriter(AssetHandler._highScoreURL);
             _difficultyDictionary = new Dictionary<string, DIFFICULTY>
             {
                 {"btnEasy", DIFFICULTY.EASY},
@@ -57,8 +63,8 @@ namespace CubeMasterGUI
         public void StartNewGame()
         {
             _score = 0;
-            _snake.Add(_head);
-            _foodBlinkTimer.Interval = 1000 / 4;
+                _snake.Add(_head);
+                _foodBlinkTimer.Interval = 1000 / 4;
             _gameTimer.Start();
             _foodBlinkTimer.Start();
         }
@@ -264,6 +270,23 @@ namespace CubeMasterGUI
                     break;
             }
         }
+
+        public void WriteHighScores()
+        {
+            foreach (var h in _highScores)
+            {
+                _streamWriter.WriteLine(h.Name + "," + h.Score);
+            }
+        }
+
+        public void ReadHighScores()
+        {
+            string line;
+             while ((line = _streamReader.ReadLine()) != null) 
+                {
+                    string[] tokens = line.Split(',');
+                }
+        }
                 
         public bool[][] GetPlane()
         {
@@ -315,6 +338,18 @@ namespace CubeMasterGUI
         public static bool operator !=(SnakeSection a, SnakeSection b)
         {
             return !(a == b);
+        }
+    }
+
+    internal class HighScore
+    {
+        public string Name;
+        public int Score;
+
+        public HighScore(string name, int score)
+        {
+            Name = name;
+            Score = score;
         }
     }
 }

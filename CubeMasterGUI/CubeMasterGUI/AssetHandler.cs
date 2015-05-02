@@ -16,6 +16,9 @@ namespace CubeMasterGUI
         public static string _gamesURL = _topLevelDir + @"\images\games.png";
         public static string _text2CubeURL = _topLevelDir + @"\images\txt2cube.png";
 
+        // High Score File
+        public static string _highScoreURL = _topLevelDir + @"\text\highscores.csv";
+
         // Color Palette.
         public static System.Drawing.Color _primaryFormColor = System.Drawing.Color.GhostWhite;
         public static System.Drawing.Color _secondaryControlColor = System.Drawing.Color.LightBlue;
