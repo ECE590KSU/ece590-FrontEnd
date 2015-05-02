@@ -48,7 +48,7 @@ namespace CubeMasterGUI
             _random = new Random();
             _gameTimer = new Timer();
             _foodBlinkTimer = new Timer();
-            //_streamWriter = new StreamWriter(AssetHandler._highScoreURL);
+            _streamWriter = new StreamWriter(AssetHandler._highScoreURL);
             _difficultyDictionary = new Dictionary<string, DIFFICULTY>
             {
                 {"btnEasy", DIFFICULTY.EASY},
