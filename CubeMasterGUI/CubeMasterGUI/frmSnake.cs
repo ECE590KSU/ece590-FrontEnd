@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace CubeMasterGUI
 {
-    public partial class S : Form
+    public partial class frmSnake : Form
     {
         private Snake _snakeController;
 
@@ -29,7 +29,7 @@ namespace CubeMasterGUI
         private Color _clrVoxelClicked = AssetHandler._secondaryControlColor;
         private Color _clrVoxelUnclicked = AssetHandler._primaryFormColor;
 
-        public S(ref CubeController.Cube cube, int parentWidth, int parentHeight)
+        public frmSnake(ref CubeController.Cube cube, int parentWidth, int parentHeight)
         {
             InitializeComponent();
 

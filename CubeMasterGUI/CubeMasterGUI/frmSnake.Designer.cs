@@ -1,6 +1,6 @@
 ﻿namespace CubeMasterGUI
 {
-    partial class S
+    partial class frmSnake
     {
         /// <summary>
         /// Required designer variable.

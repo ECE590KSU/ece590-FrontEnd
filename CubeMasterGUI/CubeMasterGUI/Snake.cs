@@ -48,7 +48,7 @@ namespace CubeMasterGUI
             _random = new Random();
             _gameTimer = new Timer();
             _foodBlinkTimer = new Timer();
-            _streamWriter = new StreamWriter(AssetHandler._highScoreURL);
+            //_streamWriter = new StreamWriter(AssetHandler._highScoreURL);
             _difficultyDictionary = new Dictionary<string, DIFFICULTY>
             {
                 {"btnEasy", DIFFICULTY.EASY},
@@ -63,8 +63,8 @@ namespace CubeMasterGUI
         public void StartNewGame()
         {
             _score = 0;
-                _snake.Add(_head);
-                _foodBlinkTimer.Interval = 1000 / 4;
+            _snake.Add(_head);
+            _foodBlinkTimer.Interval = 1000 / 4;
             _gameTimer.Start();
             _foodBlinkTimer.Start();
         }
