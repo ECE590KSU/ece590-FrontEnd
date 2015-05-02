@@ -285,6 +285,7 @@ namespace CubeMasterGUI
              while ((line = _streamReader.ReadLine()) != null) 
                 {
                     string[] tokens = line.Split(',');
+                    _highScores.Add(new HighScore(tokens[0], Convert.ToInt32(tokens[1])));
                 }
         }
                 
