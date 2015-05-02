@@ -48,7 +48,7 @@ namespace CubeMasterGUI
             _random = new Random();
             _gameTimer = new Timer();
             _foodBlinkTimer = new Timer();
-            _streamWriter = new StreamWriter(AssetHandler._highScoreURL);
+            _highScores = new List<HighScore>();
             _difficultyDictionary = new Dictionary<string, DIFFICULTY>
             {
                 {"btnEasy", DIFFICULTY.EASY},
@@ -62,11 +62,12 @@ namespace CubeMasterGUI
 
         public void StartNewGame()
         {
+            GenerateHighScoreDialog();
             _score = 0;
             _snake.Add(_head);
             _foodBlinkTimer.Interval = 1000 / 4;
             _gameTimer.Start();
-            _foodBlinkTimer.Start();
+            _foodBlinkTimer.Start();            
         }
 
         private void FoodTimerTick(object sender, EventArgs e)
@@ -139,10 +140,27 @@ namespace CubeMasterGUI
         {
             _gameTimer.Stop();
             _foodBlinkTimer.Stop();
+            if (_score > _highScores.Last().Score)
+            {
+                GenerateHighScoreDialog();                
+            }
             _snake.Clear();
             _head.Reset();
             _cube.ClearEntireCube();
-            MessageBox.Show("Game Over!");
+            MessageBox.Show("Game Over!");            
+        }
+
+        private void GenerateHighScoreDialog()
+        {
+            HighScoreWindow highScoreWindow = new HighScoreWindow();
+            Form form = new Form();
+            form.Controls.Add(highScoreWindow);
+            highScoreWindow.Dock = DockStyle.Fill;
+            form.Size = new System.Drawing.Size(410, 195);
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+
+            }
         }
 
         private void DisplaySnake()
@@ -207,6 +225,18 @@ namespace CubeMasterGUI
                     break;
             }
         }
+
+        public List<string> GetHighScores()
+        {
+            ReadHighScores();
+            var highScoreStrings = new List<string>();
+            foreach (var h in _highScores)
+            {
+                highScoreStrings.Add(h.ToString());
+            }
+            return highScoreStrings;
+        }
+        
 
         private bool CheckForCollision()
         {
@@ -273,20 +303,24 @@ namespace CubeMasterGUI
 
         public void WriteHighScores()
         {
+            _streamWriter = new StreamWriter(AssetHandler._highScoreURL);
             foreach (var h in _highScores)
             {
                 _streamWriter.WriteLine(h.Name + "," + h.Score);
             }
+            _streamWriter.Close();
         }
 
         public void ReadHighScores()
         {
             string line;
-             while ((line = _streamReader.ReadLine()) != null) 
-                {
-                    string[] tokens = line.Split(',');
-                    _highScores.Add(new HighScore(tokens[0], Convert.ToInt32(tokens[1])));
-                }
+            _streamReader = new StreamReader(AssetHandler._highScoreURL);
+            while ((line = _streamReader.ReadLine()) != null) 
+            {
+                string[] tokens = line.Split(',');
+                _highScores.Add(new HighScore(tokens[0], Convert.ToInt32(tokens[1])));
+            }
+            _streamReader.Close();
         }
                 
         public bool[][] GetPlane()
@@ -352,5 +386,10 @@ namespace CubeMasterGUI
             Name = name;
             Score = score;
         }
+
+        public override string ToString()
+        {
+            return Name + ": " + Score.ToString();
+        }        
     }
 }

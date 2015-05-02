@@ -100,6 +100,12 @@
       <DependentUpon>frmStartScreen.cs</DependentUpon>
     </Compile>
     <Compile Include="Games.cs" />
+    <Compile Include="HighScoreWindow.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HighScoreWindow.Designer.cs">
+      <DependentUpon>HighScoreWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainMenu.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -135,6 +141,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmStartScreen.resx">
       <DependentUpon>frmStartScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HighScoreWindow.resx">
+      <DependentUpon>HighScoreWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

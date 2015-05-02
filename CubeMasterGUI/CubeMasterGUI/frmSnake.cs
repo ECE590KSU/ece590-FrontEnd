@@ -144,6 +144,8 @@ namespace CubeMasterGUI
             this.KeyPreview = true;
             this.KeyDown += new KeyEventHandler(frmSnake_KeyDown);
             this.PreviewKeyDown += new PreviewKeyDownEventHandler(frmSnake_PreviewKeyDown);
+
+            listBoxHighScores.DataSource = _snakeController.GetHighScores();
         }
 
         private void frmSnake_MouseClick(object sender, MouseEventArgs e)
@@ -185,6 +187,11 @@ namespace CubeMasterGUI
         private void btnEndGame_Click(object sender, EventArgs e)
         {
             _snakeController.EndGame();
+        }
+
+        private void listBoxHighScores_DataSourceChanged(object sender, EventArgs e)
+        {
+
         }
 
         //protected override bool IsInputKey(Keys keyData)
