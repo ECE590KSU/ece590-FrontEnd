@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lblWindowName = new System.Windows.Forms.Label();
             this.pnlDrawingControls = new System.Windows.Forms.Panel();
             this.btnDemoStop = new System.Windows.Forms.Button();
@@ -46,6 +47,18 @@
             this.btnAXIS_Z = new System.Windows.Forms.RadioButton();
             this.btnAXIS_Y = new System.Windows.Forms.RadioButton();
             this.btnAXIS_X = new System.Windows.Forms.RadioButton();
+            this.ttCopy = new System.Windows.Forms.ToolTip(this.components);
+            this.ttPaste = new System.Windows.Forms.ToolTip(this.components);
+            this.ttDemo = new System.Windows.Forms.ToolTip(this.components);
+            this.ttStop = new System.Windows.Forms.ToolTip(this.components);
+            this.ttSingle = new System.Windows.Forms.ToolTip(this.components);
+            this.ttLine = new System.Windows.Forms.ToolTip(this.components);
+            this.ttRectangle = new System.Windows.Forms.ToolTip(this.components);
+            this.ttCircle = new System.Windows.Forms.ToolTip(this.components);
+            this.ttPlaneNum = new System.Windows.Forms.ToolTip(this.components);
+            this.ttX_AXIS = new System.Windows.Forms.ToolTip(this.components);
+            this.ttY_AXIS = new System.Windows.Forms.ToolTip(this.components);
+            this.ttZ_AXIS = new System.Windows.Forms.ToolTip(this.components);
             this.btnCloseWindow1 = new CubeMasterGUI.btnCloseWindow();
             this.tmrFreeDraw = new CubeMasterGUI.ctrlTimer();
             this.pnlDrawingControls.SuspendLayout();
@@ -97,6 +110,7 @@
             this.btnDemoStop.Size = new System.Drawing.Size(150, 75);
             this.btnDemoStop.TabIndex = 4;
             this.btnDemoStop.Text = "Stop";
+            this.ttStop.SetToolTip(this.btnDemoStop, "Stops the demo.");
             this.btnDemoStop.UseVisualStyleBackColor = true;
             this.btnDemoStop.Click += new System.EventHandler(this.btnDemoStop_Click);
             // 
@@ -109,6 +123,7 @@
             this.btnSingle.Size = new System.Drawing.Size(150, 150);
             this.btnSingle.TabIndex = 4;
             this.btnSingle.Text = "Single";
+            this.ttSingle.SetToolTip(this.btnSingle, "Draws a single point.");
             this.btnSingle.UseVisualStyleBackColor = true;
             this.btnSingle.Click += new System.EventHandler(this.btnSingle_Click);
             // 
@@ -121,6 +136,7 @@
             this.btnRectangle.Size = new System.Drawing.Size(150, 150);
             this.btnRectangle.TabIndex = 4;
             this.btnRectangle.Text = "Rectangle";
+            this.ttRectangle.SetToolTip(this.btnRectangle, "Draws a rectangle given\r\ntwo opposite points.");
             this.btnRectangle.UseVisualStyleBackColor = true;
             this.btnRectangle.Click += new System.EventHandler(this.btnRectangle_Click);
             // 
@@ -133,6 +149,7 @@
             this.btnCircle.Size = new System.Drawing.Size(150, 150);
             this.btnCircle.TabIndex = 4;
             this.btnCircle.Text = "Circle";
+            this.ttCircle.SetToolTip(this.btnCircle, "Draws a circle, given a \r\ncenter point and an outer\r\npoint.");
             this.btnCircle.UseVisualStyleBackColor = true;
             this.btnCircle.Click += new System.EventHandler(this.btnCircle_Click);
             // 
@@ -145,6 +162,7 @@
             this.btnLine.Size = new System.Drawing.Size(150, 150);
             this.btnLine.TabIndex = 4;
             this.btnLine.Text = "Line";
+            this.ttLine.SetToolTip(this.btnLine, "Draws a line between \r\ntwo points.");
             this.btnLine.UseVisualStyleBackColor = true;
             this.btnLine.Click += new System.EventHandler(this.btnLine_Click);
             // 
@@ -157,6 +175,7 @@
             this.btnCopy.Size = new System.Drawing.Size(150, 75);
             this.btnCopy.TabIndex = 4;
             this.btnCopy.Text = "Copy";
+            this.ttCopy.SetToolTip(this.btnCopy, "Like this pattern? Press Copy to save it for later!");
             this.btnCopy.UseVisualStyleBackColor = true;
             this.btnCopy.Click += new System.EventHandler(this.btnCopy_Click);
             // 
@@ -169,6 +188,7 @@
             this.btnPaste.Size = new System.Drawing.Size(150, 75);
             this.btnPaste.TabIndex = 4;
             this.btnPaste.Text = "Paste";
+            this.ttPaste.SetToolTip(this.btnPaste, "Click this to re-draw your saved pattern!");
             this.btnPaste.UseVisualStyleBackColor = true;
             this.btnPaste.Click += new System.EventHandler(this.btnPaste_Click);
             // 
@@ -181,6 +201,7 @@
             this.btnDemo.Size = new System.Drawing.Size(150, 75);
             this.btnDemo.TabIndex = 4;
             this.btnDemo.Text = "Demo";
+            this.ttDemo.SetToolTip(this.btnDemo, "See a short demonstration -- on screen and on the cube!");
             this.btnDemo.UseVisualStyleBackColor = true;
             this.btnDemo.Click += new System.EventHandler(this.btnDemo_Click);
             // 
@@ -248,6 +269,7 @@
             this.uxPlaneSelect.Name = "uxPlaneSelect";
             this.uxPlaneSelect.Size = new System.Drawing.Size(317, 35);
             this.uxPlaneSelect.TabIndex = 1;
+            this.ttPlaneNum.SetToolTip(this.uxPlaneSelect, "What \'slice\' of the cube\r\nto look at and modify (1-8).\r\n");
             this.uxPlaneSelect.Value = new decimal(new int[] {
             1,
             0,
@@ -266,6 +288,7 @@
             this.btnAXIS_Z.TabIndex = 0;
             this.btnAXIS_Z.TabStop = true;
             this.btnAXIS_Z.Text = "Z Axis (X-Y Plane)";
+            this.ttZ_AXIS.SetToolTip(this.btnAXIS_Z, "Runs BOTTOM to TOP.");
             this.btnAXIS_Z.UseVisualStyleBackColor = true;
             this.btnAXIS_Z.CheckedChanged += new System.EventHandler(this.btnAXIS_Z_CheckedChanged);
             // 
@@ -280,6 +303,7 @@
             this.btnAXIS_Y.TabIndex = 0;
             this.btnAXIS_Y.TabStop = true;
             this.btnAXIS_Y.Text = "Y Axis (X-Z Plane)";
+            this.ttY_AXIS.SetToolTip(this.btnAXIS_Y, "Runs FRONT to BACK --\r\n(you\'re lookin\' at the front!)");
             this.btnAXIS_Y.UseVisualStyleBackColor = true;
             this.btnAXIS_Y.CheckedChanged += new System.EventHandler(this.btnAXIS_Y_CheckedChanged);
             // 
@@ -294,8 +318,58 @@
             this.btnAXIS_X.TabIndex = 0;
             this.btnAXIS_X.TabStop = true;
             this.btnAXIS_X.Text = "X Axis (Y-Z Plane)";
+            this.ttX_AXIS.SetToolTip(this.btnAXIS_X, "Runs LEFT to RIGHT.");
             this.btnAXIS_X.UseVisualStyleBackColor = true;
             this.btnAXIS_X.CheckedChanged += new System.EventHandler(this.btnAXIS_X_CheckedChanged);
+            // 
+            // ttCopy
+            // 
+            this.ttCopy.ShowAlways = true;
+            this.ttCopy.ToolTipTitle = "Copy Pattern";
+            // 
+            // ttPaste
+            // 
+            this.ttPaste.ToolTipTitle = "Paste Pattern";
+            // 
+            // ttDemo
+            // 
+            this.ttDemo.ToolTipTitle = "Start a Demo";
+            // 
+            // ttStop
+            // 
+            this.ttStop.ToolTipTitle = "Stop Demo";
+            // 
+            // ttSingle
+            // 
+            this.ttSingle.ToolTipTitle = "Point Draw";
+            // 
+            // ttLine
+            // 
+            this.ttLine.ToolTipTitle = "Line Draw";
+            // 
+            // ttRectangle
+            // 
+            this.ttRectangle.ToolTipTitle = "Rectangle Draw";
+            // 
+            // ttCircle
+            // 
+            this.ttCircle.ToolTipTitle = "Circle Draw";
+            // 
+            // ttPlaneNum
+            // 
+            this.ttPlaneNum.ToolTipTitle = "Plane Number";
+            // 
+            // ttX_AXIS
+            // 
+            this.ttX_AXIS.ToolTipTitle = "The X Axis";
+            // 
+            // ttY_AXIS
+            // 
+            this.ttY_AXIS.ToolTipTitle = "The Y Axis";
+            // 
+            // ttZ_AXIS
+            // 
+            this.ttZ_AXIS.ToolTipTitle = "The Z Axis";
             // 
             // btnCloseWindow1
             // 
@@ -360,5 +434,17 @@
         private System.Windows.Forms.Button btnLine;
         private System.Windows.Forms.Button btnCopy;
         private System.Windows.Forms.Button btnPaste;
+        private System.Windows.Forms.ToolTip ttCopy;
+        private System.Windows.Forms.ToolTip ttPaste;
+        private System.Windows.Forms.ToolTip ttDemo;
+        private System.Windows.Forms.ToolTip ttStop;
+        private System.Windows.Forms.ToolTip ttSingle;
+        private System.Windows.Forms.ToolTip ttLine;
+        private System.Windows.Forms.ToolTip ttRectangle;
+        private System.Windows.Forms.ToolTip ttCircle;
+        private System.Windows.Forms.ToolTip ttPlaneNum;
+        private System.Windows.Forms.ToolTip ttX_AXIS;
+        private System.Windows.Forms.ToolTip ttY_AXIS;
+        private System.Windows.Forms.ToolTip ttZ_AXIS;
     }
 }
