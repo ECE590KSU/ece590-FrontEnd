@@ -34,10 +34,10 @@
             this.btnMedium = new System.Windows.Forms.RadioButton();
             this.btnEasy = new System.Windows.Forms.RadioButton();
             this.btnStart = new System.Windows.Forms.Button();
-            this.lblScore = new System.Windows.Forms.Label();
             this.btnEndGame = new System.Windows.Forms.Button();
             this.listBoxHighScores = new System.Windows.Forms.ListBox();
             this.lblHighScore = new System.Windows.Forms.Label();
+            this.lblScore = new System.Windows.Forms.Label();
             this.btnCloseWindow1 = new CubeMasterGUI.btnCloseWindow();
             this.tmrSnake = new CubeMasterGUI.ctrlTimer();
             this.pnlDrawingControls.SuspendLayout();
@@ -60,7 +60,7 @@
             this.pnlDrawingControls.Controls.Add(this.btnMedium);
             this.pnlDrawingControls.Controls.Add(this.btnEasy);
             this.pnlDrawingControls.ForeColor = System.Drawing.Color.SteelBlue;
-            this.pnlDrawingControls.Location = new System.Drawing.Point(1019, 283);
+            this.pnlDrawingControls.Location = new System.Drawing.Point(881, 414);
             this.pnlDrawingControls.Margin = new System.Windows.Forms.Padding(2);
             this.pnlDrawingControls.Name = "pnlDrawingControls";
             this.pnlDrawingControls.Size = new System.Drawing.Size(151, 135);
@@ -116,23 +116,13 @@
             this.btnStart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnStart.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStart.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnStart.Location = new System.Drawing.Point(1019, 423);
+            this.btnStart.Location = new System.Drawing.Point(881, 554);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(151, 48);
             this.btnStart.TabIndex = 6;
             this.btnStart.Text = "START";
             this.btnStart.UseVisualStyleBackColor = false;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
-            // 
-            // lblScore
-            // 
-            this.lblScore.AutoSize = true;
-            this.lblScore.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblScore.ForeColor = System.Drawing.Color.SteelBlue;
-            this.lblScore.Location = new System.Drawing.Point(1016, 474);
-            this.lblScore.Name = "lblScore";
-            this.lblScore.Size = new System.Drawing.Size(0, 32);
-            this.lblScore.TabIndex = 7;
             // 
             // btnEndGame
             // 
@@ -143,7 +133,7 @@
             this.btnEndGame.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEndGame.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEndGame.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnEndGame.Location = new System.Drawing.Point(1019, 474);
+            this.btnEndGame.Location = new System.Drawing.Point(881, 605);
             this.btnEndGame.Name = "btnEndGame";
             this.btnEndGame.Size = new System.Drawing.Size(151, 48);
             this.btnEndGame.TabIndex = 8;
@@ -158,22 +148,34 @@
             this.listBoxHighScores.ForeColor = System.Drawing.Color.SteelBlue;
             this.listBoxHighScores.FormattingEnabled = true;
             this.listBoxHighScores.ItemHeight = 30;
-            this.listBoxHighScores.Location = new System.Drawing.Point(820, 283);
+            this.listBoxHighScores.Location = new System.Drawing.Point(881, 137);
             this.listBoxHighScores.Name = "listBoxHighScores";
-            this.listBoxHighScores.Size = new System.Drawing.Size(182, 242);
+            this.listBoxHighScores.Size = new System.Drawing.Size(153, 242);
             this.listBoxHighScores.TabIndex = 9;
-            this.listBoxHighScores.DataSourceChanged += new System.EventHandler(this.listBoxHighScores_DataSourceChanged);
+            this.listBoxHighScores.SelectedIndexChanged += new System.EventHandler(this.listBoxHighScores_SelectedIndexChanged);
             // 
             // lblHighScore
             // 
             this.lblHighScore.AutoSize = true;
             this.lblHighScore.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHighScore.ForeColor = System.Drawing.Color.SteelBlue;
-            this.lblHighScore.Location = new System.Drawing.Point(815, 250);
+            this.lblHighScore.Location = new System.Drawing.Point(876, 104);
             this.lblHighScore.Name = "lblHighScore";
             this.lblHighScore.Size = new System.Drawing.Size(128, 30);
             this.lblHighScore.TabIndex = 10;
             this.lblHighScore.Text = "High Scores:";
+            this.lblHighScore.Click += new System.EventHandler(this.lblHighScore_Click);
+            // 
+            // lblScore
+            // 
+            this.lblScore.AutoSize = true;
+            this.lblScore.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblScore.ForeColor = System.Drawing.Color.SteelBlue;
+            this.lblScore.Location = new System.Drawing.Point(876, 382);
+            this.lblScore.Name = "lblScore";
+            this.lblScore.Size = new System.Drawing.Size(69, 30);
+            this.lblScore.TabIndex = 11;
+            this.lblScore.Text = "Score:";
             // 
             // btnCloseWindow1
             // 
@@ -198,10 +200,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.GhostWhite;
             this.ClientSize = new System.Drawing.Size(1366, 768);
+            this.Controls.Add(this.lblScore);
             this.Controls.Add(this.lblHighScore);
             this.Controls.Add(this.listBoxHighScores);
             this.Controls.Add(this.btnEndGame);
-            this.Controls.Add(this.lblScore);
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.pnlDrawingControls);
             this.Controls.Add(this.lblWindowName);
@@ -234,9 +236,9 @@
         private System.Windows.Forms.RadioButton btnMedium;
         private System.Windows.Forms.RadioButton btnEasy;
         private System.Windows.Forms.Button btnStart;
-        private System.Windows.Forms.Label lblScore;
         private System.Windows.Forms.Button btnEndGame;
         private System.Windows.Forms.ListBox listBoxHighScores;
         private System.Windows.Forms.Label lblHighScore;
+        private System.Windows.Forms.Label lblScore;
     }
 }

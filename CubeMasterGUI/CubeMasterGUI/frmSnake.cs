@@ -18,7 +18,7 @@ namespace CubeMasterGUI
 
         private Timer _refreshTimer;
 
-        private int _voxelGrid_startX = 125;
+        private int _voxelGrid_startX = 225;
         private int _voxelGrid_startY = 75;
         private int _voxelSpacing = 9;
         private int _voxelHeight = 80;
@@ -52,8 +52,6 @@ namespace CubeMasterGUI
             _refreshTimer.Interval = 1000 / 60; //roughly 60 fps
             _refreshTimer.Tick += new EventHandler(RefreshVoxelGrid);
             _refreshTimer.Start();
-
-            lblScore.Location = new Point(1019, 527);
         }
 
         private void DifficultyChanged(object sender, EventArgs e)
@@ -83,7 +81,7 @@ namespace CubeMasterGUI
         private void frmSnake_KeyUp(object sender, KeyEventArgs e)
         {
             _snakeController.ChangeCurrentDirection(e.KeyCode);
-            tmrSnake.ResetText();
+            //tmrSnake.ResetText();
         }
 
         private void GenerateVoxelGrid()
@@ -181,6 +179,7 @@ namespace CubeMasterGUI
             else if (btnHard.Checked)
                 _snakeController.ChangeDifficultySetting(btnHard.Name);
 
+            tmrSnake.HaltTimers(); // TODO: better solution
             _snakeController.StartNewGame();
         }
 
@@ -228,6 +227,16 @@ namespace CubeMasterGUI
             {
                 e.SuppressKeyPress = true;
             }
+        }
+
+        private void listBoxHighScores_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblHighScore_Click(object sender, EventArgs e)
+        {
+
         }
 
         //protected override bool IsInputKey(Keys keyData)
