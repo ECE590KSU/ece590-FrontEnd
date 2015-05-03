@@ -62,7 +62,6 @@ namespace CubeMasterGUI
 
         public void StartNewGame()
         {
-            GenerateHighScoreDialog();
             _score = 0;
             _snake.Add(_head);
             _foodBlinkTimer.Interval = 1000 / 4;
@@ -250,23 +249,43 @@ namespace CubeMasterGUI
             return false;
         }
         
-        public void ChangeInputState(Keys key)
+        public void ChangeCurrentDirection(Keys key)
         {
             switch (key)
             {
                 case Keys.Left:
                 case Keys.A:
-                    if (_currentDirection == DIRECTION.NEGATIVE_Y)
-                        _currentDirection = DIRECTION.POSITIVE_X;
-                    else
-                        _currentDirection++;
+                    switch(_currentDirection)
+                    {
+                        case DIRECTION.NEGATIVE_Y:
+                        case DIRECTION.NEGATIVE_Z:
+                            _currentDirection = DIRECTION.POSITIVE_X;
+                            break;
+                        case DIRECTION.POSITIVE_Z:
+                            _currentDirection = DIRECTION.NEGATIVE_X;
+                            break;
+                        default:
+                            _currentDirection++;
+                            break;
+                    }
                     break;
                 case Keys.Right:
                 case Keys.D:
-                    if (_currentDirection == DIRECTION.POSITIVE_X)
-                        _currentDirection = DIRECTION.NEGATIVE_Y;
-                    else
-                        _currentDirection--;
+                    switch(_currentDirection)
+                    {
+                        case DIRECTION.POSITIVE_X:
+                            _currentDirection = DIRECTION.NEGATIVE_Y;
+                            break;
+                        case DIRECTION.POSITIVE_Z:
+                            _currentDirection = DIRECTION.POSITIVE_X;
+                            break;
+                        case DIRECTION.NEGATIVE_Z:
+                            _currentDirection = DIRECTION.NEGATIVE_X;
+                            break;
+                        default:
+                            _currentDirection--;
+                            break;
+                    }
                     break;
                 case Keys.Up:
                 case Keys.W:

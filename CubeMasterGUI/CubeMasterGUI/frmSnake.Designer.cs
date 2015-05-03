@@ -78,6 +78,7 @@
             this.btnHard.TabStop = true;
             this.btnHard.Text = "Hard";
             this.btnHard.UseVisualStyleBackColor = true;
+            this.btnHard.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btnHard_KeyDown);
             // 
             // btnMedium
             // 
@@ -91,6 +92,7 @@
             this.btnMedium.TabStop = true;
             this.btnMedium.Text = "Medium";
             this.btnMedium.UseVisualStyleBackColor = true;
+            this.btnMedium.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btnMedium_KeyDown);
             // 
             // btnEasy
             // 
@@ -101,9 +103,9 @@
             this.btnEasy.Name = "btnEasy";
             this.btnEasy.Size = new System.Drawing.Size(83, 36);
             this.btnEasy.TabIndex = 0;
-            this.btnEasy.TabStop = true;
             this.btnEasy.Text = "Easy";
             this.btnEasy.UseVisualStyleBackColor = true;
+            this.btnEasy.KeyDown += new System.Windows.Forms.KeyEventHandler(this.btnEasy_KeyDown);
             // 
             // btnStart
             // 

@@ -18,7 +18,7 @@ namespace CubeMasterGUI
 
         private Timer _refreshTimer;
 
-        private int _voxelGrid_startX = 20;
+        private int _voxelGrid_startX = 125;
         private int _voxelGrid_startY = 75;
         private int _voxelSpacing = 9;
         private int _voxelHeight = 80;
@@ -82,7 +82,7 @@ namespace CubeMasterGUI
 
         private void frmSnake_KeyUp(object sender, KeyEventArgs e)
         {
-            _snakeController.ChangeInputState(e.KeyCode);
+            _snakeController.ChangeCurrentDirection(e.KeyCode);
             tmrSnake.ResetText();
         }
 
@@ -150,7 +150,7 @@ namespace CubeMasterGUI
 
         private void frmSnake_MouseClick(object sender, MouseEventArgs e)
         {
-            _snakeController.ChangeInputState(Keys.Left);
+            _snakeController.ChangeCurrentDirection(Keys.Left);
             tmrSnake.ResetTimers();
         }
 
@@ -192,6 +192,42 @@ namespace CubeMasterGUI
         private void listBoxHighScores_DataSourceChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnEasy_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Up ||
+                e.KeyCode == Keys.Down ||
+                e.KeyCode == Keys.Left ||
+                e.KeyCode == Keys.Right
+                )
+            {
+                e.SuppressKeyPress = true;
+            }
+        }
+
+        private void btnMedium_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Up ||
+                e.KeyCode == Keys.Down ||
+                e.KeyCode == Keys.Left ||
+                e.KeyCode == Keys.Right
+                )
+            {
+                e.SuppressKeyPress = true;
+            }
+        }
+
+        private void btnHard_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Up ||
+                e.KeyCode == Keys.Down ||
+                e.KeyCode == Keys.Left ||
+                e.KeyCode == Keys.Right
+                )
+            {
+                e.SuppressKeyPress = true;
+            }
         }
 
         //protected override bool IsInputKey(Keys keyData)
