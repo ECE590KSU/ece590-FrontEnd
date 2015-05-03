@@ -20,6 +20,7 @@ namespace CubeMasterGUI
 
         #region BUTTON_FACES
         // FreeDraw Button Face Images.
+        public static string Fill = TopLevelDir + @"\images\fill.png";
         public static string Copy = TopLevelDir + @"\images\copy.png";
         public static string Paste = TopLevelDir + @"\images\paste.png";
         public static string StartDemo = TopLevelDir + @"\images\play.png";

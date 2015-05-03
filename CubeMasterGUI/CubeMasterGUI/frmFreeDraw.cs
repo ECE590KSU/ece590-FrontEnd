@@ -61,6 +61,8 @@ namespace CubeMasterGUI
 
             // Set up the initial index of the combo-box. 
             this.cmbReflection.SelectedIndex = 0;
+
+            this.MouseWheel += new MouseEventHandler(this.uxPlaneSelect_MouseWheel);
         }
 
         private void SetButtonIcons()
@@ -333,9 +335,13 @@ namespace CubeMasterGUI
 
         private void btnDemo_Click(object sender, EventArgs e)
         {
-            this.tmrFreeDraw.ResetTimers();
-            _demoTimer.Start();
-            _demoThread.Start();
+            // Only try and start the demo thread if it is not already alive!!
+            if (!(_demoThread.IsAlive || _demoThread.IsBackground))
+            {
+                this.tmrFreeDraw.ResetTimers();
+                _demoTimer.Start();
+                _demoThread.Start();
+            }
         }
 
         private void DemoThreadEntry()
@@ -459,11 +465,102 @@ namespace CubeMasterGUI
             RefreshVoxelGrid();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnShiftDown_Click(object sender, EventArgs e)
         {
             this.tmrFreeDraw.ResetTimers();
             _freeDrawController.ShiftDown();
             RefreshVoxelGrid();
+        }
+
+        /// <summary>
+        /// Following: https://support.microsoft.com/en-us/kb/320584 to handle
+        /// keystrokes, key-combos, and chords. 
+        /// </summary>
+        /// <param name="msg"></param>
+        /// <param name="keyData"></param>
+        /// <returns></returns>
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            const int WM_KEYDOWN = 0x100;
+            const int WM_SYSKEYDOWN = 0x104;
+
+            if ((msg.Msg == WM_KEYDOWN) || (msg.Msg == WM_SYSKEYDOWN))
+            {
+                switch (keyData)
+                {
+                    // Copy
+                    case Keys.Control | Keys.C:
+                        this.btnCopy_Click(null, null);
+                        break;
+                    // Paste
+                    case Keys.Control | Keys.V:
+                        this.btnPaste_Click(null, null);
+                        break;
+                    // Clear Plane
+                    case Keys.Control | Keys.X:
+                        this.btnClearPlane_Click(null, null);
+                        break;
+                    // Clear All
+                    case Keys.Control | Keys.Shift | Keys.X:
+                        this.btnClearAll_Click(null, null);
+                        break;
+                    // Fill Plane
+                    case Keys.Control | Keys.F:
+                        this.btnFillPlane_Click(null, null);
+                        break;
+                    // Shift forward
+                    case Keys.Control | Keys.Shift | Keys.Up:
+                        this.btnShiftUp_Click(null, null);
+                        break;
+                    // Shift reverse
+                    case Keys.Control | Keys.Shift | Keys.Down:
+                        this.btnShiftDown_Click(null, null);
+                        break;
+                    // Draw Single
+                    case Keys.Control | Keys.S:
+                        this.btnSingle_Click(this.btnSingle, null);
+                        break;
+                    // Draw Line
+                    case Keys.Control | Keys.L:
+                        this.btnLine_Click(this.btnLine, null);
+                        break;
+                    // Draw Rectangle
+                    case Keys.Control | Keys.R:
+                        this.btnRectangle_Click(this.btnRectangle, null);
+                        break;
+                    // Draw Circle
+                    case Keys.Control | Keys.O:
+                        this.btnCircle_Click(this.btnCircle, null);
+                        break;
+                    default:
+                        break;
+                }
+                
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        private void uxPlaneSelect_MouseWheel(object sender, MouseEventArgs me)
+        {
+            if (me.Delta > 0)
+            {
+                this.uxPlaneSelect.UpButton();
+            }
+            else
+            {
+                this.uxPlaneSelect.DownButton();
+            }
+        }
+
+        private void btnAXIS_X_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == System.Windows.Forms.Keys.Left ||
+                e.KeyCode == System.Windows.Forms.Keys.Right ||
+                e.KeyCode == System.Windows.Forms.Keys.Up ||
+                e.KeyCode == System.Windows.Forms.Keys.Down)
+            {
+                e.SuppressKeyPress = true;
+            }
         }
     }
 }
