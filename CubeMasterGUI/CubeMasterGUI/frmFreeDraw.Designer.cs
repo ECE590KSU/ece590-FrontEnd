@@ -153,7 +153,6 @@
             this.btnSingle.Name = "btnSingle";
             this.btnSingle.Size = new System.Drawing.Size(150, 150);
             this.btnSingle.TabIndex = 4;
-            this.btnSingle.Text = "Single";
             this.ttFreeDraw.SetToolTip(this.btnSingle, "Click on a Voxel (the\r\nbig grid) to alter its\r\nstate (ON or OFF).");
             this.btnSingle.UseVisualStyleBackColor = true;
             this.btnSingle.Click += new System.EventHandler(this.btnSingle_Click);
@@ -166,7 +165,6 @@
             this.btnRectangle.Name = "btnRectangle";
             this.btnRectangle.Size = new System.Drawing.Size(150, 150);
             this.btnRectangle.TabIndex = 4;
-            this.btnRectangle.Text = "Rectangle";
             this.ttFreeDraw.SetToolTip(this.btnRectangle, "Click on two Voxels and\r\na rectangle will be drawn\r\nbetween them. Best if used\r\no" +
         "n the same plane.");
             this.btnRectangle.UseVisualStyleBackColor = true;
@@ -180,7 +178,6 @@
             this.btnCircle.Name = "btnCircle";
             this.btnCircle.Size = new System.Drawing.Size(150, 150);
             this.btnCircle.TabIndex = 4;
-            this.btnCircle.Text = "Circle";
             this.ttFreeDraw.SetToolTip(this.btnCircle, "Click on a Voxel where the\r\ncenter of the circle should be,\r\nand then click on a " +
         "voxel for\r\nits outer line. Watch magic happen!");
             this.btnCircle.UseVisualStyleBackColor = true;
@@ -194,7 +191,6 @@
             this.btnLine.Name = "btnLine";
             this.btnLine.Size = new System.Drawing.Size(150, 150);
             this.btnLine.TabIndex = 4;
-            this.btnLine.Text = "Line";
             this.ttFreeDraw.SetToolTip(this.btnLine, "Click on two Voxels to\r\ndraw a line between them. \r\nThey do not have to be on the" +
         "\r\nsame plane, or even axis!");
             this.btnLine.UseVisualStyleBackColor = true;

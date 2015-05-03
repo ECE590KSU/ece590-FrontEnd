@@ -72,6 +72,12 @@ namespace CubeMasterGUI
             this.btnDemo.Image = new Bitmap(AssetHandler.StartDemo);
             this.btnDemoStop.Image = new Bitmap(AssetHandler.StopDemo);
 
+            _freeDrawController.AddDrawingImagesEntry(this.btnSingle, AssetHandler.DrawSingle, AssetHandler.DrawSingleAlt);
+            _freeDrawController.AddDrawingImagesEntry(this.btnRectangle, AssetHandler.DrawRect, AssetHandler.DrawRectAlt);
+            _freeDrawController.AddDrawingImagesEntry(this.btnCircle, AssetHandler.DrawCircle, AssetHandler.DrawCircleAlt);
+            _freeDrawController.AddDrawingImagesEntry(this.btnLine, AssetHandler.DrawLine, AssetHandler.DrawLineAlt);
+            ToggleSelectedDrawingFunction(this.btnSingle);
+
             _imgOrientX = new Bitmap(AssetHandler.OrientXURL);
             _imgOrientY = new Bitmap(AssetHandler.OrientYURL);
             _imgOrientZ = new Bitmap(AssetHandler.OrientZURL);
@@ -84,9 +90,6 @@ namespace CubeMasterGUI
             _functions.Add(this.btnLine);
             _functions.Add(this.btnRectangle);
             _functions.Add(this.btnCircle);
-
-            this.btnSingle.BackColor = AssetHandler.BtnBackColor_Secondary;
-            this.btnSingle.ForeColor = AssetHandler.TxtColor_Secondary;
         }
 
         private void InvokeTimerProtocol()
@@ -385,18 +388,12 @@ namespace CubeMasterGUI
         private void ToggleSelectedDrawingFunction(Button sender)
         {
             this.tmrFreeDraw.ResetTimers();
+            bool isAlternate = false;
             foreach (Button b in _functions)
             {
-                if ((sender).Equals(b))
-                {
-                    b.BackColor = AssetHandler.BtnBackColor_Secondary;
-                    b.ForeColor = Color.White;
-                }
-                else
-                {
-                    b.BackColor = AssetHandler.BtnBackColor_Primary;
-                    b.ForeColor = AssetHandler.TxtColor_Primary;
-                }
+                isAlternate = b.Equals(sender);
+                _freeDrawController.SwapDrawingFunctionImg(b, isAlternate);
+                b.BackColor = isAlternate ? AssetHandler.BtnBackColor_Secondary : AssetHandler.BtnBackColor_Primary;
             }
         }
 

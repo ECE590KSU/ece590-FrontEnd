@@ -2,19 +2,23 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
+using System.Drawing;
 
 namespace CubeMasterGUI
 {
     public class FreeDraw
     {
         private CubeController.Cube _cube;
+        
         private bool[][] _planeBuffer;
+
+        private Dictionary<String, CubeController.Cube.REFLECTION> _reflections;
+        private Dictionary<Button, Tuple<Bitmap, Bitmap>> _drawingButtonImages;
 
         public CubeController.Cube.AXIS SelectedAxis { get; set; }
         public CubeController.Cube.REFLECTION Reflection { get; set; }
         public CubeController.Cube.DIRECTION Direction { get; set; }
-
-        private Dictionary<String, CubeController.Cube.REFLECTION> _reflections;
 
         // Replace function calls using 'int plane' with 'SelectedPlane'. 
         public int SelectedPlane { get; set; }
@@ -27,6 +31,8 @@ namespace CubeMasterGUI
             _cube = cube;
             this.CurrentDrawingMode = DRAWING_MODE.SINGLE;
             this.Reflection = CubeController.Cube.REFLECTION.ORIGIN;
+
+            _drawingButtonImages = new Dictionary<Button, Tuple<Bitmap, Bitmap>>();
 
             _reflections = new Dictionary<string, CubeController.Cube.REFLECTION>();
             _reflections.Add("origin", CubeController.Cube.REFLECTION.ORIGIN);
@@ -241,6 +247,27 @@ namespace CubeMasterGUI
         {
             this.Direction = CubeController.Cube.DIRECTION.REVERSE;
             _cube.ShiftAndRoll(this.SelectedAxis, this.Direction);
+        }
+
+        /// <summary>
+        /// Returns the appropriate image for a button. 
+        /// </summary>
+        /// <param name="btn">The button to lookup images for.</param>
+        /// <param name="alt">Do we need the alternate image?</param>
+        /// <returns>Bitmap representing the appropriate image.</returns>
+        public Bitmap GetDrawingFunctionImg(Button btn, bool alt)
+        {
+            return alt ? _drawingButtonImages[btn].Item2 : _drawingButtonImages[btn].Item1;
+        }
+
+        public void SwapDrawingFunctionImg(Button toSwap, bool alt)
+        {
+            toSwap.Image = alt ? _drawingButtonImages[toSwap].Item2 : _drawingButtonImages[toSwap].Item1;
+        }
+
+        public void AddDrawingImagesEntry(Button btn, string path1, string path2)
+        {
+            _drawingButtonImages.Add(btn, new Tuple<Bitmap, Bitmap>(new Bitmap(path1), new Bitmap(path2)));
         }
     }
 }
