@@ -210,7 +210,10 @@ namespace CubeMasterGUI
         /// </summary>
         public void PastePlane()
         {
-            _cube.PatternSetPlane(this.SelectedAxis, this.SelectedPlane, _planeBuffer);
+            if (_planeBuffer != null)
+            {
+                _cube.PatternSetPlane(this.SelectedAxis, this.SelectedPlane, _planeBuffer);
+            }
         }
 
         public void SymmetryX()

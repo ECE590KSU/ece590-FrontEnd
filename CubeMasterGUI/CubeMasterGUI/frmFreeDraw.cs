@@ -30,6 +30,10 @@ namespace CubeMasterGUI
         private int _voxelHeight = 80;
         private int _voxelWidth = 80;
 
+        private Bitmap _imgOrientZ;
+        private Bitmap _imgOrientY;
+        private Bitmap _imgOrientX;
+
         private Voxel[,] _voxels;
 
         private Color _clrVoxelClicked = AssetHandler.BtnBackColor_Tertiary;
@@ -50,8 +54,8 @@ namespace CubeMasterGUI
             GenerateVoxelGrid();
             AssignDrawingFunctions();
             InvokeTimerProtocol();
-            InitializeRadioButtons();
             SetButtonIcons();
+            InitializeRadioButtons();
             SetupDemo();
             this.ShowInTaskbar = false;
 
@@ -63,6 +67,14 @@ namespace CubeMasterGUI
         {
             this.btnRotateCW.Image = new Bitmap(AssetHandler.RotateCW_URL);
             this.btnRotateCCW.Image = new Bitmap(AssetHandler.RotateCCW_URL);
+            this.btnCopy.Image = new Bitmap(AssetHandler.Copy);
+            this.btnPaste.Image = new Bitmap(AssetHandler.Paste);
+            this.btnDemo.Image = new Bitmap(AssetHandler.StartDemo);
+            this.btnDemoStop.Image = new Bitmap(AssetHandler.StopDemo);
+
+            _imgOrientX = new Bitmap(AssetHandler.OrientXURL);
+            _imgOrientY = new Bitmap(AssetHandler.OrientYURL);
+            _imgOrientZ = new Bitmap(AssetHandler.OrientZURL);
         }
 
         private void AssignDrawingFunctions()
@@ -263,6 +275,7 @@ namespace CubeMasterGUI
             if (btnx.Checked)
             {
                 _freeDrawController.SelectedAxis = CubeController.Cube.AXIS.AXIS_X;
+                this.picPreview.Image = _imgOrientX;
                 RefreshVoxelGrid();
             }
         }
@@ -273,6 +286,7 @@ namespace CubeMasterGUI
             if (btny.Checked)
             {
                 _freeDrawController.SelectedAxis = CubeController.Cube.AXIS.AXIS_Y;
+                this.picPreview.Image = _imgOrientY;
                 RefreshVoxelGrid();
             }
         }
@@ -283,6 +297,7 @@ namespace CubeMasterGUI
             if (btnz.Checked)
             {
                 _freeDrawController.SelectedAxis = CubeController.Cube.AXIS.AXIS_Z;
+                this.picPreview.Image = _imgOrientZ;
                 RefreshVoxelGrid();
             }
         }

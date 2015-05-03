@@ -50,29 +50,18 @@
             this.btnAXIS_Z = new System.Windows.Forms.RadioButton();
             this.btnAXIS_Y = new System.Windows.Forms.RadioButton();
             this.btnAXIS_X = new System.Windows.Forms.RadioButton();
-            this.ttCopy = new System.Windows.Forms.ToolTip(this.components);
-            this.ttPaste = new System.Windows.Forms.ToolTip(this.components);
-            this.ttDemo = new System.Windows.Forms.ToolTip(this.components);
-            this.ttStop = new System.Windows.Forms.ToolTip(this.components);
-            this.ttSingle = new System.Windows.Forms.ToolTip(this.components);
-            this.ttLine = new System.Windows.Forms.ToolTip(this.components);
-            this.ttRectangle = new System.Windows.Forms.ToolTip(this.components);
-            this.ttCircle = new System.Windows.Forms.ToolTip(this.components);
-            this.ttPlaneNum = new System.Windows.Forms.ToolTip(this.components);
-            this.ttX_AXIS = new System.Windows.Forms.ToolTip(this.components);
-            this.ttY_AXIS = new System.Windows.Forms.ToolTip(this.components);
-            this.ttZ_AXIS = new System.Windows.Forms.ToolTip(this.components);
+            this.ttFreeDraw = new System.Windows.Forms.ToolTip(this.components);
             this.btnMirrorY = new System.Windows.Forms.Button();
             this.btnMirrorZ = new System.Windows.Forms.Button();
-            this.ttOrigin = new System.Windows.Forms.ToolTip(this.components);
-            this.ttTerminus = new System.Windows.Forms.ToolTip(this.components);
             this.cmbReflection = new System.Windows.Forms.ComboBox();
             this.btnShiftUp = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.picPreview = new System.Windows.Forms.PictureBox();
             this.btnCloseWindow1 = new CubeMasterGUI.btnCloseWindow();
             this.tmrFreeDraw = new CubeMasterGUI.ctrlTimer();
             this.pnlDrawingControls.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uxPlaneSelect)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picPreview)).BeginInit();
             this.SuspendLayout();
             // 
             // lblWindowName
@@ -88,6 +77,7 @@
             // 
             this.pnlDrawingControls.BackColor = System.Drawing.SystemColors.Window;
             this.pnlDrawingControls.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlDrawingControls.Controls.Add(this.picPreview);
             this.pnlDrawingControls.Controls.Add(this.cmbReflection);
             this.pnlDrawingControls.Controls.Add(this.btnRotateCW);
             this.pnlDrawingControls.Controls.Add(this.btnRotateCCW);
@@ -123,10 +113,11 @@
             // 
             this.btnRotateCW.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRotateCW.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRotateCW.Location = new System.Drawing.Point(263, 338);
+            this.btnRotateCW.Location = new System.Drawing.Point(263, 351);
             this.btnRotateCW.Name = "btnRotateCW";
             this.btnRotateCW.Size = new System.Drawing.Size(70, 75);
             this.btnRotateCW.TabIndex = 5;
+            this.ttFreeDraw.SetToolTip(this.btnRotateCW, "Rotate clock-wise.");
             this.btnRotateCW.UseVisualStyleBackColor = true;
             this.btnRotateCW.Click += new System.EventHandler(this.btnRotateCW_Click);
             // 
@@ -134,10 +125,11 @@
             // 
             this.btnRotateCCW.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRotateCCW.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRotateCCW.Location = new System.Drawing.Point(183, 338);
+            this.btnRotateCCW.Location = new System.Drawing.Point(183, 351);
             this.btnRotateCCW.Name = "btnRotateCCW";
             this.btnRotateCCW.Size = new System.Drawing.Size(70, 75);
             this.btnRotateCCW.TabIndex = 5;
+            this.ttFreeDraw.SetToolTip(this.btnRotateCCW, "Rotate counter-clock-wise.");
             this.btnRotateCCW.UseVisualStyleBackColor = true;
             this.btnRotateCCW.Click += new System.EventHandler(this.btnRotateCCW_Click);
             // 
@@ -145,12 +137,11 @@
             // 
             this.btnDemoStop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDemoStop.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDemoStop.Location = new System.Drawing.Point(517, 435);
+            this.btnDemoStop.Location = new System.Drawing.Point(517, 442);
             this.btnDemoStop.Name = "btnDemoStop";
             this.btnDemoStop.Size = new System.Drawing.Size(150, 75);
             this.btnDemoStop.TabIndex = 4;
-            this.btnDemoStop.Text = "Stop";
-            this.ttStop.SetToolTip(this.btnDemoStop, "Stops the demo.");
+            this.ttFreeDraw.SetToolTip(this.btnDemoStop, "Stops the demo.");
             this.btnDemoStop.UseVisualStyleBackColor = true;
             this.btnDemoStop.Click += new System.EventHandler(this.btnDemoStop_Click);
             // 
@@ -163,7 +154,7 @@
             this.btnSingle.Size = new System.Drawing.Size(150, 150);
             this.btnSingle.TabIndex = 4;
             this.btnSingle.Text = "Single";
-            this.ttSingle.SetToolTip(this.btnSingle, "Draws a single point.");
+            this.ttFreeDraw.SetToolTip(this.btnSingle, "Click on a Voxel (the\r\nbig grid) to alter its\r\nstate (ON or OFF).");
             this.btnSingle.UseVisualStyleBackColor = true;
             this.btnSingle.Click += new System.EventHandler(this.btnSingle_Click);
             // 
@@ -176,7 +167,8 @@
             this.btnRectangle.Size = new System.Drawing.Size(150, 150);
             this.btnRectangle.TabIndex = 4;
             this.btnRectangle.Text = "Rectangle";
-            this.ttRectangle.SetToolTip(this.btnRectangle, "Draws a rectangle given\r\ntwo opposite points.");
+            this.ttFreeDraw.SetToolTip(this.btnRectangle, "Click on two Voxels and\r\na rectangle will be drawn\r\nbetween them. Best if used\r\no" +
+        "n the same plane.");
             this.btnRectangle.UseVisualStyleBackColor = true;
             this.btnRectangle.Click += new System.EventHandler(this.btnRectangle_Click);
             // 
@@ -189,7 +181,8 @@
             this.btnCircle.Size = new System.Drawing.Size(150, 150);
             this.btnCircle.TabIndex = 4;
             this.btnCircle.Text = "Circle";
-            this.ttCircle.SetToolTip(this.btnCircle, "Draws a circle, given a \r\ncenter point and an outer\r\npoint.");
+            this.ttFreeDraw.SetToolTip(this.btnCircle, "Click on a Voxel where the\r\ncenter of the circle should be,\r\nand then click on a " +
+        "voxel for\r\nits outer line. Watch magic happen!");
             this.btnCircle.UseVisualStyleBackColor = true;
             this.btnCircle.Click += new System.EventHandler(this.btnCircle_Click);
             // 
@@ -202,7 +195,8 @@
             this.btnLine.Size = new System.Drawing.Size(150, 150);
             this.btnLine.TabIndex = 4;
             this.btnLine.Text = "Line";
-            this.ttLine.SetToolTip(this.btnLine, "Draws a line between \r\ntwo points.");
+            this.ttFreeDraw.SetToolTip(this.btnLine, "Click on two Voxels to\r\ndraw a line between them. \r\nThey do not have to be on the" +
+        "\r\nsame plane, or even axis!");
             this.btnLine.UseVisualStyleBackColor = true;
             this.btnLine.Click += new System.EventHandler(this.btnLine_Click);
             // 
@@ -210,12 +204,11 @@
             // 
             this.btnCopy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCopy.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCopy.Location = new System.Drawing.Point(17, 435);
+            this.btnCopy.Location = new System.Drawing.Point(17, 442);
             this.btnCopy.Name = "btnCopy";
             this.btnCopy.Size = new System.Drawing.Size(150, 75);
             this.btnCopy.TabIndex = 4;
-            this.btnCopy.Text = "Copy";
-            this.ttCopy.SetToolTip(this.btnCopy, "Like this pattern? Press Copy to save it for later!");
+            this.ttFreeDraw.SetToolTip(this.btnCopy, "Like this pattern? \r\nSave it for later! (use Paste)");
             this.btnCopy.UseVisualStyleBackColor = true;
             this.btnCopy.Click += new System.EventHandler(this.btnCopy_Click);
             // 
@@ -223,12 +216,11 @@
             // 
             this.btnPaste.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPaste.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPaste.Location = new System.Drawing.Point(183, 435);
+            this.btnPaste.Location = new System.Drawing.Point(183, 442);
             this.btnPaste.Name = "btnPaste";
             this.btnPaste.Size = new System.Drawing.Size(150, 75);
             this.btnPaste.TabIndex = 4;
-            this.btnPaste.Text = "Paste";
-            this.ttPaste.SetToolTip(this.btnPaste, "Click this to re-draw your saved pattern!");
+            this.ttFreeDraw.SetToolTip(this.btnPaste, "Pastes your saved pattern.");
             this.btnPaste.UseVisualStyleBackColor = true;
             this.btnPaste.Click += new System.EventHandler(this.btnPaste_Click);
             // 
@@ -236,11 +228,12 @@
             // 
             this.btnMirrorX.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMirrorX.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMirrorX.Location = new System.Drawing.Point(348, 18);
+            this.btnMirrorX.Location = new System.Drawing.Point(517, 60);
             this.btnMirrorX.Name = "btnMirrorX";
             this.btnMirrorX.Size = new System.Drawing.Size(150, 36);
             this.btnMirrorX.TabIndex = 4;
             this.btnMirrorX.Text = "Mirror X";
+            this.ttFreeDraw.SetToolTip(this.btnMirrorX, "Take what\'s on the X-Axis,\r\nand mirror it (symmetry).\r\n");
             this.btnMirrorX.UseVisualStyleBackColor = true;
             this.btnMirrorX.Click += new System.EventHandler(this.btnMirrorX_Click);
             // 
@@ -248,12 +241,11 @@
             // 
             this.btnDemo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDemo.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDemo.Location = new System.Drawing.Point(348, 435);
+            this.btnDemo.Location = new System.Drawing.Point(348, 442);
             this.btnDemo.Name = "btnDemo";
             this.btnDemo.Size = new System.Drawing.Size(150, 75);
             this.btnDemo.TabIndex = 4;
-            this.btnDemo.Text = "Demo";
-            this.ttDemo.SetToolTip(this.btnDemo, "See a short demonstration -- on screen and on the cube!");
+            this.ttFreeDraw.SetToolTip(this.btnDemo, "Simulates a short\r\ndemonstration.");
             this.btnDemo.UseVisualStyleBackColor = true;
             this.btnDemo.Click += new System.EventHandler(this.btnDemo_Click);
             // 
@@ -261,11 +253,12 @@
             // 
             this.btnFillPlane.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFillPlane.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFillPlane.Location = new System.Drawing.Point(183, 248);
+            this.btnFillPlane.Location = new System.Drawing.Point(183, 261);
             this.btnFillPlane.Name = "btnFillPlane";
             this.btnFillPlane.Size = new System.Drawing.Size(151, 75);
             this.btnFillPlane.TabIndex = 4;
             this.btnFillPlane.Text = "Fill Plane";
+            this.ttFreeDraw.SetToolTip(this.btnFillPlane, "Turn on every Voxel on this plane.");
             this.btnFillPlane.UseVisualStyleBackColor = true;
             this.btnFillPlane.Click += new System.EventHandler(this.btnFillPlane_Click);
             // 
@@ -273,11 +266,12 @@
             // 
             this.btnClearAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClearAll.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClearAll.Location = new System.Drawing.Point(17, 338);
+            this.btnClearAll.Location = new System.Drawing.Point(17, 351);
             this.btnClearAll.Name = "btnClearAll";
             this.btnClearAll.Size = new System.Drawing.Size(151, 75);
             this.btnClearAll.TabIndex = 4;
             this.btnClearAll.Text = "Clear All";
+            this.ttFreeDraw.SetToolTip(this.btnClearAll, "Start from scratch.");
             this.btnClearAll.UseVisualStyleBackColor = true;
             this.btnClearAll.Click += new System.EventHandler(this.btnClearAll_Click);
             // 
@@ -285,11 +279,12 @@
             // 
             this.btnClearPlane.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClearPlane.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClearPlane.Location = new System.Drawing.Point(17, 248);
+            this.btnClearPlane.Location = new System.Drawing.Point(17, 261);
             this.btnClearPlane.Name = "btnClearPlane";
             this.btnClearPlane.Size = new System.Drawing.Size(151, 75);
             this.btnClearPlane.TabIndex = 4;
             this.btnClearPlane.Text = "Clear Plane";
+            this.ttFreeDraw.SetToolTip(this.btnClearPlane, "Don\'t like this plane? No problem.");
             this.btnClearPlane.UseVisualStyleBackColor = true;
             this.btnClearPlane.Click += new System.EventHandler(this.btnClearPlane_Click);
             // 
@@ -298,17 +293,17 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.SteelBlue;
-            this.label1.Location = new System.Drawing.Point(12, 145);
+            this.label1.Location = new System.Drawing.Point(11, 216);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(179, 32);
+            this.label1.Size = new System.Drawing.Size(99, 32);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Plane Number";
+            this.label1.Text = "Plane #";
             // 
             // uxPlaneSelect
             // 
             this.uxPlaneSelect.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.uxPlaneSelect.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uxPlaneSelect.Location = new System.Drawing.Point(17, 186);
+            this.uxPlaneSelect.Location = new System.Drawing.Point(116, 216);
             this.uxPlaneSelect.Maximum = new decimal(new int[] {
             8,
             0,
@@ -320,9 +315,9 @@
             0,
             0});
             this.uxPlaneSelect.Name = "uxPlaneSelect";
-            this.uxPlaneSelect.Size = new System.Drawing.Size(317, 35);
+            this.uxPlaneSelect.Size = new System.Drawing.Size(218, 35);
             this.uxPlaneSelect.TabIndex = 1;
-            this.ttPlaneNum.SetToolTip(this.uxPlaneSelect, "What \'slice\' of the cube\r\nto look at and modify (1-8).\r\n");
+            this.ttFreeDraw.SetToolTip(this.uxPlaneSelect, "Pick which plane to draw on!");
             this.uxPlaneSelect.Value = new decimal(new int[] {
             1,
             0,
@@ -342,7 +337,7 @@
             this.btnAXIS_Z.TabIndex = 0;
             this.btnAXIS_Z.TabStop = true;
             this.btnAXIS_Z.Text = "Z Axis (X-Y Plane)";
-            this.ttZ_AXIS.SetToolTip(this.btnAXIS_Z, "Runs BOTTOM to TOP.");
+            this.ttFreeDraw.SetToolTip(this.btnAXIS_Z, "Draw along the Z-Axis.");
             this.btnAXIS_Z.UseVisualStyleBackColor = true;
             this.btnAXIS_Z.CheckedChanged += new System.EventHandler(this.btnAXIS_Z_CheckedChanged);
             // 
@@ -358,7 +353,7 @@
             this.btnAXIS_Y.TabIndex = 0;
             this.btnAXIS_Y.TabStop = true;
             this.btnAXIS_Y.Text = "Y Axis (X-Z Plane)";
-            this.ttY_AXIS.SetToolTip(this.btnAXIS_Y, "Runs FRONT to BACK --\r\n(you\'re lookin\' at the front!)");
+            this.ttFreeDraw.SetToolTip(this.btnAXIS_Y, "Draw along the Y-Axis.");
             this.btnAXIS_Y.UseVisualStyleBackColor = true;
             this.btnAXIS_Y.CheckedChanged += new System.EventHandler(this.btnAXIS_Y_CheckedChanged);
             // 
@@ -374,68 +369,24 @@
             this.btnAXIS_X.TabIndex = 0;
             this.btnAXIS_X.TabStop = true;
             this.btnAXIS_X.Text = "X Axis (Y-Z Plane)";
-            this.ttX_AXIS.SetToolTip(this.btnAXIS_X, "Runs LEFT to RIGHT.");
+            this.ttFreeDraw.SetToolTip(this.btnAXIS_X, "Draw along the X-Axis.");
             this.btnAXIS_X.UseVisualStyleBackColor = true;
             this.btnAXIS_X.CheckedChanged += new System.EventHandler(this.btnAXIS_X_CheckedChanged);
             // 
-            // ttCopy
+            // ttFreeDraw
             // 
-            this.ttCopy.ShowAlways = true;
-            this.ttCopy.ToolTipTitle = "Copy Pattern";
-            // 
-            // ttPaste
-            // 
-            this.ttPaste.ToolTipTitle = "Paste Pattern";
-            // 
-            // ttDemo
-            // 
-            this.ttDemo.ToolTipTitle = "Start a Demo";
-            // 
-            // ttStop
-            // 
-            this.ttStop.ToolTipTitle = "Stop Demo";
-            // 
-            // ttSingle
-            // 
-            this.ttSingle.ToolTipTitle = "Point Draw";
-            // 
-            // ttLine
-            // 
-            this.ttLine.ToolTipTitle = "Line Draw";
-            // 
-            // ttRectangle
-            // 
-            this.ttRectangle.ToolTipTitle = "Rectangle Draw";
-            // 
-            // ttCircle
-            // 
-            this.ttCircle.ToolTipTitle = "Circle Draw";
-            // 
-            // ttPlaneNum
-            // 
-            this.ttPlaneNum.ToolTipTitle = "Plane Number";
-            // 
-            // ttX_AXIS
-            // 
-            this.ttX_AXIS.ToolTipTitle = "The X Axis";
-            // 
-            // ttY_AXIS
-            // 
-            this.ttY_AXIS.ToolTipTitle = "The Y Axis";
-            // 
-            // ttZ_AXIS
-            // 
-            this.ttZ_AXIS.ToolTipTitle = "The Z Axis";
+            this.ttFreeDraw.ShowAlways = true;
             // 
             // btnMirrorY
             // 
             this.btnMirrorY.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMirrorY.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMirrorY.Location = new System.Drawing.Point(348, 60);
+            this.btnMirrorY.Location = new System.Drawing.Point(517, 102);
             this.btnMirrorY.Name = "btnMirrorY";
             this.btnMirrorY.Size = new System.Drawing.Size(150, 36);
             this.btnMirrorY.TabIndex = 4;
             this.btnMirrorY.Text = "Mirror Y";
+            this.ttFreeDraw.SetToolTip(this.btnMirrorY, "Take what\'s along the\r\nY-Axis, and mirror it (symmetry).");
             this.btnMirrorY.UseVisualStyleBackColor = true;
             this.btnMirrorY.Click += new System.EventHandler(this.btnMirrorY_Click);
             // 
@@ -443,25 +394,19 @@
             // 
             this.btnMirrorZ.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMirrorZ.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMirrorZ.Location = new System.Drawing.Point(504, 60);
+            this.btnMirrorZ.Location = new System.Drawing.Point(517, 144);
             this.btnMirrorZ.Name = "btnMirrorZ";
-            this.btnMirrorZ.Size = new System.Drawing.Size(163, 36);
+            this.btnMirrorZ.Size = new System.Drawing.Size(150, 36);
             this.btnMirrorZ.TabIndex = 4;
             this.btnMirrorZ.Text = "Mirror Z";
+            this.ttFreeDraw.SetToolTip(this.btnMirrorZ, "Take what\'s on the X-Axis,\r\nand mirror it (symmetry).");
             this.btnMirrorZ.UseVisualStyleBackColor = true;
             this.btnMirrorZ.Click += new System.EventHandler(this.btnMirrorZ_Click);
-            // 
-            // ttOrigin
-            // 
-            this.ttOrigin.ToolTipTitle = "Mirror From Origin";
-            // 
-            // ttTerminus
-            // 
-            this.ttTerminus.ToolTipTitle = "Mirror From Terminus";
             // 
             // cmbReflection
             // 
             this.cmbReflection.BackColor = System.Drawing.Color.GhostWhite;
+            this.cmbReflection.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbReflection.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cmbReflection.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbReflection.ForeColor = System.Drawing.Color.SteelBlue;
@@ -469,21 +414,25 @@
             this.cmbReflection.Items.AddRange(new object[] {
             "Origin",
             "Terminus"});
-            this.cmbReflection.Location = new System.Drawing.Point(505, 18);
+            this.cmbReflection.Location = new System.Drawing.Point(517, 16);
             this.cmbReflection.Name = "cmbReflection";
-            this.cmbReflection.Size = new System.Drawing.Size(162, 38);
+            this.cmbReflection.Size = new System.Drawing.Size(150, 38);
             this.cmbReflection.TabIndex = 6;
+            this.cmbReflection.TabStop = false;
+            this.ttFreeDraw.SetToolTip(this.cmbReflection, "Do you want to reflect what\'s \r\ncloser to you (ORIGIN), or\r\nwhat\'s further from y" +
+        "ou (TERMINUS)?");
             this.cmbReflection.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // btnShiftUp
             // 
             this.btnShiftUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnShiftUp.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnShiftUp.Location = new System.Drawing.Point(348, 248);
+            this.btnShiftUp.Location = new System.Drawing.Point(348, 261);
             this.btnShiftUp.Name = "btnShiftUp";
             this.btnShiftUp.Size = new System.Drawing.Size(150, 75);
             this.btnShiftUp.TabIndex = 4;
             this.btnShiftUp.Text = "Shift Forward";
+            this.ttFreeDraw.SetToolTip(this.btnShiftUp, "Roll through your planes\r\nin increasing plane order.");
             this.btnShiftUp.UseVisualStyleBackColor = true;
             this.btnShiftUp.Click += new System.EventHandler(this.btnShiftUp_Click);
             // 
@@ -491,13 +440,24 @@
             // 
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(348, 338);
+            this.button1.Location = new System.Drawing.Point(348, 351);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(150, 75);
             this.button1.TabIndex = 4;
             this.button1.Text = "Shift Reverse";
+            this.ttFreeDraw.SetToolTip(this.button1, "Roll through your planes\r\nin decreasing plane order.");
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // picPreview
+            // 
+            this.picPreview.Location = new System.Drawing.Point(348, 30);
+            this.picPreview.Name = "picPreview";
+            this.picPreview.Size = new System.Drawing.Size(150, 150);
+            this.picPreview.TabIndex = 7;
+            this.picPreview.TabStop = false;
+            this.ttFreeDraw.SetToolTip(this.picPreview, "You\'re oriented along the blue face,\r\nthe red arrow indicating an increasing\r\npla" +
+        "ne number.");
             // 
             // btnCloseWindow1
             // 
@@ -535,6 +495,7 @@
             this.pnlDrawingControls.ResumeLayout(false);
             this.pnlDrawingControls.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uxPlaneSelect)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picPreview)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -562,27 +523,15 @@
         private System.Windows.Forms.Button btnLine;
         private System.Windows.Forms.Button btnCopy;
         private System.Windows.Forms.Button btnPaste;
-        private System.Windows.Forms.ToolTip ttCopy;
-        private System.Windows.Forms.ToolTip ttPaste;
-        private System.Windows.Forms.ToolTip ttDemo;
-        private System.Windows.Forms.ToolTip ttStop;
-        private System.Windows.Forms.ToolTip ttSingle;
-        private System.Windows.Forms.ToolTip ttLine;
-        private System.Windows.Forms.ToolTip ttRectangle;
-        private System.Windows.Forms.ToolTip ttCircle;
-        private System.Windows.Forms.ToolTip ttPlaneNum;
-        private System.Windows.Forms.ToolTip ttX_AXIS;
-        private System.Windows.Forms.ToolTip ttY_AXIS;
-        private System.Windows.Forms.ToolTip ttZ_AXIS;
+        private System.Windows.Forms.ToolTip ttFreeDraw;
         private System.Windows.Forms.Button btnMirrorX;
         private System.Windows.Forms.Button btnRotateCW;
         private System.Windows.Forms.Button btnRotateCCW;
         private System.Windows.Forms.Button btnMirrorZ;
         private System.Windows.Forms.Button btnMirrorY;
-        private System.Windows.Forms.ToolTip ttOrigin;
-        private System.Windows.Forms.ToolTip ttTerminus;
         private System.Windows.Forms.ComboBox cmbReflection;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnShiftUp;
+        private System.Windows.Forms.PictureBox picPreview;
     }
 }
