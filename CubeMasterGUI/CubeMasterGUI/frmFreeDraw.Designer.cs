@@ -428,7 +428,6 @@
             this.btnAXIS_Z.Text = "Z Axis (X-Y Plane)";
             this.ttFreeDraw.SetToolTip(this.btnAXIS_Z, "Draw along the Z-Axis.");
             this.btnAXIS_Z.UseVisualStyleBackColor = true;
-            this.btnAXIS_Z.CheckedChanged += new System.EventHandler(this.btnAXIS_Z_CheckedChanged);
             // 
             // btnAXIS_Y
             // 
@@ -443,7 +442,6 @@
             this.btnAXIS_Y.Text = "Y Axis (X-Z Plane)";
             this.ttFreeDraw.SetToolTip(this.btnAXIS_Y, "Draw along the Y-Axis.");
             this.btnAXIS_Y.UseVisualStyleBackColor = true;
-            this.btnAXIS_Y.CheckedChanged += new System.EventHandler(this.btnAXIS_Y_CheckedChanged);
             // 
             // btnAXIS_X
             // 
@@ -464,6 +462,7 @@
             // ttFreeDraw
             // 
             this.ttFreeDraw.ShowAlways = true;
+
             // 
             // btnCloseWindow1
             // 

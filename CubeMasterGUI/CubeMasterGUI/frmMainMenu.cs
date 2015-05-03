@@ -82,7 +82,8 @@ namespace CubeMasterGUI
 
         private void btnText2Cube_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            this.tmrMainMenu.HaltTimers();
+            _mainMenuController.ApplicationLaunch_Text2Cube();
         }
 
         private void btnPresets_Click(object sender, EventArgs e)
