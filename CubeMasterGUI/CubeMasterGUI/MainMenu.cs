@@ -38,11 +38,6 @@ namespace CubeMasterGUI
             }
         }
 
-        internal void ApplicationLaunch_AudioVisual()
-        {
-
-        }
-
         internal void ApplicationLaunch_Games()
         {
 
@@ -50,7 +45,13 @@ namespace CubeMasterGUI
 
         internal void ApplicationLaunch_Presets()
         {
+            CubeController.Cube rootCubeController = _startScreenParent.GetRootCubeController();
+            frmPresets presets = new frmPresets(ref rootCubeController, _startScreenParent.ParentScreenWidth, _startScreenParent.ParentScreenHeight);
 
+            if (presets.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+
+            }
         }
     }
 }
