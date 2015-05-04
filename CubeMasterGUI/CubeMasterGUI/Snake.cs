@@ -12,34 +12,115 @@ namespace CubeMasterGUI
 {
     public class Snake
     {
+        /// <summary>
+        /// The cube controller
+        /// </summary>
         private CubeController.Cube _cube;
+        
+        /// <summary>
+        /// Lookup dictionary for difficulties
+        /// </summary>
         private Dictionary<string, DIFFICULTY> _difficultyDictionary;
+
+        /// <summary>
+        /// Current score
+        /// </summary>
         private int _score;
+
+        /// <summary>
+        /// Current plane
+        /// </summary>
         private int _currentPlane;
+        
+        /// <summary>
+        /// Current difficulty
+        /// </summary>
         private string _currentDifficulty;
 
-        private enum DIRECTION { POSITIVE_X, POSITIVE_Y, NEGATIVE_X, NEGATIVE_Y, POSITIVE_Z, NEGATIVE_Z };
-        private enum DIFFICULTY { EASY, MEDIUM, HARD };
-
+        /// <summary>
+        /// Current direction of the head of the snake
+        /// </summary>
         private DIRECTION _currentDirection;
+
+        /// <summary>
+        /// Timer controlling the game
+        /// </summary>
         private Timer _gameTimer;
+
+        /// <summary>
+        /// Time controlling the speed at which the food blinks
+        /// </summary>
         private Timer _foodBlinkTimer;
 
+        /// <summary>
+        /// Snake section representing the head of the snake
+        /// </summary>
         private SnakeSection _head;
+
+        /// <summary>
+        /// A snake section represented the current food item
+        /// </summary>
         private SnakeSection _food;
+
+        /// <summary>
+        /// The entire snake (including head)
+        /// </summary>
         private List<SnakeSection> _snake;
 
+        /// <summary>
+        /// Is a food piece out on the cube
+        /// </summary>
         private bool _foodIsOnTheTable = false;
+
+        /// <summary>
+        /// It the snake head in the same position as the food piece
+        /// </summary>
         private bool _eating = false;
+
+        /// <summary>
+        /// Is a game currently being played
+        /// </summary>
         private bool _gameIsPlaying = false;
 
+        /// <summary>
+        /// Random object used for food generation
+        /// </summary>
         private Random _random;
 
+        /// <summary>
+        /// StreamWriter for saving high scores
+        /// </summary>
         private StreamWriter _streamWriter;
+
+        /// <summary>
+        /// StreamReader for reading the saved high scores
+        /// </summary>
         private StreamReader _streamReader;
+
+        /// <summary>
+        /// List of the current high scores
+        /// </summary>
         private List<HighScore> _highScores;
+
+        /// <summary>
+        /// Data structure to bind the high scores to a list box
+        /// </summary>
         private BindingList<string> _boundHighScores;
+
+        /// <summary>
+        /// The different directions that the snake head can be oriented
+        /// </summary>
+        private enum DIRECTION { POSITIVE_X, POSITIVE_Y, NEGATIVE_X, NEGATIVE_Y, POSITIVE_Z, NEGATIVE_Z };
+
+        /// <summary>
+        /// The different game difficutly settings
+        /// </summary>
+        private enum DIFFICULTY { EASY, MEDIUM, HARD };
         
+        /// <summary>
+        /// Constructor for a new Snake controller
+        /// </summary>
+        /// <param name="cube">Cube controller</param>
         public Snake(ref CubeController.Cube cube)
         {
             _cube = cube;
@@ -65,6 +146,9 @@ namespace CubeMasterGUI
             _foodBlinkTimer.Tick += FoodTimerTick;
         }
 
+        /// <summary>
+        /// Starts a new game
+        /// </summary>
         public void StartNewGame()
         {
             _gameIsPlaying = true;
@@ -75,12 +159,181 @@ namespace CubeMasterGUI
             _foodBlinkTimer.Start();            
         }
 
+        /// <summary>
+        /// Ends the current game being played
+        /// </summary>
+        public void EndGame()
+        {
+            if (!_gameIsPlaying)
+                return;
+            else
+                _gameIsPlaying = false;
+
+            _gameTimer.Stop();
+            _foodBlinkTimer.Stop();
+            if (_score > _highScores.Last().Score)
+            {
+                GenerateHighScoreDialog();
+            }
+            else
+            {
+                MessageBox.Show("Game Over!");
+            }
+            _snake.Clear();
+            _head.Reset();
+            _cube.ClearEntireCube();
+
+        }
+
+        /// <summary>
+        /// Changed the difficulty setting
+        /// </summary>
+        /// <param name="s">Button name of the currently selected difficulty</param>
+        public void ChangeDifficultySetting(string s)
+        {
+            DIFFICULTY diff = _difficultyDictionary[s];
+            switch (diff)
+            {
+                case DIFFICULTY.EASY:
+                    _gameTimer.Interval = 700;
+                    _currentDifficulty = "Easy";
+                    break;
+                case DIFFICULTY.MEDIUM:
+                    _gameTimer.Interval = 400;
+                    _currentDifficulty = "Med";
+                    break;
+                case DIFFICULTY.HARD:
+                    _gameTimer.Interval = 175;
+                    _currentDifficulty = "Hard";
+                    break;
+                default:
+                    break;
+            }
+        }
+        
+        /// <summary>
+        /// Updates the binding list of high scores
+        /// </summary>
+        /// <returns>High scores to be bound to a list box</returns>
+        public BindingList<string> RefreshHighScores()
+        {
+            _boundHighScores.Clear();
+            foreach (var h in _highScores)
+            {
+                _boundHighScores.Add(h.ToString());
+            }
+            return _boundHighScores;
+        }
+
+        /// <summary>
+        /// Get the current plane
+        /// </summary>
+        /// <returns>current plane</returns>
+        public bool[][] GetPlane()
+        {
+            return _cube.GetPlane(CubeController.Cube.AXIS.AXIS_Z, _currentPlane);
+        }
+
+        /// <summary>
+        /// Gets the current score
+        /// </summary>
+        /// <returns>Current score</returns>
+        public string GetScore()
+        {
+            return _score.ToString();
+        }
+
+        /// <summary>
+        /// Changes the current direction based on a key press
+        /// </summary>
+        /// <param name="key">Key that was pressed</param>
+        public void ChangeCurrentDirection(Keys key)
+        {
+            switch (key)
+            {
+                case Keys.Left:
+                case Keys.A:
+                    switch (_currentDirection)
+                    {
+                        case DIRECTION.NEGATIVE_Y:
+                        case DIRECTION.NEGATIVE_Z:
+                            _currentDirection = DIRECTION.POSITIVE_X;
+                            break;
+                        case DIRECTION.POSITIVE_Z:
+                            _currentDirection = DIRECTION.NEGATIVE_X;
+                            break;
+                        default:
+                            _currentDirection++;
+                            break;
+                    }
+                    break;
+                case Keys.Right:
+                case Keys.D:
+                    switch (_currentDirection)
+                    {
+                        case DIRECTION.POSITIVE_X:
+                            _currentDirection = DIRECTION.NEGATIVE_Y;
+                            break;
+                        case DIRECTION.POSITIVE_Z:
+                            _currentDirection = DIRECTION.POSITIVE_X;
+                            break;
+                        case DIRECTION.NEGATIVE_Z:
+                            _currentDirection = DIRECTION.NEGATIVE_X;
+                            break;
+                        default:
+                            _currentDirection--;
+                            break;
+                    }
+                    break;
+                case Keys.Up:
+                case Keys.W:
+                    switch (_currentDirection)
+                    {
+                        case DIRECTION.POSITIVE_Z:
+                            _currentDirection = DIRECTION.NEGATIVE_Y;
+                            break;
+                        case DIRECTION.NEGATIVE_Z:
+                            _currentDirection = DIRECTION.POSITIVE_Y;
+                            break;
+                        default:
+                            _currentDirection = DIRECTION.POSITIVE_Z;
+                            break;
+                    }
+                    break;
+                case Keys.Down:
+                case Keys.S:
+                    switch (_currentDirection)
+                    {
+                        case DIRECTION.POSITIVE_Z:
+                            _currentDirection = DIRECTION.POSITIVE_Y;
+                            break;
+                        case DIRECTION.NEGATIVE_Z:
+                            _currentDirection = DIRECTION.NEGATIVE_Y;
+                            break;
+                        default:
+                            _currentDirection = DIRECTION.NEGATIVE_Z;
+                            break;
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// Flashes the food voxel
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FoodTimerTick(object sender, EventArgs e)
         {
             if (_foodIsOnTheTable)
                 _cube.SwapVoxel(_food.X, _food.Y, 0);
         }
 
+        /// <summary>
+        /// Spawns a new food piece in a random, unoccupied location
+        /// </summary>
         private void SpawnFood()
         {
             bool valid = false;
@@ -102,29 +355,12 @@ namespace CubeMasterGUI
             //_cube.SetVoxel(_food.X, _food.Y, _food.Z);
             // TODO: uncomment these two lines and delete the lines they replace
         }
-
-        public void ChangeDifficultySetting(string s)
-        {
-            DIFFICULTY diff = _difficultyDictionary[s];
-            switch(diff)
-            {
-                case DIFFICULTY.EASY:
-                    _gameTimer.Interval = 700;
-                    _currentDifficulty = "Easy";
-                    break;
-                case DIFFICULTY.MEDIUM:
-                    _gameTimer.Interval = 400;
-                    _currentDifficulty = "Med";
-                    break;
-                case DIFFICULTY.HARD:
-                    _gameTimer.Interval = 175;
-                    _currentDifficulty = "Hard";
-                    break;
-                default:
-                    break;
-            }
-        }
-
+        
+        /// <summary>
+        /// Handles every tick of the game timer. This actually drives the game.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void GameTimerTick(object sender, EventArgs e)
         {
             if (!_foodIsOnTheTable)
@@ -145,30 +381,10 @@ namespace CubeMasterGUI
                 EndGame();
             }
         }
-
-        public void EndGame()
-        {
-            if (!_gameIsPlaying)
-                return;
-            else
-                _gameIsPlaying = false;
-
-            _gameTimer.Stop();
-            _foodBlinkTimer.Stop();
-            if (_score > _highScores.Last().Score)
-            {
-                GenerateHighScoreDialog();                
-            }
-            else
-            {
-                MessageBox.Show("Game Over!");  
-            }
-            _snake.Clear();
-            _head.Reset();
-            _cube.ClearEntireCube();
-
-        }
-
+        
+        /// <summary>
+        /// Create a new HighScore user control embedded in a form
+        /// </summary>
         private void GenerateHighScoreDialog()
         {
             HighScoreWindow highScoreWindow = new HighScoreWindow();
@@ -187,6 +403,9 @@ namespace CubeMasterGUI
             }
         }
 
+        /// <summary>
+        /// Displays the snake on the cube
+        /// </summary>
         private void DisplaySnake()
         {
             int count = _snake.Count;
@@ -211,6 +430,9 @@ namespace CubeMasterGUI
             _cube.SetVoxel(_head.X, _head.Y, _head.Z);
         }
 
+        /// <summary>
+        /// Moves the head of the snake according to the currentDirection
+        /// </summary>
         private void MoveHeadOfSnake()
         {
             switch (_currentDirection)
@@ -250,16 +472,10 @@ namespace CubeMasterGUI
             }
         }
 
-        public BindingList<string> RefreshHighScores()
-        {
-            _boundHighScores.Clear();
-            foreach (var h in _highScores)
-            {
-                _boundHighScores.Add(h.ToString());
-            }
-            return _boundHighScores;
-        }
-        
+        /// <summary>
+        /// Checks if the snake has collided with itself
+        /// </summary>
+        /// <returns>Has the snake collided</returns>
         private bool CheckForCollision()
         {
             for (int i = 1; i < _snake.Count; i++)
@@ -270,82 +486,12 @@ namespace CubeMasterGUI
             return false;
         }
         
-        public void ChangeCurrentDirection(Keys key)
-        {
-            switch (key)
-            {
-                case Keys.Left:
-                case Keys.A:
-                    switch(_currentDirection)
-                    {
-                        case DIRECTION.NEGATIVE_Y:
-                        case DIRECTION.NEGATIVE_Z:
-                            _currentDirection = DIRECTION.POSITIVE_X;
-                            break;
-                        case DIRECTION.POSITIVE_Z:
-                            _currentDirection = DIRECTION.NEGATIVE_X;
-                            break;
-                        default:
-                            _currentDirection++;
-                            break;
-                    }
-                    break;
-                case Keys.Right:
-                case Keys.D:
-                    switch(_currentDirection)
-                    {
-                        case DIRECTION.POSITIVE_X:
-                            _currentDirection = DIRECTION.NEGATIVE_Y;
-                            break;
-                        case DIRECTION.POSITIVE_Z:
-                            _currentDirection = DIRECTION.POSITIVE_X;
-                            break;
-                        case DIRECTION.NEGATIVE_Z:
-                            _currentDirection = DIRECTION.NEGATIVE_X;
-                            break;
-                        default:
-                            _currentDirection--;
-                            break;
-                    }
-                    break;
-                case Keys.Up:
-                case Keys.W:
-                    switch(_currentDirection)
-                    {
-                        case DIRECTION.POSITIVE_Z:
-                            _currentDirection = DIRECTION.NEGATIVE_Y;
-                            break;
-                        case DIRECTION.NEGATIVE_Z:
-                            _currentDirection = DIRECTION.POSITIVE_Y;
-                            break;
-                        default:
-                            _currentDirection = DIRECTION.POSITIVE_Z;
-                            break;
-                    }
-                    break;
-                case Keys.Down:
-                case Keys.S:
-                    switch (_currentDirection)
-                    {
-                        case DIRECTION.POSITIVE_Z:
-                            _currentDirection = DIRECTION.POSITIVE_Y;
-                            break;
-                        case DIRECTION.NEGATIVE_Z:
-                            _currentDirection = DIRECTION.NEGATIVE_Y;
-                            break;
-                        default:
-                            _currentDirection = DIRECTION.NEGATIVE_Z;
-                            break;
-                    }
-                    break;
-                default:
-                    break;
-            }
-        }
-
+        /// <summary>
+        /// Save the high score list to a file
+        /// </summary>
         private void WriteHighScores()
         {
-            ResetFile();
+            File.WriteAllText(AssetHandler._highScoreURL, "");
             _streamWriter = new StreamWriter(AssetHandler._highScoreURL);
             foreach (var h in _highScores)
             {
@@ -353,12 +499,10 @@ namespace CubeMasterGUI
             }
             _streamWriter.Close();
         }
-
-        private void ResetFile()
-        {
-            File.WriteAllText(AssetHandler._highScoreURL, "");
-        }
-
+        
+        /// <summary>
+        /// Read the high scores from the .csv file
+        /// </summary>
         private void ReadHighScores()
         {
             string line;
@@ -370,24 +514,32 @@ namespace CubeMasterGUI
             }
             _streamReader.Close();
         }
-                
-        public bool[][] GetPlane()
-        {
-            return _cube.GetPlane(CubeController.Cube.AXIS.AXIS_Z, _currentPlane);
-        }
-
-        public string GetScore()
-        {
-            return _score.ToString();
-        }
+        
     }
 
+    /// <summary>
+    /// Class representing a single section of a snake
+    /// </summary>
     internal class SnakeSection
     {
+        /// <summary>
+        /// X-coordinate
+        /// </summary>
         public int X { get; set; }
+
+        /// <summary>
+        /// Y-coordinate
+        /// </summary>
         public int Y { get; set; }
+
+        /// <summary>
+        /// Z-coordinate
+        /// </summary>
         public int Z { get; set; }
 
+        /// <summary>
+        /// Default constructor for SnakeSection. Sets location at (0,0,0)
+        /// </summary>
         public SnakeSection()
         {
             X = 0;
@@ -395,6 +547,12 @@ namespace CubeMasterGUI
             Z = 0;
         }
 
+        /// <summary>
+        /// Constructor to set location of SnakeSection at (x,y,z)
+        /// </summary>
+        /// <param name="x">X-coordinate</param>
+        /// <param name="y">Y-coordinate</param>
+        /// <param name="z">Z-coordinate</param>
         public SnakeSection(int x, int y, int z)
         {
             X = x;
@@ -402,6 +560,9 @@ namespace CubeMasterGUI
             Z = z;
         }
 
+        /// <summary>
+        /// Resets the sections location to (0,0,0)
+        /// </summary>
         public void Reset()
         {
             X = 0;
@@ -409,6 +570,12 @@ namespace CubeMasterGUI
             Z = 0;       
         }
 
+        /// <summary>
+        /// Overloads the == operator to be a.X == b.x && a.Y == b.Y && a.Z == b.Z
+        /// </summary>
+        /// <param name="a">First section to compare</param>
+        /// <param name="b">Second section to compare</param>
+        /// <returns></returns>
         public static bool operator ==(SnakeSection a, SnakeSection b)
         {
             if (Object.ReferenceEquals(a,b))
@@ -418,18 +585,44 @@ namespace CubeMasterGUI
             return a.X == b.X && a.Y == b.Y && a.Z == b.Z;
         }
 
+        /// <summary>
+        /// Overloads the != operator to be a.X != b.x || a.Y != b.Y || a.Z != b.Z
+        /// </summary>
+        /// <param name="a">First section to compare</param>
+        /// <param name="b">Second section to compare</param>
+        /// <returns></returns>
         public static bool operator !=(SnakeSection a, SnakeSection b)
         {
             return !(a == b);
         }
     }
 
+    /// <summary>
+    /// Class representing a high score
+    /// </summary>
     internal class HighScore
     {
+        /// <summary>
+        /// The users name (3 letter initials)
+        /// </summary>
         public string Name;
+
+        /// <summary>
+        /// The users score
+        /// </summary>
         public int Score;
+
+        /// <summary>
+        /// The difficulty setting at which it was achieved
+        /// </summary>
         public string Difficulty;
 
+        /// <summary>
+        /// Constructor for a new high score
+        /// </summary>
+        /// <param name="name">Users name</param>
+        /// <param name="score">Users score</param>
+        /// <param name="difficulty">Difficulty setting</param>
         public HighScore(string name, int score, string difficulty)
         {
             Name = name;
@@ -437,6 +630,10 @@ namespace CubeMasterGUI
             Difficulty = difficulty;
         }
 
+        /// <summary>
+        /// Overrides the ToString method to produce a formatted string representing this class
+        /// </summary>
+        /// <returns>Name: score (Difficulty)</returns>
         public override string ToString()
         {
             return Name + ": " + Score.ToString() + " (" + Difficulty + ")";
