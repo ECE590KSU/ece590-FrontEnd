@@ -22,6 +22,8 @@ namespace CubeMasterGUI
         /// </summary>
         private Dictionary<string, DIFFICULTY> _difficultyDictionary;
 
+        private Basket _basket;
+
         /// <summary>
         /// Current score
         /// </summary>
@@ -104,6 +106,7 @@ namespace CubeMasterGUI
             _random = new Random();
             _gameTimer = new Timer();
             _ballBlinkTimer = new Timer();
+            _basket = new Basket(3, 3, _cube.Dimension);
             _highScores = new List<HighScore>();
             _boundHighScores = new BindingList<string>();
             _difficultyDictionary = new Dictionary<string, DIFFICULTY>
@@ -124,6 +127,20 @@ namespace CubeMasterGUI
         public void StartNewGame()
         {
             _gameIsPlaying = true;
+            switch(_currentDifficulty)
+            {
+                case "Easy":
+                    _basket.Reset(3, 3);
+                    break;
+                case "Med":
+                    _basket.Reset(3, 2);
+                    break;
+                case "Hard":
+                    _basket.Reset(2, 2);
+                    break;
+                default:
+                    break;
+            }
             _score = 0;
             _ballBlinkTimer.Interval = 1000 / 4;
             _gameTimer.Start();
@@ -210,6 +227,12 @@ namespace CubeMasterGUI
         }
 
 
+        private void DisplayBasket()
+        {
+            _cube.ClearPlane(CubeController.Cube.AXIS.AXIS_Z, 0);
+
+        }
+
         /// <summary>
         /// Flashes the ball voxel
         /// </summary>
@@ -234,7 +257,7 @@ namespace CubeMasterGUI
         private void GameTimerTick(object sender, EventArgs e)
         {
         }
-        
+
         /// <summary>
         /// Create a new HighScore user control embedded in a form
         /// </summary>
@@ -284,6 +307,78 @@ namespace CubeMasterGUI
             }
             _streamReader.Close();
         }
-        
+    }
+
+    internal class Basket
+    {
+        private int _xDimension;
+        private int _yDimension;
+        private int _xOriginLocation;
+        private int _yOriginLocation;
+        private int _boardDimension;
+
+        public Basket(int x, int y, int boardDimension)
+        {
+            _xDimension = x;
+            _yDimension = y;
+            _xOriginLocation = 0;
+            _yOriginLocation = 0;
+        }
+
+        public void MoveX(int amount)
+        {
+            int temp = _xOriginLocation;
+            _xOriginLocation += amount;
+            if (_xOriginLocation < 0 || _xOriginLocation >= _boardDimension)
+            {
+                _xOriginLocation = temp;
+            }
+        }
+
+        public void MoveY(int amount)
+        {
+            int temp = _yOriginLocation;
+            _yOriginLocation += amount;
+            if (_yOriginLocation < 0 || _yOriginLocation >= _boardDimension)
+            {
+                _yOriginLocation = temp;
+            }
+        }
+
+        public bool BallIsCaugh(int x, int y)
+        {
+            if ((x >= _xOriginLocation) && (x < _xOriginLocation + _xDimension) &&
+                (y >= _yOriginLocation) && (y < _yOriginLocation + _yDimension))
+                return true;
+            return false;
+        }
+
+        public void Reset(int x, int y)
+        {
+            _xOriginLocation = 0;
+            _yOriginLocation = 0;
+            _xDimension = x;
+            _yDimension = y;
+        }
+
+        public int XMin
+        {
+            get { return _xOriginLocation; }
+        }
+
+        public int YMin
+        {
+            get { return _yOriginLocation; }
+        }
+
+        public int XMax
+        {
+            get { return _xOriginLocation + _xDimension; }
+        }
+
+        public int YMax
+        {
+            get { return _yOriginLocation + _yDimension; }
+        }
     }
 }
