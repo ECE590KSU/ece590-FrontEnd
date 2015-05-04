@@ -31,7 +31,10 @@
             this.pnlPresetLauncher = new System.Windows.Forms.Panel();
             this.vScrollBar1 = new System.Windows.Forms.VScrollBar();
             this.btnClose = new CubeMasterGUI.btnCloseWindow();
+            this.trackBarSpeed = new System.Windows.Forms.TrackBar();
+            this.lblSpeed = new System.Windows.Forms.Label();
             this.pnlPresetLauncher.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarSpeed)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlPresetLauncher
@@ -57,12 +60,32 @@
             this.btnClose.Size = new System.Drawing.Size(30, 30);
             this.btnClose.TabIndex = 1;
             // 
+            // trackBarSpeed
+            // 
+            this.trackBarSpeed.Location = new System.Drawing.Point(562, 711);
+            this.trackBarSpeed.Name = "trackBarSpeed";
+            this.trackBarSpeed.Size = new System.Drawing.Size(400, 45);
+            this.trackBarSpeed.TabIndex = 2;
+            // 
+            // lblSpeed
+            // 
+            this.lblSpeed.AutoSize = true;
+            this.lblSpeed.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSpeed.ForeColor = System.Drawing.Color.SteelBlue;
+            this.lblSpeed.Location = new System.Drawing.Point(409, 711);
+            this.lblSpeed.Name = "lblSpeed";
+            this.lblSpeed.Size = new System.Drawing.Size(147, 30);
+            this.lblSpeed.TabIndex = 3;
+            this.lblSpeed.Text = "Render Speed:";
+            // 
             // frmPresets
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.GhostWhite;
             this.ClientSize = new System.Drawing.Size(1366, 768);
+            this.Controls.Add(this.lblSpeed);
+            this.Controls.Add(this.trackBarSpeed);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.pnlPresetLauncher);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -70,7 +93,9 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "frmPresets";
             this.pnlPresetLauncher.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarSpeed)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -79,5 +104,7 @@
         private System.Windows.Forms.Panel pnlPresetLauncher;
         private System.Windows.Forms.VScrollBar vScrollBar1;
         private btnCloseWindow btnClose;
+        private System.Windows.Forms.TrackBar trackBarSpeed;
+        private System.Windows.Forms.Label lblSpeed;
     }
 }
