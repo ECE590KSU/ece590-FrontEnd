@@ -122,10 +122,11 @@ namespace CubeMasterGUI
             var button = new System.Windows.Forms.Button();
             button.Name = name;
             button.Text = text;
-            button.Size = new System.Drawing.Size(50, 50);
+            button.Size = new System.Drawing.Size(100, 100);
             button.ForeColor = System.Drawing.Color.SteelBlue;
             button.BackColor = System.Drawing.Color.GhostWhite;
             button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            button.Font = new System.Drawing.Font("SegoeUI", 14);
             button.Click += ButtonClickEventHandler;
             return button;
         }
