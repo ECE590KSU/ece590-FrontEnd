@@ -31,6 +31,7 @@ namespace CubeMasterGUI
 
         private bool _foodIsOnTheTable = false;
         private bool _eating = false;
+        private bool _gameIsPlaying = false;
 
         private Random _random;
 
@@ -66,6 +67,7 @@ namespace CubeMasterGUI
 
         public void StartNewGame()
         {
+            _gameIsPlaying = true;
             _score = 0;
             _snake.Add(_head);
             _foodBlinkTimer.Interval = 1000 / 4;
@@ -141,6 +143,11 @@ namespace CubeMasterGUI
 
         public void EndGame()
         {
+            if (!_gameIsPlaying)
+                return;
+            else
+                _gameIsPlaying = false;
+
             _gameTimer.Stop();
             _foodBlinkTimer.Stop();
             if (_score > _highScores.Last().Score)
@@ -153,7 +160,8 @@ namespace CubeMasterGUI
             }
             _snake.Clear();
             _head.Reset();
-            _cube.ClearEntireCube();          
+            _cube.ClearEntireCube();
+
         }
 
         private void GenerateHighScoreDialog()
@@ -169,6 +177,7 @@ namespace CubeMasterGUI
                 _highScores = (from s in _highScores
                                orderby s.Score descending
                                select s).ToList();
+                WriteHighScores();
                 RefreshHighScores();
             }
         }
@@ -331,12 +340,18 @@ namespace CubeMasterGUI
 
         private void WriteHighScores()
         {
+            ResetFile();
             _streamWriter = new StreamWriter(AssetHandler._highScoreURL);
             foreach (var h in _highScores)
             {
                 _streamWriter.WriteLine(h.Name + "," + h.Score);
             }
             _streamWriter.Close();
+        }
+
+        private void ResetFile()
+        {
+            File.WriteAllText(AssetHandler._highScoreURL, "");
         }
 
         private void ReadHighScores()
