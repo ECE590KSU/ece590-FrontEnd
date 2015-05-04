@@ -210,7 +210,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmCatcher";
             this.Load += new System.EventHandler(this.frmCatcher_Load);
-            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.frmCatcher_KeyUp);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmCatcher_KeyDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.frmCatcher_MouseMove);
             this.pnlDrawingControls.ResumeLayout(false);
             this.pnlDrawingControls.PerformLayout();

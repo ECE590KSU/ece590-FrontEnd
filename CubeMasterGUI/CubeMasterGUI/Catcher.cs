@@ -193,6 +193,35 @@ namespace CubeMasterGUI
                     break;
             }
         }
+
+        /// <summary>
+        /// Moves the basket based on a key press
+        /// </summary>
+        /// <param name="key">Key that was pressed</param>
+        public void MoveBasket(Keys key)
+        {
+            switch (key)
+            {
+                case Keys.Left:
+                case Keys.A:
+                    _basket.MoveX(-1);
+                    break;
+                case Keys.Right:
+                case Keys.D:
+                    _basket.MoveX(1);
+                    break;
+                case Keys.Up:
+                case Keys.W:
+                    _basket.MoveY(1);
+                    break;
+                case Keys.Down:
+                case Keys.S:
+                    _basket.MoveY(-1);
+                    break;
+                default:
+                    break;
+            }
+        }
         
         /// <summary>
         /// Updates the binding list of high scores
@@ -231,6 +260,13 @@ namespace CubeMasterGUI
         {
             _cube.ClearPlane(CubeController.Cube.AXIS.AXIS_Z, 0);
 
+            for (int x = _basket.XMin; x < _basket.XMax; x++)
+            {
+                for (int y = _basket.YMin; y < _basket.YMax; y++)
+                {
+                    _cube.SetVoxel(x, y, 0);
+                }
+            }
         }
 
         /// <summary>
@@ -256,6 +292,7 @@ namespace CubeMasterGUI
         /// <param name="e"></param>
         private void GameTimerTick(object sender, EventArgs e)
         {
+            DisplayBasket();
         }
 
         /// <summary>
@@ -323,13 +360,14 @@ namespace CubeMasterGUI
             _yDimension = y;
             _xOriginLocation = 0;
             _yOriginLocation = 0;
+            _boardDimension = boardDimension;
         }
 
         public void MoveX(int amount)
         {
             int temp = _xOriginLocation;
             _xOriginLocation += amount;
-            if (_xOriginLocation < 0 || _xOriginLocation >= _boardDimension)
+            if (_xOriginLocation < 0 || _xOriginLocation + _xDimension > _boardDimension)
             {
                 _xOriginLocation = temp;
             }
@@ -339,7 +377,7 @@ namespace CubeMasterGUI
         {
             int temp = _yOriginLocation;
             _yOriginLocation += amount;
-            if (_yOriginLocation < 0 || _yOriginLocation >= _boardDimension)
+            if (_yOriginLocation < 0 || _yOriginLocation + _yDimension > _boardDimension)
             {
                 _yOriginLocation = temp;
             }

@@ -129,7 +129,7 @@ namespace CubeMasterGUI
         /// <param name="e"></param>
         private void frmCatcher_KeyUp(object sender, KeyEventArgs e)
         {
-            //_catcherController.ChangeCurrentDirection(e.KeyCode);
+            _catcherController.MoveBasket(e.KeyCode);
         }
 
         /// <summary>
@@ -266,6 +266,11 @@ namespace CubeMasterGUI
         private void frmCatcher_MouseMove(object sender, MouseEventArgs e)
         {
             tmrCatcher.ResetTimers();
+        }
+
+        private void frmCatcher_KeyDown(object sender, KeyEventArgs e)
+        {
+            _catcherController.MoveBasket(e.KeyCode);
         }
     }
 }
