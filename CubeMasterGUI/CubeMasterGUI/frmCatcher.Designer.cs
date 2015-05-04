@@ -149,6 +149,7 @@
             this.listBoxHighScores.Name = "listBoxHighScores";
             this.listBoxHighScores.Size = new System.Drawing.Size(153, 242);
             this.listBoxHighScores.TabIndex = 9;
+            this.listBoxHighScores.UseTabStops = false;
             // 
             // lblHighScore
             // 

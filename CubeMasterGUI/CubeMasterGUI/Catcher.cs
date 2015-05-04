@@ -24,6 +24,12 @@ namespace CubeMasterGUI
 
         private Basket _basket;
 
+        private Ball _ball;
+
+        private int _ballTimeInterval;
+
+        private Timer _flashTimer;
+
         /// <summary>
         /// Current score
         /// </summary>
@@ -40,11 +46,6 @@ namespace CubeMasterGUI
         private string _currentDifficulty;
 
         /// <summary>
-        /// Current direction of the head of the snake
-        /// </summary>
-        private DIRECTION _currentDirection;
-
-        /// <summary>
         /// Timer controlling the game
         /// </summary>
         private Timer _gameTimer;
@@ -52,7 +53,7 @@ namespace CubeMasterGUI
         /// <summary>
         /// Time controlling the speed at which the ball blinks
         /// </summary>
-        private Timer _ballBlinkTimer;
+        private Timer _ballTimer;
         
         /// <summary>
         /// Is a game currently being played
@@ -102,11 +103,12 @@ namespace CubeMasterGUI
         {
             _cube = cube;
             _currentPlane = 0;
-            _currentDirection = DIRECTION.POSITIVE_X;
+            _ballTimeInterval = 350;
             _random = new Random();
             _gameTimer = new Timer();
-            _ballBlinkTimer = new Timer();
+            _ballTimer = new Timer();
             _basket = new Basket(3, 3, _cube.Dimension);
+            _ball = new Ball();
             _highScores = new List<HighScore>();
             _boundHighScores = new BindingList<string>();
             _difficultyDictionary = new Dictionary<string, DIFFICULTY>
@@ -116,9 +118,10 @@ namespace CubeMasterGUI
                 {"btnHard", DIFFICULTY.HARD}
             };
             ReadHighScores();
-
+            _flashTimer = new Timer();
+            _flashTimer.Tick += FlashTick;
             _gameTimer.Tick += GameTimerTick;
-            _ballBlinkTimer.Tick += BallTimerTick;
+            _ballTimer.Tick += BallTimerTick;
         }
 
         /// <summary>
@@ -142,9 +145,12 @@ namespace CubeMasterGUI
                     break;
             }
             _score = 0;
-            _ballBlinkTimer.Interval = 1000 / 4;
+            _gameTimer.Interval = 1000 / 60;
+            _flashTimer.Interval = 1000 / 4;
+            _ballTimer.Interval = _ballTimeInterval;
             _gameTimer.Start();
-            _ballBlinkTimer.Start();            
+            _flashTimer.Start();
+            _ballTimer.Start();            
         }
 
         /// <summary>
@@ -158,7 +164,7 @@ namespace CubeMasterGUI
                 _gameIsPlaying = false;
 
             _gameTimer.Stop();
-            _ballBlinkTimer.Stop();
+            _ballTimer.Stop();
             if (_score > _highScores.Last().Score)
             {
                 GenerateHighScoreDialog();
@@ -276,13 +282,54 @@ namespace CubeMasterGUI
         /// <param name="e"></param>
         private void BallTimerTick(object sender, EventArgs e)
         {
+            if (_ball.Z > 1)
+            {
+                _cube.SwapVoxel(_ball.X, _ball.Y, _ball.Z);
+                _ball.Z--;
+                _cube.SwapVoxel(_ball.X, _ball.Y, _ball.Z);
+            }
+            else
+            {
+                _cube.SwapVoxel(_ball.X, _ball.Y, _ball.Z);
+                _ball.Z--; // _ball.Z is now 0
+                if (_basket.BallIsCaugh(_ball.X, _ball.Y))
+                {
+                    _score++;
+                    UpdateBallTimer();   
+                    SpawnBall();
+                }
+                else
+                {
+                    EndGame();
+                }
+            }
+        }
+
+        private void UpdateBallTimer()
+        {
+            // this needs to be tested on the cube to see if it's fun
+            if (_ballTimeInterval >= 75)
+            {
+                _ballTimeInterval -= 5;
+                _ballTimer.Interval = _ballTimeInterval;
+            }
+        }
+
+        private void FlashTick(object sender, EventArgs e)
+        {
+            _cube.SwapVoxel(_ball.X, _ball.Y, 0);
         }
 
         /// <summary>
-        /// Spawns a new food piece in a random, unoccupied location
+        /// Spawns a new ball piece in a random, unoccupied location
         /// </summary>
-        private void SpawnFood()
+        private void SpawnBall()
         {
+            _ball.X = _random.Next(_cube.Dimension);
+            _ball.Y = _random.Next(_cube.Dimension);
+            _ball.Z = 7;
+            _cube.SwapVoxel(_ball.X, _ball.Y, _ball.Z);
+            _cube.SetVoxel(_ball.X, _ball.Y, 0);
         }
         
         /// <summary>
@@ -418,5 +465,12 @@ namespace CubeMasterGUI
         {
             get { return _yOriginLocation + _yDimension; }
         }
+    }
+
+    internal class Ball
+    {
+        public int X { get; set; }
+        public int Y { get; set; }
+        public int Z { get; set; }
     }
 }
