@@ -12,7 +12,6 @@ namespace CubeMasterGUI
 {
     public class Snake
     {
-        private const int DIMENSION = 8;
         private CubeController.Cube _cube;
         private Dictionary<string, DIFFICULTY> _difficultyDictionary;
         private int _score;
@@ -87,10 +86,10 @@ namespace CubeMasterGUI
             bool valid = false;
             while (!valid)
             {
-                _food.X = _random.Next(DIMENSION);
-                _food.Y = _random.Next(DIMENSION);
+                _food.X = _random.Next(_cube.Dimension);
+                _food.Y = _random.Next(_cube.Dimension);
                 _food.Z = 0;
-                //_food.Z = _random.Next(DIMENSION);
+                //_food.Z = _random.Next(_cube.Dimension);
                 valid = true;
                 foreach (var s in _snake)
                 {
@@ -99,7 +98,9 @@ namespace CubeMasterGUI
                 }
             }
             _foodIsOnTheTable = true;
-            _cube.SetVoxel(_food.X, _food.Y, 0); // TODO: need to change this to _food.Z
+            _cube.SetVoxel(_food.X, _food.Y, 0);
+            //_cube.SetVoxel(_food.X, _food.Y, _food.Z);
+            // TODO: uncomment these two lines and delete the lines they replace
         }
 
         public void ChangeDifficultySetting(string s)
@@ -216,31 +217,31 @@ namespace CubeMasterGUI
             {
                 case DIRECTION.POSITIVE_X:
                     _head.X++;
-                    _head.X %= DIMENSION;
+                    _head.X %= _cube.Dimension;
                     break;
                 case DIRECTION.POSITIVE_Y:
                     _head.Y++;
-                    _head.Y %= DIMENSION;
+                    _head.Y %= _cube.Dimension;
                     break;
                 case DIRECTION.POSITIVE_Z:
                     _head.Z++;
-                    _head.Z %= DIMENSION;
+                    _head.Z %= _cube.Dimension;
                     break;
                 case DIRECTION.NEGATIVE_X:
                     if (_head.X == 0)
-                        _head.X = DIMENSION - 1;
+                        _head.X = _cube.Dimension - 1;
                     else
                         _head.X--;
                     break;
                 case DIRECTION.NEGATIVE_Y:
                     if (_head.Y == 0)
-                        _head.Y = DIMENSION - 1;
+                        _head.Y = _cube.Dimension - 1;
                     else
                         _head.Y--;
                     break;
                 case DIRECTION.NEGATIVE_Z:
                     if (_head.Z == 0)
-                        _head.Z = DIMENSION - 1;
+                        _head.Z = _cube.Dimension - 1;
                     else
                         _head.Z--;
                     break;
