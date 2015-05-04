@@ -48,35 +48,10 @@ namespace CubeMasterGUI
         private Timer _gameTimer;
 
         /// <summary>
-        /// Time controlling the speed at which the food blinks
+        /// Time controlling the speed at which the ball blinks
         /// </summary>
-        private Timer _foodBlinkTimer;
-
-        /// <summary>
-        /// Snake section representing the head of the snake
-        /// </summary>
-        private SnakeSection _head;
-
-        /// <summary>
-        /// A snake section represented the current food item
-        /// </summary>
-        private SnakeSection _food;
-
-        /// <summary>
-        /// The entire snake (including head)
-        /// </summary>
-        private List<SnakeSection> _snake;
-
-        /// <summary>
-        /// Is a food piece out on the cube
-        /// </summary>
-        private bool _foodIsOnTheTable = false;
-
-        /// <summary>
-        /// It the snake head in the same position as the food piece
-        /// </summary>
-        private bool _eating = false;
-
+        private Timer _ballBlinkTimer;
+        
         /// <summary>
         /// Is a game currently being played
         /// </summary>
@@ -126,12 +101,9 @@ namespace CubeMasterGUI
             _cube = cube;
             _currentPlane = 0;
             _currentDirection = DIRECTION.POSITIVE_X;
-            _head = new SnakeSection();
-            _food = new SnakeSection();
-            _snake = new List<SnakeSection>();
             _random = new Random();
             _gameTimer = new Timer();
-            _foodBlinkTimer = new Timer();
+            _ballBlinkTimer = new Timer();
             _highScores = new List<HighScore>();
             _boundHighScores = new BindingList<string>();
             _difficultyDictionary = new Dictionary<string, DIFFICULTY>
@@ -143,7 +115,7 @@ namespace CubeMasterGUI
             ReadHighScores();
 
             _gameTimer.Tick += GameTimerTick;
-            _foodBlinkTimer.Tick += FoodTimerTick;
+            _ballBlinkTimer.Tick += BallTimerTick;
         }
 
         /// <summary>
@@ -153,10 +125,9 @@ namespace CubeMasterGUI
         {
             _gameIsPlaying = true;
             _score = 0;
-            _snake.Add(_head);
-            _foodBlinkTimer.Interval = 1000 / 4;
+            _ballBlinkTimer.Interval = 1000 / 4;
             _gameTimer.Start();
-            _foodBlinkTimer.Start();            
+            _ballBlinkTimer.Start();            
         }
 
         /// <summary>
@@ -170,7 +141,7 @@ namespace CubeMasterGUI
                 _gameIsPlaying = false;
 
             _gameTimer.Stop();
-            _foodBlinkTimer.Stop();
+            _ballBlinkTimer.Stop();
             if (_score > _highScores.Last().Score)
             {
                 GenerateHighScoreDialog();
@@ -179,8 +150,6 @@ namespace CubeMasterGUI
             {
                 MessageBox.Show("Game Over!");
             }
-            _snake.Clear();
-            _head.Reset();
             _cube.ClearEntireCube();
 
         }
@@ -195,15 +164,12 @@ namespace CubeMasterGUI
             switch (diff)
             {
                 case DIFFICULTY.EASY:
-                    _gameTimer.Interval = 700;
                     _currentDifficulty = "Easy";
                     break;
                 case DIFFICULTY.MEDIUM:
-                    _gameTimer.Interval = 400;
                     _currentDifficulty = "Med";
                     break;
                 case DIFFICULTY.HARD:
-                    _gameTimer.Interval = 175;
                     _currentDifficulty = "Hard";
                     break;
                 default:
@@ -243,92 +209,14 @@ namespace CubeMasterGUI
             return _score.ToString();
         }
 
-        /// <summary>
-        /// Changes the current direction based on a key press
-        /// </summary>
-        /// <param name="key">Key that was pressed</param>
-        public void ChangeCurrentDirection(Keys key)
-        {
-            switch (key)
-            {
-                case Keys.Left:
-                case Keys.A:
-                    switch (_currentDirection)
-                    {
-                        case DIRECTION.NEGATIVE_Y:
-                        case DIRECTION.NEGATIVE_Z:
-                            _currentDirection = DIRECTION.POSITIVE_X;
-                            break;
-                        case DIRECTION.POSITIVE_Z:
-                            _currentDirection = DIRECTION.NEGATIVE_X;
-                            break;
-                        default:
-                            _currentDirection++;
-                            break;
-                    }
-                    break;
-                case Keys.Right:
-                case Keys.D:
-                    switch (_currentDirection)
-                    {
-                        case DIRECTION.POSITIVE_X:
-                            _currentDirection = DIRECTION.NEGATIVE_Y;
-                            break;
-                        case DIRECTION.POSITIVE_Z:
-                            _currentDirection = DIRECTION.POSITIVE_X;
-                            break;
-                        case DIRECTION.NEGATIVE_Z:
-                            _currentDirection = DIRECTION.NEGATIVE_X;
-                            break;
-                        default:
-                            _currentDirection--;
-                            break;
-                    }
-                    break;
-                case Keys.Up:
-                case Keys.W:
-                    switch (_currentDirection)
-                    {
-                        case DIRECTION.POSITIVE_Z:
-                            _currentDirection = DIRECTION.NEGATIVE_Y;
-                            break;
-                        case DIRECTION.NEGATIVE_Z:
-                            _currentDirection = DIRECTION.POSITIVE_Y;
-                            break;
-                        default:
-                            _currentDirection = DIRECTION.POSITIVE_Z;
-                            break;
-                    }
-                    break;
-                case Keys.Down:
-                case Keys.S:
-                    switch (_currentDirection)
-                    {
-                        case DIRECTION.POSITIVE_Z:
-                            _currentDirection = DIRECTION.POSITIVE_Y;
-                            break;
-                        case DIRECTION.NEGATIVE_Z:
-                            _currentDirection = DIRECTION.NEGATIVE_Y;
-                            break;
-                        default:
-                            _currentDirection = DIRECTION.NEGATIVE_Z;
-                            break;
-                    }
-                    break;
-                default:
-                    break;
-            }
-        }
 
         /// <summary>
-        /// Flashes the food voxel
+        /// Flashes the ball voxel
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void FoodTimerTick(object sender, EventArgs e)
+        private void BallTimerTick(object sender, EventArgs e)
         {
-            if (_foodIsOnTheTable)
-                _cube.SwapVoxel(_food.X, _food.Y, 0);
         }
 
         /// <summary>
@@ -336,24 +224,6 @@ namespace CubeMasterGUI
         /// </summary>
         private void SpawnFood()
         {
-            bool valid = false;
-            while (!valid)
-            {
-                _food.X = _random.Next(_cube.Dimension);
-                _food.Y = _random.Next(_cube.Dimension);
-                _food.Z = 0;
-                //_food.Z = _random.Next(_cube.Dimension);
-                valid = true;
-                foreach (var s in _snake)
-                {
-                    if (_food == s)
-                        valid = false;
-                }
-            }
-            _foodIsOnTheTable = true;
-            _cube.SetVoxel(_food.X, _food.Y, 0);
-            //_cube.SetVoxel(_food.X, _food.Y, _food.Z);
-            // TODO: uncomment these two lines and delete the lines they replace
         }
         
         /// <summary>
@@ -385,28 +255,14 @@ namespace CubeMasterGUI
                 RefreshHighScores();
             }
         }
-
-        /// <summary>
-        /// Checks if the snake has collided with itself
-        /// </summary>
-        /// <returns>Has the snake collided</returns>
-        private bool CheckForCollision()
-        {
-            for (int i = 1; i < _snake.Count; i++)
-            {
-                if (_head == _snake[i])
-                    return true;
-            }
-            return false;
-        }
-        
+                
         /// <summary>
         /// Save the high score list to a file
         /// </summary>
         private void WriteHighScores()
         {
-            File.WriteAllText(AssetHandler._highScoreURL, "");
-            _streamWriter = new StreamWriter(AssetHandler._highScoreURL);
+            File.WriteAllText(AssetHandler._catcherHighScoreURL, "");
+            _streamWriter = new StreamWriter(AssetHandler._catcherHighScoreURL);
             foreach (var h in _highScores)
             {
                 _streamWriter.WriteLine(h.Name + "," + h.Score + "," + h.Difficulty);
@@ -420,7 +276,7 @@ namespace CubeMasterGUI
         private void ReadHighScores()
         {
             string line;
-            _streamReader = new StreamReader(AssetHandler._highScoreURL);
+            _streamReader = new StreamReader(AssetHandler._catcherHighScoreURL);
             while ((line = _streamReader.ReadLine()) != null) 
             {
                 string[] tokens = line.Split(',');

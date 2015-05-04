@@ -491,8 +491,8 @@ namespace CubeMasterGUI
         /// </summary>
         private void WriteHighScores()
         {
-            File.WriteAllText(AssetHandler._highScoreURL, "");
-            _streamWriter = new StreamWriter(AssetHandler._highScoreURL);
+            File.WriteAllText(AssetHandler._snakeHighScoreURL, "");
+            _streamWriter = new StreamWriter(AssetHandler._snakeHighScoreURL);
             foreach (var h in _highScores)
             {
                 _streamWriter.WriteLine(h.Name + "," + h.Score + "," + h.Difficulty);
@@ -506,7 +506,7 @@ namespace CubeMasterGUI
         private void ReadHighScores()
         {
             string line;
-            _streamReader = new StreamReader(AssetHandler._highScoreURL);
+            _streamReader = new StreamReader(AssetHandler._snakeHighScoreURL);
             while ((line = _streamReader.ReadLine()) != null) 
             {
                 string[] tokens = line.Split(',');
