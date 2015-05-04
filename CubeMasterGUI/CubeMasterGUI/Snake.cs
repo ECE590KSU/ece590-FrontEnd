@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -36,6 +37,7 @@ namespace CubeMasterGUI
         private StreamWriter _streamWriter;
         private StreamReader _streamReader;
         private List<HighScore> _highScores;
+        private BindingList<string> _boundHighScores;
         
         public Snake(ref CubeController.Cube cube)
         {
@@ -49,12 +51,14 @@ namespace CubeMasterGUI
             _gameTimer = new Timer();
             _foodBlinkTimer = new Timer();
             _highScores = new List<HighScore>();
+            _boundHighScores = new BindingList<string>();
             _difficultyDictionary = new Dictionary<string, DIFFICULTY>
             {
                 {"btnEasy", DIFFICULTY.EASY},
                 {"btnMedium", DIFFICULTY.MEDIUM},
                 {"btnHard", DIFFICULTY.HARD}
             };
+            ReadHighScores();
 
             _gameTimer.Tick += GameTimerTick;
             _foodBlinkTimer.Tick += FoodTimerTick;
@@ -143,10 +147,13 @@ namespace CubeMasterGUI
             {
                 GenerateHighScoreDialog();                
             }
+            else
+            {
+                MessageBox.Show("Game Over!");  
+            }
             _snake.Clear();
             _head.Reset();
-            _cube.ClearEntireCube();
-            MessageBox.Show("Game Over!");            
+            _cube.ClearEntireCube();          
         }
 
         private void GenerateHighScoreDialog()
@@ -162,6 +169,7 @@ namespace CubeMasterGUI
                 _highScores = (from s in _highScores
                                orderby s.Score descending
                                select s).ToList();
+                RefreshHighScores();
             }
         }
 
@@ -228,15 +236,14 @@ namespace CubeMasterGUI
             }
         }
 
-        public List<string> GetHighScores()
+        public BindingList<string> RefreshHighScores()
         {
-            ReadHighScores();
-            var highScoreStrings = new List<string>();
+            _boundHighScores.Clear();
             foreach (var h in _highScores)
             {
-                highScoreStrings.Add(h.ToString());
+                _boundHighScores.Add(h.ToString());
             }
-            return highScoreStrings;
+            return _boundHighScores;
         }
         
         private bool CheckForCollision()

@@ -61,6 +61,7 @@ namespace CubeMasterGUI
             {
                 _snakeController.ChangeDifficultySetting(btn.Name);
             }
+            this.Focus();
         }
 
         private void InvokeTimerProtocol()
@@ -143,7 +144,7 @@ namespace CubeMasterGUI
             this.KeyDown += new KeyEventHandler(frmSnake_KeyDown);
             this.PreviewKeyDown += new PreviewKeyDownEventHandler(frmSnake_PreviewKeyDown);
 
-            listBoxHighScores.DataSource = _snakeController.GetHighScores();
+            listBoxHighScores.DataSource = _snakeController.RefreshHighScores();
         }
 
         private void frmSnake_MouseClick(object sender, MouseEventArgs e)

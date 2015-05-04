@@ -53,15 +53,16 @@
             this.label2.Location = new System.Drawing.Point(7, 52);
             this.label2.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(134, 30);
+            this.label2.Size = new System.Drawing.Size(142, 30);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Enter Name:";
+            this.label2.Text = "Enter Initials:";
             // 
             // txtBoxName
             // 
             this.txtBoxName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtBoxName.Location = new System.Drawing.Point(153, 50);
             this.txtBoxName.Margin = new System.Windows.Forms.Padding(6, 7, 6, 7);
+            this.txtBoxName.MaxLength = 3;
             this.txtBoxName.Name = "txtBoxName";
             this.txtBoxName.Size = new System.Drawing.Size(230, 35);
             this.txtBoxName.TabIndex = 2;
