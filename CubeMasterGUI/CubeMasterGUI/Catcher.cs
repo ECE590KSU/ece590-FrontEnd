@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace CubeMasterGUI
 {
-    public class Snake
+    public class Catcher
     {
         /// <summary>
         /// The cube controller
@@ -121,7 +121,7 @@ namespace CubeMasterGUI
         /// Constructor for a new Snake controller
         /// </summary>
         /// <param name="cube">Cube controller</param>
-        public Snake(ref CubeController.Cube cube)
+        public Catcher(ref CubeController.Cube cube)
         {
             _cube = cube;
             _currentPlane = 0;
@@ -363,23 +363,6 @@ namespace CubeMasterGUI
         /// <param name="e"></param>
         private void GameTimerTick(object sender, EventArgs e)
         {
-            if (!_foodIsOnTheTable)
-                SpawnFood();
-            
-            if (_food == _head)
-            {
-                _snake.Add(new SnakeSection(_head.X, _head.Y, _head.Z));
-                _eating = true;
-                _score++;
-                SpawnFood();
-            }
-
-            DisplaySnake();
-
-            if (CheckForCollision())
-            {
-                EndGame();
-            }
         }
         
         /// <summary>
@@ -400,75 +383,6 @@ namespace CubeMasterGUI
                                select s).ToList();
                 WriteHighScores();
                 RefreshHighScores();
-            }
-        }
-
-        /// <summary>
-        /// Displays the snake on the cube
-        /// </summary>
-        private void DisplaySnake()
-        {
-            int count = _snake.Count;
-            _cube.SetVoxel(_head.X, _head.Y, _head.Z);
-
-            if (!_eating)
-                _cube.ClearVoxel(_snake[count - 1].X, _snake[count - 1].Y, _snake[count - 1].Z);
-            else
-            {
-                _cube.SetVoxel(_snake[count - 1].X, _snake[count - 1].Y, _snake[count - 1].Z);
-                _eating = false;
-            }
-
-            for (int i = count - 1; i > 0; i--)
-            {
-                _snake[i].X = _snake[i - 1].X;
-                _snake[i].Y = _snake[i - 1].Y;
-                _snake[i].Z = _snake[i - 1].Z;
-            }
-            MoveHeadOfSnake();
-            _currentPlane = _head.Z;
-            _cube.SetVoxel(_head.X, _head.Y, _head.Z);
-        }
-
-        /// <summary>
-        /// Moves the head of the snake according to the currentDirection
-        /// </summary>
-        private void MoveHeadOfSnake()
-        {
-            switch (_currentDirection)
-            {
-                case DIRECTION.POSITIVE_X:
-                    _head.X++;
-                    _head.X %= _cube.Dimension;
-                    break;
-                case DIRECTION.POSITIVE_Y:
-                    _head.Y++;
-                    _head.Y %= _cube.Dimension;
-                    break;
-                case DIRECTION.POSITIVE_Z:
-                    _head.Z++;
-                    _head.Z %= _cube.Dimension;
-                    break;
-                case DIRECTION.NEGATIVE_X:
-                    if (_head.X == 0)
-                        _head.X = _cube.Dimension - 1;
-                    else
-                        _head.X--;
-                    break;
-                case DIRECTION.NEGATIVE_Y:
-                    if (_head.Y == 0)
-                        _head.Y = _cube.Dimension - 1;
-                    else
-                        _head.Y--;
-                    break;
-                case DIRECTION.NEGATIVE_Z:
-                    if (_head.Z == 0)
-                        _head.Z = _cube.Dimension - 1;
-                    else
-                        _head.Z--;
-                    break;
-                default:
-                    break;
             }
         }
 
@@ -515,85 +429,5 @@ namespace CubeMasterGUI
             _streamReader.Close();
         }
         
-    }
-
-    /// <summary>
-    /// Class representing a single section of a snake
-    /// </summary>
-    internal class SnakeSection
-    {
-        /// <summary>
-        /// X-coordinate
-        /// </summary>
-        public int X { get; set; }
-
-        /// <summary>
-        /// Y-coordinate
-        /// </summary>
-        public int Y { get; set; }
-
-        /// <summary>
-        /// Z-coordinate
-        /// </summary>
-        public int Z { get; set; }
-
-        /// <summary>
-        /// Default constructor for SnakeSection. Sets location at (0,0,0)
-        /// </summary>
-        public SnakeSection()
-        {
-            X = 0;
-            Y = 0;
-            Z = 0;
-        }
-
-        /// <summary>
-        /// Constructor to set location of SnakeSection at (x,y,z)
-        /// </summary>
-        /// <param name="x">X-coordinate</param>
-        /// <param name="y">Y-coordinate</param>
-        /// <param name="z">Z-coordinate</param>
-        public SnakeSection(int x, int y, int z)
-        {
-            X = x;
-            Y = y;
-            Z = z;
-        }
-
-        /// <summary>
-        /// Resets the sections location to (0,0,0)
-        /// </summary>
-        public void Reset()
-        {
-            X = 0;
-            Y = 0;
-            Z = 0;       
-        }
-
-        /// <summary>
-        /// Overloads the == operator to be a.X == b.x && a.Y == b.Y && a.Z == b.Z
-        /// </summary>
-        /// <param name="a">First section to compare</param>
-        /// <param name="b">Second section to compare</param>
-        /// <returns></returns>
-        public static bool operator ==(SnakeSection a, SnakeSection b)
-        {
-            if (Object.ReferenceEquals(a,b))
-                return true;
-            if (((object)a == null) || ((object)b == null)) 
-                return false;
-            return a.X == b.X && a.Y == b.Y && a.Z == b.Z;
-        }
-
-        /// <summary>
-        /// Overloads the != operator to be a.X != b.x || a.Y != b.Y || a.Z != b.Z
-        /// </summary>
-        /// <param name="a">First section to compare</param>
-        /// <param name="b">Second section to compare</param>
-        /// <returns></returns>
-        public static bool operator !=(SnakeSection a, SnakeSection b)
-        {
-            return !(a == b);
-        }
     }
 }

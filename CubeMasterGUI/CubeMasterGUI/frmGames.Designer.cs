@@ -76,6 +76,7 @@
             this.btnCatcher.TabIndex = 5;
             this.btnCatcher.Text = "CATCHER";
             this.btnCatcher.UseVisualStyleBackColor = false;
+            this.btnCatcher.Click += new System.EventHandler(this.btnCatcher_Click);
             // 
             // btnCloseWindow1
             // 

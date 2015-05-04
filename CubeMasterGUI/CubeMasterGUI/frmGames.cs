@@ -49,5 +49,11 @@ namespace CubeMasterGUI
         {
             this.tmrGames.ResetTimers();
         }
+
+        private void btnCatcher_Click(object sender, EventArgs e)
+        {
+            tmrGames.HaltTimers();
+            _gameController.LaunchCatcher(this.Width, this.Height);
+        }
     }
 }
