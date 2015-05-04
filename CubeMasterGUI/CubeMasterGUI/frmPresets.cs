@@ -21,5 +21,10 @@ namespace CubeMasterGUI
 
             this.ShowInTaskbar = false;
         }
+
+        private void trackBarSpeed_Scroll(object sender, EventArgs e)
+        {
+            _presetsController.UpdateDelay(trackBarSpeed.Value);
+        }
     }
 }

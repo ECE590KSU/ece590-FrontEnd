@@ -30,9 +30,9 @@
         {
             this.pnlPresetLauncher = new System.Windows.Forms.Panel();
             this.vScrollBar1 = new System.Windows.Forms.VScrollBar();
-            this.btnClose = new CubeMasterGUI.btnCloseWindow();
             this.trackBarSpeed = new System.Windows.Forms.TrackBar();
             this.lblSpeed = new System.Windows.Forms.Label();
+            this.btnClose = new CubeMasterGUI.btnCloseWindow();
             this.pnlPresetLauncher.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarSpeed)).BeginInit();
             this.SuspendLayout();
@@ -52,6 +52,25 @@
             this.vScrollBar1.Size = new System.Drawing.Size(17, 636);
             this.vScrollBar1.TabIndex = 0;
             // 
+            // trackBarSpeed
+            // 
+            this.trackBarSpeed.Location = new System.Drawing.Point(285, 677);
+            this.trackBarSpeed.Name = "trackBarSpeed";
+            this.trackBarSpeed.Size = new System.Drawing.Size(400, 45);
+            this.trackBarSpeed.TabIndex = 2;
+            this.trackBarSpeed.Scroll += new System.EventHandler(this.trackBarSpeed_Scroll);
+            // 
+            // lblSpeed
+            // 
+            this.lblSpeed.AutoSize = true;
+            this.lblSpeed.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSpeed.ForeColor = System.Drawing.Color.SteelBlue;
+            this.lblSpeed.Location = new System.Drawing.Point(132, 677);
+            this.lblSpeed.Name = "lblSpeed";
+            this.lblSpeed.Size = new System.Drawing.Size(147, 30);
+            this.lblSpeed.TabIndex = 3;
+            this.lblSpeed.Text = "Render Speed:";
+            // 
             // btnClose
             // 
             this.btnClose.BackColor = System.Drawing.SystemColors.InactiveCaption;
@@ -59,24 +78,6 @@
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(30, 30);
             this.btnClose.TabIndex = 1;
-            // 
-            // trackBarSpeed
-            // 
-            this.trackBarSpeed.Location = new System.Drawing.Point(562, 711);
-            this.trackBarSpeed.Name = "trackBarSpeed";
-            this.trackBarSpeed.Size = new System.Drawing.Size(400, 45);
-            this.trackBarSpeed.TabIndex = 2;
-            // 
-            // lblSpeed
-            // 
-            this.lblSpeed.AutoSize = true;
-            this.lblSpeed.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSpeed.ForeColor = System.Drawing.Color.SteelBlue;
-            this.lblSpeed.Location = new System.Drawing.Point(409, 711);
-            this.lblSpeed.Name = "lblSpeed";
-            this.lblSpeed.Size = new System.Drawing.Size(147, 30);
-            this.lblSpeed.TabIndex = 3;
-            this.lblSpeed.Text = "Render Speed:";
             // 
             // frmPresets
             // 
