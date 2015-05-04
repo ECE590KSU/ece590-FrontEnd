@@ -49,6 +49,11 @@ namespace CubeMasterGUI
             _inactiveTimer.Start();
         }
 
+        public void ChangeInactiveTimeout(int seconds)
+        {
+            _inactiveTimeOut = seconds * 1000;
+        }
+
         private void InactiveTimer_Tick(object sender, EventArgs e)
         {
             _inactiveTimer.Stop();

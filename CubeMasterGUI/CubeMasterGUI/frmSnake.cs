@@ -14,11 +14,9 @@ namespace CubeMasterGUI
     {
         private Snake _snakeController;
 
-        private int _currentPlane;
-
         private Timer _refreshTimer;
 
-        private int _voxelGrid_startX = 225;
+        private int _voxelGrid_startX = 278;
         private int _voxelGrid_startY = 75;
         private int _voxelSpacing = 9;
         private int _voxelHeight = 80;
@@ -72,17 +70,9 @@ namespace CubeMasterGUI
             }
         }
         
-        // reset snake timer
-
-        private void frmSnake_KeyDown(object sender, KeyEventArgs e)
-        {
-            //_snakeController.ChangeInputState(e.KeyCode);
-        }
-
         private void frmSnake_KeyUp(object sender, KeyEventArgs e)
         {
             _snakeController.ChangeCurrentDirection(e.KeyCode);
-            //tmrSnake.ResetText();
         }
 
         private void GenerateVoxelGrid()
@@ -102,18 +92,8 @@ namespace CubeMasterGUI
                     tmpVoxel.X = j;
                     tmpVoxel.Y = i;
 
-                    var lbl = new Label();
-                    //lbl.Text = "[" + i + "," + j + "]";
-                    tmpVoxel.Controls.Add(lbl);
-
-                    tmpVoxel.BringToFront();
-                    tmpVoxel.Cursor = Cursors.Cross;
-
-                    /*tmpVoxel.MouseClick += frmFreeDraw_VoxelGridClick;
-                    tmpVoxel.MouseDown += frmFreeDraw_MouseDown;
-                    tmpVoxel.MouseUp += frmFreeDraw_MouseUp;
-                    tmpVoxel.MouseMove += frmFreeDraw_MouseMove;*/
-
+                    tmpVoxel.BringToFront();;
+                    
                     _voxels[j, i] = tmpVoxel;
                     this.Controls.Add(tmpVoxel);
                 }
@@ -141,23 +121,11 @@ namespace CubeMasterGUI
             this.BringToFront();
             this.Focus();
             this.KeyPreview = true;
-            this.KeyDown += new KeyEventHandler(frmSnake_KeyDown);
             this.PreviewKeyDown += new PreviewKeyDownEventHandler(frmSnake_PreviewKeyDown);
 
             listBoxHighScores.DataSource = _snakeController.RefreshHighScores();
         }
-
-        private void frmSnake_MouseClick(object sender, MouseEventArgs e)
-        {
-            _snakeController.ChangeCurrentDirection(Keys.Left);
-            tmrSnake.ResetTimers();
-        }
-
-        private void frmSnake_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            //_snakeController.ChangeInputState(Keys.Right);
-        }
-
+                
         private void frmSnake_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
             switch (e.KeyCode)
@@ -180,7 +148,7 @@ namespace CubeMasterGUI
             else if (btnHard.Checked)
                 _snakeController.ChangeDifficultySetting(btnHard.Name);
 
-            tmrSnake.HaltTimers(); // TODO: better solution
+            tmrSnake.ChangeInactiveTimeout(180);
             _snakeController.StartNewGame();
         }
 
@@ -188,12 +156,7 @@ namespace CubeMasterGUI
         {
             _snakeController.EndGame();
         }
-
-        private void listBoxHighScores_DataSourceChanged(object sender, EventArgs e)
-        {
-
-        }
-
+        
         private void btnEasy_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Up ||
@@ -230,42 +193,9 @@ namespace CubeMasterGUI
             }
         }
 
-        private void listBoxHighScores_SelectedIndexChanged(object sender, EventArgs e)
+        private void frmSnake_MouseMove(object sender, MouseEventArgs e)
         {
-
+            tmrSnake.ResetTimers();
         }
-
-        private void lblHighScore_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        //protected override bool IsInputKey(Keys keyData)
-        //{
-        //    switch (keyData)
-        //    {
-        //        case Keys.Right:
-        //        case Keys.Left:
-        //        case Keys.Up:
-        //        case Keys.Down:
-        //            return true;
-        //    }
-        //    return base.IsInputKey(keyData);
-        //}
-
-        //protected override void OnKeyDown(KeyEventArgs e)
-        //{
-        //    base.OnKeyDown(e);
-        //    switch (e.KeyCode)
-        //    {
-        //        case Keys.Right:
-        //        case Keys.Left:
-        //        case Keys.Up:
-        //        case Keys.Down:
-        //            _snakeController.ChangeInputState(e.KeyCode);
-        //            break;
-        //    }
-        //}
     }
-
 }

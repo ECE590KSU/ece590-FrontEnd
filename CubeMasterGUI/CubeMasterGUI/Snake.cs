@@ -17,6 +17,7 @@ namespace CubeMasterGUI
         private Dictionary<string, DIFFICULTY> _difficultyDictionary;
         private int _score;
         private int _currentPlane;
+        private string _currentDifficulty;
 
         private enum DIRECTION { POSITIVE_X, POSITIVE_Y, NEGATIVE_X, NEGATIVE_Y, POSITIVE_Z, NEGATIVE_Z };
         private enum DIFFICULTY { EASY, MEDIUM, HARD };
@@ -108,12 +109,15 @@ namespace CubeMasterGUI
             {
                 case DIFFICULTY.EASY:
                     _gameTimer.Interval = 700;
+                    _currentDifficulty = "Easy";
                     break;
                 case DIFFICULTY.MEDIUM:
                     _gameTimer.Interval = 400;
+                    _currentDifficulty = "Med";
                     break;
                 case DIFFICULTY.HARD:
                     _gameTimer.Interval = 175;
+                    _currentDifficulty = "Hard";
                     break;
                 default:
                     break;
@@ -173,7 +177,7 @@ namespace CubeMasterGUI
             form.Size = new System.Drawing.Size(410, 195);
             if (form.ShowDialog() == DialogResult.OK)
             {
-                _highScores.Add(new HighScore(highScoreWindow.txtBoxName.Text, _score));
+                _highScores.Add(new HighScore(highScoreWindow.txtBoxName.Text, _score, _currentDifficulty));
                 _highScores = (from s in _highScores
                                orderby s.Score descending
                                select s).ToList();
@@ -344,7 +348,7 @@ namespace CubeMasterGUI
             _streamWriter = new StreamWriter(AssetHandler._highScoreURL);
             foreach (var h in _highScores)
             {
-                _streamWriter.WriteLine(h.Name + "," + h.Score);
+                _streamWriter.WriteLine(h.Name + "," + h.Score + "," + h.Difficulty);
             }
             _streamWriter.Close();
         }
@@ -361,7 +365,7 @@ namespace CubeMasterGUI
             while ((line = _streamReader.ReadLine()) != null) 
             {
                 string[] tokens = line.Split(',');
-                _highScores.Add(new HighScore(tokens[0], Convert.ToInt32(tokens[1])));
+                _highScores.Add(new HighScore(tokens[0], Convert.ToInt32(tokens[1]), tokens[2]));
             }
             _streamReader.Close();
         }
@@ -423,16 +427,18 @@ namespace CubeMasterGUI
     {
         public string Name;
         public int Score;
+        public string Difficulty;
 
-        public HighScore(string name, int score)
+        public HighScore(string name, int score, string difficulty)
         {
             Name = name;
             Score = score;
+            Difficulty = difficulty;
         }
 
         public override string ToString()
         {
-            return Name + ": " + Score.ToString();
+            return Name + ": " + Score.ToString() + " (" + Difficulty + ")";
         }        
     }
 }
