@@ -165,6 +165,7 @@ namespace CubeMasterGUI
 
             _gameTimer.Stop();
             _ballTimer.Stop();
+            _flashTimer.Stop();
             if (_score > _highScores.Last().Score)
             {
                 GenerateHighScoreDialog();
@@ -325,8 +326,8 @@ namespace CubeMasterGUI
         /// </summary>
         private void SpawnBall()
         {
-            _ball.X = _random.Next(_cube.Dimension);
-            _ball.Y = _random.Next(_cube.Dimension);
+            _ball.X = 0;// _random.Next(_cube.Dimension);
+            _ball.Y = 0;// _random.Next(_cube.Dimension);
             _ball.Z = 7;
             _cube.SwapVoxel(_ball.X, _ball.Y, _ball.Z);
             _cube.SetVoxel(_ball.X, _ball.Y, 0);
