@@ -43,6 +43,7 @@
             this.tmrTextToCube = new CubeMasterGUI.ctrlTimer();
             this.btnCloseWindow = new CubeMasterGUI.btnCloseWindow();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnCloseWindow2 = new CubeMasterGUI.btnCloseWindow();
             this.pnlDrawingControls.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -203,12 +204,22 @@
             this.label2.TabIndex = 12;
             this.label2.Text = resources.GetString("label2.Text");
             // 
+            // btnCloseWindow2
+            // 
+            this.btnCloseWindow2.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.btnCloseWindow2.Location = new System.Drawing.Point(1319, 16);
+            this.btnCloseWindow2.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
+            this.btnCloseWindow2.Name = "btnCloseWindow2";
+            this.btnCloseWindow2.Size = new System.Drawing.Size(30, 30);
+            this.btnCloseWindow2.TabIndex = 13;
+            // 
             // frmTextToCube
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.GhostWhite;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1366, 750);
+            this.Controls.Add(this.btnCloseWindow2);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnCloseWindow1);
             this.Controls.Add(this.tmrTextToCube);
@@ -250,5 +261,6 @@
         private ctrlTimer tmrTextToCube;
         private btnCloseWindow btnCloseWindow1;
         private System.Windows.Forms.Label label2;
+        private btnCloseWindow btnCloseWindow2;
     }
 }
