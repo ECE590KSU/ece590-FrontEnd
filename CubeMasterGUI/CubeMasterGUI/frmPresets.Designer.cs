@@ -39,6 +39,7 @@
             // 
             // pnlPresetLauncher
             // 
+            this.pnlPresetLauncher.AutoScroll = true;
             this.pnlPresetLauncher.Controls.Add(this.vScrollBar1);
             this.pnlPresetLauncher.Location = new System.Drawing.Point(13, 13);
             this.pnlPresetLauncher.Name = "pnlPresetLauncher";
