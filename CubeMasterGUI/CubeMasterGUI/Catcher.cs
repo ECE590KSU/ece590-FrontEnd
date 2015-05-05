@@ -94,6 +94,8 @@ namespace CubeMasterGUI
         /// The different game difficutly settings
         /// </summary>
         private enum DIFFICULTY { EASY, MEDIUM, HARD };
+
+        public event EventHandler GameOver;
         
         /// <summary>
         /// Constructor for a new Snake controller
@@ -124,6 +126,15 @@ namespace CubeMasterGUI
             _ballTimer.Tick += BallTimerTick;
         }
 
+        protected virtual void OnGameOver(EventArgs e)
+        {
+            EventHandler handler = GameOver;
+            if (handler != null)
+            {
+                handler(this, e);
+            }
+        }
+
         /// <summary>
         /// Starts a new game
         /// </summary>
@@ -149,7 +160,7 @@ namespace CubeMasterGUI
             _flashTimer.Interval = 1000 / 4;
             _ballTimer.Interval = _ballTimeInterval;
             _gameTimer.Start();
-            _flashTimer.Start();
+            //_flashTimer.Start();
             _ballTimer.Start();            
         }
 
@@ -301,9 +312,14 @@ namespace CubeMasterGUI
                 }
                 else
                 {
-                    EndGame();
+                    FireEndGame();
                 }
             }
+        }
+
+        private void FireEndGame()
+        {
+            OnGameOver(EventArgs.Empty);
         }
 
         private void UpdateBallTimer()
@@ -326,8 +342,8 @@ namespace CubeMasterGUI
         /// </summary>
         private void SpawnBall()
         {
-            _ball.X = 0;// _random.Next(_cube.Dimension);
-            _ball.Y = 0;// _random.Next(_cube.Dimension);
+            _ball.X = _random.Next(_cube.Dimension);
+            _ball.Y = _random.Next(_cube.Dimension);
             _ball.Z = 7;
             _cube.SwapVoxel(_ball.X, _ball.Y, _ball.Z);
             _cube.SetVoxel(_ball.X, _ball.Y, 0);

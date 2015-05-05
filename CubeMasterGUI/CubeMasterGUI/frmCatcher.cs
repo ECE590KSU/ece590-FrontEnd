@@ -90,6 +90,8 @@ namespace CubeMasterGUI
             btnHard.CheckedChanged += DifficultyChanged;
             btnEasy.KeyDown += SuppressKeyDown;
 
+            _catcherController.GameOver += btnEndGame_Click;
+
             _refreshTimer = new Timer();
             _refreshTimer.Interval = 1000 / 60; //roughly 60 fps
             _refreshTimer.Tick += new EventHandler(RefreshVoxelGrid);
@@ -227,6 +229,11 @@ namespace CubeMasterGUI
             else if (btnHard.Checked)
                 _catcherController.ChangeDifficultySetting(btnHard.Name);
 
+            btnEasy.Enabled = false;
+            btnMedium.Enabled = false;
+            btnHard.Enabled = false;
+            listBoxHighScores.Enabled = false;
+
             tmrCatcher.ChangeInactiveTimeout(180);
             _catcherController.StartNewGame();
         }
@@ -239,6 +246,10 @@ namespace CubeMasterGUI
         private void btnEndGame_Click(object sender, EventArgs e)
         {
             _catcherController.EndGame();
+            btnEasy.Enabled = true;
+            btnMedium.Enabled = true;
+            btnHard.Enabled = true;
+            listBoxHighScores.Enabled = true;
         }
         
         /// <summary>
