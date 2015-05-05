@@ -61,7 +61,7 @@ namespace CubeMasterGUI
         /// Color of an "unclicked" voxel
         /// </summary>
         private Color _clrVoxelUnclicked = AssetHandler._primaryFormColor;
-
+        
         /// <summary>
         /// Constructor for frmSnake
         /// </summary>
@@ -90,12 +90,14 @@ namespace CubeMasterGUI
             btnHard.CheckedChanged += DifficultyChanged;
             btnEasy.KeyDown += SuppressKeyDown;
 
+            _snakeController.GameOver += btnEndGame_Click;
+
             _refreshTimer = new Timer();
             _refreshTimer.Interval = 1000 / 60; //roughly 60 fps
             _refreshTimer.Tick += new EventHandler(RefreshVoxelGrid);
             _refreshTimer.Start();
         }
-
+        
         /// <summary>
         /// Event handler for when the selected difficulty has changed
         /// </summary>
@@ -227,6 +229,12 @@ namespace CubeMasterGUI
             else if (btnHard.Checked)
                 _snakeController.ChangeDifficultySetting(btnHard.Name);
 
+            btnEasy.Enabled = false;
+            btnMedium.Enabled = false;
+            btnHard.Enabled = false;
+
+            listBoxHighScores.Enabled = false;
+
             tmrSnake.ChangeInactiveTimeout(180);
             _snakeController.StartNewGame();
         }
@@ -239,6 +247,11 @@ namespace CubeMasterGUI
         private void btnEndGame_Click(object sender, EventArgs e)
         {
             _snakeController.EndGame();
+            btnEasy.Enabled = true;
+            btnMedium.Enabled = true;
+            btnHard.Enabled = true;
+
+            listBoxHighScores.Enabled = true;
         }
         
         /// <summary>

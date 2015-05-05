@@ -116,6 +116,8 @@ namespace CubeMasterGUI
         /// The different game difficutly settings
         /// </summary>
         private enum DIFFICULTY { EASY, MEDIUM, HARD };
+
+        public event EventHandler GameOver;
         
         /// <summary>
         /// Constructor for a new Snake controller
@@ -144,6 +146,15 @@ namespace CubeMasterGUI
 
             _gameTimer.Tick += GameTimerTick;
             _foodBlinkTimer.Tick += FoodTimerTick;
+        }
+
+        protected virtual void OnGameOver(EventArgs e)
+        {
+            EventHandler handler = GameOver;
+            if (handler != null)
+            {
+                handler(this, e);
+            }
         }
 
         /// <summary>
@@ -320,6 +331,11 @@ namespace CubeMasterGUI
             }
         }
 
+        private void FireEndGame()
+        {
+            OnGameOver(EventArgs.Empty);
+        }
+
         /// <summary>
         /// Flashes the food voxel
         /// </summary>
@@ -378,7 +394,7 @@ namespace CubeMasterGUI
 
             if (CheckForCollision())
             {
-                EndGame();
+                FireEndGame();
             }
         }
         
