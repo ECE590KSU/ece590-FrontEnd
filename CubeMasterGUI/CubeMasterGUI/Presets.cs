@@ -26,6 +26,17 @@ namespace CubeMasterGUI
             PopulateDictionary();
         }
 
+
+        public void UpdateDelay(int delay)
+        {
+            _delay = delay;
+        }
+
+        public List<System.Windows.Forms.Button> GetButtonList()
+        {
+            return _presets;
+        } 
+
         private void ButtonClickEventHandler(object sender, EventArgs e)
         {
             var button = sender as System.Windows.Forms.Button;
@@ -68,30 +79,25 @@ namespace CubeMasterGUI
                     break;
             }
         }
-
-        public void UpdateDelay(int delay)
-        {
-            _delay = delay;
-        }
-
+        
         private void PopulateButtonList()
         {
-            NewButton("btnFirework", "Firework");
-            NewButton("btnRain", "Rain");
-            NewButton("btnSmiley", "Smiley");   
-            NewButton("btnStairs", "Stairs");   
-            NewButton("btnBoing", "Boing");    
-            NewButton("btnBoxWoop", "Box Woop-Woop");  
-            NewButton("btnRandSusp", "Random Suspend"); 
-            NewButton("btnSparkle", "Sparkle"); 
-            NewButton("btnScramble", "Scramble"); 
-            NewButton("btnLoadBar", "LoadBar");
-            NewButton("btnVxlTest", "Voxel Test"); 
-            NewButton("btnVrtSpiral", "Vertical Spiral");
-            NewButton("btnLineSpin", "LineSpin"); 
-            NewButton("btnSideWaves", "Side Waves");
-            NewButton("btnSineWaves", "Sine Waves");
-            NewButton("btnRipple", "Ripple");
+            _presets.Add(NewButton("btnFirework", "Firework"));
+            _presets.Add(NewButton("btnRain", "Rain"));
+            _presets.Add(NewButton("btnSmiley", "Smiley"));   
+            _presets.Add(NewButton("btnStairs", "Stairs"));   
+            _presets.Add(NewButton("btnBoing", "Boing"));    
+            _presets.Add(NewButton("btnBoxWoop", "Box Woop-Woop"));  
+            _presets.Add(NewButton("btnRandSusp", "Random Suspend")); 
+            _presets.Add(NewButton("btnSparkle", "Sparkle")); 
+            _presets.Add(NewButton("btnScramble", "Scramble")); 
+            _presets.Add(NewButton("btnLoadBar", "LoadBar"));
+            _presets.Add(NewButton("btnVxlTest", "Voxel Test")); 
+            _presets.Add(NewButton("btnVrtSpiral", "Vertical Spiral"));
+            _presets.Add(NewButton("btnLineSpin", "LineSpin")); 
+            _presets.Add(NewButton("btnSideWaves", "Side Waves"));
+            _presets.Add(NewButton("btnSineWaves", "Sine Waves"));
+            _presets.Add(NewButton("btnRipple", "Ripple"));
         }
 
         private void PopulateDictionary()
@@ -122,7 +128,7 @@ namespace CubeMasterGUI
             var button = new System.Windows.Forms.Button();
             button.Name = name;
             button.Text = text;
-            button.Size = new System.Drawing.Size(100, 100);
+            button.Size = new System.Drawing.Size(200, 200);
             button.ForeColor = System.Drawing.Color.SteelBlue;
             button.BackColor = System.Drawing.Color.GhostWhite;
             button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;

@@ -93,6 +93,7 @@
             this.Name = "frmPresets";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "frmPresets";
+            this.Load += new System.EventHandler(this.frmPresets_Load);
             this.pnlPresetLauncher.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.trackBarSpeed)).EndInit();
             this.ResumeLayout(false);
