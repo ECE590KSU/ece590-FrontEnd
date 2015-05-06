@@ -24,6 +24,8 @@ namespace CubeMasterGUI
             _presetsController = new Presets(ref cube);
 
             this.ShowInTaskbar = false;
+            pnlPresetLauncher.HorizontalScroll.Enabled = false;
+            pnlPresetLauncher.HorizontalScroll.Visible = false;
         }
 
         private void trackBarSpeed_Scroll(object sender, EventArgs e)
