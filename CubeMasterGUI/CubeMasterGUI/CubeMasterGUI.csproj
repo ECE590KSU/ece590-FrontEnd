@@ -106,18 +106,12 @@
     <Compile Include="frmPresets.Designer.cs">
       <DependentUpon>frmPresets.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmStartScreen.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmStartScreen.Designer.cs">
-      <DependentUpon>frmStartScreen.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmTextToCube.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmTextToCube.Designer.cs">
       <DependentUpon>frmTextToCube.cs</DependentUpon>
-	</Compile>
+    </Compile>
     <Compile Include="Games.cs" />
     <Compile Include="HighScoreWindow.cs">
       <SubType>UserControl</SubType>
@@ -131,7 +125,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Catcher.cs" />
     <Compile Include="Snake.cs" />
-    <Compile Include="StartScreen.cs" />
     <Compile Include="TextToCube.cs" />
     <Compile Include="Voxel.cs">
       <SubType>UserControl</SubType>
@@ -167,12 +160,9 @@
     <EmbeddedResource Include="frmPresets.resx">
       <DependentUpon>frmPresets.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmStartScreen.resx">
-      <DependentUpon>frmStartScreen.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="frmTextToCube.resx">
       <DependentUpon>frmTextToCube.cs</DependentUpon>
-	</EmbeddedResource>
+    </EmbeddedResource>
     <EmbeddedResource Include="HighScoreWindow.resx">
       <DependentUpon>HighScoreWindow.cs</DependentUpon>
     </EmbeddedResource>

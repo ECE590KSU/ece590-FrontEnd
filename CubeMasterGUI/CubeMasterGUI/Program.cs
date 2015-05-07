@@ -16,7 +16,7 @@ namespace CubeMasterGUI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmStartScreen());
+            Application.Run(new frmMainMenu());
         }
     }
 }

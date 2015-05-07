@@ -8,18 +8,40 @@ namespace CubeMasterGUI
 {
     public class MainMenu
     {
-        private StartScreen _startScreenParent;
+        /// <summary>
+        /// Cube controller
+        /// </summary>
+        private CubeController.Cube _cube;
 
+        /// <summary>
+        /// Parent screen width
+        /// </summary>
+        private int _parentScreenWidth;
 
-        public MainMenu(ref StartScreen startScreenParent)
+        /// <summary>
+        /// Parent screen height
+        /// </summary>
+        private int _parentScreenHeight;
+        
+        /// <summary>
+        /// Constructor for the main menu controller
+        /// </summary>
+        /// <param name="cube">Cube controller</param>
+        /// <param name="width">Parent form's width</param>
+        /// <param name="height">Parent form's height</param>
+        public MainMenu(ref CubeController.Cube cube, int width, int height)
         {
-            _startScreenParent = startScreenParent;
+            _cube = cube;
+            _parentScreenWidth = width;
+            _parentScreenHeight = height;
         }
 
+        /// <summary>
+        /// Launches TextToCube application
+        /// </summary>
         internal void ApplicationLaunch_Text2Cube()
         {
-            CubeController.Cube rootCubeController = _startScreenParent.GetRootCubeController();
-            frmTextToCube text2Cube = new frmTextToCube(ref rootCubeController, _startScreenParent.ParentScreenWidth, _startScreenParent.ParentScreenHeight );
+            frmTextToCube text2Cube = new frmTextToCube(ref _cube, _parentScreenWidth, _parentScreenHeight);
 
             if (text2Cube.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             { 
@@ -27,10 +49,12 @@ namespace CubeMasterGUI
             }
         }
 
+        /// <summary>
+        /// Launches FreeDraw application
+        /// </summary>
         internal void ApplicationLaunch_FreeDraw()
         {
-            CubeController.Cube rootCubeController = _startScreenParent.GetRootCubeController();
-            frmFreeDraw freeDraw = new frmFreeDraw(ref rootCubeController, _startScreenParent.ParentScreenWidth, _startScreenParent.ParentScreenHeight);
+            frmFreeDraw freeDraw = new frmFreeDraw(ref _cube, _parentScreenWidth, _parentScreenHeight);
 
             if (freeDraw.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
@@ -38,10 +62,12 @@ namespace CubeMasterGUI
             }
         }
 
+        /// <summary>
+        /// Launches Games application
+        /// </summary>
         internal void ApplicationLaunch_Games()
         {
-            CubeController.Cube rootCubeController = _startScreenParent.GetRootCubeController();
-            frmGames games = new frmGames(ref rootCubeController, _startScreenParent.ParentScreenWidth, _startScreenParent.ParentScreenHeight);
+            frmGames games = new frmGames(ref _cube, _parentScreenWidth, _parentScreenHeight);
 
             if (games.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
@@ -49,10 +75,12 @@ namespace CubeMasterGUI
             }
         }
 
+        /// <summary>
+        /// Launches Presets application
+        /// </summary>
         internal void ApplicationLaunch_Presets()
         {
-            CubeController.Cube rootCubeController = _startScreenParent.GetRootCubeController();
-            frmPresets presets = new frmPresets(ref rootCubeController, _startScreenParent.ParentScreenWidth, _startScreenParent.ParentScreenHeight);
+            frmPresets presets = new frmPresets(ref _cube, _parentScreenWidth, _parentScreenHeight);
 
             if (presets.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {

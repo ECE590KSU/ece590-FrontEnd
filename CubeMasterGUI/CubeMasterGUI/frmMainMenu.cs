@@ -13,22 +13,28 @@ namespace CubeMasterGUI
 {
     public partial class frmMainMenu : Form
     {
-        private StartScreen _startScreenController;
+        public int ParentScreenHeight { get; set; }
+        public int ParentScreenWidth { get; set; }
         private MainMenu _mainMenuController;
+        private CubeController.Cube _cube;
 
         private List<Button> _applications;
 
-        public frmMainMenu(StartScreen startScreenParent)
+        public frmMainMenu()
         {
             InitializeComponent();
+            _cube = new CubeController.Cube();
+            ParentScreenHeight = 768;
+            ParentScreenWidth = 1366;
+            this.Height = ParentScreenHeight;
+            this.Width = ParentScreenWidth;
             InitializeApplications();
             InvokeTimerProtocol();
             
-            _startScreenController = startScreenParent;
-            this.Height = _startScreenController.ParentScreenHeight;
-            this.Width = _startScreenController.ParentScreenWidth;
+            this.Height = ParentScreenHeight;
+            this.Width = ParentScreenWidth;
 
-            _mainMenuController = new MainMenu(ref _startScreenController);
+            _mainMenuController = new MainMenu(ref _cube, ParentScreenWidth, ParentScreenHeight);
             this.ShowInTaskbar = false;
         }
 
