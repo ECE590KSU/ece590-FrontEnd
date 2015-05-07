@@ -153,8 +153,8 @@ namespace CubeMasterGUI
             int i = 200;
             while (--i >= 0)
             {
-                //_cube.BoxWoopWoop(1, 200, true);
-                //_cube.BoxWoopWoop(1, 200, false);
+                _cube.BoxWoopWoop(1, 200, true, 8);
+                _cube.BoxWoopWoop(1, 200, false, 8);
             }
         }
 
