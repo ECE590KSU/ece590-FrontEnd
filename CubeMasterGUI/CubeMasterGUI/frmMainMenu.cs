@@ -29,6 +29,7 @@ namespace CubeMasterGUI
             this.Width = _startScreenController.ParentScreenWidth;
 
             _mainMenuController = new MainMenu(ref _startScreenController);
+            this.ShowInTaskbar = false;
         }
 
         private void InitializeApplications()
@@ -44,13 +45,18 @@ namespace CubeMasterGUI
 
         private void SetApplicationIcons()
         {
-            this.btnFreeDraw.Image = SetBkgdImage(AssetHandler._freeDrawURL);
-            this.btnGames.Image = SetBkgdImage(AssetHandler._gamesURL);
-            this.btnPresets.Image = SetBkgdImage(AssetHandler._presetURL);
-            this.btnText2Cube.Image = SetBkgdImage(AssetHandler._text2CubeURL);
+            this.btnFreeDraw.Image = SetBkgdImage(AssetHandler.FreeDrawURL);
+            this.btnGames.Image = SetBkgdImage(AssetHandler.GamesURL);
+            this.btnPresets.Image = SetBkgdImage(AssetHandler.PresetURL);
+            this.btnText2Cube.Image = SetBkgdImage(AssetHandler.Text2CubeURL);
         }
 
         private void frmMainMenu_MouseMove(object sender, MouseEventArgs e)
+        {
+            this.tmrMainMenu.ResetTimers();
+        }
+
+        private void frmMainMenu_MouseClick(object sender, MouseEventArgs e)
         {
             this.tmrMainMenu.ResetTimers();
         }
