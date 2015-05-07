@@ -13,31 +13,35 @@ namespace CubeMasterGUI
 {
     public partial class frmMainMenu : Form
     {
-        public int ParentScreenHeight { get; set; }
-        public int ParentScreenWidth { get; set; }
+        /// <summary>
+        /// Main menu controller
+        /// </summary>
         private MainMenu _mainMenuController;
-        private CubeController.Cube _cube;
-
+        
+        /// <summary>
+        /// List of the application buttons
+        /// </summary>
         private List<Button> _applications;
 
+        /// <summary>
+        /// Constructor for a new main menu form
+        /// </summary>
         public frmMainMenu()
         {
             InitializeComponent();
-            _cube = new CubeController.Cube();
-            ParentScreenHeight = 768;
-            ParentScreenWidth = 1366;
-            this.Height = ParentScreenHeight;
-            this.Width = ParentScreenWidth;
+            this.Height = 768;
+            this.Width = 1366;
+            var cube = new CubeController.Cube();
             InitializeApplications();
             InvokeTimerProtocol();
-            
-            this.Height = ParentScreenHeight;
-            this.Width = ParentScreenWidth;
 
-            _mainMenuController = new MainMenu(ref _cube, ParentScreenWidth, ParentScreenHeight);
+            _mainMenuController = new MainMenu(ref cube, this.Width, this.Height);
             this.ShowInTaskbar = false;
         }
 
+        /// <summary>
+        /// Initalized the appliations by adding the buttons to the list
+        /// </summary>
         private void InitializeApplications()
         {
             _applications = new List<Button>();
@@ -49,6 +53,9 @@ namespace CubeMasterGUI
             SetApplicationIcons();
         }
 
+        /// <summary>
+        /// Sets the button icons
+        /// </summary>
         private void SetApplicationIcons()
         {
             this.btnFreeDraw.Image = SetBkgdImage(AssetHandler.FreeDrawURL);
@@ -57,16 +64,29 @@ namespace CubeMasterGUI
             this.btnText2Cube.Image = SetBkgdImage(AssetHandler.Text2CubeURL);
         }
 
+        /// <summary>
+        /// Resets timer on mouse move
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void frmMainMenu_MouseMove(object sender, MouseEventArgs e)
         {
             this.tmrMainMenu.ResetTimers();
         }
 
+        /// <summary>
+        /// Resets timer on mouse move
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void frmMainMenu_MouseClick(object sender, MouseEventArgs e)
         {
             this.tmrMainMenu.ResetTimers();
         }
 
+        /// <summary>
+        /// Initializes timer
+        /// </summary>
         private void InvokeTimerProtocol()
         {
             if (!this.DesignMode)
@@ -75,29 +95,54 @@ namespace CubeMasterGUI
             }
         }
 
+        /// <summary>
+        /// Sets a background image to a new bitpath
+        /// </summary>
+        /// <param name="path">Path of the image</param>
+        /// <returns></returns>
         private Image SetBkgdImage(string path)
         {
             return new Bitmap(path);
         }
 
+        /// <summary>
+        /// Halts timer and launches free draw
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnFreeDraw_Click(object sender, EventArgs e)
         {
             this.tmrMainMenu.HaltTimers();
             _mainMenuController.ApplicationLaunch_FreeDraw();
         }
 
+        /// <summary>
+        /// Halts timer and launches text to cube
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnText2Cube_Click(object sender, EventArgs e)
         {
             this.tmrMainMenu.HaltTimers();
             _mainMenuController.ApplicationLaunch_Text2Cube();
         }
 
+        /// <summary>
+        /// Halts timer and launches presets
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnPresets_Click(object sender, EventArgs e)
         {
             this.tmrMainMenu.HaltTimers();
             _mainMenuController.ApplicationLaunch_Presets();
         }
 
+        /// <summary>
+        /// Halts timer and launches games
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnGames_Click(object sender, EventArgs e)
         {
             this.tmrMainMenu.HaltTimers();
