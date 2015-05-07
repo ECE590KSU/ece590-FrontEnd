@@ -8,11 +8,29 @@ namespace CubeMasterGUI
 {
     public class Presets
     {
+        /// <summary>
+        /// Cube controller
+        /// </summary>
         private CubeController.Cube _cube;
+
+        /// <summary>
+        /// Current delay for the effect
+        /// </summary>
         private int _delay;
+
+        /// <summary>
+        /// List of the preset buttons
+        /// </summary>
         private List<System.Windows.Forms.Button> _presets;
+
+        /// <summary>
+        /// Dictionary to look up the preset by button name
+        /// </summary>
         private Dictionary<string, PRESETS> _presetsDictionary;
 
+        /// <summary>
+        /// Enumeration of the availble preset effects
+        /// </summary>
         private enum PRESETS { FIREWORK, RAIN, SMILEY_SPIN, TELC_STAIRS, AXIS_BOING,
                                BOX_WOOP, AXIS_RAND_SUSP, RAND_SPARKLE, SCRAMBLE,
                                LOAD_BAR, VOXEL_TEST, VERT_SPIRAL, LINE_SPIN, SIDE_WAVES,

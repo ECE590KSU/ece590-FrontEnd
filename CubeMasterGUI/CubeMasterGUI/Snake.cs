@@ -117,6 +117,9 @@ namespace CubeMasterGUI
         /// </summary>
         private enum DIFFICULTY { EASY, MEDIUM, HARD };
 
+        /// <summary>
+        /// Event handler for a gameOver event
+        /// </summary>
         public event EventHandler GameOver;
         
         /// <summary>
@@ -147,7 +150,10 @@ namespace CubeMasterGUI
             _gameTimer.Tick += GameTimerTick;
             _foodBlinkTimer.Tick += FoodTimerTick;
         }
-
+        /// <summary>
+        /// Handles game over event
+        /// </summary>
+        /// <param name="e"></param>
         protected virtual void OnGameOver(EventArgs e)
         {
             EventHandler handler = GameOver;
@@ -331,6 +337,9 @@ namespace CubeMasterGUI
             }
         }
 
+        /// <summary>
+        /// Fires an EndGame event
+        /// </summary>
         private void FireEndGame()
         {
             OnGameOver(EventArgs.Empty);

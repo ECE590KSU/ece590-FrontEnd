@@ -22,12 +22,24 @@ namespace CubeMasterGUI
         /// </summary>
         private Dictionary<string, DIFFICULTY> _difficultyDictionary;
 
+        /// <summary>
+        /// The "basket" on the bottom layer of the cube
+        /// </summary>
         private Basket _basket;
 
+        /// <summary>
+        /// The "ball" which is dropping through the cube
+        /// </summary>
         private Ball _ball;
 
+        /// <summary>
+        /// Interval determining the speed at which the ball drops
+        /// </summary>
         private int _ballTimeInterval;
 
+        /// <summary>
+        /// Timer controlling the flashing on the GUI
+        /// </summary>
         private Timer _flashTimer;
 
         /// <summary>
@@ -95,6 +107,9 @@ namespace CubeMasterGUI
         /// </summary>
         private enum DIFFICULTY { EASY, MEDIUM, HARD };
 
+        /// <summary>
+        /// Event handler for when the game is ended
+        /// </summary>
         public event EventHandler GameOver;
         
         /// <summary>
@@ -126,6 +141,10 @@ namespace CubeMasterGUI
             _ballTimer.Tick += BallTimerTick;
         }
 
+        /// <summary>
+        /// Handles a game over event
+        /// </summary>
+        /// <param name="e"></param>
         protected virtual void OnGameOver(EventArgs e)
         {
             EventHandler handler = GameOver;
@@ -273,7 +292,9 @@ namespace CubeMasterGUI
             return _score.ToString();
         }
 
-
+        /// <summary>
+        /// Displays the current basket location on the cube
+        /// </summary>
         private void DisplayBasket()
         {
             _cube.ClearPlane(CubeController.Cube.AXIS.AXIS_Z, 0);
@@ -317,11 +338,17 @@ namespace CubeMasterGUI
             }
         }
 
+        /// <summary>
+        /// Fires the end of game event
+        /// </summary>
         private void FireEndGame()
         {
             OnGameOver(EventArgs.Empty);
         }
 
+        /// <summary>
+        /// Updates the ball timer to a new interval
+        /// </summary>
         private void UpdateBallTimer()
         {
             // this needs to be tested on the cube to see if it's fun
@@ -332,6 +359,11 @@ namespace CubeMasterGUI
             }
         }
 
+        /// <summary>
+        /// Tick for the timer that handles the flashing on the GUI
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FlashTick(object sender, EventArgs e)
         {
             _cube.SwapVoxel(_ball.X, _ball.Y, 0);
@@ -410,14 +442,42 @@ namespace CubeMasterGUI
         }
     }
 
+    /// <summary>
+    /// Class representing a "basket" which can catch "balls"
+    /// </summary>
     internal class Basket
     {
+        /// <summary>
+        /// Size of basket in the x dimension
+        /// </summary>
         private int _xDimension;
+
+        /// <summary>
+        /// Size of basket in the y dimension
+        /// </summary>
         private int _yDimension;
+
+        /// <summary>
+        /// Current furthest left point of the basket
+        /// </summary>
         private int _xOriginLocation;
+
+        /// <summary>
+        /// Current furthest bottom point of basket
+        /// </summary>
         private int _yOriginLocation;
+
+        /// <summary>
+        /// Dimension of the game board. Assumes a square.
+        /// </summary>
         private int _boardDimension;
 
+        /// <summary>
+        /// Constructor for a basket
+        /// </summary>
+        /// <param name="x">X size of the basket</param>
+        /// <param name="y">Y size of the basket</param>
+        /// <param name="boardDimension">Board dimension assuming a square</param>
         public Basket(int x, int y, int boardDimension)
         {
             _xDimension = x;
@@ -427,6 +487,10 @@ namespace CubeMasterGUI
             _boardDimension = boardDimension;
         }
 
+        /// <summary>
+        /// If possible, moves along the x-axis that amount
+        /// </summary>
+        /// <param name="amount">Number of spaces to move</param>
         public void MoveX(int amount)
         {
             int temp = _xOriginLocation;
@@ -437,6 +501,10 @@ namespace CubeMasterGUI
             }
         }
 
+        /// <summary>
+        /// If possible, moves along the y-axis that amount
+        /// </summary>
+        /// <param name="amount">Number of space to move</param>
         public void MoveY(int amount)
         {
             int temp = _yOriginLocation;
@@ -447,6 +515,12 @@ namespace CubeMasterGUI
             }
         }
 
+        /// <summary>
+        /// Determines if the ball is caught in the basket
+        /// </summary>
+        /// <param name="x">X-coordinate of the ball</param>
+        /// <param name="y">Y-coordinate of the ball</param>
+        /// <returns></returns>
         public bool BallIsCaugh(int x, int y)
         {
             if ((x >= _xOriginLocation) && (x < _xOriginLocation + _xDimension) &&
@@ -455,6 +529,11 @@ namespace CubeMasterGUI
             return false;
         }
 
+        /// <summary>
+        /// Reset the basket to a location
+        /// </summary>
+        /// <param name="x">X-coordinate to reset to</param>
+        /// <param name="y">Y-coordinate to reset to</param>
         public void Reset(int x, int y)
         {
             _xOriginLocation = 0;
@@ -463,31 +542,57 @@ namespace CubeMasterGUI
             _yDimension = y;
         }
 
+        /// <summary>
+        /// The furthest left the basket currently is
+        /// </summary>
         public int XMin
         {
             get { return _xOriginLocation; }
         }
 
+        /// <summary>
+        /// The furthest down the basket currently is
+        /// </summary>
         public int YMin
         {
             get { return _yOriginLocation; }
         }
 
+        /// <summary>
+        /// The furthest right the basket currently is
+        /// </summary>
         public int XMax
         {
             get { return _xOriginLocation + _xDimension; }
         }
 
+        /// <summary>
+        /// The furthest up the basket currently is
+        /// </summary>
         public int YMax
         {
             get { return _yOriginLocation + _yDimension; }
         }
     }
 
+    /// <summary>
+    /// Represents a "ball" to be caught by a Basket
+    /// </summary>
     internal class Ball
     {
+        /// <summary>
+        /// X-Coordinate
+        /// </summary>
         public int X { get; set; }
+
+        /// <summary>
+        /// Y-Coordinate
+        /// </summary>
         public int Y { get; set; }
+
+        /// <summary>
+        /// Z-Coordinate
+        /// </summary>
         public int Z { get; set; }
     }
 }

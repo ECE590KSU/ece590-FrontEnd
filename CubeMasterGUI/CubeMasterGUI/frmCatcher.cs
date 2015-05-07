@@ -279,6 +279,12 @@ namespace CubeMasterGUI
             tmrCatcher.ResetTimers();
         }
 
+        /// <summary>
+        /// Handles a key down event. Notifies the controller to move
+        /// the basket accordingly.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void frmCatcher_KeyDown(object sender, KeyEventArgs e)
         {
             _catcherController.MoveBasket(e.KeyCode);

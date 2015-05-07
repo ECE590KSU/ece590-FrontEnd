@@ -12,10 +12,14 @@ namespace CubeMasterGUI
 {
     public partial class frmPresets : Form
     {
+        /// <summary>
+        /// Controller for the presets form
+        /// </summary>
         private Presets _presetsController;
 
-        private int _startX = 1;
-        private int _startY = 1;
+        /// <summary>
+        /// Spacing for the buttons on the form
+        /// </summary>
         private int _spacing = 9;
 
         /// <summary>
