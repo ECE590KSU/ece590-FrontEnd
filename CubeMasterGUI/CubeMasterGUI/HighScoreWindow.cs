@@ -12,6 +12,9 @@ namespace CubeMasterGUI
 {
     public partial class HighScoreWindow : UserControl
     {
+        /// <summary>
+        /// Constructor for a new high score window
+        /// </summary>
         public HighScoreWindow()
         {
             InitializeComponent();
