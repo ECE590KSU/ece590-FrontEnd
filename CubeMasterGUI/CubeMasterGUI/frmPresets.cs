@@ -18,6 +18,12 @@ namespace CubeMasterGUI
         private int _startY = 1;
         private int _spacing = 9;
 
+        /// <summary>
+        /// Constructor for Presets form
+        /// </summary>
+        /// <param name="cube"></param>
+        /// <param name="parentWidth">Parent form width.</param>
+        /// <param name="parentHeight">Parent form height</param>
         public frmPresets(ref CubeController.Cube cube, int parentWidth, int parentHeight)
         {
             InitializeComponent();
@@ -28,17 +34,31 @@ namespace CubeMasterGUI
             pnlPresetLauncher.HorizontalScroll.Visible = false;
         }
 
+        /// <summary>
+        /// Update the track bar speed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void trackBarSpeed_Scroll(object sender, EventArgs e)
         {
             _presetsController.UpdateDelay(trackBarSpeed.Value);
         }
 
+        /// <summary>
+        /// Load the form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void frmPresets_Load(object sender, EventArgs e)
         {
             var presets = _presetsController.GetButtonList();
             PopulatePanel(presets);
         }
 
+        /// <summary>
+        /// Populate the panel with buttons
+        /// </summary>
+        /// <param name="presets"></param>
         private void PopulatePanel(List<Button> presets)
         {
             int btnWidth = presets[0].Width;

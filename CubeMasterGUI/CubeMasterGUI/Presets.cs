@@ -18,6 +18,10 @@ namespace CubeMasterGUI
                                LOAD_BAR, VOXEL_TEST, VERT_SPIRAL, LINE_SPIN, SIDE_WAVES,
                                SINE_WAVES, RIPPLE };
 
+        /// <summary>
+        /// Constructor for presets
+        /// </summary>
+        /// <param name="cube"></param>
         public Presets(ref CubeController.Cube cube)
         {
             _cube = cube;
@@ -26,17 +30,29 @@ namespace CubeMasterGUI
             PopulateDictionary();
         }
 
-
+        /// <summary>
+        /// Updates the delay variable
+        /// </summary>
+        /// <param name="delay">New delay</param>
         public void UpdateDelay(int delay)
         {
             _delay = delay;
         }
 
+        /// <summary>
+        /// Gets the list of buttons
+        /// </summary>
+        /// <returns>List of the button controls</returns>
         public List<System.Windows.Forms.Button> GetButtonList()
         {
             return _presets;
         } 
 
+        /// <summary>
+        /// Handles a button click event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ButtonClickEventHandler(object sender, EventArgs e)
         {
             var button = sender as System.Windows.Forms.Button;
@@ -80,6 +96,9 @@ namespace CubeMasterGUI
             }
         }
         
+        /// <summary>
+        /// Populates the button list
+        /// </summary>
         private void PopulateButtonList()
         {
             _presets.Add(NewButton("btnFirework", "Firework"));
@@ -100,6 +119,9 @@ namespace CubeMasterGUI
             _presets.Add(NewButton("btnRipple", "Ripple"));
         }
 
+        /// <summary>
+        /// Populates the lookup dictionary
+        /// </summary>
         private void PopulateDictionary()
         {
             _presetsDictionary = new Dictionary<string, PRESETS>
@@ -123,6 +145,12 @@ namespace CubeMasterGUI
             };
         }
 
+        /// <summary>
+        /// Creates a new button of a specific style
+        /// </summary>
+        /// <param name="name">The button's name</param>
+        /// <param name="text">The button's text</param>
+        /// <returns></returns>
         private System.Windows.Forms.Button NewButton(string name, string text)
         {
             var button = new System.Windows.Forms.Button();
