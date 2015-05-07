@@ -38,6 +38,7 @@
             this.txtBoxMessage = new System.Windows.Forms.TextBox();
             this.btnSend = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
+
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -46,6 +47,7 @@
             this.btnCloseWindow1 = new CubeMasterGUI.btnCloseWindow();
             this.tmrTextToCube = new CubeMasterGUI.ctrlTimer();
             this.btnCloseWindow = new CubeMasterGUI.btnCloseWindow();
+
             this.label5 = new System.Windows.Forms.Label();
             this.trackBarDelay = new System.Windows.Forms.TrackBar();
             this.label6 = new System.Windows.Forms.Label();
@@ -66,6 +68,7 @@
             this.pnlDrawingControls.Controls.Add(this.btnBackToFront);
             this.pnlDrawingControls.Controls.Add(this.btnFrontToBack);
             this.pnlDrawingControls.ForeColor = System.Drawing.Color.SteelBlue;
+
             this.pnlDrawingControls.Location = new System.Drawing.Point(793, 144);
             this.pnlDrawingControls.Margin = new System.Windows.Forms.Padding(2);
             this.pnlDrawingControls.Name = "pnlDrawingControls";
@@ -135,6 +138,7 @@
             // txtBoxMessage
             // 
             this.txtBoxMessage.ForeColor = System.Drawing.Color.SteelBlue;
+
             this.txtBoxMessage.Location = new System.Drawing.Point(793, 395);
             this.txtBoxMessage.Name = "txtBoxMessage";
             this.txtBoxMessage.Size = new System.Drawing.Size(335, 35);
@@ -145,6 +149,7 @@
             this.btnSend.BackColor = System.Drawing.Color.SteelBlue;
             this.btnSend.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSend.ForeColor = System.Drawing.Color.GhostWhite;
+
             this.btnSend.Location = new System.Drawing.Point(793, 436);
             this.btnSend.Name = "btnSend";
             this.btnSend.Size = new System.Drawing.Size(153, 37);
@@ -160,14 +165,17 @@
             this.btnClear.BackColor = System.Drawing.Color.SteelBlue;
             this.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClear.ForeColor = System.Drawing.Color.GhostWhite;
+
             this.btnClear.Location = new System.Drawing.Point(972, 436);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(153, 37);
+
             this.btnClear.TabIndex = 8;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = false;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
+
             // label2
             // 
             this.label2.AutoSize = true;
@@ -209,33 +217,40 @@
             // btnCloseWindow2
             // 
             this.btnCloseWindow2.BackColor = System.Drawing.SystemColors.InactiveCaption;
+
             this.btnCloseWindow2.Location = new System.Drawing.Point(3300, 36);
             this.btnCloseWindow2.Margin = new System.Windows.Forms.Padding(20, 16, 20, 16);
             this.btnCloseWindow2.Name = "btnCloseWindow2";
             this.btnCloseWindow2.Size = new System.Drawing.Size(75, 65);
+
             this.btnCloseWindow2.TabIndex = 13;
             // 
             // btnCloseWindow1
             // 
             this.btnCloseWindow1.BackColor = System.Drawing.SystemColors.InactiveCaption;
+
             this.btnCloseWindow1.Location = new System.Drawing.Point(8270, 69);
             this.btnCloseWindow1.Margin = new System.Windows.Forms.Padding(25, 25, 25, 25);
             this.btnCloseWindow1.Name = "btnCloseWindow1";
             this.btnCloseWindow1.Size = new System.Drawing.Size(188, 149);
+
             this.btnCloseWindow1.TabIndex = 11;
             // 
             // tmrTextToCube
             // 
             this.tmrTextToCube.BackColor = System.Drawing.Color.Transparent;
+
             this.tmrTextToCube.Location = new System.Drawing.Point(425, 3502);
             this.tmrTextToCube.Margin = new System.Windows.Forms.Padding(50, 36, 50, 36);
             this.tmrTextToCube.Name = "tmrTextToCube";
             this.tmrTextToCube.Size = new System.Drawing.Size(188, 149);
+
             this.tmrTextToCube.TabIndex = 10;
             // 
             // btnCloseWindow
             // 
             this.btnCloseWindow.BackColor = System.Drawing.SystemColors.InactiveCaption;
+
             this.btnCloseWindow.Location = new System.Drawing.Point(32745, 323);
             this.btnCloseWindow.Margin = new System.Windows.Forms.Padding(155, 125, 155, 125);
             this.btnCloseWindow.Name = "btnCloseWindow";
@@ -298,6 +313,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(393, 67);
             this.panel1.TabIndex = 21;
+
             // 
             // frmTextToCube
             // 
@@ -305,6 +321,7 @@
             this.BackColor = System.Drawing.Color.GhostWhite;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1366, 750);
+
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -312,6 +329,7 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
+
             this.Controls.Add(this.btnCloseWindow2);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnCloseWindow1);
@@ -322,7 +340,9 @@
             this.Controls.Add(this.txtBoxMessage);
             this.Controls.Add(this.pnlDrawingControls);
             this.Controls.Add(this.btnCloseWindow);
+
             this.Controls.Add(this.panel1);
+
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.SteelBlue;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -334,7 +354,9 @@
             this.Text = "frmTextToCube";
             this.pnlDrawingControls.ResumeLayout(false);
             this.pnlDrawingControls.PerformLayout();
+
             ((System.ComponentModel.ISupportInitialize)(this.trackBarDelay)).EndInit();
+
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -351,11 +373,14 @@
         private System.Windows.Forms.TextBox txtBoxMessage;
         private System.Windows.Forms.Button btnSend;
         private System.Windows.Forms.Button btnClear;
+
+
         private System.Windows.Forms.RadioButton btnSpin3D;
         private ctrlTimer tmrTextToCube;
         private btnCloseWindow btnCloseWindow1;
         private System.Windows.Forms.Label label2;
         private btnCloseWindow btnCloseWindow2;
+
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
@@ -365,5 +390,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Panel panel1;
+
     }
 }

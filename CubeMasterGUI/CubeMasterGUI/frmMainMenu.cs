@@ -94,7 +94,8 @@ namespace CubeMasterGUI
 
         private void btnGames_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            this.tmrMainMenu.HaltTimers();
+            _mainMenuController.ApplicationLaunch_Games();
         }
     }
 }

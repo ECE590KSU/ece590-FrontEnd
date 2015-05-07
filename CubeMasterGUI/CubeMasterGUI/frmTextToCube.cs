@@ -28,6 +28,8 @@ namespace CubeMasterGUI
             AssignEventHandlers();
             InvokeTimerProtocol();
             InitializeRadioButtons();
+
+            this.btnCloseWindow.BringToFront();
         }
 
         private void btnClear_Click(object sender, EventArgs e)

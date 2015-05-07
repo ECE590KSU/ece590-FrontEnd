@@ -117,13 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="label5.Text" xml:space="preserve">
-    <value>The cube can only have one layer on 
-at a time. However, it tricks the brain
-into thinking the entire cube is lit up 
-by flashing each layer on and off very, 
-very quickly. This phenomenon is 
-called persistence of vision.</value>
-
-  </data>
 </root>
