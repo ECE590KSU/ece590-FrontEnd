@@ -88,7 +88,8 @@ namespace CubeMasterGUI
 
         private void btnPresets_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            this.tmrMainMenu.HaltTimers();
+            _mainMenuController.ApplicationLaunch_Presets();
         }
 
         private void btnGames_Click(object sender, EventArgs e)
