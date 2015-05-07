@@ -8,14 +8,30 @@ namespace CubeMasterGUI
 {
     public class TextToCube
     {
+        /// <summary>
+        /// The possible text presentation effects
+        /// </summary>
         public enum TEXT_EFFECT { BACK_TO_FRONT, FRONT_TO_BACK, CLOCKWISE_BANNER, COUNTERCLOCKWISE_BANNER, SPIN_3D };
 
+        /// <summary>
+        /// The cube controller
+        /// </summary>
         private CubeController.Cube _cube;
 
+        /// <summary>
+        /// Dictionary to look up effect from string
+        /// </summary>
         private Dictionary<string, TEXT_EFFECT> _effectDictionary;
 
+        /// <summary>
+        /// The current selected text effect
+        /// </summary>
         private TEXT_EFFECT _selectedTextEffect { get; set; }
 
+        /// <summary>
+        /// Constructor for the TextToCube Controller
+        /// </summary>
+        /// <param name="cube">The cube controller</param>
         public TextToCube(ref CubeController.Cube cube)
         {
             _cube = cube;
@@ -32,12 +48,20 @@ namespace CubeMasterGUI
             _selectedTextEffect = TEXT_EFFECT.BACK_TO_FRONT;
         }
 
+        /// <summary>
+        /// Changes the selected text effect
+        /// </summary>
+        /// <param name="p">Name of btn that hold the effect which has changed</param>
         internal void SelectedTextEffectChanged(string p)
         {
             var selectedEffect = _effectDictionary[p];
             _selectedTextEffect = selectedEffect;
         }
         
+        /// <summary>
+        /// Sends a message to the cube using the selected effect
+        /// </summary>
+        /// <param name="text">Message to send</param>
         internal void SendMessage(string text)
         {
             switch ( _selectedTextEffect)
