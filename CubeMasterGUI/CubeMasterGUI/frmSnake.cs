@@ -55,12 +55,12 @@ namespace CubeMasterGUI
         /// <summary>
         /// Color of a "clicked" voxel
         /// </summary>
-        private Color _clrVoxelClicked = AssetHandler._secondaryControlColor;
+        private Color _clrVoxelClicked = AssetHandler.BtnBackColor_Tertiary;
 
         /// <summary>
         /// Color of an "unclicked" voxel
         /// </summary>
-        private Color _clrVoxelUnclicked = AssetHandler._primaryFormColor;
+        private Color _clrVoxelUnclicked = AssetHandler.BtnBackColor_Primary;
         
         /// <summary>
         /// Constructor for frmSnake

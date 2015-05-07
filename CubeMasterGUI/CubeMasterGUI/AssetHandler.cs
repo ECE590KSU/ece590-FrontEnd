@@ -42,8 +42,8 @@ namespace CubeMasterGUI
 
         #region COLOR_PALETTE
         // High Score File
-        public static string _snakeHighScoreURL = _topLevelDir + @"\text\snakeHighScores.csv";
-        public static string _catcherHighScoreURL = _topLevelDir + @"\text\catcherHighScores.csv";
+        public static string _snakeHighScoreURL = TopLevelDir + @"\text\snakeHighScores.csv";
+        public static string _catcherHighScoreURL = TopLevelDir + @"\text\catcherHighScores.csv";
 
         // Color Palette.
         public static System.Drawing.Color FormBackColor = System.Drawing.Color.GhostWhite;

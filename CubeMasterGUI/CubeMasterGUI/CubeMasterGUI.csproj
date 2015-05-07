@@ -117,6 +117,7 @@
     </Compile>
     <Compile Include="frmTextToCube.Designer.cs">
       <DependentUpon>frmTextToCube.cs</DependentUpon>
+	</Compile>
     <Compile Include="Games.cs" />
     <Compile Include="HighScoreWindow.cs">
       <SubType>UserControl</SubType>
@@ -171,6 +172,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmTextToCube.resx">
       <DependentUpon>frmTextToCube.cs</DependentUpon>
+	</EmbeddedResource>
     <EmbeddedResource Include="HighScoreWindow.resx">
       <DependentUpon>HighScoreWindow.cs</DependentUpon>
     </EmbeddedResource>
