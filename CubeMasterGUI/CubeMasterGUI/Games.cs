@@ -8,13 +8,25 @@ namespace CubeMasterGUI
 {
     public class Games
     {
+        /// <summary>
+        /// Cube controller
+        /// </summary>
         private CubeController.Cube _cube;
 
+        /// <summary>
+        /// Constructor for a new Games controller
+        /// </summary>
+        /// <param name="cube">Cube controller</param>
         public Games(ref CubeController.Cube cube)
         {
             _cube = cube;
         }
 
+        /// <summary>
+        /// Launches a new snake game
+        /// </summary>
+        /// <param name="width">Parent form width</param>
+        /// <param name="height">Parent form height</param>
         public void LaunchSnake(int width, int height)
         {
             frmSnake snake = new frmSnake(ref _cube, width, height);
@@ -25,6 +37,11 @@ namespace CubeMasterGUI
             }
         }
 
+        /// <summary>
+        /// Launches a new catcher game
+        /// </summary>
+        /// <param name="width">Parent form width</param>
+        /// <param name="height">Parent form height</param>
         public void LaunchCatcher(int width, int height)
         {
             frmCatcher catcher = new frmCatcher(ref _cube, width, height);
