@@ -12,36 +12,116 @@ namespace CubeMasterGUI
 {
     public partial class frmFreeDraw : Form
     {
+        /// <summary>
+        /// The controller class for the Free Draw Form.
+        /// </summary>
         private FreeDraw _freeDrawController;
 
+        /// <summary>
+        /// A data structure to store the various drawing functions (Single, Line, etc.).
+        /// </summary>
         private List<Button> _functions;
 
+        /// <summary>
+        /// Allows drawing events requiring multiple clicks to distiniguish between start and
+        /// end clicks.
+        /// </summary>
         private bool _isSecondClick = false;
 
+        /// <summary>
+        /// A 2D drawing point indicating the beginning of a two-click draw event. Useful for 
+        /// determining the cursor's location on screen. 
+        /// </summary>
         private System.Drawing.Point _drawStart;
+
+        /// <summary>
+        /// A 2D drawing point indicating the end of a two-click draw event. Useful for
+        /// determining the cursor's location on screen. 
+        /// </summary>
         private System.Drawing.Point _drawEnd;
 
+        /// <summary>
+        /// The CubeController::Point to begin the drawing function from, using the CubeController.DLL
+        /// </summary>
         private CubeController.Point _drawPointStart;
+
+        /// <summary>
+        /// The CubeController::Point to end the drawing function on, using the CubeController.DLL
+        /// </summary>
         private CubeController.Point _drawPointEnd;
         
+        /// <summary>
+        /// How many pixels from the left edge of the Free Draw Form to begin drawing the voxel grid.
+        /// </summary>
         private int _voxelGrid_startX = 20;
+
+        /// <summary>
+        /// How many pixels from the top edge of the Free Draw Form to begin drawing the voxel grid. 
+        /// </summary>
         private int _voxelGrid_startY = 75;
+
+        /// <summary>
+        /// How many pixels apart each Voxel element should be spaced. 
+        /// </summary>
         private int _voxelSpacing = 9;
+
+        /// <summary>
+        /// The height of a Voxel control. 
+        /// </summary>
         private int _voxelHeight = 80;
+
+        /// <summary>
+        /// The width of a Voxel control. 
+        /// </summary>
         private int _voxelWidth = 80;
 
+        /// <summary>
+        /// The image to display in the preview pane when the user is oriented along the Z axis.
+        /// </summary>
         private Bitmap _imgOrientZ;
+
+        /// <summary>
+        /// The image to display in the preview pane when the user is oriented along the Y axis.
+        /// </summary>
         private Bitmap _imgOrientY;
+
+        /// <summary>
+        /// The image to display in the preview pane when the user is oriented along the X axis.
+        /// </summary>
         private Bitmap _imgOrientX;
 
+        /// <summary>
+        /// A 2D array of Voxel elements, which comprise the drawing grid. 
+        /// </summary>
         private Voxel[,] _voxels;
 
+        /// <summary>
+        /// The color a clicked Voxel should be painted when displayed to the user.
+        /// </summary>
         private Color _clrVoxelClicked = AssetHandler.BtnBackColor_Tertiary;
+
+        /// <summary>
+        /// The color an unclicked Voxel should be painted when displayed to the user. 
+        /// </summary>
         private Color _clrVoxelUnclicked = AssetHandler.FormBackColor;
 
+        /// <summary>
+        /// A timer to control the Demo event (refresh rate, timer tick fidelity, etc.). 
+        /// </summary>
         private System.Windows.Forms.Timer _demoTimer;
+
+        /// <summary>
+        /// A private thread to compute the Demo event on, in order to constantly refresh this form. 
+        /// </summary>
         private System.Threading.Thread _demoThread;
 
+        /// <summary>
+        /// Non-default public constructor. Makes no call to the base() constructor, as
+        /// arugments are required in order for this object to be instantiated correctly. 
+        /// </summary>
+        /// <param name="cube">A cube controller object (implements CubeController.DLL), created from the parent controller.</param>
+        /// <param name="parentWidth">The width of the parent form in pixels.</param>
+        /// <param name="parentHeight">The height of the parent form in pixels.</param>
         public frmFreeDraw(ref CubeController.Cube cube, int parentWidth, int parentHeight)
         {
             InitializeComponent();
@@ -65,6 +145,11 @@ namespace CubeMasterGUI
             this.MouseWheel += new MouseEventHandler(this.uxPlaneSelect_MouseWheel);
         }
 
+        /// <summary>
+        /// Associates the various buttons with their corresponding Bitmap icons. Handles
+        /// the creation of these button icons, as well as initializing the default drawing
+        /// function's background.  
+        /// </summary>
         private void SetButtonIcons()
         {
             this.btnRotateCW.Image = new Bitmap(AssetHandler.RotateCW_URL);
@@ -78,13 +163,18 @@ namespace CubeMasterGUI
             _freeDrawController.AddDrawingImagesEntry(this.btnRectangle, AssetHandler.DrawRect, AssetHandler.DrawRectAlt);
             _freeDrawController.AddDrawingImagesEntry(this.btnCircle, AssetHandler.DrawCircle, AssetHandler.DrawCircleAlt);
             _freeDrawController.AddDrawingImagesEntry(this.btnLine, AssetHandler.DrawLine, AssetHandler.DrawLineAlt);
-            ToggleSelectedDrawingFunction(this.btnSingle);
 
             _imgOrientX = new Bitmap(AssetHandler.OrientXURL);
             _imgOrientY = new Bitmap(AssetHandler.OrientYURL);
             _imgOrientZ = new Bitmap(AssetHandler.OrientZURL);
+
+            ToggleSelectedDrawingFunction(this.btnSingle);
         }
 
+        /// <summary>
+        /// Creates a new list for the data structure containing the drawing functions. 
+        /// Adds the form's controls to this list for easier manipulation. 
+        /// </summary>
         private void AssignDrawingFunctions()
         {
             _functions = new List<Button>();
@@ -94,6 +184,10 @@ namespace CubeMasterGUI
             _functions.Add(this.btnCircle);
         }
 
+        /// <summary>
+        /// Initializes the timer embodied by tmrFreeDraw. Takes into account that
+        /// the timer may initialize prematurely while in DesignMode. 
+        /// </summary>
         private void InvokeTimerProtocol()
         {
             if (!this.DesignMode)
@@ -102,11 +196,20 @@ namespace CubeMasterGUI
             }
         }
 
+        /// <summary>
+        /// Checks the default radio button to indicate the default axis. 
+        /// </summary>
         private void InitializeRadioButtons()
         {
             this.btnAXIS_Y.Checked = true;
         }
 
+        /// <summary>
+        /// Renders the Voxel grid to the form. Assigns each Voxel element a 
+        /// coordinate, brings each to the front of the form, modifies the cursor to
+        /// display when the MouseOver event is raised. Subscribes each Voxel element
+        /// frmFreeDraw_VoxelGridClick, which is the primary logic for handling drawing events. 
+        /// </summary>
         private void GenerateVoxelGrid()
         {
             _voxels = new Voxel[8, 8];
@@ -135,10 +238,13 @@ namespace CubeMasterGUI
             }
         }
 
+        /// <summary>
+        /// Refreshes the Voxel grid on screen to reflect the current state of the CubeController. 
+        /// </summary>
         public void RefreshVoxelGrid()
         {
             this.SuspendLayout();
-            var tmpplane = _freeDrawController.GetPlane((int)uxPlaneSelect.Value -1);
+            var tmpplane = _freeDrawController.GetPlane();
 
             for (int i = 0; i < 8; ++i)
             {
@@ -150,6 +256,10 @@ namespace CubeMasterGUI
             this.ResumeLayout();
         }
 
+        /// <summary>
+        /// Creates a new timer (with initialization), and establishes a worker thread, whose
+        /// callback is DemoThreadEntry. 
+        /// </summary>
         private void SetupDemo()
         {
             _demoTimer = new Timer();
@@ -158,16 +268,32 @@ namespace CubeMasterGUI
             _demoThread = new System.Threading.Thread(DemoThreadEntry);
         }
 
+        /// <summary>
+        /// Anytime the mouse is moved on this form, reset the timers. 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void frmFreeDraw_MouseMove(object sender, MouseEventArgs e)
         {
             this.tmrFreeDraw.ResetTimers();
         }
 
+        /// <summary>
+        /// Anytime the mouse is clicked on this form, reset the timers. 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void frmFreeDraw_MouseClick(object sender, MouseEventArgs e)
         {
             this.tmrFreeDraw.ResetTimers();
         }
 
+        /// <summary>
+        /// Determines the current drawing mode, and the context of the mouse-clicks on 
+        /// a Voxel element. 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void frmFreeDraw_VoxelGridClick(object sender, MouseEventArgs e)
         {
             this.tmrFreeDraw.ResetTimers();
@@ -274,6 +400,12 @@ namespace CubeMasterGUI
             RefreshVoxelGrid();
         }
 
+        /// <summary>
+        /// When switching to the X Axis, make sure to update the controller's
+        /// selected axis. Also, update the preview pane for the current orientation.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAXIS_X_CheckedChanged(object sender, EventArgs e)
         {
             RadioButton btnx = sender as RadioButton;
@@ -285,6 +417,12 @@ namespace CubeMasterGUI
             }
         }
 
+        /// <summary>
+        /// When switching to the Y Axis, make sure to update the controller's
+        /// selected axis. Also, update the preview pane for the current orientation. 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAXIS_Y_CheckedChanged(object sender, EventArgs e)
         {
             RadioButton btny = sender as RadioButton;
@@ -296,6 +434,12 @@ namespace CubeMasterGUI
             }
         }
 
+        /// <summary>
+        /// When switching to the Z Axis, make sure to update the controller's
+        /// selected axis. Also, update the preview pane for the current orientation. 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAXIS_Z_CheckedChanged(object sender, EventArgs e)
         {
             RadioButton btnz = sender as RadioButton;
@@ -307,24 +451,44 @@ namespace CubeMasterGUI
             }
         }
 
+        /// <summary>
+        /// Clears the current plane of the current axis.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnClearPlane_Click(object sender, EventArgs e)
         {
-            _freeDrawController.ClearPlane(_freeDrawController.SelectedPlane);
+            _freeDrawController.ClearPlane();
             RefreshVoxelGrid();
         }
 
+        /// <summary>
+        /// Fills the current plane of the current axis. 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnFillPlane_Click(object sender, EventArgs e)
         {
-            _freeDrawController.SetPlane(_freeDrawController.SelectedPlane);
+            _freeDrawController.SetPlane();
             RefreshVoxelGrid();
         }
 
+        /// <summary>
+        /// Switches the currently selected plane. 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void uxPlaneSelect_ValueChanged(object sender, EventArgs e)
         {
             _freeDrawController.SelectedPlane = (int)(this.uxPlaneSelect.Value - 1);
             RefreshVoxelGrid();
         }
 
+        /// <summary>
+        /// Clear every plane of the cube. Reset the selected plane to plane 1. 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnClearAll_Click(object sender, EventArgs e)
         {
             this.tmrFreeDraw.ResetTimers();
@@ -333,6 +497,11 @@ namespace CubeMasterGUI
             RefreshVoxelGrid();
         }
 
+        /// <summary>
+        /// Begin a demo for the user.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnDemo_Click(object sender, EventArgs e)
         {
             // Only try and start the demo thread if it is not already alive!!
@@ -344,16 +513,30 @@ namespace CubeMasterGUI
             }
         }
 
+        /// <summary>
+        /// Callback for the demo thread.
+        /// </summary>
         private void DemoThreadEntry()
         {
             _freeDrawController.Demo();
         }
 
+        /// <summary>
+        /// On each timer tick of the demo thread's timer, update the
+        /// grid. 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Demo_TimerTick(object sender, EventArgs e)
         {
             RefreshVoxelGrid();
         }
 
+        /// <summary>
+        /// Reset the timers and end the demo thread. 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnDemoStop_Click(object sender, EventArgs e)
         {
             this.tmrFreeDraw.ResetTimers();
@@ -363,6 +546,11 @@ namespace CubeMasterGUI
             RefreshVoxelGrid();
         }
 
+        /// <summary>
+        /// Set the current drawing mode to SINGLE.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSingle_Click(object sender, EventArgs e)
         {
             _freeDrawController.CurrentDrawingMode = FreeDraw.DRAWING_MODE.SINGLE;
@@ -370,6 +558,11 @@ namespace CubeMasterGUI
             ToggleSelectedDrawingFunction(sender as Button);
         }
 
+        /// <summary>
+        /// Set the current drawing mode to LINE.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnLine_Click(object sender, EventArgs e)
         {
             _freeDrawController.CurrentDrawingMode = FreeDraw.DRAWING_MODE.LINE;
@@ -377,6 +570,11 @@ namespace CubeMasterGUI
             ToggleSelectedDrawingFunction(sender as Button);
         }
 
+        /// <summary>
+        /// Set the current drawing mode to RECTANGLE.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnRectangle_Click(object sender, EventArgs e)
         {
             _freeDrawController.CurrentDrawingMode = FreeDraw.DRAWING_MODE.RECTANGLE;
@@ -384,6 +582,11 @@ namespace CubeMasterGUI
             ToggleSelectedDrawingFunction(sender as Button);
         }
 
+        /// <summary>
+        /// Set the current drawing mode to CIRCLE. 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnCircle_Click(object sender, EventArgs e)
         {
             _freeDrawController.CurrentDrawingMode = FreeDraw.DRAWING_MODE.CIRCLE;
@@ -391,6 +594,11 @@ namespace CubeMasterGUI
             ToggleSelectedDrawingFunction(sender as Button);
         }
 
+        /// <summary>
+        /// Distinguishes the current drawing mode button by changing its
+        /// background color and setting an alternate button icon. 
+        /// </summary>
+        /// <param name="sender"></param>
         private void ToggleSelectedDrawingFunction(Button sender)
         {
             this.tmrFreeDraw.ResetTimers();
@@ -403,6 +611,11 @@ namespace CubeMasterGUI
             }
         }
 
+        /// <summary>
+        /// Copy the current plane on the current axis. 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnCopy_Click(object sender, EventArgs e)
         {
             this.tmrFreeDraw.ResetTimers();
@@ -410,6 +623,13 @@ namespace CubeMasterGUI
             RefreshVoxelGrid();
         }
 
+        /// <summary>
+        /// Paste the copied plane into the current plane on the current axis.
+        /// User can attempt to paste before copying, as this is handled by
+        /// the Free Draw controller. 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnPaste_Click(object sender, EventArgs e)
         {
             this.tmrFreeDraw.ResetTimers();
@@ -417,6 +637,11 @@ namespace CubeMasterGUI
             RefreshVoxelGrid();
         }
 
+        /// <summary>
+        /// Rotate the current plane clockwise. 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnRotateCW_Click(object sender, EventArgs e)
         {
             this.tmrFreeDraw.ResetTimers();
@@ -424,12 +649,18 @@ namespace CubeMasterGUI
             RefreshVoxelGrid();
         }
 
+        /// <summary>
+        /// Rotate the current plane counter-clockwise.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnRotateCCW_Click(object sender, EventArgs e)
         {
             this.tmrFreeDraw.ResetTimers();
             _freeDrawController.Rotate(90);
             RefreshVoxelGrid();
         }
+
 
         private void btnMirrorX_Click(object sender, EventArgs e)
         {
@@ -451,13 +682,27 @@ namespace CubeMasterGUI
             RefreshVoxelGrid();
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        /// <summary>
+        /// Sets the reflection parameter. 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cmbReflection_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.tmrFreeDraw.ResetTimers();
             string optionSelected = this.cmbReflection.SelectedItem.ToString();
             _freeDrawController.SetReflection(optionSelected);
         }
 
+        /// <summary>
+        /// Shifts all the planes "UP" by one. Shifts with roll,
+        /// as this is the outcome a typical user would expect.
+        /// 
+        /// "UP" is away from the origin towards terminus along the
+        /// currently selected axis of orientation.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnShiftUp_Click(object sender, EventArgs e)
         {
             this.tmrFreeDraw.ResetTimers();
@@ -465,6 +710,15 @@ namespace CubeMasterGUI
             RefreshVoxelGrid();
         }
 
+        /// <summary>
+        /// Shifts all the planes "DOWN" by one. Shifts with roll,
+        /// as this is the outcome a typical user would expect.
+        /// 
+        /// "DOWN" is towards origin from terminus along the currently
+        /// selected axis of orientation.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnShiftDown_Click(object sender, EventArgs e)
         {
             this.tmrFreeDraw.ResetTimers();
@@ -540,6 +794,12 @@ namespace CubeMasterGUI
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
+        /// <summary>
+        /// Allows the user to change the selected plane via the mousewheel. Makes for a
+        /// much smoother interaction with the UI. 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="me"></param>
         private void uxPlaneSelect_MouseWheel(object sender, MouseEventArgs me)
         {
             if (me.Delta > 0)
@@ -552,6 +812,12 @@ namespace CubeMasterGUI
             }
         }
 
+        /// <summary>
+        /// Attempting to intercept arrow key events, and prevent them from
+        /// raising btnAXIS_*_CheckChanged events. 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAXIS_X_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == System.Windows.Forms.Keys.Left ||

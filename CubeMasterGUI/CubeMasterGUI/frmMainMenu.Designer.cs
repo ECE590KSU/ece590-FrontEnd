@@ -56,7 +56,7 @@
             this.lblText2Cube.AutoSize = true;
             this.lblText2Cube.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblText2Cube.ForeColor = System.Drawing.Color.SteelBlue;
-            this.lblText2Cube.Location = new System.Drawing.Point(948, 189);
+            this.lblText2Cube.Location = new System.Drawing.Point(842, 201);
             this.lblText2Cube.Name = "lblText2Cube";
             this.lblText2Cube.Size = new System.Drawing.Size(125, 25);
             this.lblText2Cube.TabIndex = 2;
@@ -78,7 +78,7 @@
             this.lblGames.AutoSize = true;
             this.lblGames.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblGames.ForeColor = System.Drawing.Color.SteelBlue;
-            this.lblGames.Location = new System.Drawing.Point(952, 656);
+            this.lblGames.Location = new System.Drawing.Point(842, 667);
             this.lblGames.Name = "lblGames";
             this.lblGames.Size = new System.Drawing.Size(78, 25);
             this.lblGames.TabIndex = 2;
@@ -109,7 +109,7 @@
             this.btnText2Cube.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnText2Cube.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnText2Cube.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnText2Cube.Location = new System.Drawing.Point(952, 86);
+            this.btnText2Cube.Location = new System.Drawing.Point(847, 86);
             this.btnText2Cube.Name = "btnText2Cube";
             this.btnText2Cube.Size = new System.Drawing.Size(250, 100);
             this.btnText2Cube.TabIndex = 4;
@@ -125,7 +125,7 @@
             this.btnGames.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGames.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGames.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnGames.Location = new System.Drawing.Point(956, 553);
+            this.btnGames.Location = new System.Drawing.Point(847, 564);
             this.btnGames.Name = "btnGames";
             this.btnGames.Size = new System.Drawing.Size(250, 100);
             this.btnGames.TabIndex = 4;

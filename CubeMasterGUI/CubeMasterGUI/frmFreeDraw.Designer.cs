@@ -137,7 +137,7 @@
             this.cmbReflection.TabStop = false;
             this.ttFreeDraw.SetToolTip(this.cmbReflection, "Do you want to reflect what\'s \r\ncloser to you (ORIGIN), or\r\nwhat\'s further from y" +
         "ou (TERMINUS)?");
-            this.cmbReflection.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.cmbReflection.SelectedIndexChanged += new System.EventHandler(this.cmbReflection_SelectedIndexChanged);
             // 
             // btnRotateCW
             // 

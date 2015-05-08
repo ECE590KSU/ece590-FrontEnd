@@ -35,6 +35,7 @@ namespace CubeMasterGUI
             InitializeApplications();
             InvokeTimerProtocol();
 
+            this.CenterToScreen();
             _mainMenuController = new MainMenu(ref cube, this.Width, this.Height);
             this.ShowInTaskbar = false;
         }
@@ -75,7 +76,7 @@ namespace CubeMasterGUI
         }
 
         /// <summary>
-        /// Resets timer on mouse move
+        /// Resets timer on mouse click
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

@@ -12,25 +12,53 @@ namespace CubeMasterGUI
 {
     public partial class ctrlTimer : UserControl
     {
+        /// <summary>
+        /// A timer to monitor the number of passed seconds due to user inactivity.
+        /// </summary>
         private System.Windows.Forms.Timer _inactiveTimer { get; set; }
+
+        /// <summary>
+        /// A timer to control the countdown of the AutoCloseMessageBox.
+        /// </summary>
         private System.Windows.Forms.Timer _userKickTimer { get; set; }
+
+        /// <summary>
+        /// Counter to update the countdown timer and display it to the user.
+        /// </summary>
         private int _userKickCounter { get; set; }
 
+        /// <summary>
+        /// An window that passively checks for user inactivity.
+        /// </summary>
         private AutoCloseMessageBox _areYouDonePrompt { get; set; }
 
-        // X minute Timeout interval for Inactive. 
+        /// <summary>
+        /// Divide by 1000 to get number of seconds before user is considered inactive.
+        /// </summary>
         private int _inactiveTimeOut = 50000;
-        // 1 Second tick interval for UserKick. After UserKickMAX ticks are reached, 
-        // timer stops and logic follows.
+
+        /// <summary>
+        /// Single second ticks between each update of the user kick prompt (AutoCloseMessageBox).
+        /// </summary>
         private int _userKickInterval = 1000;
-        // Maximum ticks of the user Kick, i.e., number of seconds until kick.   
+
+        /// <summary>
+        /// Maximum number of times the _userKickTimer interval will be handled, i.e., the
+        /// number of seconds until user is kicked from form. 
+        /// </summary>
         private int _userKickMaxTicks = 30;
 
+        /// <summary>
+        /// Public, default constructor for an instance of the ctrlTimer object.
+        /// </summary>
         public ctrlTimer()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Initializes the timers used, and sets the _areYouDonePrompt properties. Starts the timers.
+        /// </summary>
         public void InitializeTimers()
         {
             _areYouDonePrompt = new AutoCloseMessageBox(_userKickInterval * _userKickMaxTicks);
@@ -49,17 +77,32 @@ namespace CubeMasterGUI
             _inactiveTimer.Start();
         }
 
+        /// <summary>
+        /// Changes the _inactiveTimer.Interval. 
+        /// </summary>
+        /// <param name="seconds"></param>
         public void ChangeInactiveTimeout(int seconds)
         {
             _inactiveTimeOut = seconds * 1000;
         }
 
+        /// <summary>
+        /// A single tick of the _inactiveTimer. Only one tick will be handled, and
+        /// then the PromptIfDone() must be invoked. 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void InactiveTimer_Tick(object sender, EventArgs e)
         {
             _inactiveTimer.Stop();
             this.PromptIfDone();
         }
 
+        /// <summary>
+        /// Update _userKickCounter and the _areYouDonePrompt text field. 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void PromptTimer_Tick(object sender, EventArgs e)
         {
             if (_userKickCounter++ < _userKickMaxTicks)
@@ -75,6 +118,10 @@ namespace CubeMasterGUI
             }
         }
 
+        /// <summary>
+        /// Display the AutoCloseMessageBox (_areYouDonePrompt) to the user and countdown
+        /// until they are kicked due to inactivity. 
+        /// </summary>
         private void PromptIfDone()
         {
             _userKickTimer.Start();
@@ -94,6 +141,9 @@ namespace CubeMasterGUI
             }
         }
 
+        /// <summary>
+        /// Reset the timers.
+        /// </summary>
         internal void ResetTimers()
         {
             _inactiveTimer.Stop();
@@ -101,8 +151,10 @@ namespace CubeMasterGUI
             _userKickCounter = 0;
         }
 
-        // When a timer exits focus, you'll want to stop all active timers, and
-        // wait for the control to regain focus. 
+        /// <summary>
+        /// When a timer exits focus, you'll want to stop all active timers, and
+        /// wait for the control to regain focus. 
+        /// </summary>
         internal void HaltTimers()
         {
             _userKickTimer.Stop();

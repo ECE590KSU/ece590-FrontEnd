@@ -77,6 +77,8 @@ namespace CubeMasterGUI
             this.Width = parentWidth;
             this.Height = parentHeight;
 
+            this.ShowInTaskbar = false;
+
             GenerateVoxelGrid();
             InvokeTimerProtocol();
 
