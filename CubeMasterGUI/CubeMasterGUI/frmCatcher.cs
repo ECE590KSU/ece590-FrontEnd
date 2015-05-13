@@ -131,6 +131,7 @@ namespace CubeMasterGUI
         /// <param name="e"></param>
         private void frmCatcher_KeyUp(object sender, KeyEventArgs e)
         {
+            this.tmrCatcher.ResetTimers();
             _catcherController.MoveBasket(e.KeyCode);
         }
 
