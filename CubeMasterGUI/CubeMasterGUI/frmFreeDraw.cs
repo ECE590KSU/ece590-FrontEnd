@@ -202,6 +202,7 @@ namespace CubeMasterGUI
         private void InitializeRadioButtons()
         {
             this.btnAXIS_Y.Checked = true;
+            this.picPreview.Image = _imgOrientY;
         }
 
         /// <summary>

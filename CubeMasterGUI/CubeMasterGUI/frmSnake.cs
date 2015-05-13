@@ -133,6 +133,7 @@ namespace CubeMasterGUI
         /// <param name="e"></param>
         private void frmSnake_KeyUp(object sender, KeyEventArgs e)
         {
+            this.tmrSnake.ResetTimers();
             _snakeController.ChangeCurrentDirection(e.KeyCode);
         }
 
