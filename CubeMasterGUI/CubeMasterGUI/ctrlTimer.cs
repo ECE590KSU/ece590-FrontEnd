@@ -57,6 +57,17 @@ namespace CubeMasterGUI
         }
 
         /// <summary>
+        /// Non-default public constructor. Allows user to set their own kick timeout,
+        /// which is very useful for various games and drawing functions that may require a large
+        /// amount of user inactivity.
+        /// </summary>
+        /// <param name="timeout"></param>
+        public ctrlTimer(int timeout)
+        {
+            _inactiveTimeOut = timeout;
+        }
+
+        /// <summary>
         /// Initializes the timers used, and sets the _areYouDonePrompt properties. Starts the timers.
         /// </summary>
         public void InitializeTimers()
@@ -83,7 +94,11 @@ namespace CubeMasterGUI
         /// <param name="seconds"></param>
         public void ChangeInactiveTimeout(int seconds)
         {
-            _inactiveTimeOut = seconds * 1000;
+            _inactiveTimer.Stop();
+            _inactiveTimer.Dispose();
+            this._inactiveTimeOut = seconds * 1000;
+
+            InitializeTimers();
         }
 
         /// <summary>

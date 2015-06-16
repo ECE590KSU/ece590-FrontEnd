@@ -32,9 +32,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CubeController, Version=1.0.5604.38014, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\ece590-CubeController\CubeController\CubeController\obj\Release\CubeController.dll</HintPath>
+    <Reference Include="CubeController">
+      <HintPath>..\..\..\ece590-CubeController\CubeController\CubeController\bin\Debug\CubeController.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

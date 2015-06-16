@@ -236,6 +236,7 @@ namespace CubeMasterGUI
             listBoxHighScores.Enabled = false;
 
             tmrCatcher.ChangeInactiveTimeout(180);
+            tmrCatcher.ResetTimers();
             _catcherController.StartNewGame();
         }
 
@@ -289,6 +290,20 @@ namespace CubeMasterGUI
         private void frmCatcher_KeyDown(object sender, KeyEventArgs e)
         {
             _catcherController.MoveBasket(e.KeyCode);
+        }
+
+        /// <summary>
+        /// End the game when the form is closed. Games left open will cause timers
+        /// to remain ticking, which will then trigger events as if nothing had happened.
+        /// Remember, the form's objects and children still reside in memory on a form.Close().
+        /// 
+        /// You need to call Dispos() in order to garbage collect.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void frmCatcher_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            _catcherController.EndGame();
         }
     }
 }

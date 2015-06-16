@@ -239,6 +239,7 @@ namespace CubeMasterGUI
             listBoxHighScores.Enabled = false;
 
             tmrSnake.ChangeInactiveTimeout(180);
+            tmrSnake.ResetTimers();
             _snakeController.StartNewGame();
         }
 
@@ -282,6 +283,18 @@ namespace CubeMasterGUI
         private void frmSnake_MouseMove(object sender, MouseEventArgs e)
         {
             tmrSnake.ResetTimers();
+        }
+
+        /// <summary>
+        /// End the snake game when the form is closed. Some cases
+        /// of the window closing do not end the game, causing timers to still be
+        /// active. 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void frmSnake_OnClosing(object sender, FormClosingEventArgs e)
+        {
+            _snakeController.EndGame();
         }
     }
 }

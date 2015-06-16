@@ -209,6 +209,7 @@
             this.Name = "frmSnake";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmSnake";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmSnake_OnClosing);
             this.Load += new System.EventHandler(this.frmSnake_Load);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.frmSnake_KeyUp);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.frmSnake_MouseMove);

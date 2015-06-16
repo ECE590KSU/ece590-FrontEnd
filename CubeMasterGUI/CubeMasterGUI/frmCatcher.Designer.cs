@@ -210,6 +210,7 @@
             this.Name = "frmCatcher";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmCatcher";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmCatcher_FormClosing);
             this.Load += new System.EventHandler(this.frmCatcher_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmCatcher_KeyDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.frmCatcher_MouseMove);
